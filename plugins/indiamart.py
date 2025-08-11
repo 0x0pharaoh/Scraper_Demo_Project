@@ -3,7 +3,7 @@
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright
 import csv
 import os
 import time
@@ -16,12 +16,12 @@ description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
 
-def scroll_until_end(page, wait_time=2, max_tries=20):
-    """Scroll until no new results load."""
+def scroll_until_end(page, wait_time=1.5, max_tries=30):
+    """Smoothly scroll until no new results load."""
     logger.info("Starting dynamic auto-scroll...")
     previous_count = 0
     for i in range(max_tries):
-        page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
+        page.keyboard.press("PageDown")
         time.sleep(wait_time)
         cards = page.query_selector_all(".supplierInfoDiv")
         if len(cards) == previous_count:
@@ -31,11 +31,13 @@ def scroll_until_end(page, wait_time=2, max_tries=20):
     logger.info("Scrolling finished.")
 
 def extract_data_from_page(page):
+    """Extracts supplier details from the current page."""
     data = []
-    try:
-        cards = page.query_selector_all(".supplierInfoDiv")
-        logger.info(f"Found {len(cards)} supplier cards.")
-        for card in cards:
+    cards = page.query_selector_all(".supplierInfoDiv")
+    logger.info(f"Found {len(cards)} supplier cards.")
+
+    for card in cards:
+        try:
             company_name = card.query_selector(".companyname a")
             location = card.query_selector(".newLocationUi span.highlight")
             phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
@@ -52,11 +54,13 @@ def extract_data_from_page(page):
                 "Phone": phone,
                 "URL": url
             })
-    except Exception as e:
-        logger.error(f"Error extracting data: {e}")
+        except Exception as e:
+            logger.error(f"Error extracting card: {e}")
+
     return data
 
 def save_to_csv(data, file_path):
+    """Save extracted data to CSV."""
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
@@ -76,7 +80,7 @@ def run_scraper(query, output_file=None, limit=None):
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(
-                headless=False,  # 🚀 FULL browser mode
+                headless=False,  # Run visible browser to mimic human
                 args=[
                     "--no-sandbox",
                     "--disable-blink-features=AutomationControlled",
@@ -95,40 +99,32 @@ def run_scraper(query, output_file=None, limit=None):
             page = context.new_page()
             page.goto(url, timeout=60000)
 
-            # ✅ Handle cookie or consent pop-up
+            # Accept cookie pop-up if present
             try:
                 page.locator("text=Accept").click(timeout=5000)
             except:
                 pass
 
-            # ✅ Retry logic to ensure cards load
-            max_wait_time = 30000
-            start = time.time()
-            while True:
-                cards = page.query_selector_all(".supplierInfoDiv")
-                if cards or (time.time() - start) * 1000 > max_wait_time:
-                    break
-                time.sleep(2)
+            # Wait until cards load or timeout
+            page.wait_for_selector(".supplierInfoDiv", timeout=20000)
 
-            if not cards:
-                logger.warning("No supplier cards found — might be blocked or need more scroll.")
-            
-            # ✅ Smooth scroll with PageDown
-            for _ in range(20):
-                page.keyboard.press("PageDown")
-                time.sleep(1.5)
-
+            # Scroll to load more results
             scroll_until_end(page)
+
+            # Extract data
             all_data = extract_data_from_page(page)
             logger.info(f"Total extracted: {len(all_data)} records")
 
-            if limit and all_data:
-                all_data = all_data[:int(limit)]
+            # Apply limit if specified
+            if limit:
+                limit = int(limit)
+                if len(all_data) > limit:
+                    all_data = all_data[:limit]
                 logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
 
+            # Save results if file path provided
             if output_file:
                 final_file_path = os.path.abspath(output_file)
-                logger.info(f"Saving CSV to: {final_file_path}")
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
@@ -138,9 +134,9 @@ def run_scraper(query, output_file=None, limit=None):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             if output_file:
-                final_file_path = os.path.abspath(output_file)
-                save_to_csv([], final_file_path)
+                save_to_csv([], os.path.abspath(output_file))
             return 0
+
 
 
 
