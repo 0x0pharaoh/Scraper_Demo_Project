@@ -1,7 +1,5 @@
 # plugins/indiamart.py
 
-# plugins/indiamart.py
-
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
@@ -9,30 +7,34 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 import csv
 import os
 import time
+import random
 from urllib.parse import quote_plus
 from utils.logger import get_logger
 
 logger = get_logger("indiamart")
 description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.126 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15",
+]
 
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
-
 
 def scroll_until_end(page, max_scrolls=20):
     logger.info("Starting auto-scroll to load all results...")
     last_height = 0
     for i in range(max_scrolls):
         page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(2.0)
+        time.sleep(2)
         new_height = page.evaluate("document.body.scrollHeight")
         if new_height == last_height:
             logger.info(f"No more content loaded after {i + 1} scrolls.")
             break
         last_height = new_height
     logger.info("Auto-scroll completed.")
-
 
 def extract_data_from_page(page):
     data = []
@@ -50,34 +52,27 @@ def extract_data_from_page(page):
             phone = phone_elem.inner_text().strip() if phone_elem else ""
             url = link.get_attribute("href") if link else ""
 
-            if company or phone:  # skip completely empty entries
-                data.append({
-                    "Company Name": company,
-                    "Location": city,
-                    "Phone": phone,
-                    "URL": url
-                })
+            data.append({
+                "Company Name": company,
+                "Location": city,
+                "Phone": phone,
+                "URL": url
+            })
     except Exception as e:
         logger.error(f"Error extracting data: {e}")
     return data
 
-
 def save_to_csv(data, file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    fieldnames = ["Company Name", "Location", "Phone", "URL"]
     with open(file_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
         writer.writeheader()
-        if data:
-            writer.writerows(data)
+        writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
-
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
-    logger.info(f"Limit: {limit}")
     url = build_search_url(query)
-    logger.info(f"Opening URL: {url}")
 
     all_data = []
     final_file_path = None
@@ -85,65 +80,44 @@ def run_scraper(query, output_file=None, limit=None):
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(
-                headless=False,
-                args=[
-                    "--no-sandbox",
-                    "--disable-blink-features=AutomationControlled",
-                    "--disable-dev-shm-usage",
-                    "--disable-infobars",
-                    "--disable-extensions",
-                    "--disable-gpu",
-                    "--window-size=1280,800"
-                ]
+                headless=False,  # Use headless=False for more reliable rendering
+                args=["--no-sandbox", "--disable-blink-features=AutomationControlled"]
             )
             context = browser.new_context(
-                user_agent=(
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/115.0.0.0 Safari/537.36"
-                ),
+                user_agent=random.choice(USER_AGENTS),
                 viewport={"width": 1280, "height": 800}
             )
             page = context.new_page()
+
             page.goto(url, timeout=60000)
 
             try:
                 page.wait_for_selector(".supplierInfoDiv", timeout=20000)
             except PlaywrightTimeoutError:
-                logger.warning(".supplierInfoDiv not found — retrying scroll and wait...")
+                logger.warning(".supplierInfoDiv not found — trying extra scroll/wait.")
                 scroll_until_end(page)
-                page.wait_for_selector(".supplierInfoDiv", timeout=15000)
-
-            # Screenshot for debugging (always saved)
-            os.makedirs("static", exist_ok=True)
-            screenshot_path = os.path.abspath("static/indiamart_debug.png")
-            page.screenshot(path=screenshot_path, full_page=True)
-            logger.info(f"Screenshot saved to: {screenshot_path}")
+                page.wait_for_selector(".supplierInfoDiv", timeout=10000)
 
             scroll_until_end(page)
             all_data = extract_data_from_page(page)
             logger.info(f"Total extracted: {len(all_data)} records")
 
-            if limit and all_data:
+            if limit:
                 all_data = all_data[:int(limit)]
-                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
+                logger.info(f"Limit applied: {limit}")
 
             if output_file:
                 final_file_path = os.path.abspath(output_file)
-                logger.info(f"Saving CSV to: {final_file_path}")
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
-
-            # Only print 0 if truly no data
             print(f"FOUND_COUNT: {len(all_data)}")
             return len(all_data)
 
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             if output_file:
-                final_file_path = os.path.abspath(output_file)
-                save_to_csv([], final_file_path)
+                save_to_csv([], os.path.abspath(output_file))
             return 0
 
 
