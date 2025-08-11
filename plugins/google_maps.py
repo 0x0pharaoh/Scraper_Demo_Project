@@ -25,24 +25,34 @@ def build_search_url(query):
     return f"https://www.google.com/maps/search/{quote_plus(query)}"
 
 
-def auto_scroll(page, scroll_container_selector, delay=1.0, max_scrolls=20, limit=None):
+def auto_scroll(page, scroll_container_selector, delay=1.0, limit=None):
+    """Scroll until all results are loaded or until limit is reached."""
     scroll_container = page.locator(scroll_container_selector).nth(1)
     logger.info("Scrolling to load listings...")
     last_seen = 0
+    same_count_repeats = 0
 
-    for i in range(max_scrolls):
+    while True:
         scroll_container.evaluate("el => el.scrollBy(0, el.scrollHeight)")
         time.sleep(delay)
 
         current_count = page.locator("a.hfpxzc").count()
-        logger.info(f"Scroll {i + 1}: {current_count} listings visible.")
+        logger.info(f"Listings visible: {current_count}")
 
+        # Stop if no new results are loaded multiple times
         if current_count == last_seen:
+            same_count_repeats += 1
+        else:
+            same_count_repeats = 0
+
+        if same_count_repeats >= 3:  # stable count for 3 scrolls
             logger.info("⏹ No new results loaded.")
             break
+
         if limit and current_count >= limit:
             logger.info(f"Early stopping at {current_count} listings.")
             break
+
         last_seen = current_count
 
 
