@@ -1,5 +1,7 @@
 # plugins/indiamart.py
 
+# plugins/indiamart.py
+
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
@@ -151,6 +153,8 @@ def run_scraper(query, output_file=None, limit=None):
                 final_file_path = os.path.abspath(output_file)
                 save_to_csv([], final_file_path)
             return 0
+
+
 
 
 
