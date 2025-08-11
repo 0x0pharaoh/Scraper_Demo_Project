@@ -1,11 +1,9 @@
 # plugins/indiamart.py
 
-# plugins/indiamart.py
-
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 import csv
 import os
 import time
@@ -15,34 +13,28 @@ from utils.logger import get_logger
 logger = get_logger("indiamart")
 description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 
-
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
 
-
-def scroll_until_end(page, wait_time=1.5, max_tries=30):
-    """Smoothly scroll until no new results load."""
-    logger.info("Starting dynamic auto-scroll...")
-    previous_count = 0
-    for i in range(max_tries):
-        page.keyboard.press("PageDown")
-        time.sleep(wait_time)
-        cards = page.query_selector_all(".supplierInfoDiv")
-        if len(cards) == previous_count:
-            logger.info(f"No new results after {i+1} scrolls.")
+def scroll_until_end(page, max_scrolls=20):
+    logger.info("Starting auto-scroll to load all results...")
+    last_height = 0
+    for i in range(max_scrolls):
+        page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
+        time.sleep(2.5)
+        new_height = page.evaluate("document.body.scrollHeight")
+        if new_height == last_height:
+            logger.info(f"No more content loaded after {i + 1} scrolls.")
             break
-        previous_count = len(cards)
-    logger.info("Scrolling finished.")
-
+        last_height = new_height
+    logger.info("Auto-scroll completed.")
 
 def extract_data_from_page(page):
-    """Extracts supplier details from the current page."""
     data = []
-    cards = page.query_selector_all(".supplierInfoDiv")
-    logger.info(f"Found {len(cards)} supplier cards.")
-
-    for card in cards:
-        try:
+    try:
+        cards = page.query_selector_all(".supplierInfoDiv")
+        logger.info(f"Found {len(cards)} cards on current scroll.")
+        for card in cards:
             company_name = card.query_selector(".companyname a")
             location = card.query_selector(".newLocationUi span.highlight")
             phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
@@ -53,28 +45,27 @@ def extract_data_from_page(page):
             phone = phone_elem.inner_text().strip() if phone_elem else ""
             url = link.get_attribute("href") if link else ""
 
-            if company or phone or city:  # Only save non-empty entries
-                data.append({
-                    "Company Name": company,
-                    "Location": city,
-                    "Phone": phone,
-                    "URL": url
-                })
-        except Exception as e:
-            logger.error(f"Error extracting card: {e}")
-
+            data.append({
+                "Company Name": company,
+                "Location": city,
+                "Phone": phone,
+                "URL": url
+            })
+    except Exception as e:
+        logger.error(f"Error extracting data: {e}")
     return data
 
-
 def save_to_csv(data, file_path):
-    """Save extracted data to CSV."""
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
-        writer.writeheader()
-        writer.writerows(data)
+        if not data:
+            writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
+            writer.writeheader()
+        else:
+            writer = csv.DictWriter(f, fieldnames=data[0].keys())
+            writer.writeheader()
+            writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
-
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
@@ -87,75 +78,51 @@ def run_scraper(query, output_file=None, limit=None):
 
     with sync_playwright() as p:
         try:
-            headless_mode = os.environ.get("RENDER", "false").lower() == "true"
             browser = p.chromium.launch(
-                headless=headless_mode,
+                headless=False,  # Non-headless so JS loads like normal
                 args=[
                     "--no-sandbox",
                     "--disable-blink-features=AutomationControlled",
+                    "--disable-dev-shm-usage",
                     "--disable-infobars",
-                    "--window-size=1366,768"
+                    "--disable-extensions",
+                    "--window-size=1280,800"
                 ]
             )
             context = browser.new_context(
                 user_agent=(
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                     "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/114.0.0.0 Safari/537.36"
+                    "Chrome/115.0.0.0 Safari/537.36"
                 ),
-                viewport={"width": 1366, "height": 768}
+                viewport={"width": 1280, "height": 800}
             )
             page = context.new_page()
             page.goto(url, timeout=60000)
 
-            # Accept cookie pop-up if present
             try:
-                page.locator("text=Accept").click(timeout=5000)
-            except:
-                pass
+                page.wait_for_selector(".supplierInfoDiv", timeout=20000)
+            except PlaywrightTimeoutError:
+                logger.warning(".supplierInfoDiv not found — retrying scroll and wait...")
+                scroll_until_end(page)
+                page.wait_for_selector(".supplierInfoDiv", timeout=15000)
 
-            # Ensure results load
-            page.wait_for_selector(".supplierInfoDiv", timeout=25000)
+            os.makedirs("static", exist_ok=True)
+            screenshot_path = os.path.abspath("static/indiamart_debug.png")
+            page.screenshot(path=screenshot_path, full_page=True)
+            logger.info(f"Screenshot saved to: {screenshot_path}")
 
-            # Scroll to load more results
             scroll_until_end(page)
+            all_data = extract_data_from_page(page)
+            logger.info(f"Total extracted: {len(all_data)} records")
 
-            # Pagination loop
-            while True:
-                all_data.extend(extract_data_from_page(page))
-                try:
-                    next_btn = page.locator("a[rel='next']")
-                    if next_btn.is_visible():
-                        logger.info("Navigating to next page...")
-                        next_btn.click()
-                        page.wait_for_selector(".supplierInfoDiv", timeout=20000)
-                        scroll_until_end(page)
-                    else:
-                        break
-                except:
-                    break
+            if limit and all_data:
+                all_data = all_data[:int(limit)]
+                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
 
-            # Remove duplicates
-            seen = set()
-            unique_data = []
-            for row in all_data:
-                key = (row["Company Name"], row["Phone"])
-                if key not in seen:
-                    seen.add(key)
-                    unique_data.append(row)
-            all_data = unique_data
-
-            logger.info(f"Total extracted unique records: {len(all_data)}")
-
-            # Apply limit
-            if limit:
-                limit = int(limit)
-                all_data = all_data[:limit]
-                logger.info(f"Applied limit: {limit}")
-
-            # Save results if available
             if output_file:
                 final_file_path = os.path.abspath(output_file)
+                logger.info(f"Saving CSV to: {final_file_path}")
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
@@ -165,8 +132,15 @@ def run_scraper(query, output_file=None, limit=None):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             if output_file:
-                save_to_csv([], os.path.abspath(output_file))
+                final_file_path = os.path.abspath(output_file)
+                save_to_csv([], final_file_path)
             return 0
+
+
+
+
+
+
 
 
 
