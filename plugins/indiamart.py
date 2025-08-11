@@ -67,11 +67,9 @@ def save_to_csv(data, file_path):
             writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
 
-def run_scraper(query, output_file=None, limit=None, proxy_url=None):
+def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
     logger.info(f"Limit: {limit}")
-    if proxy_url:
-        logger.info(f"Using proxy: {proxy_url}")
     url = build_search_url(query)
     logger.info(f"Opening URL: {url}")
 
@@ -80,61 +78,56 @@ def run_scraper(query, output_file=None, limit=None, proxy_url=None):
 
     with sync_playwright() as p:
         try:
-            launch_args = [
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-blink-features=AutomationControlled",
-                "--disable-infobars",
-                "--disable-extensions",
-                "--window-size=1280,800"
-            ]
-
             browser = p.chromium.launch(
-                headless=True,  # headless True for live server, but stealth active
-                args=launch_args,
-                proxy={"server": proxy_url} if proxy_url else None,
+                headless=False,  # Non-headless so JS loads like normal
+                args=[
+                    "--no-sandbox",
+                    "--disable-blink-features=AutomationControlled",
+                    "--disable-dev-shm-usage",
+                    "--disable-infobars",
+                    "--disable-extensions",
+                    "--window-size=1280,800"
+                ]
             )
-
             context = browser.new_context(
                 user_agent=(
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                     "AppleWebKit/537.36 (KHTML, like Gecko) "
                     "Chrome/115.0.0.0 Safari/537.36"
                 ),
-                viewport={"width": 1280, "height": 800},
-                java_script_enabled=True,
                 locale="en-US",
-                timezone_id="Asia/Kolkata",
+                viewport={"width": 1280, "height": 800},
+                extra_http_headers={
+                    "Accept-Language": "en-US,en;q=0.9",
+                    "Accept-Encoding": "gzip, deflate, br",
+                }
             )
-
-            # Stealth - remove automation flags
-            context.add_init_script("""
-                Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
-                window.chrome = {runtime: {}};
-                Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
-                Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3, 4, 5]});
-            """)
-
             page = context.new_page()
             page.goto(url, timeout=60000)
-            page.wait_for_load_state("networkidle", timeout=30000)
 
-            # Save page content snippet for debugging
-            html_content = page.content()
-            snippet = html_content[:2000]
-            logger.info(f"Page HTML snippet:\n{snippet}")
+            # Retry loop to wait for cards to appear with scroll & wait
+            for attempt in range(3):
+                try:
+                    page.wait_for_selector(".supplierInfoDiv", timeout=20000)
+                    logger.info(".supplierInfoDiv selector found.")
+                    break
+                except PlaywrightTimeoutError:
+                    logger.warning(f"Attempt {attempt+1}: .supplierInfoDiv not found, retrying scroll & wait...")
+                    scroll_until_end(page)
+                    time.sleep(5)
+            else:
+                logger.error("No .supplierInfoDiv elements found after retries.")
 
+            # Save debug screenshot after scrolling and waiting
             os.makedirs("static", exist_ok=True)
             screenshot_path = os.path.abspath("static/indiamart_debug.png")
             page.screenshot(path=screenshot_path, full_page=True)
             logger.info(f"Screenshot saved to: {screenshot_path}")
 
-            try:
-                page.wait_for_selector(".supplierInfoDiv", timeout=20000)
-            except PlaywrightTimeoutError:
-                logger.warning(".supplierInfoDiv selector not found after wait.")
-
-            scroll_until_end(page)
+            # Save snapshot of page HTML for debugging
+            html = page.content()
+            html_snippet = html[:5000]  # limit length for logs
+            logger.info(f"Page HTML snapshot (first 5000 chars):\n{html_snippet}")
 
             all_data = extract_data_from_page(page)
             logger.info(f"Total extracted: {len(all_data)} records")
