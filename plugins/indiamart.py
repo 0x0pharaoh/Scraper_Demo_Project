@@ -1,5 +1,7 @@
 # plugins/indiamart.py
 
+# plugins/indiamart.py
+
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
@@ -7,28 +9,21 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 import csv
 import os
 import time
-import random
 from urllib.parse import quote_plus
 from utils.logger import get_logger
 
 logger = get_logger("indiamart")
 description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.126 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15",
-]
-
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
 
-def scroll_until_end(page, max_scrolls=20):
+def scroll_until_end(page, max_scrolls=30, wait_time=2.5):
     logger.info("Starting auto-scroll to load all results...")
     last_height = 0
     for i in range(max_scrolls):
         page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(2)
+        time.sleep(wait_time)
         new_height = page.evaluate("document.body.scrollHeight")
         if new_height == last_height:
             logger.info(f"No more content loaded after {i + 1} scrolls.")
@@ -42,22 +37,26 @@ def extract_data_from_page(page):
         cards = page.query_selector_all(".supplierInfoDiv")
         logger.info(f"Found {len(cards)} cards on current scroll.")
         for card in cards:
-            company_name = card.query_selector(".companyname a")
-            location = card.query_selector(".newLocationUi span.highlight")
-            phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
-            link = card.query_selector(".companyname a")
+            try:
+                company_name = card.query_selector(".companyname a")
+                location = card.query_selector(".newLocationUi span.highlight")
+                phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
+                link = card.query_selector(".companyname a")
 
-            company = company_name.inner_text().strip() if company_name else ""
-            city = location.inner_text().strip() if location else ""
-            phone = phone_elem.inner_text().strip() if phone_elem else ""
-            url = link.get_attribute("href") if link else ""
+                company = company_name.inner_text().strip() if company_name else ""
+                city = location.inner_text().strip() if location else ""
+                phone = phone_elem.inner_text().strip() if phone_elem else ""
+                url = link.get_attribute("href") if link else ""
 
-            data.append({
-                "Company Name": company,
-                "Location": city,
-                "Phone": phone,
-                "URL": url
-            })
+                data.append({
+                    "Company Name": company,
+                    "Location": city,
+                    "Phone": phone,
+                    "URL": url
+                })
+            except Exception as e:
+                logger.error(f"Error extracting one card: {e}")
+
     except Exception as e:
         logger.error(f"Error extracting data: {e}")
     return data
@@ -65,14 +64,20 @@ def extract_data_from_page(page):
 def save_to_csv(data, file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
-        writer.writeheader()
-        writer.writerows(data)
+        if not data:
+            writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
+            writer.writeheader()
+        else:
+            writer = csv.DictWriter(f, fieldnames=data[0].keys())
+            writer.writeheader()
+            writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
+    logger.info(f"Limit: {limit}")
     url = build_search_url(query)
+    logger.info(f"Opening URL: {url}")
 
     all_data = []
     final_file_path = None
@@ -80,34 +85,57 @@ def run_scraper(query, output_file=None, limit=None):
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(
-                headless=False,  # Use headless=False for more reliable rendering
-                args=["--no-sandbox", "--disable-blink-features=AutomationControlled"]
+                headless=False,  # Run visible to better mimic real user, can be True if needed
+                args=[
+                    "--no-sandbox",
+                    "--disable-blink-features=AutomationControlled",
+                    "--disable-dev-shm-usage",
+                    "--disable-infobars",
+                    "--disable-extensions",
+                    "--window-size=1280,800"
+                ]
             )
             context = browser.new_context(
-                user_agent=random.choice(USER_AGENTS),
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/115.0.0.0 Safari/537.36"
+                ),
                 viewport={"width": 1280, "height": 800}
             )
             page = context.new_page()
 
-            page.goto(url, timeout=60000)
-
+            # First try loading page and waiting for supplier cards
             try:
-                page.wait_for_selector(".supplierInfoDiv", timeout=20000)
+                page.goto(url, wait_until="networkidle", timeout=40000)
+                page.wait_for_selector(".supplierInfoDiv", timeout=25000)
             except PlaywrightTimeoutError:
-                logger.warning(".supplierInfoDiv not found — trying extra scroll/wait.")
-                scroll_until_end(page)
-                page.wait_for_selector(".supplierInfoDiv", timeout=10000)
+                logger.warning("⚠️ First attempt failed, retrying after 5 seconds...")
+                time.sleep(5)
+                page.goto(url, wait_until="networkidle", timeout=40000)
+                page.wait_for_selector(".supplierInfoDiv", timeout=25000)
 
+            # Save screenshot for debugging on server
+            os.makedirs("static", exist_ok=True)
+            screenshot_path = os.path.abspath("static/indiamart_debug.png")
+            page.screenshot(path=screenshot_path, full_page=True)
+            logger.info(f"Screenshot saved to: {screenshot_path}")
+
+            # Scroll to load all results
             scroll_until_end(page)
+
+            # Extract data
             all_data = extract_data_from_page(page)
             logger.info(f"Total extracted: {len(all_data)} records")
 
-            if limit:
+            if limit and all_data:
                 all_data = all_data[:int(limit)]
-                logger.info(f"Limit applied: {limit}")
+                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
 
+            # Save CSV if needed
             if output_file:
                 final_file_path = os.path.abspath(output_file)
+                logger.info(f"Saving CSV to: {final_file_path}")
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
@@ -117,8 +145,10 @@ def run_scraper(query, output_file=None, limit=None):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             if output_file:
-                save_to_csv([], os.path.abspath(output_file))
+                final_file_path = os.path.abspath(output_file)
+                save_to_csv([], final_file_path)
             return 0
+
 
 
 

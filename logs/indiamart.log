@@ -938,3 +938,27 @@
 2025-08-11 15:01:47,017 - INFO - Limit applied: 10 → Returning 10 records.
 2025-08-11 15:01:47,017 - INFO - Saving CSV to: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_150131.csv
 2025-08-11 15:01:47,019 - INFO - CSV saved: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_150131.csv (10 rows)
+2025-08-11 15:41:25,900 - INFO - Running IndiaMART scraper for: headphone
+2025-08-11 15:41:25,901 - INFO - Limit: 21
+2025-08-11 15:41:25,901 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-11 15:41:32,829 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 15:41:32,832 - INFO - Starting auto-scroll to load all results...
+2025-08-11 15:41:38,220 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 15:41:38,221 - INFO - Auto-scroll completed.
+2025-08-11 15:41:38,277 - INFO - Found 20 cards on current scroll.
+2025-08-11 15:41:40,581 - INFO - Total extracted: 20 records
+2025-08-11 15:41:40,581 - INFO - Limit applied: 21 → Returning 20 records.
+2025-08-11 15:41:40,606 - INFO - Saving CSV to: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_154123.csv
+2025-08-11 15:41:40,612 - INFO - CSV saved: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_154123.csv (20 rows)
+2025-08-11 15:41:54,635 - INFO - Running IndiaMART scraper for: headphone
+2025-08-11 15:41:54,636 - INFO - Limit: 21
+2025-08-11 15:41:54,636 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-11 15:42:02,109 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 15:42:02,109 - INFO - Starting auto-scroll to load all results...
+2025-08-11 15:42:07,329 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 15:42:07,329 - INFO - Auto-scroll completed.
+2025-08-11 15:42:07,380 - INFO - Found 20 cards on current scroll.
+2025-08-11 15:42:09,475 - INFO - Total extracted: 20 records
+2025-08-11 15:42:09,476 - INFO - Limit applied: 21 → Returning 20 records.
+2025-08-11 15:42:09,476 - INFO - Saving CSV to: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_154151.csv
+2025-08-11 15:42:09,478 - INFO - CSV saved: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_154151.csv (20 rows)
