@@ -16,24 +16,25 @@ description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
 
-def scroll_until_end(page, max_scrolls=20):
-    logger.info("Starting auto-scroll to load all results...")
-    last_height = 0
-    for i in range(max_scrolls):
+def scroll_until_end(page, wait_time=2, max_tries=20):
+    """Scroll until no new results load."""
+    logger.info("Starting dynamic auto-scroll...")
+    previous_count = 0
+    for i in range(max_tries):
         page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(3)
-        new_height = page.evaluate("document.body.scrollHeight")
-        if new_height == last_height:
-            logger.info(f"No more content loaded after {i + 1} scrolls.")
+        time.sleep(wait_time)
+        cards = page.query_selector_all(".supplierInfoDiv")
+        if len(cards) == previous_count:
+            logger.info(f"No new results after {i+1} scrolls.")
             break
-        last_height = new_height
-    logger.info("Auto-scroll completed.")
+        previous_count = len(cards)
+    logger.info("Scrolling finished.")
 
 def extract_data_from_page(page):
     data = []
     try:
         cards = page.query_selector_all(".supplierInfoDiv")
-        logger.info(f"Found {len(cards)} cards on current scroll.")
+        logger.info(f"Found {len(cards)} supplier cards.")
         for card in cards:
             company_name = card.query_selector(".companyname a")
             location = card.query_selector(".newLocationUi span.highlight")
@@ -58,19 +59,13 @@ def extract_data_from_page(page):
 def save_to_csv(data, file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, "w", newline="", encoding="utf-8") as f:
-        if not data:
-            # Write only headers if no data found
-            writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
-            writer.writeheader()
-        else:
-            writer = csv.DictWriter(f, fieldnames=data[0].keys())
-            writer.writeheader()
-            writer.writerows(data)
+        writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
+        writer.writeheader()
+        writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
-    logger.info(f"Limit: {limit}")
     url = build_search_url(query)
     logger.info(f"Opening URL: {url}")
 
@@ -79,32 +74,37 @@ def run_scraper(query, output_file=None, limit=None):
 
     with sync_playwright() as p:
         try:
-            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
-            context = browser.new_context()
+            # Run in non-headless mode for Render reliability
+            browser = p.chromium.launch(headless=False, args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
+            context = browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36")
             page = context.new_page()
+
             page.goto(url, timeout=60000)
-
             try:
-                page.wait_for_selector(".supplierInfoDiv", timeout=15000)
+                page.wait_for_selector(".supplierInfoDiv", timeout=20000)
             except PlaywrightTimeoutError:
-                logger.warning(".supplierInfoDiv not found — page may not have loaded correctly.")
-
-            os.makedirs("static", exist_ok=True)
-            screenshot_path = os.path.abspath("static/indiamart_debug.png")
-            page.screenshot(path=screenshot_path, full_page=True)
-            logger.info(f"Screenshot saved to: {screenshot_path}")
+                logger.warning("No supplier cards found on initial load.")
 
             scroll_until_end(page)
+
             all_data = extract_data_from_page(page)
+
+            # If still no data, try clicking pagination
+            while not limit and page.query_selector("a#next") and len(all_data) < (limit or 200):
+                logger.info("Clicking Next page...")
+                page.click("a#next")
+                page.wait_for_load_state("networkidle")
+                scroll_until_end(page)
+                all_data.extend(extract_data_from_page(page))
+
             logger.info(f"Total extracted: {len(all_data)} records")
 
-            if limit and all_data:
+            if limit:
                 all_data = all_data[:int(limit)]
-                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
+                logger.info(f"Applied limit → {len(all_data)} records")
 
             if output_file:
                 final_file_path = os.path.abspath(output_file)
-                logger.info(f"Saving CSV to: {final_file_path}")
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
@@ -113,11 +113,10 @@ def run_scraper(query, output_file=None, limit=None):
 
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
-            # Still save empty CSV if output file was requested
             if output_file:
-                final_file_path = os.path.abspath(output_file)
-                save_to_csv([], final_file_path)
+                save_to_csv([], os.path.abspath(output_file))
             return 0
+
 
 
 
