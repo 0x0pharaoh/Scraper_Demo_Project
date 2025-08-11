@@ -24,17 +24,17 @@
 2025-07-25 16:56:00,625 - Error scraping card #1: Locator.click: Timeout 30000ms exceeded.
 Call log:
   - waiting for locator("div[role=\"feed\"] div[aria-label][jsaction]").first
-    - locator resolved to <div role="region" class="fp2VUc" jslog="127728;" aria-roledescription="carousel" aria-label="Available filters for this search" jsaction="keydown:pane.wfvdle2.navigate; mousedown:pane.wfvdle2.dragCards; mousewheel:pane.wfvdle2.navigate wheel:pane.wfvdle2.navigate; DOMMouseScroll:pane.wfvdle2.navigate; focus:pane.wfvdle2.focus; mousemove:pane.wfvdle2.focus">…</div>
+    - locator resolved to <div role="region" class="fp2VUc" jslog="127728;" aria-roledescription="carousel" aria-label="Available filters for this search" jsaction="keydown:pane.wfvdle2.navigate; mousedown:pane.wfvdle2.dragCards; mousewheel:pane.wfvdle2.navigate wheel:pane.wfvdle2.navigate; DOMMouseScroll:pane.wfvdle2.navigate; focus:pane.wfvdle2.focus; mousemove:pane.wfvdle2.focus">ï¿½</div>
   - attempting click action
-    2 × waiting for element to be visible, enabled and stable
+    2 ï¿½ waiting for element to be visible, enabled and stable
       - element is not visible
     - retrying click action
     - waiting 20ms
-    2 × waiting for element to be visible, enabled and stable
+    2 ï¿½ waiting for element to be visible, enabled and stable
       - element is not visible
     - retrying click action
       - waiting 100ms
-    57 × waiting for element to be visible, enabled and stable
+    57 ï¿½ waiting for element to be visible, enabled and stable
        - element is not visible
      - retrying click action
        - waiting 500ms
@@ -44,17 +44,17 @@ Call log:
 2025-07-25 17:00:44,667 - Error scraping card #1: Locator.click: Timeout 30000ms exceeded.
 Call log:
   - waiting for locator("div[role=\"feed\"] div[aria-label][jsaction]").first
-    - locator resolved to <div role="region" class="fp2VUc" jslog="127728;" aria-roledescription="carousel" aria-label="Available filters for this search" jsaction="keydown:pane.wfvdle2.navigate; mousedown:pane.wfvdle2.dragCards; mousewheel:pane.wfvdle2.navigate wheel:pane.wfvdle2.navigate; DOMMouseScroll:pane.wfvdle2.navigate; focus:pane.wfvdle2.focus; mousemove:pane.wfvdle2.focus">…</div>
+    - locator resolved to <div role="region" class="fp2VUc" jslog="127728;" aria-roledescription="carousel" aria-label="Available filters for this search" jsaction="keydown:pane.wfvdle2.navigate; mousedown:pane.wfvdle2.dragCards; mousewheel:pane.wfvdle2.navigate wheel:pane.wfvdle2.navigate; DOMMouseScroll:pane.wfvdle2.navigate; focus:pane.wfvdle2.focus; mousemove:pane.wfvdle2.focus">ï¿½</div>
   - attempting click action
-    2 × waiting for element to be visible, enabled and stable
+    2 ï¿½ waiting for element to be visible, enabled and stable
       - element is not visible
     - retrying click action
     - waiting 20ms
-    2 × waiting for element to be visible, enabled and stable
+    2 ï¿½ waiting for element to be visible, enabled and stable
       - element is not visible
     - retrying click action
       - waiting 100ms
-    10 × waiting for element to be visible, enabled and stable
+    10 ï¿½ waiting for element to be visible, enabled and stable
        - element is not visible
      - retrying click action
        - waiting 500ms
@@ -2212,3 +2212,27 @@ waiting for navigation until 'load'
 2025-08-11 12:53:45,820 - INFO - Reached desired limit of 15.
 2025-08-11 12:53:45,835 - INFO - Total cards found: 16
 2025-08-11 12:53:46,662 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_125339.csv
+2025-08-11 16:55:10,089 - INFO - Starting Google Maps scraper for: temples
+2025-08-11 16:55:10,092 - INFO - Received limit: 11
+2025-08-11 16:55:25,078 - INFO - Waiting for listings container to load...
+2025-08-11 16:55:25,171 - INFO - Scrolling to load listings...
+2025-08-11 16:55:25,848 - INFO - Listings visible: 12
+2025-08-11 16:55:25,848 - INFO - Reached desired limit of 11.
+2025-08-11 16:55:25,864 - INFO - Total cards found: 12
+2025-08-11 16:55:26,717 - INFO - Results saved to C:\Users\shari\scraper_project\static\temples_google_maps_110825_165506.csv
+2025-08-11 16:55:40,313 - INFO - Starting Google Maps scraper for: temples
+2025-08-11 16:55:40,314 - INFO - Received limit: 11
+2025-08-11 16:55:45,621 - INFO - Starting Google Maps scraper for: temples
+2025-08-11 16:55:45,621 - INFO - Received limit: 11
+2025-08-11 16:55:46,855 - INFO - Waiting for listings container to load...
+2025-08-11 16:55:46,952 - INFO - Scrolling to load listings...
+2025-08-11 16:55:47,824 - INFO - Listings visible: 12
+2025-08-11 16:55:47,824 - INFO - Reached desired limit of 11.
+2025-08-11 16:55:47,848 - INFO - Total cards found: 12
+2025-08-11 16:55:48,641 - INFO - Results saved to C:\Users\shari\scraper_project\static\temples_google_maps_110825_165536.csv
+2025-08-11 16:55:52,781 - INFO - Waiting for listings container to load...
+2025-08-11 16:55:52,871 - INFO - Scrolling to load listings...
+2025-08-11 16:55:53,533 - INFO - Listings visible: 12
+2025-08-11 16:55:53,533 - INFO - Reached desired limit of 11.
+2025-08-11 16:55:53,548 - INFO - Total cards found: 12
+2025-08-11 16:55:54,159 - INFO - Results savedto C:\Users\shari\scraper_project\static\temples_google_maps_110825_165540.csv

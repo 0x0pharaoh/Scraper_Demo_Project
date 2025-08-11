@@ -9,7 +9,6 @@ from datetime import datetime
 import traceback
 import subprocess  # <-- Added for playwright install
 import io
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

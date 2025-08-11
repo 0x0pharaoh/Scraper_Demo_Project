@@ -1,7 +1,5 @@
 # plugins/indiamart.py
 
-# plugins/indiamart.py
-
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
