@@ -810,3 +810,55 @@
 2025-08-08 23:03:55,112 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\speakers_indiamart_080825_230344.csv
 2025-08-08 23:03:55,116 - INFO - Saved 5 records to C:\Users\shari\scraper_project\static\speakers_indiamart_080825_230344.csv
 2025-08-08 23:03:55,251 - INFO - Scraping completed with 5 results.
+2025-08-11 11:40:28,387 - INFO - Running IndiaMART scraper for: headphone
+2025-08-11 11:40:28,387 - INFO - Limit: 10
+2025-08-11 11:40:28,387 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-11 11:40:31,646 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 11:40:31,646 - INFO - Starting auto-scroll to load all results...
+2025-08-11 11:40:37,881 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 11:40:37,882 - INFO - Auto-scroll completed.
+2025-08-11 11:40:37,915 - INFO - Found 20 cards on current scroll.
+2025-08-11 11:40:39,501 - INFO - Total extracted: 20 records
+2025-08-11 11:40:39,501 - INFO - Limit applied: 10 → Returning 10 records.
+2025-08-11 11:40:39,502 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_114027.csv
+2025-08-11 11:40:39,505 - INFO - Saved 10 records to C:\Users\shari\scraper_project\static\headphone_indiamart_110825_114027.csv
+2025-08-11 11:40:39,732 - INFO - Scraping completed with 10 results.
+2025-08-11 11:41:09,585 - INFO - Running IndiaMART scraper for: headphone
+2025-08-11 11:41:09,586 - INFO - Limit: 10
+2025-08-11 11:41:09,586 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-11 11:41:12,491 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 11:41:12,492 - INFO - Starting auto-scroll to load all results...
+2025-08-11 11:41:18,592 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 11:41:18,592 - INFO - Auto-scroll completed.
+2025-08-11 11:41:18,620 - INFO - Found 20 cards on current scroll.
+2025-08-11 11:41:20,320 - INFO - Total extracted: 20 records
+2025-08-11 11:41:20,320 - INFO - Limit applied: 10 → Returning 10 records.
+2025-08-11 11:41:20,320 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_114108.csv
+2025-08-11 11:41:20,325 - INFO - Saved 10 records to C:\Users\shari\scraper_project\static\headphone_indiamart_110825_114108.csv
+2025-08-11 11:41:20,643 - INFO - Scraping completed with 10 results.
+2025-08-11 11:44:45,328 - INFO - Running IndiaMART scraper for: headphone
+2025-08-11 11:44:45,328 - INFO - Limit: 5
+2025-08-11 11:44:45,328 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-11 11:44:48,076 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 11:44:48,076 - INFO - Starting auto-scroll to load all results...
+2025-08-11 11:44:54,273 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 11:44:54,273 - INFO - Auto-scroll completed.
+2025-08-11 11:44:54,326 - INFO - Found 20 cards on current scroll.
+2025-08-11 11:44:55,524 - INFO - Total extracted: 20 records
+2025-08-11 11:44:55,524 - INFO - Limit applied: 5 → Returning 5 records.
+2025-08-11 11:44:55,524 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_114443.csv
+2025-08-11 11:44:55,525 - INFO - Saved 5 records to C:\Users\shari\scraper_project\static\headphone_indiamart_110825_114443.csv
+2025-08-11 11:44:55,686 - INFO - Scraping completed with 5 results.
+2025-08-11 11:48:40,456 - INFO - Running IndiaMART scraper for: speakers
+2025-08-11 11:48:40,457 - INFO - Limit: 15
+2025-08-11 11:48:40,457 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-11 11:48:42,991 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 11:48:42,991 - INFO - Starting auto-scroll to load all results...
+2025-08-11 11:48:49,198 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 11:48:49,199 - INFO - Auto-scroll completed.
+2025-08-11 11:48:49,239 - INFO - Found 20 cards on current scroll.
+2025-08-11 11:48:50,345 - INFO - Total extracted: 20 records
+2025-08-11 11:48:50,345 - INFO - Limit applied: 15 → Returning 15 records.
+2025-08-11 11:48:50,345 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\speakers_indiamart_110825_114838.csv
+2025-08-11 11:48:50,346 - INFO - Saved 15 records to C:\Users\shari\scraper_project\static\speakers_indiamart_110825_114838.csv
+2025-08-11 11:48:50,482 - INFO - Scraping completed with 15 results.

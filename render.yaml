@@ -12,16 +12,17 @@
   
 
 
-  services:
+services:
   - type: web
     name: scraper-demo-project
     runtime: python
     buildCommand: |
       pip install -r requirements.txt
       export PLAYWRIGHT_BROWSERS_PATH=/tmp/playwright-cache
-      playwright install chromium
+      python -m playwright install chromium
     startCommand: python app.py
     envVars:
       - key: PLAYWRIGHT_BROWSERS_PATH
         value: /tmp/playwright-cache
+
 

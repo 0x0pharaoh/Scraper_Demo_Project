@@ -1,10 +1,13 @@
 # runner.py
 
+# runner.py
+
 import importlib
 import sys
 import os
 from datetime import datetime
 import traceback
+import subprocess  # <-- Added for playwright install
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -14,6 +17,16 @@ def generate_filename(query, site):
     return os.path.join(BASE_DIR, "static", f"{filename_safe}_{site}_{date_str}.csv")
 
 def run_scraper(site, query, output_file, limit=None):
+    # Ensure Playwright Chromium is installed
+    try:
+        subprocess.run(
+            ["python", "-m", "playwright", "install", "chromium"],
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"[ERROR] Failed to install Playwright browsers: {e}")
+        sys.exit(1)
+
     try:
         scraper_module = importlib.import_module(f"plugins.{site}")
     except ModuleNotFoundError:

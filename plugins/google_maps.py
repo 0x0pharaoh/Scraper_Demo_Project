@@ -1,5 +1,6 @@
 # google_maps.py
 
+import subprocess
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 import time
 import csv
@@ -7,12 +8,22 @@ from datetime import datetime
 from urllib.parse import quote_plus
 from utils.logger import get_logger
 
-logger = get_logger("google_maps")
+# Ensure Playwright browsers are installed (Chromium specifically)
+try:
+    subprocess.run(
+        ["python", "-m", "playwright", "install", "chromium", "--with-deps"],
+        check=True
+    )
+except Exception as e:
+    print(f"⚠️ Browser installation failed: {e}")
 
+logger = get_logger("google_maps")
 description = "Scrape business listings, ratings, and addresses from Google Maps."
+
 
 def build_search_url(query):
     return f"https://www.google.com/maps/search/{quote_plus(query)}"
+
 
 def auto_scroll(page, scroll_container_selector, delay=1.0, max_scrolls=20, limit=None):
     scroll_container = page.locator(scroll_container_selector).nth(1)
@@ -27,12 +38,13 @@ def auto_scroll(page, scroll_container_selector, delay=1.0, max_scrolls=20, limi
         logger.info(f"Scroll {i + 1}: {current_count} listings visible.")
 
         if current_count == last_seen:
-            logger.info("⏹No new results loaded.")
+            logger.info("⏹ No new results loaded.")
             break
         if limit and current_count >= limit:
             logger.info(f"Early stopping at {current_count} listings.")
             break
         last_seen = current_count
+
 
 def extract_data(page, limit=None):
     cards = page.locator("a.hfpxzc").all()
@@ -69,12 +81,14 @@ def extract_data(page, limit=None):
 
     return data
 
+
 def save_to_csv(data, file_path):
     with open(file_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["Name", "URL", "Address", "Rating"])
         writer.writeheader()
         writer.writerows(data)
     logger.info(f"Results saved to {file_path}")
+
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Starting Google Maps scraper for: {query}")
@@ -111,6 +125,7 @@ def run_scraper(query, output_file=None, limit=None):
 
         print(f"FOUND_COUNT: {len(results)}")
         return len(results)
+
 
 
 
