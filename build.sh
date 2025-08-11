@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-echo "Installing dependencies..."
+echo "Installing Python dependencies..."
 pip install -r requirements.txt
 
-echo "Installing Playwright browsers..."
-playwright install --with-deps
+echo "Installing Playwright Chromium..."
+playwright install chromium
+
 
 
 
