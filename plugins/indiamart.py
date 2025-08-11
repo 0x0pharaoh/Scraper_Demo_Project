@@ -1,5 +1,7 @@
 # plugins/indiamart.py
 
+# plugins/indiamart.py
+
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
@@ -13,8 +15,10 @@ from utils.logger import get_logger
 logger = get_logger("indiamart")
 description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 
+
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
+
 
 def scroll_until_end(page, wait_time=1.5, max_tries=30):
     """Smoothly scroll until no new results load."""
@@ -29,6 +33,7 @@ def scroll_until_end(page, wait_time=1.5, max_tries=30):
             break
         previous_count = len(cards)
     logger.info("Scrolling finished.")
+
 
 def extract_data_from_page(page):
     """Extracts supplier details from the current page."""
@@ -48,16 +53,18 @@ def extract_data_from_page(page):
             phone = phone_elem.inner_text().strip() if phone_elem else ""
             url = link.get_attribute("href") if link else ""
 
-            data.append({
-                "Company Name": company,
-                "Location": city,
-                "Phone": phone,
-                "URL": url
-            })
+            if company or phone or city:  # Only save non-empty entries
+                data.append({
+                    "Company Name": company,
+                    "Location": city,
+                    "Phone": phone,
+                    "URL": url
+                })
         except Exception as e:
             logger.error(f"Error extracting card: {e}")
 
     return data
+
 
 def save_to_csv(data, file_path):
     """Save extracted data to CSV."""
@@ -67,6 +74,7 @@ def save_to_csv(data, file_path):
         writer.writeheader()
         writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
+
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
@@ -79,8 +87,9 @@ def run_scraper(query, output_file=None, limit=None):
 
     with sync_playwright() as p:
         try:
+            headless_mode = os.environ.get("RENDER", "false").lower() == "true"
             browser = p.chromium.launch(
-                headless=False,  # Run visible browser to mimic human
+                headless=headless_mode,
                 args=[
                     "--no-sandbox",
                     "--disable-blink-features=AutomationControlled",
@@ -105,24 +114,46 @@ def run_scraper(query, output_file=None, limit=None):
             except:
                 pass
 
-            # Wait until cards load or timeout
-            page.wait_for_selector(".supplierInfoDiv", timeout=20000)
+            # Ensure results load
+            page.wait_for_selector(".supplierInfoDiv", timeout=25000)
 
             # Scroll to load more results
             scroll_until_end(page)
 
-            # Extract data
-            all_data = extract_data_from_page(page)
-            logger.info(f"Total extracted: {len(all_data)} records")
+            # Pagination loop
+            while True:
+                all_data.extend(extract_data_from_page(page))
+                try:
+                    next_btn = page.locator("a[rel='next']")
+                    if next_btn.is_visible():
+                        logger.info("Navigating to next page...")
+                        next_btn.click()
+                        page.wait_for_selector(".supplierInfoDiv", timeout=20000)
+                        scroll_until_end(page)
+                    else:
+                        break
+                except:
+                    break
 
-            # Apply limit if specified
+            # Remove duplicates
+            seen = set()
+            unique_data = []
+            for row in all_data:
+                key = (row["Company Name"], row["Phone"])
+                if key not in seen:
+                    seen.add(key)
+                    unique_data.append(row)
+            all_data = unique_data
+
+            logger.info(f"Total extracted unique records: {len(all_data)}")
+
+            # Apply limit
             if limit:
                 limit = int(limit)
-                if len(all_data) > limit:
-                    all_data = all_data[:limit]
-                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
+                all_data = all_data[:limit]
+                logger.info(f"Applied limit: {limit}")
 
-            # Save results if file path provided
+            # Save results if available
             if output_file:
                 final_file_path = os.path.abspath(output_file)
                 save_to_csv(all_data, final_file_path)
@@ -136,6 +167,9 @@ def run_scraper(query, output_file=None, limit=None):
             if output_file:
                 save_to_csv([], os.path.abspath(output_file))
             return 0
+
+
+
 
 
 

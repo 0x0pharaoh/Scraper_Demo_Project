@@ -896,3 +896,33 @@
 2025-08-11 13:30:27,137 - INFO - Limit applied: 5 → Returning 5 records.
 2025-08-11 13:30:27,138 - INFO - Saving CSV to: C:\Users\shari\scraper_project\static\speakers_indiamart_110825_133014.csv
 2025-08-11 13:30:27,139 - INFO - CSV saved: C:\Users\shari\scraper_project\static\speakers_indiamart_110825_133014.csv (5 rows)
+2025-08-11 14:39:47,461 - INFO - Running IndiaMART scraper for: speakers
+2025-08-11 14:39:47,462 - INFO - Limit: 10
+2025-08-11 14:39:47,462 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-11 14:39:55,562 - INFO - Running IndiaMART scraper for: speakers
+2025-08-11 14:39:55,565 - INFO - Limit: 10
+2025-08-11 14:39:55,565 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-11 14:39:57,021 - INFO - Starting dynamic auto-scroll...
+2025-08-11 14:40:05,449 - INFO - Starting dynamic auto-scroll...
+2025-08-11 14:40:05,614 - INFO - No new results after 2 scrolls.
+2025-08-11 14:40:05,615 - INFO - Scrolling finished.
+2025-08-11 14:40:05,731 - INFO - Found 20 supplier cards.
+2025-08-11 14:40:08,218 - INFO - Total extracted unique records: 20
+2025-08-11 14:40:08,219 - INFO - Applied limit: 10
+2025-08-11 14:40:08,222 - INFO - CSV saved: C:\Users\shari\scraper_project\static\speakers_indiamart_110825_143945.csv (10 rows)
+2025-08-11 14:40:09,108 - INFO - No new results after 2 scrolls.
+2025-08-11 14:40:09,109 - INFO - Scrolling finished.
+2025-08-11 14:40:09,225 - INFO - Found 20 supplier cards.
+2025-08-11 14:40:11,745 - INFO - Total extracted unique records: 20
+2025-08-11 14:40:11,746 - INFO - Applied limit: 10
+2025-08-11 14:40:11,748 - INFO - CSV saved: C:\Users\shari\scraper_project\static\speakers_indiamart_110825_143952.csv (10 rows)
+2025-08-11 14:40:14,630 - INFO - Running IndiaMART scraper for: speakers
+2025-08-11 14:40:14,631 - INFO - Limit: 10
+2025-08-11 14:40:14,631 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-11 14:40:22,240 - INFO - Starting dynamic auto-scroll...
+2025-08-11 14:40:25,452 - INFO - No new results after 2 scrolls.
+2025-08-11 14:40:25,452 - INFO - Scrolling finished.
+2025-08-11 14:40:25,506 - INFO - Found 20 supplier cards.
+2025-08-11 14:40:27,722 - INFO - Total extracted unique records: 20
+2025-08-11 14:40:27,722 - INFO - Applied limit: 10
+2025-08-11 14:40:27,723 - INFO - CSV saved: C:\Users\shari\scraper_project\static\speakers_indiamart_110825_144011.csv (10 rows)
