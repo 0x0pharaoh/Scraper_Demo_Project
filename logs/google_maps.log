@@ -2300,3 +2300,15 @@ waiting for navigation until 'load'
 2025-08-11 18:01:41,188 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_180052.csv
 2025-08-11 18:01:42,458 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_180040.csv
 2025-08-11 18:01:56,708 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_180121.csv
+2025-08-11 18:15:20,319 - INFO - Starting Google Maps scraper for: temples
+2025-08-11 18:15:20,319 - INFO - Received limit: None
+2025-08-11 18:15:32,595 - INFO - Waiting for listings container to load...
+2025-08-11 18:15:32,737 - INFO - Scrolling to load listings...
+2025-08-11 18:15:33,379 - INFO - Listings visible: 12
+2025-08-11 18:15:33,940 - INFO - Listings visible: 18
+2025-08-11 18:15:34,544 - INFO - Listings visible: 20
+2025-08-11 18:15:35,087 - INFO - Listings visible: 20
+2025-08-11 18:15:35,628 - INFO - Listings visible: 20
+2025-08-11 18:15:35,628 - INFO - ⏹ No new results loaded.
+2025-08-11 18:15:35,634 - INFO - Total cards found: 20
+2025-08-11 18:15:36,476 - INFO - Results saved to C:\Users\shari\scraper_project\static\temples_google_maps_110825_181510.csv

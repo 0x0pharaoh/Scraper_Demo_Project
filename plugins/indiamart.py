@@ -21,7 +21,7 @@ def scroll_until_end(page, max_scrolls=20):
     last_height = 0
     for i in range(max_scrolls):
         page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(2.5)
+        time.sleep(3)
         new_height = page.evaluate("document.body.scrollHeight")
         if new_height == last_height:
             logger.info(f"No more content loaded after {i + 1} scrolls.")
@@ -57,100 +57,73 @@ def extract_data_from_page(page):
 
 def save_to_csv(data, file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    if not data:
+        logger.warning("No data to save.")
+        raise ValueError("No data extracted to save.")
     with open(file_path, "w", newline="", encoding="utf-8") as f:
-        if not data:
-            writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
-            writer.writeheader()
-        else:
-            writer = csv.DictWriter(f, fieldnames=data[0].keys())
-            writer.writeheader()
-            writer.writerows(data)
-    logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
+        writer = csv.DictWriter(f, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Failed to create file at: {file_path}")
+    logger.info(f"Saved {len(data)} records to {file_path}")
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
     logger.info(f"Limit: {limit}")
     url = build_search_url(query)
     logger.info(f"Opening URL: {url}")
-
     all_data = []
-    final_file_path = None
 
     with sync_playwright() as p:
         try:
-            browser = p.chromium.launch(
-                headless=False,  # Non-headless so JS loads like normal
-                args=[
-                    "--no-sandbox",
-                    "--disable-blink-features=AutomationControlled",
-                    "--disable-dev-shm-usage",
-                    "--disable-infobars",
-                    "--disable-extensions",
-                    "--window-size=1280,800"
-                ]
-            )
-            context = browser.new_context(
-                user_agent=(
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/115.0.0.0 Safari/537.36"
-                ),
-                locale="en-US",
-                viewport={"width": 1280, "height": 800},
-                extra_http_headers={
-                    "Accept-Language": "en-US,en;q=0.9",
-                    "Accept-Encoding": "gzip, deflate, br",
-                }
-            )
+            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+            context = browser.new_context()
             page = context.new_page()
             page.goto(url, timeout=60000)
 
-            # Retry loop to wait for cards to appear with scroll & wait
-            for attempt in range(3):
-                try:
-                    page.wait_for_selector(".supplierInfoDiv", timeout=20000)
-                    logger.info(".supplierInfoDiv selector found.")
-                    break
-                except PlaywrightTimeoutError:
-                    logger.warning(f"Attempt {attempt+1}: .supplierInfoDiv not found, retrying scroll & wait...")
-                    scroll_until_end(page)
-                    time.sleep(5)
-            else:
-                logger.error("No .supplierInfoDiv elements found after retries.")
+            try:
+                page.wait_for_selector(".supplierInfoDiv", timeout=15000)
+            except PlaywrightTimeoutError:
+                logger.warning(".supplierInfoDiv not found — page may not have loaded correctly.")
 
-            # Save debug screenshot after scrolling and waiting
-            os.makedirs("static", exist_ok=True)
             screenshot_path = os.path.abspath("static/indiamart_debug.png")
+            os.makedirs("static", exist_ok=True)
             page.screenshot(path=screenshot_path, full_page=True)
             logger.info(f"Screenshot saved to: {screenshot_path}")
 
-            # Save snapshot of page HTML for debugging
-            html = page.content()
-            html_snippet = html[:5000]  # limit length for logs
-            logger.info(f"Page HTML snapshot (first 5000 chars):\n{html_snippet}")
-
+            scroll_until_end(page)
             all_data = extract_data_from_page(page)
             logger.info(f"Total extracted: {len(all_data)} records")
 
-            if limit and all_data:
+            if not all_data:
+                raise ValueError("No data extracted from IndiaMART.")
+
+            if limit:
                 all_data = all_data[:int(limit)]
                 logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
+            else:
+                logger.info(f"No limit given — returning all {len(all_data)} results.")
 
             if output_file:
-                final_file_path = os.path.abspath(output_file)
-                logger.info(f"Saving CSV to: {final_file_path}")
-                save_to_csv(all_data, final_file_path)
+                absolute_path = os.path.abspath(output_file)
+                logger.info(f"Saving to CSV: {absolute_path}")
+                save_to_csv(all_data, absolute_path)
 
             browser.close()
+            logger.info(f"Scraping completed with {len(all_data)} results.")
             print(f"FOUND_COUNT: {len(all_data)}")
             return len(all_data)
 
+        except PlaywrightTimeoutError:
+            logger.error("Timeout while loading IndiaMART.")
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
-            if output_file:
-                final_file_path = os.path.abspath(output_file)
-                save_to_csv([], final_file_path)
-            return 0
+
+        return 0
+
+
+
 
 
 
