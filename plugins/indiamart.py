@@ -1,5 +1,7 @@
 # plugins/indiamart.py
 
+# plugins/indiamart.py
+
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
@@ -13,21 +15,24 @@ from utils.logger import get_logger
 logger = get_logger("indiamart")
 description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 
+
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
+
 
 def scroll_until_end(page, max_scrolls=20):
     logger.info("Starting auto-scroll to load all results...")
     last_height = 0
     for i in range(max_scrolls):
         page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(2.5)
+        time.sleep(2.0)
         new_height = page.evaluate("document.body.scrollHeight")
         if new_height == last_height:
             logger.info(f"No more content loaded after {i + 1} scrolls.")
             break
         last_height = new_height
     logger.info("Auto-scroll completed.")
+
 
 def extract_data_from_page(page):
     data = []
@@ -45,27 +50,28 @@ def extract_data_from_page(page):
             phone = phone_elem.inner_text().strip() if phone_elem else ""
             url = link.get_attribute("href") if link else ""
 
-            data.append({
-                "Company Name": company,
-                "Location": city,
-                "Phone": phone,
-                "URL": url
-            })
+            if company or phone:  # skip completely empty entries
+                data.append({
+                    "Company Name": company,
+                    "Location": city,
+                    "Phone": phone,
+                    "URL": url
+                })
     except Exception as e:
         logger.error(f"Error extracting data: {e}")
     return data
 
+
 def save_to_csv(data, file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    fieldnames = ["Company Name", "Location", "Phone", "URL"]
     with open(file_path, "w", newline="", encoding="utf-8") as f:
-        if not data:
-            writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
-            writer.writeheader()
-        else:
-            writer = csv.DictWriter(f, fieldnames=data[0].keys())
-            writer.writeheader()
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        if data:
             writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
+
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
@@ -79,13 +85,14 @@ def run_scraper(query, output_file=None, limit=None):
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(
-                headless=False,  # Non-headless so JS loads like normal
+                headless=False,
                 args=[
                     "--no-sandbox",
                     "--disable-blink-features=AutomationControlled",
                     "--disable-dev-shm-usage",
                     "--disable-infobars",
                     "--disable-extensions",
+                    "--disable-gpu",
                     "--window-size=1280,800"
                 ]
             )
@@ -107,6 +114,7 @@ def run_scraper(query, output_file=None, limit=None):
                 scroll_until_end(page)
                 page.wait_for_selector(".supplierInfoDiv", timeout=15000)
 
+            # Screenshot for debugging (always saved)
             os.makedirs("static", exist_ok=True)
             screenshot_path = os.path.abspath("static/indiamart_debug.png")
             page.screenshot(path=screenshot_path, full_page=True)
@@ -126,6 +134,8 @@ def run_scraper(query, output_file=None, limit=None):
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
+
+            # Only print 0 if truly no data
             print(f"FOUND_COUNT: {len(all_data)}")
             return len(all_data)
 
@@ -135,6 +145,7 @@ def run_scraper(query, output_file=None, limit=None):
                 final_file_path = os.path.abspath(output_file)
                 save_to_csv([], final_file_path)
             return 0
+
 
 
 
