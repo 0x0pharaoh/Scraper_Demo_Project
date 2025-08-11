@@ -1,7 +1,5 @@
 # plugins/indiamart.py
 
-# plugins/indiamart.py
-
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
@@ -18,12 +16,12 @@ description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
 
-def scroll_until_end(page, max_scrolls=30, wait_time=2.5):
+def scroll_until_end(page, max_scrolls=20):
     logger.info("Starting auto-scroll to load all results...")
     last_height = 0
     for i in range(max_scrolls):
         page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(wait_time)
+        time.sleep(2.5)
         new_height = page.evaluate("document.body.scrollHeight")
         if new_height == last_height:
             logger.info(f"No more content loaded after {i + 1} scrolls.")
@@ -37,26 +35,22 @@ def extract_data_from_page(page):
         cards = page.query_selector_all(".supplierInfoDiv")
         logger.info(f"Found {len(cards)} cards on current scroll.")
         for card in cards:
-            try:
-                company_name = card.query_selector(".companyname a")
-                location = card.query_selector(".newLocationUi span.highlight")
-                phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
-                link = card.query_selector(".companyname a")
+            company_name = card.query_selector(".companyname a")
+            location = card.query_selector(".newLocationUi span.highlight")
+            phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
+            link = card.query_selector(".companyname a")
 
-                company = company_name.inner_text().strip() if company_name else ""
-                city = location.inner_text().strip() if location else ""
-                phone = phone_elem.inner_text().strip() if phone_elem else ""
-                url = link.get_attribute("href") if link else ""
+            company = company_name.inner_text().strip() if company_name else ""
+            city = location.inner_text().strip() if location else ""
+            phone = phone_elem.inner_text().strip() if phone_elem else ""
+            url = link.get_attribute("href") if link else ""
 
-                data.append({
-                    "Company Name": company,
-                    "Location": city,
-                    "Phone": phone,
-                    "URL": url
-                })
-            except Exception as e:
-                logger.error(f"Error extracting one card: {e}")
-
+            data.append({
+                "Company Name": company,
+                "Location": city,
+                "Phone": phone,
+                "URL": url
+            })
     except Exception as e:
         logger.error(f"Error extracting data: {e}")
     return data
@@ -85,46 +79,35 @@ def run_scraper(query, output_file=None, limit=None):
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(
-                headless=False,  # Run visible to better mimic real user, can be True if needed
-                args=[
-                    "--no-sandbox",
-                    "--disable-blink-features=AutomationControlled",
-                    "--disable-dev-shm-usage",
-                    "--disable-infobars",
-                    "--disable-extensions",
-                    "--window-size=1280,800"
-                ]
+                headless=True,
+                args=["--no-sandbox", "--disable-dev-shm-usage"]
             )
-            context = browser.new_context(
-                user_agent=(
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/115.0.0.0 Safari/537.36"
-                ),
-                viewport={"width": 1280, "height": 800}
-            )
+            context = browser.new_context()
             page = context.new_page()
+            page.goto(url, timeout=60000)
+            
+            # Wait for network to be mostly idle
+            page.wait_for_load_state("networkidle", timeout=30000)
+            
+            # Save page content snippet for debugging
+            html_content = page.content()
+            snippet = html_content[:2000]
+            logger.info(f"Page HTML snippet:\n{snippet}")
 
-            # First try loading page and waiting for supplier cards
-            try:
-                page.goto(url, wait_until="networkidle", timeout=40000)
-                page.wait_for_selector(".supplierInfoDiv", timeout=25000)
-            except PlaywrightTimeoutError:
-                logger.warning("⚠️ First attempt failed, retrying after 5 seconds...")
-                time.sleep(5)
-                page.goto(url, wait_until="networkidle", timeout=40000)
-                page.wait_for_selector(".supplierInfoDiv", timeout=25000)
-
-            # Save screenshot for debugging on server
+            # Take screenshot for debug
             os.makedirs("static", exist_ok=True)
             screenshot_path = os.path.abspath("static/indiamart_debug.png")
             page.screenshot(path=screenshot_path, full_page=True)
             logger.info(f"Screenshot saved to: {screenshot_path}")
 
-            # Scroll to load all results
+            # Wait for results container to appear
+            try:
+                page.wait_for_selector(".supplierInfoDiv", timeout=20000)
+            except PlaywrightTimeoutError:
+                logger.warning(".supplierInfoDiv selector not found after wait.")
+
             scroll_until_end(page)
 
-            # Extract data
             all_data = extract_data_from_page(page)
             logger.info(f"Total extracted: {len(all_data)} records")
 
@@ -132,7 +115,6 @@ def run_scraper(query, output_file=None, limit=None):
                 all_data = all_data[:int(limit)]
                 logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
 
-            # Save CSV if needed
             if output_file:
                 final_file_path = os.path.abspath(output_file)
                 logger.info(f"Saving CSV to: {final_file_path}")
@@ -148,6 +130,7 @@ def run_scraper(query, output_file=None, limit=None):
                 final_file_path = os.path.abspath(output_file)
                 save_to_csv([], final_file_path)
             return 0
+
 
 
 
