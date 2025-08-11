@@ -992,3 +992,18 @@
 2025-08-11 15:53:03,402 - INFO - Limit applied: 5 → Returning 5 records.
 2025-08-11 15:53:03,402 - INFO - Saving CSV to: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_155239.csv
 2025-08-11 15:53:03,405 - INFO - CSV saved: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_155239.csv (5 rows)
+2025-08-11 16:07:47,371 - INFO - Running IndiaMART scraper for: headphone
+2025-08-11 16:07:47,372 - INFO - Limit: 3
+2025-08-11 16:07:47,372 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-11 16:08:01,764 - INFO - Page HTML snippet:
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>headphone - Indiamart</title><script>var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];</script><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="next-head-count" content="4"><link rel="preload" href="https://dir.imimg.com/next-app-bundles/_next/static/css/pages/_app-117.css" as="style"><link rel="stylesheet" href="https://dir.imimg.com/next-app-bundles/_next/static/css/pages/_app-117.css" data-n-g=""><link rel="preload" href="https://dir.imimg.com/next-app-bundles/_next/static/css/pages/search4.mp-117.css" as="style"><link rel="stylesheet" href="https://dir.imimg.com/next-app-bundles/_next/static/css/pages/search4.mp-117.css" data-n-p=""><noscript data-n-css=""></noscript><script defer="" nomodule="" src="https://dir.imimg.com/next-app-bundles/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js"></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/chunks/webpack-358.js" defer=""></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/chunks/main-358.js" defer=""></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/chunks/pages/_app-358.js" defer=""></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/chunks/900-358.js" defer=""></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/chunks/pages/search4.mp-358.js" defer=""></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/358/_buildManifest.js" defer=""></script><script src="https://dir.imimg.com/next-app-bundles/_next/static/358/_ssgManifest.js" defer=""></script><meta name="description" content="Some tags are vital for SEO. Others have little or no impact on rankings. Here's every type of meta tag you need to know about.The purpose of a meta description is to reflect the essence of a page, but with more details and context
+2025-08-11 16:08:03,493 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-11 16:08:03,567 - INFO - Starting auto-scroll to load all results...
+2025-08-11 16:08:09,274 - INFO - No more content loaded after 2 scrolls.
+2025-08-11 16:08:09,274 - INFO - Auto-scroll completed.
+2025-08-11 16:08:09,404 - INFO - Found 20 cards on current scroll.
+2025-08-11 16:08:12,962 - INFO - Total extracted: 20 records
+2025-08-11 16:08:12,965 - INFO - Limit applied: 3 → Returning 3 records.
+2025-08-11 16:08:12,991 - INFO - Saving CSV to: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_160744.csv
+2025-08-11 16:08:13,000 - INFO - CSV saved: C:\Users\shari\scraper_project\static\headphone_indiamart_110825_160744.csv (3 rows)

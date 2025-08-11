@@ -67,9 +67,11 @@ def save_to_csv(data, file_path):
             writer.writerows(data)
     logger.info(f"CSV saved: {file_path} ({len(data)} rows)")
 
-def run_scraper(query, output_file=None, limit=None):
+def run_scraper(query, output_file=None, limit=None, proxy_url=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
     logger.info(f"Limit: {limit}")
+    if proxy_url:
+        logger.info(f"Using proxy: {proxy_url}")
     url = build_search_url(query)
     logger.info(f"Opening URL: {url}")
 
@@ -78,29 +80,55 @@ def run_scraper(query, output_file=None, limit=None):
 
     with sync_playwright() as p:
         try:
+            launch_args = [
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled",
+                "--disable-infobars",
+                "--disable-extensions",
+                "--window-size=1280,800"
+            ]
+
             browser = p.chromium.launch(
-                headless=True,
-                args=["--no-sandbox", "--disable-dev-shm-usage"]
+                headless=True,  # headless True for live server, but stealth active
+                args=launch_args,
+                proxy={"server": proxy_url} if proxy_url else None,
             )
-            context = browser.new_context()
+
+            context = browser.new_context(
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/115.0.0.0 Safari/537.36"
+                ),
+                viewport={"width": 1280, "height": 800},
+                java_script_enabled=True,
+                locale="en-US",
+                timezone_id="Asia/Kolkata",
+            )
+
+            # Stealth - remove automation flags
+            context.add_init_script("""
+                Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+                window.chrome = {runtime: {}};
+                Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
+                Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3, 4, 5]});
+            """)
+
             page = context.new_page()
             page.goto(url, timeout=60000)
-            
-            # Wait for network to be mostly idle
             page.wait_for_load_state("networkidle", timeout=30000)
-            
+
             # Save page content snippet for debugging
             html_content = page.content()
             snippet = html_content[:2000]
             logger.info(f"Page HTML snippet:\n{snippet}")
 
-            # Take screenshot for debug
             os.makedirs("static", exist_ok=True)
             screenshot_path = os.path.abspath("static/indiamart_debug.png")
             page.screenshot(path=screenshot_path, full_page=True)
             logger.info(f"Screenshot saved to: {screenshot_path}")
 
-            # Wait for results container to appear
             try:
                 page.wait_for_selector(".supplierInfoDiv", timeout=20000)
             except PlaywrightTimeoutError:
@@ -130,6 +158,7 @@ def run_scraper(query, output_file=None, limit=None):
                 final_file_path = os.path.abspath(output_file)
                 save_to_csv([], final_file_path)
             return 0
+
 
 
 
