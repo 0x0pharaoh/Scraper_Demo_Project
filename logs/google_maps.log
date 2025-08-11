@@ -2236,3 +2236,67 @@ waiting for navigation until 'load'
 2025-08-11 16:55:53,533 - INFO - Reached desired limit of 11.
 2025-08-11 16:55:53,548 - INFO - Total cards found: 12
 2025-08-11 16:55:54,159 - INFO - Results savedto C:\Users\shari\scraper_project\static\temples_google_maps_110825_165540.csv
+2025-08-11 17:52:48,354 - INFO - Starting Google Maps scraper for: colleges in haryana
+2025-08-11 17:52:48,355 - INFO - Received limit: None
+2025-08-11 17:53:04,318 - INFO - Waiting for listings container to load...
+2025-08-11 17:53:04,512 - INFO - Scrolling to load listings...
+2025-08-11 17:53:05,104 - INFO - Listings visible: 16
+2025-08-11 17:53:05,650 - INFO - Listings visible: 22
+2025-08-11 17:53:06,205 - INFO - Listings visible: 22
+2025-08-11 17:53:06,775 - INFO - Listings visible: 22
+2025-08-11 17:53:06,775 - INFO - ⏹ No new results loaded.
+2025-08-11 17:53:06,787 - INFO - Total cards found: 22
+2025-08-11 17:53:08,372 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_175244.csv
+2025-08-11 17:53:15,388 - INFO - Starting Google Maps scraper for: colleges in haryana
+2025-08-11 17:53:15,389 - INFO - Received limit: None
+2025-08-11 17:53:22,310 - INFO - Waiting for listings container to load...
+2025-08-11 17:53:22,605 - INFO - Scrolling to load listings...
+2025-08-11 17:53:23,389 - INFO - Listings visible: 16
+2025-08-11 17:53:24,104 - INFO - Listings visible: 20
+2025-08-11 17:53:24,649 - INFO - Listings visible: 20
+2025-08-11 17:53:25,218 - INFO - Listings visible: 20
+2025-08-11 17:53:25,218 - INFO - ⏹ No new results loaded.
+2025-08-11 17:53:25,231 - INFO - Total cards found: 20
+2025-08-11 17:53:26,714 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_175311.csv
+2025-08-11 18:00:45,299 - INFO - Starting Google Maps scraper for: colleges in haryana
+2025-08-11 18:00:45,301 - INFO - Received limit: None
+2025-08-11 18:00:56,554 - INFO - Starting Google Maps scraper for: colleges in haryana
+2025-08-11 18:00:56,555 - INFO - Received limit: None
+2025-08-11 18:00:58,947 - INFO - Waiting for listings container to load...
+2025-08-11 18:00:59,066 - INFO - Scrolling to load listings...
+2025-08-11 18:01:00,188 - INFO - Scroll 1: 16 listings visible.
+2025-08-11 18:01:01,384 - INFO - Scroll 2: 20 listings visible.
+2025-08-11 18:01:02,444 - INFO - Scroll 3: 20 listings visible.
+2025-08-11 18:01:02,444 - INFO - ⏹ No new results loaded.
+2025-08-11 18:01:02,452 - INFO - Total cards found: 20
+2025-08-11 18:01:05,598 - INFO - Waiting for listings container to load...
+2025-08-11 18:01:05,694 - INFO - Scrolling to load listings...
+2025-08-11 18:01:06,894 - INFO - Scroll 1: 16 listings visible.
+2025-08-11 18:01:07,953 - INFO - Scroll 2: 20 listings visible.
+2025-08-11 18:01:09,153 - INFO - Scroll 3: 20 listings visible.
+2025-08-11 18:01:09,153 - INFO - ⏹ No new results loaded.
+2025-08-11 18:01:09,166 - INFO - Total cards found: 20
+2025-08-11 18:01:21,617 - WARNING - ⚠️ Failed to extract listing 9: Timeout 10000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until 'load'
+============================================================
+2025-08-11 18:01:30,009 - INFO - Starting Google Maps scraper for: colleges in haryana
+2025-08-11 18:01:30,009 - INFO - Received limit: None
+2025-08-11 18:01:32,528 - WARNING - ⚠️ Failed to extract listing 11: Timeout 10000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until 'load'
+============================================================
+2025-08-11 18:01:36,032 - INFO - Waiting for listings container to load...
+2025-08-11 18:01:36,217 - INFO - Scrolling to load listings...
+2025-08-11 18:01:37,284 - INFO - Scroll 1: 16 listings visible.
+2025-08-11 18:01:38,344 - INFO - Scroll 2: 20 listings visible.
+2025-08-11 18:01:38,575 - WARNING - ⚠️ Failed to extract listing 19: Timeout 10000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until 'load'
+============================================================
+2025-08-11 18:01:39,596 - INFO - Scroll 3: 20 listings visible.
+2025-08-11 18:01:39,596 - INFO - ⏹ No new results loaded.
+2025-08-11 18:01:39,606 - INFO - Total cards found: 20
+2025-08-11 18:01:41,188 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_180052.csv
+2025-08-11 18:01:42,458 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_180040.csv
+2025-08-11 18:01:56,708 - INFO - Results saved to C:\Users\shari\scraper_project\static\colleges_in_haryana_google_maps_110825_180121.csv
