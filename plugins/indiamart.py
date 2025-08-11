@@ -66,6 +66,7 @@ def save_to_csv(data, file_path):
 
 def run_scraper(query, output_file=None, limit=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
+    logger.info(f"Limit: {limit}")
     url = build_search_url(query)
     logger.info(f"Opening URL: {url}")
 
@@ -74,37 +75,60 @@ def run_scraper(query, output_file=None, limit=None):
 
     with sync_playwright() as p:
         try:
-            # Run in non-headless mode for Render reliability
-            browser = p.chromium.launch(headless=False, args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
-            context = browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36")
+            browser = p.chromium.launch(
+                headless=False,  # 🚀 FULL browser mode
+                args=[
+                    "--no-sandbox",
+                    "--disable-blink-features=AutomationControlled",
+                    "--disable-infobars",
+                    "--window-size=1366,768"
+                ]
+            )
+            context = browser.new_context(
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/114.0.0.0 Safari/537.36"
+                ),
+                viewport={"width": 1366, "height": 768}
+            )
             page = context.new_page()
-
             page.goto(url, timeout=60000)
+
+            # ✅ Handle cookie or consent pop-up
             try:
-                page.wait_for_selector(".supplierInfoDiv", timeout=20000)
-            except PlaywrightTimeoutError:
-                logger.warning("No supplier cards found on initial load.")
+                page.locator("text=Accept").click(timeout=5000)
+            except:
+                pass
+
+            # ✅ Retry logic to ensure cards load
+            max_wait_time = 30000
+            start = time.time()
+            while True:
+                cards = page.query_selector_all(".supplierInfoDiv")
+                if cards or (time.time() - start) * 1000 > max_wait_time:
+                    break
+                time.sleep(2)
+
+            if not cards:
+                logger.warning("No supplier cards found — might be blocked or need more scroll.")
+            
+            # ✅ Smooth scroll with PageDown
+            for _ in range(20):
+                page.keyboard.press("PageDown")
+                time.sleep(1.5)
 
             scroll_until_end(page)
-
             all_data = extract_data_from_page(page)
-
-            # If still no data, try clicking pagination
-            while not limit and page.query_selector("a#next") and len(all_data) < (limit or 200):
-                logger.info("Clicking Next page...")
-                page.click("a#next")
-                page.wait_for_load_state("networkidle")
-                scroll_until_end(page)
-                all_data.extend(extract_data_from_page(page))
-
             logger.info(f"Total extracted: {len(all_data)} records")
 
-            if limit:
+            if limit and all_data:
                 all_data = all_data[:int(limit)]
-                logger.info(f"Applied limit → {len(all_data)} records")
+                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
 
             if output_file:
                 final_file_path = os.path.abspath(output_file)
+                logger.info(f"Saving CSV to: {final_file_path}")
                 save_to_csv(all_data, final_file_path)
 
             browser.close()
@@ -114,8 +138,10 @@ def run_scraper(query, output_file=None, limit=None):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             if output_file:
-                save_to_csv([], os.path.abspath(output_file))
+                final_file_path = os.path.abspath(output_file)
+                save_to_csv([], final_file_path)
             return 0
+
 
 
 
