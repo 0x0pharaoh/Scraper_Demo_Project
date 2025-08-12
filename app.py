@@ -1,11 +1,10 @@
-# app.py
-
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import subprocess
 import os
 import csv
 import time
 from datetime import datetime
+import json
 
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
@@ -34,55 +33,67 @@ def index():
             filename_safe = query.lower().replace(" ", "_")
             date_str = datetime.now().strftime("%d%m%y_%H%M%S")
             filename = f"{filename_safe}_{site}_{date_str}.csv"
-            output_rel_path = os.path.join("static", filename)
             output_abs_path = os.path.join(STATIC_DIR, filename)
 
-            command = ["python", "runner.py", "--mode", "modular", "--site", site, "--query", query, "--output", output_abs_path]
+            command = [
+                "python", "runner.py", "--mode", "modular",
+                "--site", site, "--query", query, "--output", output_abs_path
+            ]
             if limit:
                 command.extend(["--limit", limit])
 
             try:
                 result = subprocess.run(command, check=True, capture_output=True, text=True)
-                session["message"] = f"Scraping completed. Output saved to static/{filename}"
+                output_json = None
 
+                # Try to parse JSON output from scraper
+                for line in result.stdout.splitlines():
+                    try:
+                        output_json = json.loads(line)
+                        break
+                    except:
+                        continue
+
+                if not output_json:
+                    session["message"] = "❌ Failed to parse scraper output."
+                    return redirect(url_for("index"))
+
+                if not output_json.get("success"):
+                    session["message"] = f"❌ Scraper failed: {output_json.get('error', 'Unknown error')}"
+                    return redirect(url_for("index"))
+
+                # Load CSV data for UI display
                 if os.path.exists(output_abs_path):
-                    with open(output_abs_path, newline='', encoding='utf-8') as f:
+                    with open(output_abs_path, newline="", encoding="utf-8") as f:
                         reader = csv.reader(f)
                         rows = list(reader)
+                    if rows:
+                        session["headers"] = rows[0]
+                        session["table_data"] = rows[1:]
+                        session["output_file"] = filename
                         record_count = len(rows) - 1
-
-                        if record_count > 0:
-                            # Store only headers and filename, NOT all data rows
-                            session["headers"] = rows[0]
-                            session["output_file"] = filename
-                            if limit:
-                                try:
-                                    int_limit = int(limit)
-                                    if record_count < int_limit:
-                                        session["message"] += f"<br>Only {record_count} records found out of requested {int_limit}."
-                                except ValueError:
-                                    session["message"] += "<br>⚠️ Invalid limit value."
-                        else:
-                            session["message"] += "<br>⚠️ Output file is empty."
-                    return redirect(url_for("index"))
+                        session["message"] = f"Scraping completed. {record_count} records found."
+                    else:
+                        session["message"] = "⚠️ Output file is empty."
                 else:
-                    session["message"] += "<br>⚠️ Output file not found."
+                    session["message"] = "⚠️ Output file not found."
 
             except subprocess.CalledProcessError as e:
                 session["message"] = f"❌ Scraper failed. Error: {e.stderr or e.stdout or 'Check logs.'}"
+
             return redirect(url_for("index"))
 
     message = session.pop("message", None)
     output_file = session.pop("output_file", None)
     headers = session.pop("headers", None)
-    # No more table_data in session
+    table_data = session.pop("table_data", None)
 
     return render_template(
         "index.html",
         message=message,
         output_file=output_file,
         headers=headers,
-        table_data=None,  # Removed
+        table_data=table_data,
         available_plugins=available_plugins,
         timestamp=int(time.time())
     )
@@ -105,6 +116,17 @@ def get_data(filename):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

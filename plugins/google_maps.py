@@ -1,144 +1,113 @@
-# google_maps.py
+# plugins/google_maps.py
 
 import subprocess
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
-import csv
+subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
+
 import time
-from datetime import datetime
+import csv
+import os
 from urllib.parse import quote_plus
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from utils.logger import get_logger
 
-# Ensure Playwright browsers are installed (Chromium specifically)
-try:
-    subprocess.run(
-        ["python", "-m", "playwright", "install", "chromium", "--with-deps"],
-        check=True
-    )
-except Exception as e:
-    print(f"⚠️ Browser installation failed: {e}")
-
 logger = get_logger("google_maps")
-description = "Scrape business listings, ratings, and addresses from Google Maps."
+description = "Scrape business data from Google Maps search results"
 
-
-def build_search_url(query):
-    return f"https://www.google.com/maps/search/{quote_plus(query)}"
-
-
-def auto_scroll(page, scroll_container_selector, limit=None):
-    """Scroll until all results are loaded or until limit is reached."""
-    scroll_container = page.locator(scroll_container_selector).nth(1)
-    logger.info("Scrolling to load listings...")
-    last_seen = 0
-    same_count_repeats = 0
-
-    while True:
-        scroll_container.evaluate("el => el.scrollBy(0, el.scrollHeight)")
-        page.wait_for_timeout(500)  # Faster than time.sleep(1)
-
-        current_count = page.locator("a.hfpxzc").count()
-        logger.info(f"Listings visible: {current_count}")
-
-        if current_count == last_seen:
-            same_count_repeats += 1
-        else:
-            same_count_repeats = 0
-
-        if same_count_repeats >= 2:
-            logger.info("⏹ No new results loaded.")
+def scroll_until_end(page, max_scrolls=20):
+    logger.info("Starting auto-scroll to load all results...")
+    last_height = 0
+    for i in range(max_scrolls):
+        page.evaluate("document.querySelector('div[role=\"feed\"]').scrollBy(0, 1000)")
+        time.sleep(2)
+        new_height = page.evaluate("document.querySelector('div[role=\"feed\"]').scrollHeight")
+        if new_height == last_height:
+            logger.info(f"No more content loaded after {i + 1} scrolls.")
             break
+        last_height = new_height
+    logger.info("Auto-scroll completed.")
 
-        if limit and current_count >= limit:
-            logger.info(f"Reached desired limit of {limit}.")
-            break
+def extract_detailed_data(page, limit=None):
+    """Clicks each card to get accurate URL & address."""
+    results = []
 
-        last_seen = current_count
-
-
-def extract_data_from_list(page, limit=None):
-    """Extracts business data directly from the list view without clicking each listing."""
     cards = page.locator("a.hfpxzc").all()
-    logger.info(f"Total cards found: {len(cards)}")
+    logger.info(f"Found {len(cards)} results in list view.")
 
     if limit:
         cards = cards[:limit]
 
-    data = []
-    for i, card in enumerate(cards):
+    for idx, card in enumerate(cards):
         try:
-            name = card.get_attribute("aria-label") or "N/A"
-            url = card.get_attribute("href") or "N/A"
+            logger.info(f"Opening result {idx+1}/{len(cards)}...")
+            card.click()
+            page.wait_for_timeout(2000)  # Wait for side panel to load
 
-            # Address & rating (from list view)
-            address_locator = card.locator("div[aria-label*='Address'], span:has-text('Address')")
-            rating_locator = card.locator("span[aria-label*='stars']")
+            # Name
+            try:
+                name = page.locator("h1.DUwDvf.lfPIob").inner_text().strip()
+            except:
+                name = "N/A"
 
-            address_text = address_locator.inner_text() if address_locator.count() else "N/A"
-            rating_text = rating_locator.first.inner_text() if rating_locator.count() else "N/A"
+            # Address
+            try:
+                # Get all Io6YTe divs and pick the one looking like an address
+                all_texts = page.locator("div.Io6YTe").all_inner_texts()
+                address = next((t.strip() for t in all_texts if "," in t and any(c.isdigit() for c in t)), "N/A")
+            except:
+                address = "N/A"
 
-            data.append({
-                "Name": name.strip(),
-                "URL": url.strip(),
-                "Address": address_text.strip(),
-                "Rating": rating_text.strip()
+            # Exact URL
+            place_url = page.url
+
+            results.append({
+                "Name": name,
+                "URL": place_url,
+                "Address": address
             })
+
         except Exception as e:
-            logger.warning(f"⚠️ Failed to extract listing {i + 1}: {e}")
+            logger.warning(f"⚠️ Failed to extract result {idx+1}: {e}")
             continue
 
-    return data
+    return results
 
-
-def save_to_csv(data, file_path):
-    with open(file_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Name", "URL", "Address", "Rating"])
+def save_to_csv(data, filename):
+    os.makedirs("static", exist_ok=True)
+    filepath = os.path.join("static", filename)
+    with open(filepath, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["Name", "URL", "Address"])
         writer.writeheader()
         writer.writerows(data)
-    logger.info(f"Results saved to {file_path}")
-
+    logger.info(f"Scraping completed. Output saved to {filepath}")
+    return filepath
 
 def run_scraper(query, output_file=None, limit=None):
-    logger.info(f"Starting Google Maps scraper for: {query}")
-    logger.info(f"Received limit: {limit}")
-
-    search_url = build_search_url(query)
-
-    if not output_file:
-        date_str = datetime.now().strftime("%d%m%y_%H%M%S")
-        output_file = f"static/{query.replace(' ', '_')}_google_maps_{date_str}.csv"
-
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
+
+        search_url = f"https://www.google.com/maps/search/{quote_plus(query)}"
+        logger.info(f"Navigating to {search_url}")
         page.goto(search_url, timeout=60000)
 
-        try:
-            logger.info("Waiting for listings container to load...")
-            page.locator("div.m6QErb.DxyBCb.kA9KIf.dS8AEf.XiKgde").nth(1).wait_for(timeout=20000)
-        except PlaywrightTimeoutError:
-            logger.error("Timeout: Listings not found.")
-            save_to_csv([], output_file)
-            return 0
+        # Scroll through results
+        scroll_until_end(page, max_scrolls=20)
 
-        # Always scroll fully (or until limit)
-        auto_scroll(page, "div.m6QErb.DxyBCb.kA9KIf.dS8AEf.XiKgde", limit=limit)
+        # Extract accurate info
+        data = extract_detailed_data(page, limit=limit)
 
-        # Extract data without clicking each card
-        results = extract_data_from_list(page, limit=limit)
-
-        if not results:
-            logger.warning("⚠️ No data scraped.")
-
-        save_to_csv(results, output_file)
         browser.close()
 
-        print(f"FOUND_COUNT: {len(results)}")
-        return len(results)
+    if not output_file:
+        safe_query = query.replace(" ", "_")
+        output_file = f"{safe_query}_googlemaps.csv"
 
+    filepath = save_to_csv(data, output_file)
+    return data, filepath  # ✅ return both for UI display
 
-
-
-
+if __name__ == "__main__":
+    data, file_path = run_scraper("restaurants in Mumbai", limit=5)
+    print(f"Scraped {len(data)} results. Saved to {file_path}")
 
 
 

@@ -75,6 +75,14 @@
         th {
             background: #eee;
         }
+        a.company-link {
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a.company-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -133,16 +141,30 @@
                 return;
             }
 
+            // Find indexes for company name & URL columns
+            const companyIndex = data.headers.findIndex(h => h.toLowerCase() === "name" || h.toLowerCase() === "company name");
+            const urlIndex = data.headers.findIndex(h => h.toLowerCase() === "url");
+
+            // Build table without the "URL" column
             let html = "<table><thead><tr>";
-            for (const header of data.headers) {
-                html += `<th>${header}</th>`;
+            for (let i = 0; i < data.headers.length; i++) {
+                if (i === urlIndex) continue; // Skip URL column
+                html += `<th>${data.headers[i]}</th>`;
             }
             html += "</tr></thead><tbody>";
 
+            // Fill rows
             for (const row of data.rows) {
                 html += "<tr>";
-                for (const cell of row) {
-                    html += `<td>${cell}</td>`;
+                for (let i = 0; i < row.length; i++) {
+                    if (i === urlIndex) continue; // Skip URL column
+
+                    // Make Name/Company clickable
+                    if (i === companyIndex && urlIndex !== -1 && row[urlIndex]) {
+                        html += `<td><a class="company-link" href="${row[urlIndex]}" target="_blank">${row[i]}</a></td>`;
+                    } else {
+                        html += `<td>${row[i] || ""}</td>`;
+                    }
                 }
                 html += "</tr>";
             }
@@ -160,6 +182,10 @@
 
 </body>
 </html>
+
+
+
+
 
 
 

@@ -1,11 +1,10 @@
-# runner.py
-
 import importlib
-import sys
 import os
 from datetime import datetime
 import traceback
 import subprocess
+import sys
+import json
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -15,49 +14,49 @@ def generate_filename(query, site):
     return os.path.join(BASE_DIR, "static", f"{filename_safe}_{site}_{date_str}.csv")
 
 def run_scraper(site, query, output_file, limit=None):
+    # Install Playwright Chromium if not installed
     try:
         subprocess.run(
             ["python", "-m", "playwright", "install", "chromium"],
-            check=True
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
         )
     except subprocess.CalledProcessError as e:
-        print(f"[ERROR] Failed to install Playwright browsers: {e}")
+        error_json = json.dumps({"success": False, "error": f"Failed to install Playwright browsers: {e}"})
+        print(error_json)
         sys.exit(1)
 
     try:
         scraper_module = importlib.import_module(f"plugins.{site}")
     except ModuleNotFoundError:
-        print(f"Scraper module not found for site: {site}")
+        error_json = json.dumps({"success": False, "error": f"Scraper module not found for site: {site}"})
+        print(error_json)
         sys.exit(1)
 
     try:
-        print(f"Runner working dir: {os.getcwd()}")
-        print(f"Output file argument: {output_file}")
-        print(f"BASE_DIR: {BASE_DIR}")
-
         if "base_dir" in scraper_module.run_scraper.__code__.co_varnames:
             count = scraper_module.run_scraper(query, output_file, limit=limit, base_dir=BASE_DIR)
         else:
             count = scraper_module.run_scraper(query, output_file, limit=limit)
 
-        print(f"FOUND_COUNT: {count}")
-
-        abs_path = output_file
-        if BASE_DIR and not os.path.isabs(output_file):
-            abs_path = os.path.join(BASE_DIR, output_file)
-
-        print(f"Checking output file at: {abs_path}")
-        print(f"File exists? {os.path.exists(abs_path)}")
-
         if count == 0:
-            print("⚠️ No data scraped. Output file may not exist.")
-        elif not os.path.exists(abs_path):
-            print(f"⚠️ Output file not found at: {abs_path}")
-        else:
-            print(f"Output saved to: {abs_path}")
+            error_json = json.dumps({"success": False, "error": "No data scraped."})
+            print(error_json)
+            sys.exit(0)
+
+        if not os.path.exists(output_file):
+            error_json = json.dumps({"success": False, "error": "Output file not found."})
+            print(error_json)
+            sys.exit(0)
+
+        success_json = json.dumps({"success": True, "file": output_file, "count": count})
+        print(success_json)
+        sys.exit(0)
 
     except Exception as e:
-        print(f"Scraper failed. Error: {e}")
+        error_json = json.dumps({"success": False, "error": str(e)})
+        print(error_json)
         traceback.print_exc()
         sys.exit(1)
 
@@ -78,6 +77,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
 
 
 
