@@ -5,7 +5,7 @@ import sys
 import os
 from datetime import datetime
 import traceback
-import subprocess  # <-- For playwright install
+import subprocess
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -15,7 +15,6 @@ def generate_filename(query, site):
     return os.path.join(BASE_DIR, "static", f"{filename_safe}_{site}_{date_str}.csv")
 
 def run_scraper(site, query, output_file, limit=None):
-    # Ensure Playwright Chromium is installed
     try:
         subprocess.run(
             ["python", "-m", "playwright", "install", "chromium"],
@@ -32,8 +31,10 @@ def run_scraper(site, query, output_file, limit=None):
         sys.exit(1)
 
     try:
-        print(f"[INFO] Running: {site} for '{query}' -> {output_file}")
-        # Pass base_dir to scraper if it accepts it, fallback otherwise
+        print(f"Runner working dir: {os.getcwd()}")
+        print(f"Output file argument: {output_file}")
+        print(f"BASE_DIR: {BASE_DIR}")
+
         if "base_dir" in scraper_module.run_scraper.__code__.co_varnames:
             count = scraper_module.run_scraper(query, output_file, limit=limit, base_dir=BASE_DIR)
         else:
@@ -41,12 +42,19 @@ def run_scraper(site, query, output_file, limit=None):
 
         print(f"FOUND_COUNT: {count}")
 
+        abs_path = output_file
+        if BASE_DIR and not os.path.isabs(output_file):
+            abs_path = os.path.join(BASE_DIR, output_file)
+
+        print(f"Checking output file at: {abs_path}")
+        print(f"File exists? {os.path.exists(abs_path)}")
+
         if count == 0:
             print("⚠️ No data scraped. Output file may not exist.")
-        elif not os.path.exists(output_file):
-            print(f"⚠️ Output file not found at: {output_file}")
+        elif not os.path.exists(abs_path):
+            print(f"⚠️ Output file not found at: {abs_path}")
         else:
-            print(f"Output saved to: {output_file}")
+            print(f"Output saved to: {abs_path}")
 
     except Exception as e:
         print(f"Scraper failed. Error: {e}")
@@ -70,6 +78,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 

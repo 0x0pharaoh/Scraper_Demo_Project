@@ -111,10 +111,10 @@ def run_scraper(query, output_file=None, limit=None, base_dir=None):
                     absolute_path = os.path.join(base_dir, output_file)
                 else:
                     absolute_path = os.path.abspath(output_file)
-                logger.info(f"Saving to CSV: {absolute_path}")
+
+                logger.info(f"Saving to CSV at absolute path: {absolute_path}")
                 save_to_csv(all_data, absolute_path)
 
-                # Debug log to confirm file presence
                 logger.info(f"File exists after saving? {os.path.exists(absolute_path)}")
 
             browser.close()
@@ -128,6 +128,7 @@ def run_scraper(query, output_file=None, limit=None, base_dir=None):
             logger.error(f"Unexpected error: {e}")
 
         return 0
+
 
 
 
