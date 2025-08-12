@@ -113,33 +113,54 @@
             {{ output_file }}
         </a>
     </div>
-    {% endif %}
 
-    {% if headers and table_data %}
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    {% for header in headers %}
-                    <th>{{ header }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in table_data %}
-                <tr>
-                    {% for cell in row %}
-                    <td>{{ cell }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="table-wrapper" id="table-wrapper">
+        <p>Loading data...</p>
     </div>
+
+    <script>
+    async function loadTable() {
+        const filename = "{{ output_file }}";
+        try {
+            const response = await fetch(`/data/${filename}`);
+            if (!response.ok) {
+                document.getElementById("table-wrapper").innerHTML = "<p>Error loading data.</p>";
+                return;
+            }
+            const data = await response.json();
+            if (data.error) {
+                document.getElementById("table-wrapper").innerHTML = `<p>${data.error}</p>`;
+                return;
+            }
+
+            let html = "<table><thead><tr>";
+            for (const header of data.headers) {
+                html += `<th>${header}</th>`;
+            }
+            html += "</tr></thead><tbody>";
+
+            for (const row of data.rows) {
+                html += "<tr>";
+                for (const cell of row) {
+                    html += `<td>${cell}</td>`;
+                }
+                html += "</tr>";
+            }
+            html += "</tbody></table>";
+
+            document.getElementById("table-wrapper").innerHTML = html;
+        } catch (error) {
+            document.getElementById("table-wrapper").innerHTML = "<p>Error loading data.</p>";
+        }
+    }
+
+    loadTable();
+    </script>
     {% endif %}
 
 </body>
 </html>
+
 
 
 

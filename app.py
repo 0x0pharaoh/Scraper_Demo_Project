@@ -1,6 +1,6 @@
 # app.py
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import subprocess
 import os
 import csv
@@ -52,8 +52,8 @@ def index():
                         record_count = len(rows) - 1
 
                         if record_count > 0:
+                            # Store only headers and filename, NOT all data rows
                             session["headers"] = rows[0]
-                            session["table_data"] = rows[1:]
                             session["output_file"] = filename
                             if limit:
                                 try:
@@ -75,14 +75,14 @@ def index():
     message = session.pop("message", None)
     output_file = session.pop("output_file", None)
     headers = session.pop("headers", None)
-    table_data = session.pop("table_data", None)
+    # No more table_data in session
 
     return render_template(
         "index.html",
         message=message,
         output_file=output_file,
         headers=headers,
-        table_data=table_data,
+        table_data=None,  # Removed
         available_plugins=available_plugins,
         timestamp=int(time.time())
     )
@@ -92,9 +92,20 @@ def reset():
     session.clear()
     return redirect(url_for("index"))
 
+@app.route("/data/<filename>")
+def get_data(filename):
+    file_path = os.path.join(STATIC_DIR, filename)
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+    with open(file_path, encoding="utf-8") as f:
+        reader = csv.reader(f)
+        rows = list(reader)
+    return jsonify({"headers": rows[0], "rows": rows[1:]})
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 
