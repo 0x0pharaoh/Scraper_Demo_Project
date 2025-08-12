@@ -68,7 +68,7 @@ def save_to_csv(data, file_path):
         raise FileNotFoundError(f"Failed to create file at: {file_path}")
     logger.info(f"Saved {len(data)} records to {file_path}")
 
-def run_scraper(query, output_file=None, limit=None):
+def run_scraper(query, output_file=None, limit=None, base_dir=None):
     logger.info(f"Running IndiaMART scraper for: {query}")
     logger.info(f"Limit: {limit}")
     url = build_search_url(query)
@@ -106,9 +106,16 @@ def run_scraper(query, output_file=None, limit=None):
                 logger.info(f"No limit given — returning all {len(all_data)} results.")
 
             if output_file:
-                absolute_path = os.path.abspath(output_file)
+                # Ensure absolute path to output_file
+                if base_dir and not os.path.isabs(output_file):
+                    absolute_path = os.path.join(base_dir, output_file)
+                else:
+                    absolute_path = os.path.abspath(output_file)
                 logger.info(f"Saving to CSV: {absolute_path}")
                 save_to_csv(all_data, absolute_path)
+
+                # Debug log to confirm file presence
+                logger.info(f"File exists after saving? {os.path.exists(absolute_path)}")
 
             browser.close()
             logger.info(f"Scraping completed with {len(all_data)} results.")
@@ -121,6 +128,7 @@ def run_scraper(query, output_file=None, limit=None):
             logger.error(f"Unexpected error: {e}")
 
         return 0
+
 
 
 

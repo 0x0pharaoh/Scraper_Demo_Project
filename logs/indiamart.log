@@ -50,3 +50,31 @@
 2025-08-12 09:56:34,917 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\speakers_indiamart_120825_095618.csv
 2025-08-12 09:56:34,920 - INFO - Saved 20 records to C:\Users\shari\scraper_project\static\speakers_indiamart_120825_095618.csv
 2025-08-12 09:56:35,216 - INFO - Scraping completed with 20 results.
+2025-08-12 10:19:36,437 - INFO - Running IndiaMART scraper for: tiles
+2025-08-12 10:19:36,438 - INFO - Limit: 5
+2025-08-12 10:19:36,438 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=tiles
+2025-08-12 10:19:52,495 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-12 10:19:52,496 - INFO - Starting auto-scroll to load all results...
+2025-08-12 10:19:59,180 - INFO - No more content loaded after 2 scrolls.
+2025-08-12 10:19:59,181 - INFO - Auto-scroll completed.
+2025-08-12 10:19:59,301 - INFO - Found 20 cards on current scroll.
+2025-08-12 10:20:03,401 - INFO - Total extracted: 20 records
+2025-08-12 10:20:03,402 - INFO - Limit applied: 5 → Returning 5 records.
+2025-08-12 10:20:03,404 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\tiles_indiamart_120825_101933.csv
+2025-08-12 10:20:03,410 - INFO - Saved 5 records to C:\Users\shari\scraper_project\static\tiles_indiamart_120825_101933.csv
+2025-08-12 10:20:03,411 - INFO - File exists after saving? True
+2025-08-12 10:20:03,809 - INFO - Scraping completed with 5 results.
+2025-08-12 10:20:22,240 - INFO - Running IndiaMART scraper for: speakers
+2025-08-12 10:20:22,240 - INFO - Limit: None
+2025-08-12 10:20:22,240 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-12 10:20:28,407 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-12 10:20:28,407 - INFO - Starting auto-scroll to load all results...
+2025-08-12 10:20:35,502 - INFO - No more content loaded after 2 scrolls.
+2025-08-12 10:20:35,502 - INFO - Auto-scroll completed.
+2025-08-12 10:20:35,705 - INFO - Found 20 cards on current scroll.
+2025-08-12 10:20:39,694 - INFO - Total extracted: 20 records
+2025-08-12 10:20:39,695 - INFO - No limit given — returning all 20 results.
+2025-08-12 10:20:39,695 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\speakers_indiamart_120825_102017.csv
+2025-08-12 10:20:39,698 - INFO - Saved 20 records to C:\Users\shari\scraper_project\static\speakers_indiamart_120825_102017.csv
+2025-08-12 10:20:39,700 - INFO - File exists after saving? True
+2025-08-12 10:20:40,597 - INFO - Scraping completed with 20 results.

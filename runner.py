@@ -5,7 +5,7 @@ import sys
 import os
 from datetime import datetime
 import traceback
-import subprocess  # <-- Added for playwright install
+import subprocess  # <-- For playwright install
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -33,13 +33,18 @@ def run_scraper(site, query, output_file, limit=None):
 
     try:
         print(f"[INFO] Running: {site} for '{query}' -> {output_file}")
-        count = scraper_module.run_scraper(query, output_file, limit=limit)
+        # Pass base_dir to scraper if it accepts it, fallback otherwise
+        if "base_dir" in scraper_module.run_scraper.__code__.co_varnames:
+            count = scraper_module.run_scraper(query, output_file, limit=limit, base_dir=BASE_DIR)
+        else:
+            count = scraper_module.run_scraper(query, output_file, limit=limit)
+
         print(f"FOUND_COUNT: {count}")
 
         if count == 0:
             print("⚠️ No data scraped. Output file may not exist.")
         elif not os.path.exists(output_file):
-            print(f"Output file not found at: {output_file}")
+            print(f"⚠️ Output file not found at: {output_file}")
         else:
             print(f"Output saved to: {output_file}")
 
@@ -65,6 +70,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
