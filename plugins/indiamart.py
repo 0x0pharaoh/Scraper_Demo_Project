@@ -7,6 +7,7 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 import csv
 import os
 import time
+import re
 from urllib.parse import quote_plus
 from utils.logger import get_logger
 
@@ -23,6 +24,12 @@ def scroll_feed(page):
     except:
         logger.warning("Could not scroll feed. Possibly no more results.")
     time.sleep(2)
+
+def normalize_key(*values):
+    """Normalize values for duplicate detection."""
+    def clean(v):
+        return re.sub(r"\s+", " ", v.strip().lower())
+    return tuple(clean(str(v)) for v in values)
 
 def extract_card_data(card):
     """Extract data from a supplier card."""
@@ -48,7 +55,6 @@ def extract_card_data(card):
         return None
 
 def save_to_csv(data, filepath):
-    # Use the exact output_file path provided by run_scraper
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
@@ -80,7 +86,7 @@ def run_scraper(query, output_file=None, limit=None):
             collected = []
             seen_entries = set()
             scrolls_done = 0
-            max_scrolls = 30 if limit is None else 20
+            max_scrolls = 40 if limit is None else 20
             last_cards_count = 0
 
             while len(collected) < target_count and scrolls_done < max_scrolls:
@@ -92,7 +98,7 @@ def run_scraper(query, output_file=None, limit=None):
                     data = extract_card_data(c)
                     if not data:
                         continue
-                    entry_key = (data["Company Name"].lower(), data["Location"].lower(), data["Phone"])
+                    entry_key = normalize_key(data["Company Name"], data["Location"], data["Phone"])
                     if entry_key not in seen_entries:
                         new_cards.append(data)
                         seen_entries.add(entry_key)
@@ -123,6 +129,7 @@ def run_scraper(query, output_file=None, limit=None):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             return {"file": None, "data": []}
+
 
 
 

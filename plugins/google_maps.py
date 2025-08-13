@@ -6,6 +6,7 @@ subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True
 import time
 import csv
 import os
+import re
 from urllib.parse import quote_plus
 from playwright.sync_api import sync_playwright
 from utils.logger import get_logger
@@ -37,8 +38,13 @@ def extract_card_data(page):
     place_url = page.url
     return {"Name": name, "URL": place_url, "Address": address}
 
+def normalize_key(*values):
+    """Normalize values for duplicate detection."""
+    def clean(v):
+        return re.sub(r"\s+", " ", v.strip().lower())
+    return tuple(clean(str(v)) for v in values)
+
 def save_to_csv(data, filepath):
-    # Use the exact output_file path provided by run_scraper
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["Name", "URL", "Address"])
@@ -48,8 +54,8 @@ def save_to_csv(data, filepath):
     return filepath
 
 def run_scraper(query, output_file=None, limit=None):
-    target_count = limit if limit is not None else 40  # Default target when no limit is given
-    timeout_ms = 180000 if limit is None else 60000  # Longer timeout if no limit
+    target_count = limit if limit is not None else 40
+    timeout_ms = 180000 if limit is None else 60000
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
@@ -63,7 +69,7 @@ def run_scraper(query, output_file=None, limit=None):
         seen_entries = set()
         visited_hrefs = set()
 
-        max_scrolls = 30 if limit is None else 20
+        max_scrolls = 40 if limit is None else 20
         scrolls_done = 0
         last_cards_count = 0
 
@@ -99,7 +105,7 @@ def run_scraper(query, output_file=None, limit=None):
                     page.wait_for_timeout(2000)
                     data = extract_card_data(page)
 
-                    entry_key = (data["Name"].lower(), data["URL"].lower())
+                    entry_key = normalize_key(data["Name"], data["URL"])
                     if entry_key not in seen_entries:
                         collected.append(data)
                         seen_entries.add(entry_key)
@@ -124,6 +130,7 @@ def run_scraper(query, output_file=None, limit=None):
 
     filepath = save_to_csv(collected, output_file)
     return {"file": filepath, "data": collected}
+
 
 
 

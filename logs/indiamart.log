@@ -537,3 +537,22 @@
 2025-08-13 14:19:43,744 - INFO - Found 10 cards on scroll #1
 2025-08-13 14:19:45,036 - INFO - New unique cards this round: 10
 2025-08-13 14:19:45,141 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_130825_141939.csv
+2025-08-13 15:01:25,780 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=healthcare
+2025-08-13 15:01:29,365 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_130825_150121.csv
+2025-08-13 15:01:41,726 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=healthcare
+2025-08-13 15:01:44,815 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_130825_150136.csv
+2025-08-13 15:02:13,957 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=mobile
+2025-08-13 15:02:25,093 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\mobile_indiamart_130825_150209.csv
+2025-08-13 15:08:12,106 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-13 15:08:13,574 - INFO - Found 10 cards on scroll #1
+2025-08-13 15:08:15,267 - INFO - New unique cards this round: 10
+2025-08-13 15:08:17,477 - INFO - Found 20 cards on scroll #2
+2025-08-13 15:08:19,777 - INFO - New unique cards this round: 10
+2025-08-13 15:08:21,841 - INFO - Found 20 cards on scroll #3
+2025-08-13 15:08:23,801 - INFO - New unique cards this round: 0
+2025-08-13 15:08:25,807 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-13 15:08:26,083 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_130825_150806.csv
+2025-08-13 15:08:42,084 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=healthcare
+2025-08-13 15:08:43,195 - INFO - Found 10 cards on scroll #1
+2025-08-13 15:08:44,966 - INFO - New unique cards this round: 10
+2025-08-13 15:08:45,272 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_130825_150837.csv

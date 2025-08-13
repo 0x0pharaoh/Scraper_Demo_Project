@@ -2566,3 +2566,83 @@ Call log:
 2025-08-13 14:19:20,477 - INFO - Collected: TDI Mall
 2025-08-13 14:19:22,674 - INFO - Collected: DLF City Centre Mall
 2025-08-13 14:19:24,818 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\malls_in_delhi_google_maps_130825_141823.csv
+2025-08-13 14:53:53,464 - INFO - Navigating to https://www.google.com/maps/search/bakery
+2025-08-13 14:53:54,701 - INFO - Navigating to https://www.google.com/maps/search/bakery
+2025-08-13 14:54:00,703 - INFO - Navigating to https://www.google.com/maps/search/bakery
+2025-08-13 14:54:53,164 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\bakery_google_maps_130825_145355.csv
+2025-08-13 14:54:53,223 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\bakery_google_maps_130825_145348.csv
+2025-08-13 14:54:53,930 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\bakery_google_maps_130825_145349.csv
+2025-08-13 14:55:58,784 - INFO - Navigating to https://www.google.com/maps/search/museum
+2025-08-13 14:56:31,472 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\museum_google_maps_130825_145553.csv
+2025-08-13 14:57:54,443 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-13 14:59:41,976 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_130825_145749.csv
+2025-08-13 15:04:00,149 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-13 15:04:03,711 - INFO - Found 6 cards on scroll #1
+2025-08-13 15:04:03,798 - INFO - New cards to process: 6
+2025-08-13 15:04:06,901 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-13 15:04:09,368 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-13 15:04:11,852 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-13 15:04:14,311 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-13 15:04:19,025 - INFO - Collected: Radha Krishna Mandir
+2025-08-13 15:04:21,101 - INFO - Found 12 cards on scroll #2
+2025-08-13 15:04:21,247 - INFO - New cards to process: 6
+2025-08-13 15:04:23,545 - INFO - Collected: Gauri Shankar Mandir
+2025-08-13 15:04:25,996 - INFO - Collected: Shri Aadya Katyayani Shaktipith Mandir, Delhi
+2025-08-13 15:04:28,621 - INFO - Collected: Shri Aadya Katyayani Shaktipith Mandir, Delhi
+2025-08-13 15:04:31,082 - INFO - Collected: Shri Aadya Katyayani Shaktipith Mandir, Delhi
+2025-08-13 15:04:33,473 - INFO - Collected: Mangal Mahadev Birla Kanan Delhi
+2025-08-13 15:04:35,974 - INFO - Collected: Shaktipeeth Mandir
+2025-08-13 15:04:38,100 - INFO - Found 18 cards on scroll #3
+2025-08-13 15:04:38,362 - INFO - New cards to process: 6
+2025-08-13 15:04:40,676 - INFO - Collected: Sanatan Dharm Mandir
+2025-08-13 15:04:45,201 - INFO - Collected: Sanatan Dharm Mandir
+2025-08-13 15:04:47,669 - INFO - Collected: Hanuman Mandir
+2025-08-13 15:04:52,288 - INFO - Collected: Hanuman Mandir
+2025-08-13 15:04:54,421 - INFO - Found 20 cards on scroll #4
+2025-08-13 15:04:54,874 - INFO - New cards to process: 2
+2025-08-13 15:04:57,157 - INFO - Collected: Prachin Shiv Shakti Temple, Gurugram, Delhi NCR
+2025-08-13 15:04:59,541 - INFO - Collected: Prachin Shiv Shakti Temple, Gurugram, Delhi NCR
+2025-08-13 15:05:01,660 - INFO - Found 32 cards on scroll #5
+2025-08-13 15:05:02,380 - INFO - New cards to process: 7
+2025-08-13 15:05:04,960 - INFO - Collected: Chhatri Wala Shiv Mandir
+2025-08-13 15:05:09,689 - INFO - Collected: Chhatri Wala Shiv Mandir
+2025-08-13 15:05:11,918 - INFO - Collected: Lotus Temple
+2025-08-13 15:05:14,471 - INFO - Collected: Lotus Temple
+2025-08-13 15:05:16,882 - INFO - Collected: Lotus Temple
+2025-08-13 15:05:19,266 - INFO - Collected: Durga Mata Temple
+2025-08-13 15:05:21,567 - INFO - Found 40 cards on scroll #6
+2025-08-13 15:05:23,601 - INFO - New cards to process: 7
+2025-08-13 15:05:28,651 - INFO - Collected: Ayyappa Temple
+2025-08-13 15:05:33,094 - INFO - Collected: Jagannath Temple
+2025-08-13 15:05:37,425 - INFO - Collected: Shri Jagannath Temple, Gurugram, Delhi NCR
+2025-08-13 15:05:39,680 - INFO - Collected: ISKCON Temple Dwarka Delhi
+2025-08-13 15:05:41,736 - INFO - Found 52 cards on scroll #7
+2025-08-13 15:05:42,725 - INFO - New cards to process: 11
+2025-08-13 15:05:44,955 - INFO - Collected: Shiv Temple
+2025-08-13 15:05:47,166 - INFO - Collected: Shiv Mandir, sector -5
+2025-08-13 15:05:49,416 - INFO - Collected: Devi Kamakshi Mandir
+2025-08-13 15:05:53,818 - INFO - Collected: Shiv Mandir
+2025-08-13 15:05:56,241 - INFO - Collected: Shri Radha Krishan Mandir and prachin Shiv Mandir chakkarpur
+2025-08-13 15:06:01,043 - INFO - Collected: Shri Shani Dev Temple
+2025-08-13 15:06:05,487 - INFO - Collected: Shri Radha Krishna Mandir Gurugram
+2025-08-13 15:06:08,069 - INFO - Collected: Prachin Shiv Mandir, Hanuman - Shani Mandir ( Mata Mandir - Ram Darwar Mandir, Hanuman Mandir)
+2025-08-13 15:06:10,257 - INFO - Found 58 cards on scroll #8
+2025-08-13 15:06:11,271 - INFO - New cards to process: 6
+2025-08-13 15:06:13,698 - INFO - Collected: Shiv Mandir
+2025-08-13 15:06:18,477 - INFO - Collected: Shiv Mandir
+2025-08-13 15:06:20,998 - INFO - Collected: Prachin Shiv Mandir
+2025-08-13 15:06:23,350 - INFO - Collected: Temple, Gurugram, Delhi NCR
+2025-08-13 15:06:27,892 - INFO - Found 66 cards on scroll #9
+2025-08-13 15:06:29,456 - INFO - New cards to process: 8
+2025-08-13 15:06:39,107 - INFO - Collected: Temple, Gurugram, Delhi NCR
+2025-08-13 15:06:41,384 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_130825_150356.csv
+2025-08-13 15:07:34,020 - INFO - Navigating to https://www.google.com/maps/search/bakery
+2025-08-13 15:07:37,922 - INFO - Found 6 cards on scroll #1
+2025-08-13 15:07:38,008 - INFO - New cards to process: 6
+2025-08-13 15:07:40,940 - INFO - Collected: Planet Of Bakes
+2025-08-13 15:07:43,700 - INFO - Collected: Gurugram Bakery
+2025-08-13 15:07:45,947 - INFO - Collected: The Cake Lounge - Sec 22
+2025-08-13 15:07:48,206 - INFO - Collected: Sensational Bites by ReetBhatia(Home Baker).
+2025-08-13 15:07:50,457 - INFO - Collected: Cake Desire | Cake Shop In Gurgaon
+2025-08-13 15:07:52,727 - INFO - Collected: Eclairs Cafe & Bakery
+2025-08-13 15:07:55,327 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\bakery_google_maps_130825_150728.csv
