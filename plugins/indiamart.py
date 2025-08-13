@@ -122,8 +122,13 @@ def run_scraper(query, output_file=None, limit=None):
             if not output_file:
                 safe_query = query.replace(" ", "_")
                 output_file = os.path.abspath(os.path.join("static", f"{safe_query}_indiamart.csv"))
+            else:
+                # Ensure absolute path always
+                output_file = os.path.abspath(output_file)
 
+            os.makedirs(os.path.dirname(output_file), exist_ok=True)
             filepath = save_to_csv(collected[:target_count], output_file)
+
             return {"file": filepath, "data": collected[:target_count]}
 
         except Exception as e:

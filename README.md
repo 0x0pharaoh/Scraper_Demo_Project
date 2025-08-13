@@ -137,6 +137,8 @@ scraper_project/
 │   └── logger.py
 ├── requirements.txt
 ├── render.yaml
+
+
 License
 MIT License (or your chosen license)
 

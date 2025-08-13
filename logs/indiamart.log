@@ -556,3 +556,18 @@
 2025-08-13 15:08:43,195 - INFO - Found 10 cards on scroll #1
 2025-08-13 15:08:44,966 - INFO - New unique cards this round: 10
 2025-08-13 15:08:45,272 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_130825_150837.csv
+2025-08-13 15:32:03,002 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=tiles
+2025-08-13 15:32:04,285 - INFO - Found 10 cards on scroll #1
+2025-08-13 15:32:35,038 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=tiles
+2025-08-13 15:32:36,690 - INFO - Found 10 cards on scroll #1
+2025-08-13 15:32:38,984 - INFO - New unique cards this round: 10
+2025-08-13 15:32:41,159 - INFO - Found 20 cards on scroll #2
+2025-08-13 15:32:45,876 - INFO - New unique cards this round: 10
+2025-08-13 15:32:47,952 - INFO - Found 20 cards on scroll #3
+2025-08-13 15:32:51,568 - INFO - New unique cards this round: 0
+2025-08-13 15:32:53,588 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-13 15:32:53,979 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\tiles_indiamart_130825_153232.csv
+2025-08-13 15:33:16,731 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-13 15:33:18,405 - INFO - Found 10 cards on scroll #1
+2025-08-13 15:33:21,612 - INFO - New unique cards this round: 10
+2025-08-13 15:33:22,759 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_130825_153315.csv

@@ -2646,3 +2646,75 @@ Call log:
 2025-08-13 15:07:50,457 - INFO - Collected: Cake Desire | Cake Shop In Gurgaon
 2025-08-13 15:07:52,727 - INFO - Collected: Eclairs Cafe & Bakery
 2025-08-13 15:07:55,327 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\bakery_google_maps_130825_150728.csv
+2025-08-13 15:27:34,126 - INFO - Navigating to https://www.google.com/maps/search/TVS
+2025-08-13 15:27:38,269 - INFO - Navigating to https://www.google.com/maps/search/TVS
+2025-08-13 15:27:55,126 - INFO - Navigating to https://www.google.com/maps/search/TVS
+2025-08-13 15:27:58,604 - INFO - Found 8 cards on scroll #1
+2025-08-13 15:28:20,233 - INFO - Navigating to https://www.google.com/maps/search/TVS
+2025-08-13 15:28:23,352 - INFO - Found 8 cards on scroll #1
+2025-08-13 15:28:23,687 - INFO - New cards to process: 8
+2025-08-13 15:28:26,458 - INFO - Collected: TVS - Simran Automotive Pvt Ltd
+2025-08-13 15:28:28,870 - INFO - Collected: TVS showroom
+2025-08-13 15:28:31,373 - INFO - Collected: TVS - Ahinsha Motors Pvt Ltd
+2025-08-13 15:28:33,623 - INFO - Collected: TVS - Choudhary Motors
+2025-08-13 15:28:36,057 - INFO - Collected: Radhika TVS
+2025-08-13 15:28:38,275 - INFO - Collected: TVS - VANI MOTORS (Authorised Dealership)
+2025-08-13 15:28:40,451 - INFO - Collected: TVS service centre: Chaudhary motors near raj cenema
+2025-08-13 15:28:42,619 - INFO - Collected: TVS - Ahinsha Automobiles
+2025-08-13 15:28:44,663 - INFO - Found 16 cards on scroll #2
+2025-08-13 15:28:44,798 - INFO - New cards to process: 8
+2025-08-13 15:28:46,968 - INFO - Collected: TVS - Simran Automotive Pvt Ltd
+2025-08-13 15:28:49,333 - INFO - Collected: Tvs showroom
+2025-08-13 15:28:51,534 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\tvs_google_maps_130825_152816.csv
+2025-08-13 15:29:32,827 - INFO - Navigating to https://www.google.com/maps/search/markets
+2025-08-13 15:29:37,326 - INFO - Found 8 cards on scroll #1
+2025-08-13 15:29:37,760 - INFO - New cards to process: 8
+2025-08-13 15:29:40,198 - INFO - Collected: Sector 22 Market
+2025-08-13 15:29:42,965 - INFO - Collected: Sector 22 market sab
+2025-08-13 15:29:45,344 - INFO - Collected: HUDA Market, Sector 14
+2025-08-13 15:29:47,688 - INFO - Collected: Galleria Market
+2025-08-13 15:29:50,077 - INFO - Collected: HUDA Market, Sector 56
+2025-08-13 15:29:52,590 - INFO - Collected: Sector 15 Part II Market
+2025-08-13 15:29:54,974 - INFO - Collected: Chakarpur Market
+2025-08-13 15:29:59,247 - INFO - Found 16 cards on scroll #2
+2025-08-13 15:29:59,381 - INFO - New cards to process: 8
+2025-08-13 15:30:01,541 - INFO - Collected: City Center, Sector 29 Market
+2025-08-13 15:30:04,162 - INFO - Collected: Mangalwari Market
+2025-08-13 15:30:06,478 - INFO - Collected: HUDA Sector 21 Market
+2025-08-13 15:30:08,794 - INFO - Collected: Sector 17-A Shopping Complex
+2025-08-13 15:30:11,193 - INFO - Collected: Main Huda Market
+2025-08-13 15:30:13,844 - INFO - Collected: Sunday Market - Om Vihar
+2025-08-13 15:30:18,569 - INFO - Collected: Sadar Bazaar (Market)
+2025-08-13 15:30:20,685 - INFO - Found 28 cards on scroll #3
+2025-08-13 15:30:21,564 - INFO - New cards to process: 12
+2025-08-13 15:30:23,832 - INFO - Collected: Sector 40 HUDA Market
+2025-08-13 15:30:26,120 - INFO - Collected: Sadar Market
+2025-08-13 15:30:28,467 - INFO - Collected: Sikandarpur electricals market
+2025-08-13 15:30:30,815 - INFO - Collected: Tibetan Market
+2025-08-13 15:30:35,260 - INFO - Collected: Shani Market
+2025-08-13 15:30:37,843 - INFO - Collected: Kataria Market
+2025-08-13 15:30:42,620 - INFO - Collected: Sadar Market
+2025-08-13 15:30:49,555 - INFO - Collected: Tibetan Market
+2025-08-13 15:30:51,801 - INFO - Found 36 cards on scroll #4
+2025-08-13 15:30:52,781 - INFO - New cards to process: 8
+2025-08-13 15:30:55,203 - INFO - Collected: Qutub Plaza
+2025-08-13 15:30:57,428 - INFO - Collected: Arjun nagar market
+2025-08-13 15:30:59,870 - INFO - Collected: Arjun nagar market
+2025-08-13 15:31:02,225 - INFO - Collected: Sodhi's Super Market Sector 23
+2025-08-13 15:31:04,721 - INFO - Collected: Sodhi's Super Market Sector 23
+2025-08-13 15:31:07,016 - INFO - Collected: Mehrauli Market
+2025-08-13 15:31:11,706 - INFO - Collected: Mehrauli Market
+2025-08-13 15:31:13,856 - INFO - Found 48 cards on scroll #5
+2025-08-13 15:31:15,707 - INFO - New cards to process: 12
+2025-08-13 15:31:17,992 - INFO - Collected: Sector 39 Market
+2025-08-13 15:31:20,400 - INFO - Collected: Sector 39 Market
+2025-08-13 15:31:22,723 - INFO - Collected: Yadav Market
+2025-08-13 15:31:25,231 - INFO - Collected: Yadav Market
+2025-08-13 15:31:27,702 - INFO - Collected: Arcadia Market sec -48
+2025-08-13 15:31:30,636 - INFO - Collected: Arcadia Market sec -48
+2025-08-13 15:31:33,202 - INFO - Collected: Numberdar Market Sikanderpur Ghoshi
+2025-08-13 15:31:35,544 - INFO - Collected: Numberdar Market Sikanderpur Ghoshi
+2025-08-13 15:31:38,110 - INFO - Collected: Kataria market , sec -7 ,
+2025-08-13 15:31:40,844 - INFO - Collected: Kataria market , sec -7 ,
+2025-08-13 15:31:43,219 - INFO - Collected: Wazirabad Market
+2025-08-13 15:31:45,631 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\markets_google_maps_130825_152931.csv

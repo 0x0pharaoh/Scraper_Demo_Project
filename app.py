@@ -1,3 +1,5 @@
+# app.py
+
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import subprocess
 import os
@@ -5,6 +7,7 @@ import csv
 import time
 import json
 from datetime import datetime
+import importlib
 
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
@@ -34,6 +37,45 @@ def load_table_data(filename, max_rows=100):
     data = rows[1:max_rows + 1] if max_rows else rows[1:]
     return headers, data
 
+def try_run_plugin_direct(site, query, output_abs_path, limit):
+    """
+    Attempt to run a scraper plugin directly via plugins.<site>.run_scraper.
+    Returns a dict similar to runner.py's JSON: {"success": bool, "file": str, "count": int} or {"success": False, "error": "..."}.
+    """
+    try:
+        module = importlib.import_module(f"plugins.{site}")
+    except ModuleNotFoundError:
+        return {"success": False, "error": f"Plugin not found for site: {site}"}
+    except Exception as e:
+        return {"success": False, "error": f"Failed to import plugin {site}: {e}"}
+
+    if not hasattr(module, "run_scraper"):
+        return {"success": False, "error": f"Plugin {site} has no run_scraper()"}
+
+    try:
+        # Call plugin with the same signature we've been using.
+        result = module.run_scraper(query, output_file=output_abs_path, limit=limit)
+
+        # Determine count if possible.
+        count = 0
+        if isinstance(result, dict):
+            if "data" in result and isinstance(result["data"], list):
+                count = len(result["data"])
+            elif "count" in result and isinstance(result["count"], int):
+                count = result["count"]
+        else:
+            try:
+                count = int(result)
+            except Exception:
+                count = 0
+
+        if not os.path.exists(output_abs_path):
+            return {"success": False, "error": "Output file not found after plugin run."}
+
+        return {"success": True, "file": output_abs_path, "count": count}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     available_plugins = get_available_plugins()
@@ -54,48 +96,73 @@ def index():
             filename = f"{filename_safe}_{site}_{date_str}.csv"
             output_abs_path = os.path.join(STATIC_DIR, filename)
 
-            command = [
-                "python", "runner.py", "--mode", "modular",
-                "--site", site, "--query", query,
-                "--output", output_abs_path
-            ]
-            if limit is not None:
-                command.extend(["--limit", str(limit)])
+            # First try to run the plugin directly (drop-in plugin system)
+            direct_result = try_run_plugin_direct(site, query, output_abs_path, limit)
 
-            try:
-                result = subprocess.run(command, capture_output=True, text=True)
-                output_text = result.stdout.strip()
+            if not direct_result.get("success"):
+                # Fallback to runner.py (backward compatible)
+                command = [
+                    "python", "runner.py", "--mode", "modular",
+                    "--site", site, "--query", query,
+                    "--output", output_abs_path
+                ]
+                if limit is not None:
+                    command.extend(["--limit", str(limit)])
 
                 try:
-                    result_json = json.loads(output_text)
-                except json.JSONDecodeError:
-                    session["message"] = f"❌ Failed to parse scraper output: {output_text}"
-                    return redirect(url_for("index"))
+                    result = subprocess.run(command, capture_output=True, text=True)
+                    output_text = result.stdout.strip()
 
-                if result_json.get("success"):
-                    session["message"] = f"Scraping completed. Output saved to static/{filename}"
-                    if os.path.exists(output_abs_path):
-                        with open(output_abs_path, newline='', encoding='utf-8') as f:
-                            reader = csv.reader(f)
-                            rows = list(reader)
-                            record_count = len(rows) - 1
+                    try:
+                        result_json = json.loads(output_text)
+                    except json.JSONDecodeError:
+                        session["message"] = f"Failed to parse scraper output: {output_text}"
+                        return redirect(url_for("index"))
 
-                            if record_count > 0:
-                                session["total_records"] = record_count
-                                session["output_file"] = filename
-                                if limit is not None and record_count < limit:
-                                    session["message"] += f"<br>Only {record_count} records found out of requested {limit}."
-                            else:
-                                session["message"] += "<br>⚠️ Output file is empty."
+                    if result_json.get("success"):
+                        session["message"] = f"Scraping completed. Output saved to static/{filename}"
+                        if os.path.exists(output_abs_path):
+                            with open(output_abs_path, newline='', encoding='utf-8') as f:
+                                reader = csv.reader(f)
+                                rows = list(reader)
+                                record_count = len(rows) - 1
+
+                                if record_count > 0:
+                                    session["total_records"] = record_count
+                                    session["output_file"] = filename
+                                    if limit is not None and record_count < limit:
+                                        session["message"] += f"<br>Only {record_count} records found out of requested {limit}."
+                                else:
+                                    session["message"] += "<br>Output file is empty."
+                        else:
+                            session["message"] += "<br>Output file not found."
                     else:
-                        session["message"] += "<br>⚠️ Output file not found."
+                        session["message"] = f"Scraper failed: {result_json.get('error', 'Unknown error')}"
+
+                except Exception as e:
+                    session["message"] = f"Scraper execution failed: {e}"
+
+                return redirect(url_for("index"))
+            else:
+                # Direct plugin success path
+                session["message"] = f"Scraping completed. Output saved to static/{filename}"
+                if os.path.exists(output_abs_path):
+                    with open(output_abs_path, newline='', encoding='utf-8') as f:
+                        reader = csv.reader(f)
+                        rows = list(reader)
+                        record_count = len(rows) - 1
+
+                        if record_count > 0:
+                            session["total_records"] = record_count
+                            session["output_file"] = filename
+                            if limit is not None and record_count < limit:
+                                session["message"] += f"<br>Only {record_count} records found out of requested {limit}."
+                        else:
+                            session["message"] += "<br>Output file is empty."
                 else:
-                    session["message"] = f"❌ Scraper failed: {result_json.get('error', 'Unknown error')}"
+                    session["message"] += "<br>Output file not found."
 
-            except Exception as e:
-                session["message"] = f"❌ Scraper execution failed: {e}"
-
-            return redirect(url_for("index"))
+                return redirect(url_for("index"))
 
     message = session.pop("message", None)
     output_file = session.get("output_file")  # Keep filename in session
@@ -134,6 +201,7 @@ def get_data(filename):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 
