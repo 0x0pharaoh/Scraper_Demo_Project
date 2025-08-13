@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Scraper Settings</title>
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 12px; }
+      input { width: 100%; padding: 8px; }
+      button { margin-top: 10px; padding: 8px 12px; }
+      small { color: #666; }
+    </style>
+  </head>
+  <body>
+    <h3>Backend Settings</h3>
+    <label>Backend Base URL (e.g. https://your-app.onrender.com)</label>
+    <input id="backend" placeholder="http://localhost:10000" />
+    <button id="save">Save</button>
+    <p><small>This must point to your Flask app running the scrapers.</small></p>
+    <script src="options.js"></script>
+  </body>
+</html>

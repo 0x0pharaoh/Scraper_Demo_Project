@@ -2718,3 +2718,82 @@ Call log:
 2025-08-13 15:31:40,844 - INFO - Collected: Kataria market , sec -7 ,
 2025-08-13 15:31:43,219 - INFO - Collected: Wazirabad Market
 2025-08-13 15:31:45,631 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\markets_google_maps_130825_152931.csv
+2025-08-13 15:51:07,915 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-13 15:51:20,118 - INFO - Found 8 cards on scroll #1
+2025-08-13 15:51:20,680 - INFO - New cards to process: 8
+2025-08-13 15:51:23,435 - INFO - Collected: UV Technocrats
+2025-08-13 15:51:25,903 - INFO - Collected: Fergusson College
+2025-08-13 15:51:28,217 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-13 15:51:30,485 - INFO - Collected: FLAME University
+2025-08-13 15:51:32,726 - INFO - Collected: COEP Technological University
+2025-08-13 15:51:35,212 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_130825_155104.csv
+2025-08-13 15:51:58,960 - INFO - Navigating to https://www.google.com/maps/search/temples+in+gurugram
+2025-08-13 15:52:02,881 - INFO - Found 6 cards on scroll #1
+2025-08-13 15:52:03,979 - INFO - New cards to process: 6
+2025-08-13 15:52:07,669 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-13 15:52:10,058 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-13 15:52:12,624 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-13 15:52:15,201 - INFO - Collected: ISKCON Sri Sri Radha Damodar Mandir, Badshahpur, Gurugram
+2025-08-13 15:52:17,664 - INFO - Collected: Shri Radha Krishna Temple Gurugram, Delhi NCR
+2025-08-13 15:52:20,045 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-13 15:52:22,085 - INFO - Found 12 cards on scroll #2
+2025-08-13 15:52:22,174 - INFO - New cards to process: 6
+2025-08-13 15:52:24,398 - INFO - Collected: Shaktipeeth Mandir
+2025-08-13 15:52:27,133 - INFO - Collected: Shakti Mandir
+2025-08-13 15:52:29,698 - INFO - Collected: Prem Mandir
+2025-08-13 15:52:32,197 - INFO - Collected: Jagannath Temple
+2025-08-13 15:52:36,958 - INFO - Collected: Radha Krishna Mandir
+2025-08-13 15:52:39,031 - INFO - Found 18 cards on scroll #3
+2025-08-13 15:52:39,337 - INFO - New cards to process: 6
+2025-08-13 15:52:41,735 - INFO - Collected: ISKCON Sri Sri Radha Gopinath Temple Sector 45 Gurugram
+2025-08-13 15:52:46,428 - INFO - Collected: Prachin Shiv Shakti Temple, Gurugram, Delhi NCR
+2025-08-13 15:52:49,063 - INFO - Collected: Shiv Mandir, sector -5
+2025-08-13 15:52:54,040 - INFO - Collected: Shri Jagannath Temple, Gurugram, Delhi NCR
+2025-08-13 15:52:56,082 - INFO - Found 20 cards on scroll #4
+2025-08-13 15:52:56,234 - INFO - New cards to process: 2
+2025-08-13 15:52:58,378 - INFO - Collected: Ayyappa Temple
+2025-08-13 15:53:00,606 - INFO - Collected: Shiv Murti, Gurugram
+2025-08-13 15:53:02,651 - INFO - Found 32 cards on scroll #5
+2025-08-13 15:53:02,862 - INFO - New cards to process: 9
+2025-08-13 15:53:05,042 - INFO - Collected: Bhuteshwar Mandir
+2025-08-13 15:53:07,343 - INFO - Collected: Shri Krishna Mandir sector 4 Gurugram
+2025-08-13 15:53:09,581 - INFO - Collected: Shri Radha Krishna Mandir Gurugram
+2025-08-13 15:53:11,854 - INFO - Collected: Sri Shanidev Mandir
+2025-08-13 15:53:14,090 - INFO - Collected: Chintpurni Mata Mandir Gurugram
+2025-08-13 15:53:16,538 - INFO - Collected: Gauri Shankar Mandir
+2025-08-13 15:53:18,751 - INFO - Collected: Temple 17 B & Iffco Colony
+2025-08-13 15:53:21,046 - INFO - Collected: Sita Ram Mandir
+2025-08-13 15:53:23,283 - INFO - Collected: Arya Samaj mandir gurugram
+2025-08-13 15:53:25,323 - INFO - Found 38 cards on scroll #6
+2025-08-13 15:53:25,590 - INFO - New cards to process: 6
+2025-08-13 15:53:27,714 - INFO - Collected: Shri Shiv Kalyan Kendra Vyas(Shiv mandir)
+2025-08-13 15:53:30,024 - INFO - Collected: Shri Shani Dev Temple
+2025-08-13 15:53:32,227 - INFO - Collected: Shri Prem Mandir
+2025-08-13 15:53:34,405 - INFO - Collected: Shri Laxmi Narayan Mandir
+2025-08-13 15:53:36,616 - INFO - Collected: Temple, Gurugram, Delhi NCR
+2025-08-13 15:53:39,074 - INFO - Collected: Chhoti Mata Mandir
+2025-08-13 15:53:41,249 - INFO - Found 46 cards on scroll #7
+2025-08-13 15:53:42,047 - INFO - New cards to process: 8
+2025-08-13 15:53:44,380 - INFO - Collected: Shri Khatu Shyam Temple, Gurugram
+2025-08-13 15:53:46,618 - INFO - Collected: Sector 46 Shiv Mandir
+2025-08-13 15:53:48,867 - INFO - Collected: Hanuman Mandir
+2025-08-13 15:53:53,229 - INFO - Collected: Pandupol Hanuman Mandir Gurugram
+2025-08-13 15:53:55,481 - INFO - Collected: Shri Mahakaleshwar Shiv Temple
+2025-08-13 15:53:57,682 - INFO - Collected: Shiv Mandir
+2025-08-13 15:53:59,899 - INFO - Collected: Purani Pyau Shiv Mandir (Aacharya Ritesh Pandey) delhi ncr best astrologer
+2025-08-13 15:54:01,988 - INFO - Found 52 cards on scroll #8
+2025-08-13 15:54:02,374 - INFO - New cards to process: 6
+2025-08-13 15:54:04,529 - INFO - Collected: Shri Radha Krishan Mandir and prachin Shiv Mandir chakkarpur
+2025-08-13 15:54:06,798 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_in_gurugram_google_maps_130825_155157.csv
+2025-08-13 16:53:08,933 - INFO - Navigating to https://www.google.com/maps/search/historic+monuments
+2025-08-13 16:53:21,399 - INFO - Found 8 cards on scroll #1
+2025-08-13 16:53:21,763 - INFO - New cards to process: 8
+2025-08-13 16:53:29,269 - INFO - Collected: Chaumukha Darwaza
+2025-08-13 16:53:33,273 - INFO - Collected: Sultan Ghari
+2025-08-13 16:53:37,312 - INFO - Collected: National Flag Kakrola
+2025-08-13 16:53:41,623 - INFO - Collected: Shah Tomb,Delhi
+2025-08-13 16:53:45,437 - INFO - Collected: Shah Tomb,Delhi
+2025-08-13 16:53:47,934 - INFO - Collected: NHAI Monument, Delhi Cantonment
+2025-08-13 16:53:50,159 - INFO - Collected: Flag of India at Central Park, Connaught Place
+2025-08-13 16:53:54,384 - INFO - Found 16 cards on scroll #2
+2025-08-13 16:53:54,539 - INFO - New cards to process: 8

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Instant Scraper</title>
+    <style>
+      body { width: 340px; font-family: system-ui, sans-serif; margin: 0; padding: 12px; }
+      label { font-size: 12px; color: #555; }
+      input, select { width: 100%; padding: 8px; margin: 4px 0 10px; }
+      button { width: 100%; padding: 10px; }
+      .row { display: flex; gap: 8px; }
+      .row > div { flex: 1; }
+      .status { margin-top: 10px; font-size: 12px; color: #333; min-height: 18px; }
+      .link { margin-top: 10px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="row">
+        <div>
+          <label>Site</label>
+          <select id="site"></select>
+        </div>
+        <div>
+          <label>Limit (optional)</label>
+          <input id="limit" type="number" min="1" placeholder="e.g. 20" />
+        </div>
+      </div>
+      <label>Query</label>
+      <input id="query" placeholder="colleges in pune" />
+      <button id="go">Start Scraping</button>
+      <div class="status" id="status"></div>
+      <div class="link" id="result"></div>
+      <div style="margin-top:10px; text-align:center;">
+        <a href="options.html" target="_blank">Settings</a>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -8,9 +8,12 @@ import time
 import json
 from datetime import datetime
 import importlib
+from flask_cors import CORS
+from urllib.parse import urljoin
 
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # Allow extension to call API
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
@@ -37,11 +40,12 @@ def load_table_data(filename, max_rows=100):
     data = rows[1:max_rows + 1] if max_rows else rows[1:]
     return headers, data
 
+def abs_url(path):
+    base = request.host_url
+    return urljoin(base, path.lstrip("/"))
+
 def try_run_plugin_direct(site, query, output_abs_path, limit):
-    """
-    Attempt to run a scraper plugin directly via plugins.<site>.run_scraper.
-    Returns a dict similar to runner.py's JSON: {"success": bool, "file": str, "count": int} or {"success": False, "error": "..."}.
-    """
+    """Attempt to run a scraper plugin directly via plugins.<site>.run_scraper."""
     try:
         module = importlib.import_module(f"plugins.{site}")
     except ModuleNotFoundError:
@@ -53,10 +57,7 @@ def try_run_plugin_direct(site, query, output_abs_path, limit):
         return {"success": False, "error": f"Plugin {site} has no run_scraper()"}
 
     try:
-        # Call plugin with the same signature we've been using.
         result = module.run_scraper(query, output_file=output_abs_path, limit=limit)
-
-        # Determine count if possible.
         count = 0
         if isinstance(result, dict):
             if "data" in result and isinstance(result["data"], list):
@@ -96,11 +97,9 @@ def index():
             filename = f"{filename_safe}_{site}_{date_str}.csv"
             output_abs_path = os.path.join(STATIC_DIR, filename)
 
-            # First try to run the plugin directly (drop-in plugin system)
             direct_result = try_run_plugin_direct(site, query, output_abs_path, limit)
 
             if not direct_result.get("success"):
-                # Fallback to runner.py (backward compatible)
                 command = [
                     "python", "runner.py", "--mode", "modular",
                     "--site", site, "--query", query,
@@ -112,7 +111,6 @@ def index():
                 try:
                     result = subprocess.run(command, capture_output=True, text=True)
                     output_text = result.stdout.strip()
-
                     try:
                         result_json = json.loads(output_text)
                     except json.JSONDecodeError:
@@ -126,7 +124,6 @@ def index():
                                 reader = csv.reader(f)
                                 rows = list(reader)
                                 record_count = len(rows) - 1
-
                                 if record_count > 0:
                                     session["total_records"] = record_count
                                     session["output_file"] = filename
@@ -138,20 +135,16 @@ def index():
                             session["message"] += "<br>Output file not found."
                     else:
                         session["message"] = f"Scraper failed: {result_json.get('error', 'Unknown error')}"
-
                 except Exception as e:
                     session["message"] = f"Scraper execution failed: {e}"
-
                 return redirect(url_for("index"))
             else:
-                # Direct plugin success path
                 session["message"] = f"Scraping completed. Output saved to static/{filename}"
                 if os.path.exists(output_abs_path):
                     with open(output_abs_path, newline='', encoding='utf-8') as f:
                         reader = csv.reader(f)
                         rows = list(reader)
                         record_count = len(rows) - 1
-
                         if record_count > 0:
                             session["total_records"] = record_count
                             session["output_file"] = filename
@@ -161,13 +154,11 @@ def index():
                             session["message"] += "<br>Output file is empty."
                 else:
                     session["message"] += "<br>Output file not found."
-
                 return redirect(url_for("index"))
 
     message = session.pop("message", None)
-    output_file = session.get("output_file")  # Keep filename in session
+    output_file = session.get("output_file")
     total_records = session.get("total_records")
-
     headers, table_data = (None, None)
     if output_file:
         headers, table_data = load_table_data(output_file, max_rows=100)
@@ -198,9 +189,40 @@ def get_data(filename):
         rows = list(reader)
     return jsonify({"headers": rows[0], "rows": rows[1:]})
 
+# API endpoints for Chrome extension
+@app.route("/api/plugins", methods=["GET"])
+def api_plugins():
+    return jsonify({"plugins": get_available_plugins()})
+
+@app.route("/api/scrape", methods=["POST"])
+def api_scrape():
+    payload = request.get_json(silent=True) or {}
+    site = payload.get("site")
+    query = payload.get("query")
+    limit = payload.get("limit")
+    if not site or not query:
+        return jsonify({"success": False, "error": "site and query are required"}), 400
+
+    filename_safe = query.lower().replace(" ", "_")
+    date_str = datetime.now().strftime("%d%m%y_%H%M%S")
+    filename = f"{filename_safe}_{site}_{date_str}.csv"
+    output_abs_path = os.path.join(STATIC_DIR, filename)
+
+    direct_result = try_run_plugin_direct(site, query, output_abs_path, limit)
+    if not direct_result.get("success"):
+        return jsonify({"success": False, "error": direct_result.get("error", "Unknown error")}), 500
+
+    return jsonify({
+        "success": True,
+        "count": direct_result.get("count", 0),
+        "file": f"static/{filename}",
+        "file_url": abs_url(f"static/{filename}")
+    })
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 
