@@ -16,111 +16,129 @@ description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
 
-def scroll_until_end(page, max_scrolls=20):
-    logger.info("Starting auto-scroll to load all results...")
-    last_height = 0
-    for i in range(max_scrolls):
-        page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-        time.sleep(3)
-        new_height = page.evaluate("document.body.scrollHeight")
-        if new_height == last_height:
-            logger.info(f"No more content loaded after {i + 1} scrolls.")
-            break
-        last_height = new_height
-    logger.info("Auto-scroll completed.")
-
-def extract_data_from_page(page):
-    data = []
+def scroll_feed(page):
+    """Scroll results to load more cards."""
     try:
-        cards = page.query_selector_all(".supplierInfoDiv")
-        logger.info(f"Found {len(cards)} cards on current scroll.")
-        for card in cards:
-            company_name = card.query_selector(".companyname a")
-            location = card.query_selector(".newLocationUi span.highlight")
-            phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
-            link = card.query_selector(".companyname a")
+        page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
+    except:
+        logger.warning("Could not scroll feed. Possibly no more results.")
+    time.sleep(2)
 
-            company = company_name.inner_text().strip() if company_name else ""
-            city = location.inner_text().strip() if location else ""
-            phone = phone_elem.inner_text().strip() if phone_elem else ""
-            url = link.get_attribute("href") if link else ""
+def extract_card_data(card):
+    """Extract data from a supplier card."""
+    try:
+        company_name = card.query_selector(".companyname a")
+        location = card.query_selector(".newLocationUi span.highlight")
+        phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
+        link = card.query_selector(".companyname a")
 
-            data.append({
-                "Company Name": company,
-                "Location": city,
-                "Phone": phone,
-                "URL": url
-            })
+        company = company_name.inner_text().strip() if company_name else "N/A"
+        city = location.inner_text().strip() if location else "N/A"
+        phone = phone_elem.inner_text().strip() if phone_elem else "N/A"
+        url = link.get_attribute("href") if link else "N/A"
+
+        return {
+            "Company Name": company,
+            "Location": city,
+            "Phone": phone,
+            "URL": url
+        }
     except Exception as e:
-        logger.error(f"Error extracting data: {e}")
-    return data
+        logger.warning(f"Error extracting a card: {e}")
+        return None
 
-def save_to_csv(data, file_path):
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    if not data:
-        logger.warning("No data to save.")
-        raise ValueError("No data extracted to save.")
-    with open(file_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=data[0].keys())
+def save_to_csv(data, filename):
+    os.makedirs("static", exist_ok=True)
+    filepath = os.path.join("static", filename)
+    with open(filepath, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
         writer.writeheader()
         writer.writerows(data)
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Failed to create file at: {file_path}")
-    logger.info(f"Saved {len(data)} records to {file_path}")
+    logger.info(f"Scraping completed. Output saved to {filepath}")
+    return filepath
 
 def run_scraper(query, output_file=None, limit=None):
-    logger.info(f"Running IndiaMART scraper for: {query}")
-    logger.info(f"Limit: {limit}")
-    url = build_search_url(query)
-    logger.info(f"Opening URL: {url}")
-    all_data = []
+    target_count = int(limit) if limit else None
+    timeout_ms = 180000 if target_count is None else 60000  # More time for unlimited scraping
 
     with sync_playwright() as p:
         try:
-            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
-            context = browser.new_context()
-            page = context.new_page()
-            page.goto(url, timeout=60000)
+            browser = p.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-blink-features=AutomationControlled"]
+            )
+            page = browser.new_page()
+
+            search_url = build_search_url(query)
+            logger.info(f"Navigating to {search_url}")
+            page.goto(search_url, timeout=timeout_ms)
 
             try:
                 page.wait_for_selector(".supplierInfoDiv", timeout=15000)
             except PlaywrightTimeoutError:
-                logger.warning(".supplierInfoDiv not found — page may not have loaded correctly.")
+                logger.warning("⚠ No supplier cards found.")
+                browser.close()
+                return {"file": None, "data": []}
 
-            screenshot_path = os.path.abspath("static/indiamart_debug.png")
-            os.makedirs("static", exist_ok=True)
-            page.screenshot(path=screenshot_path, full_page=True)
-            logger.info(f"Screenshot saved to: {screenshot_path}")
+            collected = []
+            seen_entries = set()
+            scrolls_done = 0
+            max_scrolls = 30 if target_count is None else 20
+            last_total_cards = 0
 
-            scroll_until_end(page)
-            all_data = extract_data_from_page(page)
-            logger.info(f"Total extracted: {len(all_data)} records")
+            while True:
+                cards = page.query_selector_all(".supplierInfoDiv")
+                logger.info(f"Found {len(cards)} cards on scroll #{scrolls_done + 1}")
 
-            if not all_data:
-                raise ValueError("No data extracted from IndiaMART.")
+                new_cards = []
+                for c in cards:
+                    data = extract_card_data(c)
+                    if not data:
+                        continue
+                    entry_key = (data["Company Name"].lower(), data["Location"].lower(), data["Phone"])
+                    if entry_key not in seen_entries:
+                        new_cards.append(data)
+                        seen_entries.add(entry_key)
 
-            if limit:
-                all_data = all_data[:int(limit)]
-                logger.info(f"Limit applied: {limit} → Returning {len(all_data)} records.")
-            else:
-                logger.info(f"No limit given — returning all {len(all_data)} results.")
+                if new_cards:
+                    collected.extend(new_cards)
+                    logger.info(f"Added {len(new_cards)} new unique records (total {len(collected)})")
 
-            if output_file:
-                absolute_path = os.path.abspath(output_file)
-                logger.info(f"Saving to CSV: {absolute_path}")
-                save_to_csv(all_data, absolute_path)
+                if target_count and len(collected) >= target_count:
+                    break
+
+                scroll_feed(page)
+                scrolls_done += 1
+
+                if len(cards) == last_total_cards or scrolls_done >= max_scrolls:
+                    logger.info("ℹ No new cards loaded or reached scroll limit.")
+                    break
+                last_total_cards = len(cards)
+
+            # Save debug screenshot for live server verification
+            os.makedirs("static/debug", exist_ok=True)
+            debug_screenshot_path = os.path.join("static/debug", f"{query.replace(' ', '_')}_final_view.png")
+            page.screenshot(path=debug_screenshot_path, full_page=True)
+            logger.info(f"📸 Saved final page screenshot to {debug_screenshot_path}")
 
             browser.close()
-            logger.info(f"Scraping completed with {len(all_data)} results.")
-            print(f"FOUND_COUNT: {len(all_data)}")
-            return len(all_data)
 
-        except PlaywrightTimeoutError:
-            logger.error("Timeout while loading IndiaMART.")
+            final_data = collected if target_count is None else collected[:target_count]
+            if not output_file:
+                safe_query = query.replace(" ", "_")
+                output_file = f"{safe_query}_indiamart.csv"
+
+            filepath = save_to_csv(final_data, output_file)
+            return {
+                "file": filepath,
+                "data": final_data,
+                "debug_screenshot": debug_screenshot_path
+            }
+
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
+            return {"file": None, "data": []}
 
-        return 0
 
 
 

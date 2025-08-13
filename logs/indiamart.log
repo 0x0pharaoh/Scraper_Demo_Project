@@ -463,3 +463,64 @@
 2025-08-13 11:37:17,221 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113702.csv
 2025-08-13 11:37:17,223 - INFO - Saved 10 records to C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113702.csv
 2025-08-13 11:37:17,335 - INFO - Scraping completed with 10 results.
+2025-08-13 13:42:54,811 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-13 13:42:56,219 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:42:57,728 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-13 13:42:58,462 - INFO - New unique cards this round: 10
+2025-08-13 13:42:59,017 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:42:59,249 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_130825_134250.csv
+2025-08-13 13:43:00,285 - INFO - New unique cards this round: 10
+2025-08-13 13:43:00,416 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_130825_134251.csv
+2025-08-13 13:43:03,516 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-13 13:43:04,356 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:43:05,412 - INFO - New unique cards this round: 10
+2025-08-13 13:43:05,532 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_130825_134300.csv
+2025-08-13 13:44:14,555 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=vegetables
+2025-08-13 13:44:15,694 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:44:17,001 - INFO - New unique cards this round: 10
+2025-08-13 13:44:19,199 - INFO - Found 20 cards on scroll #2
+2025-08-13 13:44:21,689 - INFO - New unique cards this round: 10
+2025-08-13 13:44:23,715 - INFO - Found 20 cards on scroll #3
+2025-08-13 13:44:24,717 - INFO - New unique cards this round: 0
+2025-08-13 13:44:26,720 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-13 13:44:26,876 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\vegetables_indiamart_130825_134411.csv
+2025-08-13 13:47:25,625 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=healthcare
+2025-08-13 13:47:26,987 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:47:28,103 - INFO - Added 10 new unique records (total 10)
+2025-08-13 13:47:30,236 - INFO - Found 20 cards on scroll #2
+2025-08-13 13:47:31,532 - INFO - Added 10 new unique records (total 20)
+2025-08-13 13:47:33,570 - INFO - Found 20 cards on scroll #3
+2025-08-13 13:47:36,680 - INFO - ℹ No new cards loaded or reached scroll limit.
+2025-08-13 13:47:36,822 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_130825_134722.csv
+2025-08-13 13:48:12,553 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=tiles
+2025-08-13 13:48:13,851 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:48:14,947 - INFO - Added 10 new unique records (total 10)
+2025-08-13 13:48:17,029 - INFO - Found 20 cards on scroll #2
+2025-08-13 13:48:18,833 - INFO - Added 10 new unique records (total 20)
+2025-08-13 13:48:20,870 - INFO - Found 20 cards on scroll #3
+2025-08-13 13:48:23,874 - INFO - ℹ No new cards loaded or reached scroll limit.
+2025-08-13 13:48:24,058 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\tiles_indiamart_130825_134809.csv
+2025-08-13 13:49:54,141 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=cloths
+2025-08-13 13:49:56,026 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:49:57,078 - INFO - Added 10 new unique records (total 10)
+2025-08-13 13:49:59,202 - INFO - Found 20 cards on scroll #2
+2025-08-13 13:50:00,370 - INFO - Added 10 new unique records (total 20)
+2025-08-13 13:50:02,404 - INFO - Found 20 cards on scroll #3
+2025-08-13 13:50:05,442 - INFO - ℹ No new cards loaded or reached scroll limit.
+2025-08-13 13:50:05,562 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\cloths_indiamart_130825_134951.csv
+2025-08-13 13:52:37,829 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=headphones
+2025-08-13 13:52:39,362 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:52:40,664 - INFO - Added 10 new unique records (total 10)
+2025-08-13 13:52:42,821 - INFO - Found 20 cards on scroll #2
+2025-08-13 13:52:44,161 - INFO - Added 10 new unique records (total 20)
+2025-08-13 13:52:45,028 - INFO - 📸 Saved final page screenshot to static/debug\headphones_final_view.png
+2025-08-13 13:52:45,182 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\headphones_indiamart_130825_135234.csv
+2025-08-13 13:53:15,573 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=earphones
+2025-08-13 13:53:16,809 - INFO - Found 10 cards on scroll #1
+2025-08-13 13:53:17,945 - INFO - Added 10 new unique records (total 10)
+2025-08-13 13:53:20,031 - INFO - Found 20 cards on scroll #2
+2025-08-13 13:53:21,404 - INFO - Added 10 new unique records (total 20)
+2025-08-13 13:53:23,451 - INFO - Found 20 cards on scroll #3
+2025-08-13 13:53:26,788 - INFO - ℹ No new cards loaded or reached scroll limit.
+2025-08-13 13:53:27,531 - INFO - 📸 Saved final page screenshot to static/debug\earphones_final_view.png
+2025-08-13 13:53:27,656 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\earphones_indiamart_130825_135312.csv
