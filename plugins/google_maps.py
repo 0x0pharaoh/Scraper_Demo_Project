@@ -13,13 +13,15 @@ from utils.logger import get_logger
 logger = get_logger("google_maps")
 description = "Scrape business data from Google Maps search results"
 
+
 def scroll_feed(page):
     """Scroll the results feed to load more cards."""
     try:
         page.evaluate("document.querySelector('div[role=\"feed\"]').scrollBy(0, 1000)")
     except:
         logger.warning("Could not scroll feed. Possibly no more results.")
-    time.sleep(2)
+    time.sleep(1.5)
+
 
 def extract_card_data(page):
     """Extract data from the currently opened side panel."""
@@ -37,6 +39,7 @@ def extract_card_data(page):
     place_url = page.url
     return {"Name": name, "URL": place_url, "Address": address}
 
+
 def save_to_csv(data, filename):
     os.makedirs("static", exist_ok=True)
     filepath = os.path.join("static", filename)
@@ -47,8 +50,9 @@ def save_to_csv(data, filename):
     logger.info(f"Scraping completed. Output saved to {filepath}")
     return filepath
 
+
 def run_scraper(query, output_file=None, limit=None):
-    target_count = limit if limit is not None else 40  # Default target when no limit is given
+    target_count = limit if limit is not None else 100  # Higher default target when no limit
     timeout_ms = 180000 if limit is None else 60000  # Longer timeout if no limit
 
     with sync_playwright() as p:
@@ -57,22 +61,21 @@ def run_scraper(query, output_file=None, limit=None):
 
         search_url = f"https://www.google.com/maps/search/{quote_plus(query)}"
         logger.info(f"Navigating to {search_url}")
-        page.goto(search_url, timeout=timeout_ms)
+        page.goto(search_url, timeout=timeout_ms, wait_until="domcontentloaded")
 
         collected = []
-        seen_entries = set()
+        seen_entries = set()  # Store (name, address) for deduplication
         visited_hrefs = set()
 
-        max_scrolls = 50 if limit is None else 30
+        max_scrolls = 20 if limit is None else 10
         scrolls_done = 0
         last_cards_count = 0
 
         while len(collected) < target_count and scrolls_done < max_scrolls:
-            # Wait for result cards to be visible
             try:
                 page.wait_for_selector("a.hfpxzc", timeout=15000)
             except:
-                logger.warning("⚠ No result cards found.")
+                logger.warning("No result cards found.")
                 break
 
             cards = page.locator("a.hfpxzc").all()
@@ -100,8 +103,8 @@ def run_scraper(query, output_file=None, limit=None):
                     page.wait_for_timeout(2000)
                     data = extract_card_data(page)
 
-                    entry_key = (data["Name"].lower(), data["URL"].lower())
-                    if entry_key not in seen_entries:
+                    entry_key = (data["Name"].strip().lower(), data["Address"].strip().lower())
+                    if entry_key not in seen_entries and data["Name"] != "N/A":
                         collected.append(data)
                         seen_entries.add(entry_key)
                         logger.info(f"Collected: {data['Name']}")
@@ -125,6 +128,7 @@ def run_scraper(query, output_file=None, limit=None):
 
     filepath = save_to_csv(collected, output_file)
     return {"file": filepath, "data": collected}
+
 
 
 

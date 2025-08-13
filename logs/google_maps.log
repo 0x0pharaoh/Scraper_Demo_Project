@@ -2209,3 +2209,222 @@ Call log:
 2025-08-13 13:09:19,844 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
 2025-08-13 13:09:21,963 - INFO - Collected: Shri Radha Krishna Temple Gurugram, Delhi NCR
 2025-08-13 13:09:24,142 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_130825_130904.csv
+2025-08-13 13:33:30,573 - INFO - Navigating to https://www.google.com/maps/search/clubs
+2025-08-13 13:33:41,068 - INFO - Found 6 cards on scroll #1
+2025-08-13 13:33:41,328 - INFO - New cards to process: 6
+2025-08-13 13:33:44,810 - INFO - Collected: Zorro - The Luxury Night Club
+2025-08-13 13:33:44,968 - INFO - Navigating to https://www.google.com/maps/search/clubs
+2025-08-13 13:33:47,174 - INFO - Collected: Feel Alive
+2025-08-13 13:33:48,362 - INFO - Found 6 cards on scroll #1
+2025-08-13 13:33:48,435 - INFO - New cards to process: 6
+2025-08-13 13:33:49,460 - INFO - Collected: 4U Club
+2025-08-13 13:33:51,761 - INFO - Collected: Waka Waka The Night Club
+2025-08-13 13:33:52,368 - INFO - Collected: Zorro - The Luxury Night Club
+2025-08-13 13:33:54,562 - INFO - Collected: The Mozo Night Club
+2025-08-13 13:33:55,491 - INFO - Collected: Feel Alive
+2025-08-13 13:33:56,957 - INFO - Collected: The Midnight Club - Night Club in Gurgaon - Club in Gurgaon - Best Night Club in Gurgaon
+2025-08-13 13:33:58,527 - INFO - Found 12 cards on scroll #2
+2025-08-13 13:33:58,700 - INFO - Collected: 4U Club
+2025-08-13 13:33:58,792 - INFO - New cards to process: 6
+2025-08-13 13:34:01,104 - INFO - Collected: Walking Street
+2025-08-13 13:34:01,489 - INFO - Collected: Waka Waka The Night Club
+2025-08-13 13:34:03,379 - INFO - Collected: The Big Shot Club - Night Club in Gurgaon | Best Club in Gurgaon
+2025-08-13 13:34:04,596 - INFO - Collected: The Mozo Night Club
+2025-08-13 13:34:05,577 - INFO - Collected: The Bang Bang Club
+2025-08-13 13:34:06,795 - INFO - Collected: The Midnight Club - Night Club in Gurgaon - Club in Gurgaon - Best Night Club in Gurgaon
+2025-08-13 13:34:07,858 - INFO - Collected: Club Patio
+2025-08-13 13:34:08,320 - INFO - Found 12 cards on scroll #2
+2025-08-13 13:34:08,403 - INFO - New cards to process: 6
+2025-08-13 13:34:10,554 - INFO - Collected: Walking Street
+2025-08-13 13:34:12,342 - INFO - Collected: Kings club
+2025-08-13 13:34:12,772 - INFO - Collected: The Big Shot Club - Night Club in Gurgaon | Best Club in Gurgaon
+2025-08-13 13:34:13,878 - INFO - Found 18 cards on scroll #3
+2025-08-13 13:34:14,029 - INFO - New cards to process: 6
+2025-08-13 13:34:14,988 - INFO - Collected: The Bang Bang Club
+2025-08-13 13:34:16,513 - INFO - Collected: Big Boyz Lounge - Gurgaon
+2025-08-13 13:34:17,190 - INFO - Collected: Club Patio
+2025-08-13 13:34:18,831 - INFO - Collected: STORY Club and Lounge
+2025-08-13 13:34:20,031 - INFO - Collected: Gymkhana Club
+2025-08-13 13:34:21,290 - INFO - Collected: La Bamba - High Energy Club
+2025-08-13 13:34:22,652 - INFO - Collected: Kings club
+2025-08-13 13:34:23,641 - INFO - Collected: PARAA Night Club
+2025-08-13 13:34:24,176 - INFO - Found 18 cards on scroll #3
+2025-08-13 13:34:24,318 - INFO - New cards to process: 6
+2025-08-13 13:34:25,806 - INFO - Collected: Club Diego
+2025-08-13 13:34:26,501 - INFO - Collected: STORY Club and Lounge
+2025-08-13 13:34:28,036 - INFO - Collected: Club 18 The Best Disco
+2025-08-13 13:34:28,700 - INFO - Collected: La Bamba - High Energy Club
+2025-08-13 13:34:29,574 - INFO - Found 20 cards on scroll #4
+2025-08-13 13:34:29,738 - INFO - New cards to process: 2
+2025-08-13 13:34:30,918 - INFO - Collected: PARAA Night Club
+2025-08-13 13:34:31,927 - INFO - Collected: The Xypher Bar
+2025-08-13 13:34:33,080 - INFO - Collected: Club Diego
+2025-08-13 13:34:35,206 - INFO - Collected: Club 18 The Best Disco
+2025-08-13 13:34:35,856 - INFO - Found 26 cards on scroll #5
+2025-08-13 13:34:36,082 - INFO - New cards to process: 5
+2025-08-13 13:34:37,369 - INFO - Collected: The Xypher Bar
+2025-08-13 13:34:38,366 - INFO - Collected: The City Club
+2025-08-13 13:34:38,897 - INFO - Found 20 cards on scroll #4
+2025-08-13 13:34:39,075 - INFO - New cards to process: 2
+2025-08-13 13:34:40,551 - INFO - Collected: Phantom Night Club Gurgaon
+2025-08-13 13:34:41,248 - INFO - Collected: YO! BFF
+2025-08-13 13:34:42,789 - INFO - Collected: NewYork Street - Best Nightclub in Gurgaon
+2025-08-13 13:34:43,572 - INFO - Collected: Phantom Night Club Gurgaon
+2025-08-13 13:34:45,096 - INFO - Found 26 cards on scroll #5
+2025-08-13 13:34:45,271 - INFO - New cards to process: 4
+2025-08-13 13:34:47,103 - INFO - Collected: Delhi Capital Cricket Academy - Palam Vihar
+2025-08-13 13:34:47,515 - INFO - Collected: The City Club
+2025-08-13 13:34:48,664 - INFO - Found 32 cards on scroll #6
+2025-08-13 13:34:48,907 - INFO - New cards to process: 5
+2025-08-13 13:34:49,834 - INFO - Collected: NewYork Street - Best Nightclub in Gurgaon
+2025-08-13 13:34:51,074 - INFO - Collected: Queens nightclub MGF - Gurgaon
+2025-08-13 13:34:52,100 - INFO - Collected: SMAAC Sports ( Badminton, cage Cricket & Football)
+2025-08-13 13:34:54,259 - INFO - Collected: Delhi Capital Cricket Academy - Palam Vihar
+2025-08-13 13:34:55,419 - INFO - Collected: Party Night Club
+2025-08-13 13:34:55,793 - INFO - Found 32 cards on scroll #6
+2025-08-13 13:34:56,037 - INFO - New cards to process: 6
+2025-08-13 13:34:57,645 - INFO - Collected: Midox Elite Night Club
+2025-08-13 13:34:58,208 - INFO - Collected: Queens nightclub MGF - Gurgaon
+2025-08-13 13:34:59,943 - INFO - Collected: Empire
+2025-08-13 13:35:00,565 - INFO - Collected: VISION ROYAL RANGERS FA - BallPark
+2025-08-13 13:35:01,468 - INFO - Found 38 cards on scroll #7
+2025-08-13 13:35:01,766 - INFO - New cards to process: 6
+2025-08-13 13:35:03,891 - INFO - Collected: Virat The Boxing Club
+2025-08-13 13:35:04,974 - INFO - Collected: Midox Elite Night Club
+2025-08-13 13:35:06,337 - INFO - Collected: Sector 29 Gurgaon Pubs and Bars
+2025-08-13 13:35:07,182 - INFO - Collected: Virat The Boxing Club
+2025-08-13 13:35:08,657 - INFO - Collected: El Vino - Brew Pub & Steak House
+2025-08-13 13:35:10,930 - INFO - Found 38 cards on scroll #7
+2025-08-13 13:35:11,182 - INFO - New cards to process: 6
+2025-08-13 13:35:13,104 - INFO - Collected: Fantasy Bar & Lounge
+2025-08-13 13:35:13,340 - INFO - Collected: El Vino - Brew Pub & Steak House
+2025-08-13 13:35:15,325 - INFO - Collected: The Party is Here
+2025-08-13 13:35:15,568 - INFO - Collected: The Ball Out (Turf cricket)
+2025-08-13 13:35:16,924 - INFO - Found 46 cards on scroll #8
+2025-08-13 13:35:17,762 - INFO - New cards to process: 8
+2025-08-13 13:35:17,771 - INFO - Collected: Fantasy Bar & Lounge
+2025-08-13 13:35:19,930 - INFO - Collected: The Party is Here
+2025-08-13 13:35:22,064 - INFO - Collected: Goa Country Club By Pearl
+2025-08-13 13:35:22,078 - INFO - Collected: Goa Country Club By Pearl
+2025-08-13 13:35:24,387 - INFO - Collected: Hamoni Golf Camp
+2025-08-13 13:35:25,925 - INFO - Found 40 cards on scroll #8
+2025-08-13 13:35:26,260 - INFO - New cards to process: 2
+2025-08-13 13:35:26,653 - INFO - Collected: The Palms Town & Country Club
+2025-08-13 13:35:28,480 - INFO - Collected: The Palms Town & Country Club
+2025-08-13 13:35:28,990 - INFO - Collected: ELITE CLUB GURGAON
+2025-08-13 13:35:32,552 - INFO - Found 46 cards on scroll #9
+2025-08-13 13:35:32,949 - INFO - New cards to process: 6
+2025-08-13 13:35:33,432 - INFO - Collected: BOTTLES & BARRELS THE BEST CLUB/BAR IN GURUGRAM
+2025-08-13 13:35:35,195 - INFO - Collected: IFFCO CLUB
+2025-08-13 13:35:37,444 - INFO - Collected: BOTTLES & BARRELS THE BEST CLUB/BAR IN GURUGRAM
+2025-08-13 13:35:37,557 - INFO - Found 52 cards on scroll #9
+2025-08-13 13:35:38,534 - INFO - New cards to process: 6
+2025-08-13 13:35:40,771 - INFO - Collected: DLF CLUB 5
+2025-08-13 13:35:41,787 - INFO - Collected: Elite Roxxie 15 - Best club in Gurugram - Lounge bar in Gurugram - Best Night Club in Gurgaon
+2025-08-13 13:35:44,199 - INFO - Collected: Hamoni: Cafe by the Greens
+2025-08-13 13:35:45,466 - INFO - Collected: Hamoni: Cafe by the Greens
+2025-08-13 13:35:47,813 - INFO - Collected: i-Kandy
+2025-08-13 13:35:48,150 - INFO - Found 52 cards on scroll #10
+2025-08-13 13:35:48,698 - INFO - New cards to process: 6
+2025-08-13 13:35:50,819 - INFO - Collected: i-Kandy
+2025-08-13 13:35:52,321 - INFO - Collected: Manhattan Bar & Brewery
+2025-08-13 13:35:53,102 - INFO - Collected: Soi 7
+2025-08-13 13:35:53,924 - INFO - Found 58 cards on scroll #10
+2025-08-13 13:35:54,849 - INFO - New cards to process: 6
+2025-08-13 13:35:57,198 - INFO - Collected: Royal Snooker Academy
+2025-08-13 13:35:57,552 - INFO - Collected: City Club at Skycity
+2025-08-13 13:36:02,101 - INFO - Collected: City Club at Skycity
+2025-08-13 13:36:02,511 - INFO - Collected: HUDA Gymkhana Club, Gurugram Sector 4
+2025-08-13 13:36:04,074 - INFO - Found 58 cards on scroll #11
+2025-08-13 13:36:05,042 - INFO - New cards to process: 6
+2025-08-13 13:36:07,671 - INFO - Collected: Club South Patio
+2025-08-13 13:36:09,011 - INFO - Collected: HUDA Gymkhana Club, Gurugram Sector 4
+2025-08-13 13:36:10,581 - INFO - Found 60 cards on scroll #11
+2025-08-13 13:36:11,963 - INFO - New cards to process: 2
+2025-08-13 13:36:12,300 - INFO - Collected: Elite15
+2025-08-13 13:36:16,722 - INFO - Collected: Club Rhino, Golf Course Road, gurgaon
+2025-08-13 13:36:18,029 - INFO - Found 66 cards on scroll #12
+2025-08-13 13:36:19,065 - INFO - Collected: Club Vita
+2025-08-13 13:36:19,420 - INFO - New cards to process: 6
+2025-08-13 13:36:20,658 - INFO - Found 60 cards on scroll #12
+2025-08-13 13:36:21,608 - INFO - New cards to process: 2
+2025-08-13 13:36:21,624 - INFO - Collected: The Club Hkv
+2025-08-13 13:36:23,823 - INFO - Collected: Essel Prime (Essel Tower Club)
+2025-08-13 13:36:27,727 - INFO - Found 66 cards on scroll #13
+2025-08-13 13:36:28,278 - INFO - Collected: KICK FOOTBALL CLUB | Best Football Club In Palam Vihar
+2025-08-13 13:36:28,983 - INFO - New cards to process: 6
+2025-08-13 13:36:31,360 - INFO - Collected: Gurgaon Toastmasters Club (GTMC)
+2025-08-13 13:36:34,415 - INFO - Found 72 cards on scroll #13
+2025-08-13 13:36:35,978 - INFO - New cards to process: 6
+2025-08-13 13:36:36,107 - INFO - Collected: HEROES UNITED FOOTBALL CLUB
+2025-08-13 13:36:38,249 - INFO - Collected: Excellence Table Tennis Academy
+2025-08-13 13:36:40,690 - INFO - Collected: Defence Services Officers' Institute (DSOI)
+2025-08-13 13:36:44,418 - INFO - Found 72 cards on scroll #14
+2025-08-13 13:36:45,152 - INFO - New cards to process: 6
+2025-08-13 13:36:45,243 - INFO - Collected: V Club
+2025-08-13 13:36:47,363 - INFO - Collected: Nirvana Patio Club
+2025-08-13 13:36:47,507 - INFO - Collected: HEROES UNITED FOOTBALL CLUB
+2025-08-13 13:36:51,358 - INFO - Found 78 cards on scroll #14
+2025-08-13 13:36:51,944 - INFO - Collected: The Yaara Club
+2025-08-13 13:36:52,512 - INFO - New cards to process: 6
+2025-08-13 13:36:56,485 - INFO - Collected: Drunk yard nh8
+2025-08-13 13:36:57,074 - INFO - Collected: Toy Room Delhi
+2025-08-13 13:36:58,816 - INFO - Collected: Regalmarksman Shooting Club
+2025-08-13 13:37:00,512 - INFO - Found 78 cards on scroll #15
+2025-08-13 13:37:01,548 - INFO - Collected: Nirvana Patio Club
+2025-08-13 13:37:01,899 - INFO - New cards to process: 6
+2025-08-13 13:37:03,973 - INFO - Collected: Bharat Tennis Academy
+2025-08-13 13:37:04,228 - INFO - Collected: Triloki Fight Club | Boxing | MMA | Wrestling | Weight loss
+2025-08-13 13:37:06,644 - INFO - Collected: Playgue Club & Lounge
+2025-08-13 13:37:07,962 - INFO - Found 80 cards on scroll #15
+2025-08-13 13:37:08,959 - INFO - Collected: Maple Heights & Maple Crescent Club
+2025-08-13 13:37:09,875 - INFO - New cards to process: 2
+2025-08-13 13:37:11,284 - INFO - Collected: Club
+2025-08-13 13:37:12,123 - INFO - Collected: The Piano Man Jazz Club
+2025-08-13 13:37:13,735 - INFO - Collected: LoopLap Restro Bar
+2025-08-13 13:37:16,007 - INFO - Found 86 cards on scroll #16
+2025-08-13 13:37:17,759 - INFO - Found 80 cards on scroll #16
+2025-08-13 13:37:17,784 - INFO - New cards to process: 6
+2025-08-13 13:37:19,263 - INFO - New cards to process: 2
+2025-08-13 13:37:25,624 - INFO - Found 86 cards on scroll #17
+2025-08-13 13:37:27,512 - INFO - Collected: Regalmarksman Shooting Club
+2025-08-13 13:37:29,400 - INFO - New cards to process: 6
+2025-08-13 13:37:29,983 - INFO - Collected: Triloki Fight Club | Boxing | MMA | Wrestling | Weight loss
+2025-08-13 13:37:33,787 - INFO - Found 98 cards on scroll #17
+2025-08-13 13:37:34,144 - INFO - Collected: The Muscle Man fitness club & Supplements
+2025-08-13 13:37:35,515 - INFO - New cards to process: 12
+2025-08-13 13:37:40,109 - INFO - Collected: Maple Heights & Maple Crescent Club
+2025-08-13 13:37:40,952 - INFO - Collected: M. T Cricket Academy
+2025-08-13 13:37:44,579 - INFO - Collected: Uptown club
+2025-08-13 13:37:44,755 - INFO - Found 92 cards on scroll #18
+2025-08-13 13:37:45,610 - INFO - New cards to process: 6
+2025-08-13 13:37:46,983 - INFO - Collected: THE LEGENDS SPORTS CLUB
+2025-08-13 13:37:47,912 - INFO - Collected: SportDeals.in (Golf Destination) | Golf, Sports & Toys Shop in Gurgaon
+2025-08-13 13:37:51,504 - INFO - Collected: The Country Club
+2025-08-13 13:37:52,580 - INFO - Collected: Vasant Vihar Club
+2025-08-13 13:37:56,958 - INFO - Collected: Malibu Town Club
+2025-08-13 13:38:00,440 - INFO - Collected: M. T Cricket Academy
+2025-08-13 13:38:00,757 - INFO - Found 98 cards on scroll #19
+2025-08-13 13:38:02,330 - INFO - New cards to process: 6
+2025-08-13 13:38:04,409 - INFO - Found 100 cards on scroll #18
+2025-08-13 13:38:04,553 - INFO - Collected: Club Chorus @ The Heartsong
+2025-08-13 13:38:06,517 - INFO - New cards to process: 2
+2025-08-13 13:38:06,954 - INFO - Collected: VICTORY SHOOTING SPORTS CLUB
+2025-08-13 13:38:08,947 - INFO - Collected: DV Sports Club
+2025-08-13 13:38:09,265 - INFO - Collected: The 2nd Home Bar & Club
+2025-08-13 13:38:11,594 - INFO - Collected: Club BW
+2025-08-13 13:38:12,924 - INFO - Found 112 cards on scroll #19
+2025-08-13 13:38:14,131 - INFO - Collected: New Generation Cricket Academy®
+2025-08-13 13:38:15,300 - INFO - New cards to process: 12
+2025-08-13 13:38:18,151 - INFO - Found 100 cards on scroll #20
+2025-08-13 13:38:20,497 - INFO - New cards to process: 2
+2025-08-13 13:38:22,299 - INFO - Collected: Vasant Vihar Club
+2025-08-13 13:38:22,824 - INFO - Collected: Klub Hermis - India's First Superclub
+2025-08-13 13:38:27,915 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\clubs_google_maps_130825_133337.csv
+2025-08-13 13:38:40,472 - INFO - Collected: Club BW
+2025-08-13 13:38:44,333 - INFO - Found 118 cards on scroll #20
+2025-08-13 13:38:46,426 - INFO - New cards to process: 6
+2025-08-13 13:38:48,677 - INFO - Collected: Klub Hermis - India's First Superclub
+2025-08-13 13:38:55,654 - INFO - Collected: Check vs Mate Chess Acadmy
+2025-08-13 13:38:59,978 - INFO - Collected: Intense Rigour Club - Gym & Fitness Centre
+2025-08-13 13:39:02,138 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\clubs_google_maps_130825_133327.csv
