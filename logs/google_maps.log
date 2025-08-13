@@ -2428,3 +2428,141 @@ Call log:
 2025-08-13 13:38:55,654 - INFO - Collected: Check vs Mate Chess Acadmy
 2025-08-13 13:38:59,978 - INFO - Collected: Intense Rigour Club - Gym & Fitness Centre
 2025-08-13 13:39:02,138 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\clubs_google_maps_130825_133327.csv
+2025-08-13 14:14:29,195 - INFO - Navigating to https://www.google.com/maps/search/airports
+2025-08-13 14:14:39,406 - INFO - Found 8 cards on scroll #1
+2025-08-13 14:14:39,494 - INFO - New cards to process: 8
+2025-08-13 14:14:43,060 - INFO - Collected: Hindon Airport
+2025-08-13 14:14:45,591 - INFO - Collected: Indira Gandhi International Airport
+2025-08-13 14:14:47,864 - INFO - Collected: GMR Airports Ltd
+2025-08-13 14:14:50,195 - INFO - Collected: Safdarjung Airport
+2025-08-13 14:14:52,349 - INFO - Collected: Air India Sats Airport Services Private Limited
+2025-08-13 14:14:52,387 - INFO - Navigating to https://www.google.com/maps/search/airports
+2025-08-13 14:14:54,539 - INFO - Collected: Landing Point
+2025-08-13 14:14:56,688 - INFO - Collected: Airports Authority of India
+2025-08-13 14:14:59,035 - INFO - Collected: Vardhman Airport Solutions Limited
+2025-08-13 14:14:59,163 - INFO - Found 8 cards on scroll #1
+2025-08-13 14:14:59,357 - INFO - New cards to process: 8
+2025-08-13 14:15:01,080 - INFO - Found 16 cards on scroll #2
+2025-08-13 14:15:01,436 - INFO - New cards to process: 8
+2025-08-13 14:15:01,785 - INFO - Collected: Hindon Airport
+2025-08-13 14:15:03,744 - INFO - Collected: Shaheed Bhagat Singh International Airport, Chandigarh
+2025-08-13 14:15:04,628 - INFO - Collected: Indira Gandhi International Airport
+2025-08-13 14:15:06,377 - INFO - Collected: Jolly Grant Airport - Dehradun
+2025-08-13 14:15:06,977 - INFO - Collected: GMR Airports Ltd
+2025-08-13 14:15:08,703 - INFO - Collected: IGI Airport Terminal-3
+2025-08-13 14:15:09,558 - INFO - Collected: Safdarjung Airport
+2025-08-13 14:15:11,016 - INFO - Collected: General Aviation TERMINAL
+2025-08-13 14:15:11,916 - INFO - Collected: Air India Sats Airport Services Private Limited
+2025-08-13 14:15:13,322 - INFO - Collected: Topflight Airport Concierge - TACT CLUB
+2025-08-13 14:15:14,299 - INFO - Collected: Landing Point
+2025-08-13 14:15:15,624 - INFO - Collected: Indamer MJets Airport Services Private Limited
+2025-08-13 14:15:16,621 - INFO - Collected: Airports Authority of India
+2025-08-13 14:15:17,937 - INFO - Collected: Airport Porter Service
+2025-08-13 14:15:18,936 - INFO - Collected: Vardhman Airport Solutions Limited
+2025-08-13 14:15:20,104 - INFO - Collected: Atithya - Meet and Greet Service
+2025-08-13 14:15:20,982 - INFO - Found 16 cards on scroll #2
+2025-08-13 14:15:21,094 - INFO - New cards to process: 8
+2025-08-13 14:15:22,225 - INFO - Found 28 cards on scroll #3
+2025-08-13 14:15:22,837 - INFO - New cards to process: 10
+2025-08-13 14:15:23,345 - INFO - Collected: Shaheed Bhagat Singh International Airport, Chandigarh
+2025-08-13 14:15:25,337 - INFO - Collected: Airports Authority of India
+2025-08-13 14:15:25,793 - INFO - Collected: Jolly Grant Airport - Dehradun
+2025-08-13 14:15:27,706 - INFO - Collected: I.G.I Airport Terminal3 Bridge
+2025-08-13 14:15:28,228 - INFO - Collected: IGI Airport Terminal-3
+2025-08-13 14:15:30,082 - INFO - Collected: Air India
+2025-08-13 14:15:30,719 - INFO - Collected: General Aviation TERMINAL
+2025-08-13 14:15:32,758 - INFO - Collected: Agra Airport
+2025-08-13 14:15:33,131 - INFO - Collected: Topflight Airport Concierge - TACT CLUB
+2025-08-13 14:15:35,421 - INFO - Collected: Dr. B.R.Ambedkar Airstrip
+2025-08-13 14:15:35,524 - INFO - Collected: Indamer MJets Airport Services Private Limited
+2025-08-13 14:15:38,010 - INFO - Collected: Narnaul Airport
+2025-08-13 14:15:39,899 - INFO - Collected: Atithya - Meet and Greet Service
+2025-08-13 14:15:40,261 - INFO - Collected: I.G.I. Airport Terminal 2
+2025-08-13 14:15:41,976 - INFO - Found 28 cards on scroll #3
+2025-08-13 14:15:42,585 - INFO - Collected: Airport (T-3)
+2025-08-13 14:15:42,882 - INFO - New cards to process: 10
+2025-08-13 14:15:45,107 - INFO - Collected: Airports Authority of India
+2025-08-13 14:15:47,308 - INFO - Collected: Airport Authority of India
+2025-08-13 14:15:47,324 - INFO - Collected: I.G.I Airport Terminal3 Bridge
+2025-08-13 14:15:49,437 - INFO - Found 36 cards on scroll #4
+2025-08-13 14:15:49,735 - INFO - Collected: Air India
+2025-08-13 14:15:50,011 - INFO - New cards to process: 5
+2025-08-13 14:15:52,084 - INFO - Collected: Agra Airport
+2025-08-13 14:15:52,398 - INFO - Collected: Hisar Airport
+2025-08-13 14:15:54,416 - INFO - Collected: Dr. B.R.Ambedkar Airstrip
+2025-08-13 14:15:56,699 - INFO - Collected: Narnaul Airport
+2025-08-13 14:15:56,815 - INFO - Collected: I.G.I. Airport Terminal 2
+2025-08-13 14:15:58,990 - INFO - Collected: I.G.I. Airport Terminal 2
+2025-08-13 14:16:01,229 - INFO - Collected: SJ Airport
+2025-08-13 14:16:01,340 - INFO - Collected: Airport (T-3)
+2025-08-13 14:16:03,293 - INFO - Found 48 cards on scroll #5
+2025-08-13 14:16:03,768 - INFO - Collected: Bareilly Airport
+2025-08-13 14:16:03,926 - INFO - New cards to process: 11
+2025-08-13 14:16:06,057 - INFO - Collected: Airport airlines mai car lagao
+2025-08-13 14:16:07,961 - INFO - Found 36 cards on scroll #4
+2025-08-13 14:16:08,204 - INFO - Collected: Chandigarh airport
+2025-08-13 14:16:08,379 - INFO - New cards to process: 5
+2025-08-13 14:16:10,784 - INFO - Collected: Hisar Airport
+2025-08-13 14:16:10,810 - INFO - Collected: Pantnagar Airport
+2025-08-13 14:16:13,062 - INFO - Collected: Airport Karnal
+2025-08-13 14:16:15,218 - INFO - Collected: Palam Airport / IGI Airport T1
+2025-08-13 14:16:17,586 - INFO - Collected: Shafsky - Meet & Greet Service New Delhi Airport
+2025-08-13 14:16:17,775 - INFO - Collected: Naini Saini Airport Pithoragarh
+2025-08-13 14:16:20,069 - INFO - Collected: SJ Airport
+2025-08-13 14:16:21,921 - INFO - Collected: AIR INDIA HANGARS
+2025-08-13 14:16:22,154 - INFO - Found 48 cards on scroll #5
+2025-08-13 14:16:23,351 - INFO - New cards to process: 11
+2025-08-13 14:16:24,125 - INFO - Collected: Athletics Heliport
+2025-08-13 14:16:25,731 - INFO - Collected: Airport airlines mai car lagao
+2025-08-13 14:16:26,429 - INFO - Collected: Airport metro,Dwarka Sec-21
+2025-08-13 14:16:28,436 - INFO - Collected: Chandigarh airport
+2025-08-13 14:16:28,711 - INFO - Collected: Civil Airport Bathinda
+2025-08-13 14:16:30,745 - INFO - Found 56 cards on scroll #6
+2025-08-13 14:16:31,151 - INFO - New cards to process: 8
+2025-08-13 14:16:32,777 - INFO - Collected: Airport
+2025-08-13 14:16:33,522 - INFO - Collected: Palia Airport
+2025-08-13 14:16:35,841 - INFO - Collected: Palia Airport
+2025-08-13 14:16:37,925 - INFO - Collected: Shafsky - Meet & Greet Service New Delhi Airport
+2025-08-13 14:16:38,090 - INFO - Collected: Delhi Airport Service Pvt Ltd
+2025-08-13 14:16:40,468 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\airports_google_maps_130825_141425.csv
+2025-08-13 14:16:40,785 - INFO - Collected: Maa Ganga Airport Uttarkashi
+2025-08-13 14:16:45,235 - INFO - Collected: Athletics Heliport
+2025-08-13 14:16:47,511 - INFO - Collected: Airport metro,Dwarka Sec-21
+2025-08-13 14:16:49,665 - INFO - Collected: Civil Airport Bathinda
+2025-08-13 14:16:51,698 - INFO - Found 56 cards on scroll #6
+2025-08-13 14:16:52,106 - INFO - New cards to process: 8
+2025-08-13 14:16:54,377 - INFO - Collected: Palia Airport
+2025-08-13 14:16:56,961 - INFO - Collected: Air India Engg
+2025-08-13 14:17:01,297 - INFO - Collected: Sarsawa Airport
+2025-08-13 14:17:03,448 - INFO - Collected: Integrated Aviation Hub, Hisar Airport
+2025-08-13 14:17:06,111 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\airports_google_maps_130825_141444.csv
+2025-08-13 14:18:26,557 - INFO - Navigating to https://www.google.com/maps/search/malls+in+delhi
+2025-08-13 14:18:31,763 - INFO - Found 6 cards on scroll #1
+2025-08-13 14:18:31,796 - INFO - New cards to process: 6
+2025-08-13 14:18:33,981 - INFO - Collected: Ambience Mall, Vasant Kunj
+2025-08-13 14:18:36,271 - INFO - Collected: Vasant Square Mall
+2025-08-13 14:18:38,515 - INFO - Collected: DLF Promenade
+2025-08-13 14:18:40,718 - INFO - Collected: AMBIENCE MALL, GURUGRAM
+2025-08-13 14:18:42,888 - INFO - Collected: Vegas Mall
+2025-08-13 14:18:45,095 - INFO - Collected: Pacific D21 Mall
+2025-08-13 14:18:47,126 - INFO - Found 12 cards on scroll #2
+2025-08-13 14:18:47,232 - INFO - New cards to process: 6
+2025-08-13 14:18:49,421 - INFO - Collected: City Centre, Dwarka
+2025-08-13 14:18:51,608 - INFO - Collected: The Chanakya
+2025-08-13 14:18:53,822 - INFO - Collected: DLF Emporio
+2025-08-13 14:18:56,024 - INFO - Collected: Soul City Mall, Dwarka
+2025-08-13 14:18:58,256 - INFO - Collected: Pacific Mall
+2025-08-13 14:19:00,476 - INFO - Collected: MGF Metropolitan Mall
+2025-08-13 14:19:02,505 - INFO - Found 18 cards on scroll #3
+2025-08-13 14:19:02,618 - INFO - New cards to process: 6
+2025-08-13 14:19:04,754 - INFO - Collected: Nexus Select CityWalk
+2025-08-13 14:19:06,980 - INFO - Collected: V3S Mall
+2025-08-13 14:19:09,269 - INFO - Collected: Sahara Mall
+2025-08-13 14:19:11,565 - INFO - Collected: Vardhman Mall
+2025-08-13 14:19:14,018 - INFO - Collected: Pacific Mall NSP Pitampura
+2025-08-13 14:19:16,245 - INFO - Collected: DLF Avenue Saket
+2025-08-13 14:19:18,272 - INFO - Found 20 cards on scroll #4
+2025-08-13 14:19:18,369 - INFO - New cards to process: 2
+2025-08-13 14:19:20,477 - INFO - Collected: TDI Mall
+2025-08-13 14:19:22,674 - INFO - Collected: DLF City Centre Mall
+2025-08-13 14:19:24,818 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\malls_in_delhi_google_maps_130825_141823.csv

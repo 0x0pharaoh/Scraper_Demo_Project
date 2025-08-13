@@ -1,4 +1,4 @@
-# plugins/indiamart.py
+# indiamart.py
 
 import subprocess
 subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
@@ -47,9 +47,9 @@ def extract_card_data(card):
         logger.warning(f"Error extracting a card: {e}")
         return None
 
-def save_to_csv(data, filename):
-    os.makedirs("static", exist_ok=True)
-    filepath = os.path.join("static", filename)
+def save_to_csv(data, filepath):
+    # Use the exact output_file path provided by run_scraper
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
         writer.writeheader()
@@ -58,15 +58,12 @@ def save_to_csv(data, filename):
     return filepath
 
 def run_scraper(query, output_file=None, limit=None):
-    target_count = int(limit) if limit else None
-    timeout_ms = 180000 if target_count is None else 60000  # More time for unlimited scraping
+    target_count = limit if limit is not None else 40
+    timeout_ms = 180000 if limit is None else 60000
 
     with sync_playwright() as p:
         try:
-            browser = p.chromium.launch(
-                headless=True,
-                args=["--no-sandbox", "--disable-blink-features=AutomationControlled"]
-            )
+            browser = p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
             page = browser.new_page()
 
             search_url = build_search_url(query)
@@ -83,10 +80,10 @@ def run_scraper(query, output_file=None, limit=None):
             collected = []
             seen_entries = set()
             scrolls_done = 0
-            max_scrolls = 30 if target_count is None else 20
-            last_total_cards = 0
+            max_scrolls = 30 if limit is None else 20
+            last_cards_count = 0
 
-            while True:
+            while len(collected) < target_count and scrolls_done < max_scrolls:
                 cards = page.query_selector_all(".supplierInfoDiv")
                 logger.info(f"Found {len(cards)} cards on scroll #{scrolls_done + 1}")
 
@@ -100,40 +97,28 @@ def run_scraper(query, output_file=None, limit=None):
                         new_cards.append(data)
                         seen_entries.add(entry_key)
 
-                if new_cards:
-                    collected.extend(new_cards)
-                    logger.info(f"Added {len(new_cards)} new unique records (total {len(collected)})")
+                logger.info(f"New unique cards this round: {len(new_cards)}")
+                collected.extend(new_cards)
 
-                if target_count and len(collected) >= target_count:
+                if len(collected) >= target_count:
                     break
 
                 scroll_feed(page)
                 scrolls_done += 1
 
-                if len(cards) == last_total_cards or scrolls_done >= max_scrolls:
-                    logger.info("ℹ No new cards loaded or reached scroll limit.")
+                if len(cards) == last_cards_count:
+                    logger.info("ℹ No new cards loaded after scrolling, ending.")
                     break
-                last_total_cards = len(cards)
-
-            # Save debug screenshot for live server verification
-            os.makedirs("static/debug", exist_ok=True)
-            debug_screenshot_path = os.path.join("static/debug", f"{query.replace(' ', '_')}_final_view.png")
-            page.screenshot(path=debug_screenshot_path, full_page=True)
-            logger.info(f"📸 Saved final page screenshot to {debug_screenshot_path}")
+                last_cards_count = len(cards)
 
             browser.close()
 
-            final_data = collected if target_count is None else collected[:target_count]
             if not output_file:
                 safe_query = query.replace(" ", "_")
-                output_file = f"{safe_query}_indiamart.csv"
+                output_file = os.path.abspath(os.path.join("static", f"{safe_query}_indiamart.csv"))
 
-            filepath = save_to_csv(final_data, output_file)
-            return {
-                "file": filepath,
-                "data": final_data,
-                "debug_screenshot": debug_screenshot_path
-            }
+            filepath = save_to_csv(collected[:target_count], output_file)
+            return {"file": filepath, "data": collected[:target_count]}
 
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
