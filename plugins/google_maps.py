@@ -7,69 +7,35 @@ import time
 import csv
 import os
 from urllib.parse import quote_plus
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright
 from utils.logger import get_logger
 
 logger = get_logger("google_maps")
 description = "Scrape business data from Google Maps search results"
 
-def scroll_until_end(page, max_scrolls=20):
-    logger.info("Starting auto-scroll to load all results...")
-    last_height = 0
-    for i in range(max_scrolls):
+def scroll_feed(page):
+    """Scroll the results feed to load more cards."""
+    try:
         page.evaluate("document.querySelector('div[role=\"feed\"]').scrollBy(0, 1000)")
-        time.sleep(2)
-        new_height = page.evaluate("document.querySelector('div[role=\"feed\"]').scrollHeight")
-        if new_height == last_height:
-            logger.info(f"No more content loaded after {i + 1} scrolls.")
-            break
-        last_height = new_height
-    logger.info("Auto-scroll completed.")
+    except:
+        logger.warning("Could not scroll feed. Possibly no more results.")
+    time.sleep(2)
 
-def extract_detailed_data(page, limit=None):
-    """Clicks each card to get accurate URL & address."""
-    results = []
+def extract_card_data(page):
+    """Extract data from the currently opened side panel."""
+    try:
+        name = page.locator("h1.DUwDvf.lfPIob").inner_text().strip()
+    except:
+        name = "N/A"
 
-    cards = page.locator("a.hfpxzc").all()
-    logger.info(f"Found {len(cards)} results in list view.")
+    try:
+        all_texts = page.locator("div.Io6YTe").all_inner_texts()
+        address = next((t.strip() for t in all_texts if "," in t and any(c.isdigit() for c in t)), "N/A")
+    except:
+        address = "N/A"
 
-    if limit:
-        cards = cards[:limit]
-
-    for idx, card in enumerate(cards):
-        try:
-            logger.info(f"Opening result {idx+1}/{len(cards)}...")
-            card.click()
-            page.wait_for_timeout(2000)  # Wait for side panel to load
-
-            # Name
-            try:
-                name = page.locator("h1.DUwDvf.lfPIob").inner_text().strip()
-            except:
-                name = "N/A"
-
-            # Address
-            try:
-                # Get all Io6YTe divs and pick the one looking like an address
-                all_texts = page.locator("div.Io6YTe").all_inner_texts()
-                address = next((t.strip() for t in all_texts if "," in t and any(c.isdigit() for c in t)), "N/A")
-            except:
-                address = "N/A"
-
-            # Exact URL
-            place_url = page.url
-
-            results.append({
-                "Name": name,
-                "URL": place_url,
-                "Address": address
-            })
-
-        except Exception as e:
-            logger.warning(f"⚠️ Failed to extract result {idx+1}: {e}")
-            continue
-
-    return results
+    place_url = page.url
+    return {"Name": name, "URL": place_url, "Address": address}
 
 def save_to_csv(data, filename):
     os.makedirs("static", exist_ok=True)
@@ -82,19 +48,58 @@ def save_to_csv(data, filename):
     return filepath
 
 def run_scraper(query, output_file=None, limit=None):
+    target_count = limit if limit is not None else 40  # Default target when no limit is given
+
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
         page = browser.new_page()
 
         search_url = f"https://www.google.com/maps/search/{quote_plus(query)}"
         logger.info(f"Navigating to {search_url}")
         page.goto(search_url, timeout=60000)
 
-        # Scroll through results
-        scroll_until_end(page, max_scrolls=20)
+        collected = []
+        visited_hrefs = set()
+        max_scrolls = 30
+        scrolls_done = 0
+        last_cards_count = 0
 
-        # Extract accurate info
-        data = extract_detailed_data(page, limit=limit)
+        while len(collected) < target_count and scrolls_done < max_scrolls:
+            cards = page.locator("a.hfpxzc").all()
+            logger.info(f"Found {len(cards)} cards on scroll #{scrolls_done + 1}")
+
+            new_cards = [c for c in cards if c.get_attribute("href") not in visited_hrefs]
+            logger.info(f"New cards to process: {len(new_cards)}")
+
+            if not new_cards:
+                scroll_feed(page)
+                scrolls_done += 1
+                if len(cards) == last_cards_count:
+                    logger.info("ℹNo new cards loaded after scrolling, ending.")
+                    break
+                last_cards_count = len(cards)
+                continue
+
+            for card in new_cards:
+                href = card.get_attribute("href")
+                if not href or href in visited_hrefs:
+                    continue
+
+                try:
+                    card.click()
+                    page.wait_for_timeout(2000)  # wait for details to load
+                    data = extract_card_data(page)
+                    collected.append(data)
+                    visited_hrefs.add(href)
+                    logger.info(f"Collected: {data['Name']}")
+                    if len(collected) >= target_count:
+                        break
+                except Exception as e:
+                    logger.warning(f"Failed to process a card: {e}")
+                    continue
+
+            scroll_feed(page)
+            scrolls_done += 1
 
         browser.close()
 
@@ -102,12 +107,10 @@ def run_scraper(query, output_file=None, limit=None):
         safe_query = query.replace(" ", "_")
         output_file = f"{safe_query}_googlemaps.csv"
 
-    filepath = save_to_csv(data, output_file)
-    return data, filepath  # ✅ return both for UI display
+    filepath = save_to_csv(collected, output_file)
 
-if __name__ == "__main__":
-    data, file_path = run_scraper("restaurants in Mumbai", limit=5)
-    print(f"Scraped {len(data)} results. Saved to {file_path}")
+    return {"file": filepath, "data": collected}
+
 
 
 

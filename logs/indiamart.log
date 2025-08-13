@@ -424,3 +424,42 @@
 2025-08-12 15:35:06,667 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\speakers_indiamart_120825_153452.csv
 2025-08-12 15:35:06,670 - INFO - Saved 5 records to C:\Users\shari\scraper_project\static\speakers_indiamart_120825_153452.csv
 2025-08-12 15:35:06,920 - INFO - Scraping completed with 5 results.
+2025-08-13 11:36:51,616 - INFO - Running IndiaMART scraper for: sound box
+2025-08-13 11:36:51,618 - INFO - Limit: 10
+2025-08-13 11:36:51,618 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=sound+box
+2025-08-13 11:36:54,861 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-13 11:36:54,861 - INFO - Starting auto-scroll to load all results...
+2025-08-13 11:37:01,031 - INFO - No more content loaded after 2 scrolls.
+2025-08-13 11:37:01,032 - INFO - Auto-scroll completed.
+2025-08-13 11:37:01,062 - INFO - Found 20 cards on current scroll.
+2025-08-13 11:37:02,269 - INFO - Running IndiaMART scraper for: sound box
+2025-08-13 11:37:02,269 - INFO - Limit: 10
+2025-08-13 11:37:02,270 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=sound+box
+2025-08-13 11:37:02,807 - INFO - Total extracted: 20 records
+2025-08-13 11:37:02,808 - INFO - Limit applied: 10 → Returning 10 records.
+2025-08-13 11:37:02,808 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113649.csv
+2025-08-13 11:37:02,810 - INFO - Saved 10 records to C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113649.csv
+2025-08-13 11:37:03,024 - INFO - Scraping completed with 10 results.
+2025-08-13 11:37:05,500 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-13 11:37:05,500 - INFO - Starting auto-scroll to load all results...
+2025-08-13 11:37:06,727 - INFO - Running IndiaMART scraper for: sound box
+2025-08-13 11:37:06,728 - INFO - Limit: 10
+2025-08-13 11:37:06,728 - INFO - Opening URL: https://dir.indiamart.com/search.mp?ss=sound+box
+2025-08-13 11:37:09,784 - INFO - Screenshot saved to: C:\Users\shari\scraper_project\static\indiamart_debug.png
+2025-08-13 11:37:09,784 - INFO - Starting auto-scroll to load all results...
+2025-08-13 11:37:11,911 - INFO - No more content loaded after 2 scrolls.
+2025-08-13 11:37:11,911 - INFO - Auto-scroll completed.
+2025-08-13 11:37:11,948 - INFO - Found 20 cards on current scroll.
+2025-08-13 11:37:13,494 - INFO - Total extracted: 20 records
+2025-08-13 11:37:13,495 - INFO - Limit applied: 10 → Returning 10 records.
+2025-08-13 11:37:13,495 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113659.csv
+2025-08-13 11:37:13,496 - INFO - Saved 10 records to C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113659.csv
+2025-08-13 11:37:13,600 - INFO - Scraping completed with 10 results.
+2025-08-13 11:37:15,966 - INFO - No more content loaded after 2 scrolls.
+2025-08-13 11:37:15,966 - INFO - Auto-scroll completed.
+2025-08-13 11:37:16,013 - INFO - Found 20 cards on current scroll.
+2025-08-13 11:37:17,220 - INFO - Total extracted: 20 records
+2025-08-13 11:37:17,220 - INFO - Limit applied: 10 → Returning 10 records.
+2025-08-13 11:37:17,221 - INFO - Saving to CSV: C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113702.csv
+2025-08-13 11:37:17,223 - INFO - Saved 10 records to C:\Users\shari\scraper_project\static\sound_box_indiamart_130825_113702.csv
+2025-08-13 11:37:17,335 - INFO - Scraping completed with 10 results.

@@ -3,8 +3,8 @@ import subprocess
 import os
 import csv
 import time
-from datetime import datetime
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
@@ -20,6 +20,20 @@ def get_available_plugins():
         if f.endswith(".py") and f != "__init__.py"
     ]
 
+def load_table_data(filename, max_rows=100):
+    """Load up to max_rows from CSV file (excluding header)."""
+    file_path = os.path.join(STATIC_DIR, filename)
+    if not os.path.exists(file_path):
+        return None, None
+    with open(file_path, newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        rows = list(reader)
+    if not rows:
+        return None, None
+    headers = rows[0]
+    data = rows[1:max_rows + 1] if max_rows else rows[1:]
+    return headers, data
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     available_plugins = get_available_plugins()
@@ -27,7 +41,12 @@ def index():
     if request.method == "POST":
         site = request.form.get("site")
         query = request.form.get("query")
-        limit = request.form.get("limit")
+        limit_raw = request.form.get("limit")
+
+        try:
+            limit = int(limit_raw) if limit_raw else None
+        except ValueError:
+            limit = None
 
         if site and query:
             filename_safe = query.lower().replace(" ", "_")
@@ -37,56 +56,54 @@ def index():
 
             command = [
                 "python", "runner.py", "--mode", "modular",
-                "--site", site, "--query", query, "--output", output_abs_path
+                "--site", site, "--query", query,
+                "--output", output_abs_path
             ]
-            if limit:
-                command.extend(["--limit", limit])
+            if limit is not None:
+                command.extend(["--limit", str(limit)])
 
             try:
-                result = subprocess.run(command, check=True, capture_output=True, text=True)
-                output_json = None
+                result = subprocess.run(command, capture_output=True, text=True)
+                output_text = result.stdout.strip()
 
-                # Try to parse JSON output from scraper
-                for line in result.stdout.splitlines():
-                    try:
-                        output_json = json.loads(line)
-                        break
-                    except:
-                        continue
-
-                if not output_json:
-                    session["message"] = "❌ Failed to parse scraper output."
+                try:
+                    result_json = json.loads(output_text)
+                except json.JSONDecodeError:
+                    session["message"] = f"❌ Failed to parse scraper output: {output_text}"
                     return redirect(url_for("index"))
 
-                if not output_json.get("success"):
-                    session["message"] = f"❌ Scraper failed: {output_json.get('error', 'Unknown error')}"
-                    return redirect(url_for("index"))
+                if result_json.get("success"):
+                    session["message"] = f"Scraping completed. Output saved to static/{filename}"
+                    if os.path.exists(output_abs_path):
+                        with open(output_abs_path, newline='', encoding='utf-8') as f:
+                            reader = csv.reader(f)
+                            rows = list(reader)
+                            record_count = len(rows) - 1
 
-                # Load CSV data for UI display
-                if os.path.exists(output_abs_path):
-                    with open(output_abs_path, newline="", encoding="utf-8") as f:
-                        reader = csv.reader(f)
-                        rows = list(reader)
-                    if rows:
-                        session["headers"] = rows[0]
-                        session["table_data"] = rows[1:]
-                        session["output_file"] = filename
-                        record_count = len(rows) - 1
-                        session["message"] = f"Scraping completed. {record_count} records found."
+                            if record_count > 0:
+                                session["total_records"] = record_count
+                                session["output_file"] = filename
+                                if limit is not None and record_count < limit:
+                                    session["message"] += f"<br>Only {record_count} records found out of requested {limit}."
+                            else:
+                                session["message"] += "<br>⚠️ Output file is empty."
                     else:
-                        session["message"] = "⚠️ Output file is empty."
+                        session["message"] += "<br>⚠️ Output file not found."
                 else:
-                    session["message"] = "⚠️ Output file not found."
+                    session["message"] = f"❌ Scraper failed: {result_json.get('error', 'Unknown error')}"
 
-            except subprocess.CalledProcessError as e:
-                session["message"] = f"❌ Scraper failed. Error: {e.stderr or e.stdout or 'Check logs.'}"
+            except Exception as e:
+                session["message"] = f"❌ Scraper execution failed: {e}"
 
             return redirect(url_for("index"))
 
     message = session.pop("message", None)
-    output_file = session.pop("output_file", None)
-    headers = session.pop("headers", None)
-    table_data = session.pop("table_data", None)
+    output_file = session.get("output_file")  # Keep filename in session
+    total_records = session.get("total_records")
+
+    headers, table_data = (None, None)
+    if output_file:
+        headers, table_data = load_table_data(output_file, max_rows=100)
 
     return render_template(
         "index.html",
@@ -94,6 +111,7 @@ def index():
         output_file=output_file,
         headers=headers,
         table_data=table_data,
+        total_records=total_records,
         available_plugins=available_plugins,
         timestamp=int(time.time())
     )
@@ -116,6 +134,11 @@ def get_data(filename):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
+
+
+
+
 
 
 

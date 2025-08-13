@@ -14,7 +14,7 @@ def generate_filename(query, site):
     return os.path.join(BASE_DIR, "static", f"{filename_safe}_{site}_{date_str}.csv")
 
 def run_scraper(site, query, output_file, limit=None):
-    # Install Playwright Chromium if not installed
+    # Ensure Playwright Chromium is installed
     try:
         subprocess.run(
             ["python", "-m", "playwright", "install", "chromium"],
@@ -23,40 +23,35 @@ def run_scraper(site, query, output_file, limit=None):
             stderr=subprocess.DEVNULL
         )
     except subprocess.CalledProcessError as e:
-        error_json = json.dumps({"success": False, "error": f"Failed to install Playwright browsers: {e}"})
-        print(error_json)
+        print(json.dumps({"success": False, "error": f"Failed to install Playwright browsers: {e}"}))
         sys.exit(1)
 
     try:
         scraper_module = importlib.import_module(f"plugins.{site}")
     except ModuleNotFoundError:
-        error_json = json.dumps({"success": False, "error": f"Scraper module not found for site: {site}"})
-        print(error_json)
+        print(json.dumps({"success": False, "error": f"Scraper module not found for site: {site}"}))
         sys.exit(1)
 
     try:
+        # Run scraper
         if "base_dir" in scraper_module.run_scraper.__code__.co_varnames:
             count = scraper_module.run_scraper(query, output_file, limit=limit, base_dir=BASE_DIR)
         else:
             count = scraper_module.run_scraper(query, output_file, limit=limit)
 
         if count == 0:
-            error_json = json.dumps({"success": False, "error": "No data scraped."})
-            print(error_json)
+            print(json.dumps({"success": False, "error": "No data scraped."}))
             sys.exit(0)
 
         if not os.path.exists(output_file):
-            error_json = json.dumps({"success": False, "error": "Output file not found."})
-            print(error_json)
+            print(json.dumps({"success": False, "error": "Output file not found."}))
             sys.exit(0)
 
-        success_json = json.dumps({"success": True, "file": output_file, "count": count})
-        print(success_json)
+        print(json.dumps({"success": True, "file": output_file, "count": count}))
         sys.exit(0)
 
     except Exception as e:
-        error_json = json.dumps({"success": False, "error": str(e)})
-        print(error_json)
+        print(json.dumps({"success": False, "error": str(e)}))
         traceback.print_exc()
         sys.exit(1)
 
