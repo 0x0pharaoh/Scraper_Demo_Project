@@ -59,7 +59,9 @@ def run_scraper(query, output_file=None, limit=None):
         page.goto(search_url, timeout=60000)
 
         collected = []
+        seen_entries = set()  # store lowercase for case-insensitive deduplication
         visited_hrefs = set()
+
         max_scrolls = 30
         scrolls_done = 0
         last_cards_count = 0
@@ -75,23 +77,30 @@ def run_scraper(query, output_file=None, limit=None):
                 scroll_feed(page)
                 scrolls_done += 1
                 if len(cards) == last_cards_count:
-                    logger.info("ℹNo new cards loaded after scrolling, ending.")
+                    logger.info("ℹ No new cards loaded after scrolling, ending.")
                     break
                 last_cards_count = len(cards)
                 continue
 
             for card in new_cards:
                 href = card.get_attribute("href")
-                if not href or href in visited_hrefs:
+                if not href:
                     continue
 
                 try:
                     card.click()
                     page.wait_for_timeout(2000)  # wait for details to load
                     data = extract_card_data(page)
-                    collected.append(data)
+
+                    # Deduplicate based on (Name.lower(), URL.lower())
+                    entry_key = (data["Name"].lower(), data["URL"].lower())
+                    if entry_key not in seen_entries:
+                        collected.append(data)
+                        seen_entries.add(entry_key)
+                        logger.info(f"Collected: {data['Name']}")
+                    
                     visited_hrefs.add(href)
-                    logger.info(f"Collected: {data['Name']}")
+
                     if len(collected) >= target_count:
                         break
                 except Exception as e:
@@ -108,8 +117,9 @@ def run_scraper(query, output_file=None, limit=None):
         output_file = f"{safe_query}_googlemaps.csv"
 
     filepath = save_to_csv(collected, output_file)
-
     return {"file": filepath, "data": collected}
+
+
 
 
 

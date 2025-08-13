@@ -1745,3 +1745,406 @@ Call log:
 2025-08-13 12:01:24,724 - INFO - Collected: Mother Dairy Milk Shop - Vasant Kunj, New Delhi
 2025-08-13 12:01:26,833 - INFO - Collected: Chajju Ram Dairy
 2025-08-13 12:01:28,997 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\dairy_in_delhi_google_maps_130825_120051.csv
+2025-08-13 12:27:24,483 - INFO - Navigating to https://www.google.com/maps/search/courts
+2025-08-13 12:27:34,928 - INFO - Found 8 cards on scroll #1
+2025-08-13 12:27:35,064 - INFO - New cards to process: 8
+2025-08-13 12:27:38,066 - INFO - Collected: District And Sessions Court Gurugram
+2025-08-13 12:27:38,371 - INFO - Collected: District And Sessions Court Gurugram
+2025-08-13 12:27:38,606 - INFO - Collected: District Court Saket
+2025-08-13 12:27:38,833 - INFO - Collected: SMAAC Sports ( Badminton, cage Cricket & Football)
+2025-08-13 12:27:39,133 - INFO - Collected: Delhi High Court
+2025-08-13 12:27:39,352 - INFO - Collected: District & Sessions Courts, Tis Hazari
+2025-08-13 12:27:39,579 - INFO - Collected: Badminton Court
+2025-08-13 12:27:39,865 - INFO - Collected: District Court, Rohini
+2025-08-13 12:27:41,478 - INFO - Found 16 cards on scroll #2
+2025-08-13 12:27:41,614 - INFO - New cards to process: 8
+2025-08-13 12:27:42,020 - INFO - Collected: District Court, Rohini
+2025-08-13 12:27:42,402 - INFO - Collected: Judicial Courts No.26 & 27
+2025-08-13 12:27:42,779 - INFO - Collected: Saket Family Court
+2025-08-13 12:27:43,084 - INFO - Collected: Ball Park Tennis Academy
+2025-08-13 12:27:43,318 - INFO - Collected: Karkardooma Court
+2025-08-13 12:27:43,544 - INFO - Collected: District Court Karkardooma
+2025-08-13 12:27:43,778 - INFO - Collected: Advocate District gurgaon courts
+2025-08-13 12:27:44,013 - INFO - Collected: Advocate District gurgaon courts
+2025-08-13 12:27:45,671 - INFO - Found 28 cards on scroll #3
+2025-08-13 12:27:46,033 - INFO - New cards to process: 11
+2025-08-13 12:27:46,190 - INFO - Collected: Advocate District gurgaon courts
+2025-08-13 12:27:46,335 - INFO - Collected: Advocate District gurgaon courts
+2025-08-13 12:27:46,589 - INFO - Collected: Advocate District gurgaon courts
+2025-08-13 12:27:46,857 - INFO - Collected: court complex
+2025-08-13 12:27:46,857 - INFO - Processing in batches to avoid heavy load...
+2025-08-13 12:27:49,065 - INFO - Collected: court complex
+2025-08-13 12:27:49,212 - INFO - Collected: Consumer Court
+2025-08-13 12:27:49,438 - INFO - Collected: Consumer Court
+2025-08-13 12:27:49,656 - INFO - Collected: Labour Court Ashok Vihar
+2025-08-13 12:27:49,867 - INFO - Collected: Labour Court Ashok Vihar
+2025-08-13 12:27:50,119 - INFO - Collected: Labour Court Ashok Vihar
+2025-08-13 12:27:51,708 - INFO - Found 36 cards on scroll #4
+2025-08-13 12:27:51,967 - INFO - New cards to process: 7
+2025-08-13 12:27:52,141 - INFO - Collected: Labour Court Ashok Vihar
+2025-08-13 12:27:52,347 - INFO - Collected: Tennis Courts
+2025-08-13 12:27:52,515 - INFO - Collected: Tennis Courts
+2025-08-13 12:27:52,705 - INFO - Collected: Tennis Courts
+2025-08-13 12:27:53,012 - INFO - Collected: Tennis Courts
+2025-08-13 12:27:53,255 - INFO - Collected: Tennis Courts
+2025-08-13 12:27:53,433 - INFO - Collected: Tennis Courts
+2025-08-13 12:27:54,985 - INFO - Found 40 cards on scroll #5
+2025-08-13 12:27:55,278 - INFO - New cards to process: 3
+2025-08-13 12:27:55,462 - INFO - Collected: Rama Krishna Puram - Court
+2025-08-13 12:27:55,697 - INFO - Collected: S.D.M Kotwali Old Court
+2025-08-13 12:27:55,921 - INFO - Collected: Railway Claims Tribunal PRINCIPAL BENCH
+2025-08-13 12:27:57,495 - INFO - Found 48 cards on scroll #6
+2025-08-13 12:27:58,056 - INFO - New cards to process: 8
+2025-08-13 12:27:58,381 - INFO - Collected: e-Court Fee Collection Centre
+2025-08-13 12:27:58,497 - INFO - Collected: e-Court Fee Collection Centre
+2025-08-13 12:27:58,731 - INFO - Collected: Bahadurgarh SDM Court
+2025-08-13 12:27:58,951 - INFO - Collected: Bahadurgarh SDM Court
+2025-08-13 12:27:58,951 - INFO - Processing in batches to avoid heavy load...
+2025-08-13 12:28:01,181 - INFO - Collected: Bahadurgarh SDM Court
+2025-08-13 12:28:01,295 - INFO - Collected: Bahadurgarh SDM Court
+2025-08-13 12:28:01,550 - INFO - Collected: CSD Canteen Gurgaon ECHS
+2025-08-13 12:28:01,702 - INFO - Collected: CSD Canteen Gurgaon ECHS
+2025-08-13 12:28:03,272 - INFO - Found 60 cards on scroll #7
+2025-08-13 12:28:03,962 - INFO - New cards to process: 12
+2025-08-13 12:28:04,152 - INFO - Collected: CSD Canteen Gurgaon ECHS
+2025-08-13 12:28:04,329 - INFO - Collected: The Courtyard
+2025-08-13 12:28:04,501 - INFO - Collected: The Courtyard
+2025-08-13 12:28:04,713 - INFO - Collected: The Courtyard
+2025-08-13 12:28:04,843 - INFO - Collected: The Courtyard
+2025-08-13 12:28:05,098 - INFO - Collected: The Courtyard
+2025-08-13 12:28:05,253 - INFO - Collected: The Courtyard
+2025-08-13 12:28:05,466 - INFO - Collected: The Courtyard
+2025-08-13 12:28:05,736 - INFO - Collected: The Courtyard
+2025-08-13 12:28:06,363 - INFO - Collected: The Courtyard
+2025-08-13 12:28:06,587 - INFO - Collected: The Courtyard
+2025-08-13 12:28:06,788 - INFO - Collected: The Courtyard
+2025-08-13 12:28:08,373 - INFO - Found 60 cards on scroll #8
+2025-08-13 12:28:09,305 - INFO - New cards to process: 0
+2025-08-13 12:28:10,871 - INFO - Found 68 cards on scroll #9
+2025-08-13 12:28:11,557 - INFO - New cards to process: 8
+2025-08-13 12:28:11,744 - INFO - Collected: Municipal Magistrate
+2025-08-13 12:28:11,873 - INFO - Collected: Municipal Magistrate
+2025-08-13 12:28:12,354 - INFO - Collected: Municipal Magistrate
+2025-08-13 12:28:12,635 - INFO - Collected: Municipal Magistrate
+2025-08-13 12:28:12,635 - INFO - Processing in batches to avoid heavy load...
+2025-08-13 12:28:14,883 - INFO - Collected: Debt Recovery Tribunal
+2025-08-13 12:28:15,004 - INFO - Collected: Debt Recovery Tribunal
+2025-08-13 12:28:15,216 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:15,430 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:16,987 - INFO - Found 76 cards on scroll #10
+2025-08-13 12:28:18,165 - INFO - New cards to process: 8
+2025-08-13 12:28:18,406 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:18,643 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:18,835 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:19,103 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:19,304 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:19,428 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:19,548 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:19,767 - INFO - Collected: Bhagwati Departmental Store
+2025-08-13 12:28:21,351 - INFO - Found 80 cards on scroll #11
+2025-08-13 12:28:22,178 - INFO - New cards to process: 4
+2025-08-13 12:28:22,425 - INFO - Collected: Gate 8, Delhi High Court
+2025-08-13 12:28:22,569 - INFO - Collected: Gate 8, Delhi High Court
+2025-08-13 12:28:22,806 - INFO - Collected: District Consumer Commission, Gautambuddh Nagar
+2025-08-13 12:28:23,232 - INFO - Collected: District Consumer Commission, Gautambuddh Nagar
+2025-08-13 12:28:24,776 - INFO - Found 88 cards on scroll #12
+2025-08-13 12:28:25,559 - INFO - New cards to process: 8
+2025-08-13 12:28:25,635 - INFO - Collected: JJ indera camp
+2025-08-13 12:28:25,876 - INFO - Collected: JJ indera camp
+2025-08-13 12:28:26,029 - INFO - Collected: JJ indera camp
+2025-08-13 12:28:26,214 - INFO - Collected: JJ indera camp
+2025-08-13 12:28:26,214 - INFO - Processing in batches to avoid heavy load...
+2025-08-13 12:28:28,483 - INFO - Collected: Red Tape Factory outlet
+2025-08-13 12:28:28,704 - INFO - Collected: Red Tape Factory outlet
+2025-08-13 12:28:28,860 - INFO - Collected: Red Tape Factory outlet
+2025-08-13 12:28:29,243 - INFO - Collected: Red Tape Factory outlet
+2025-08-13 12:28:30,807 - INFO - Found 92 cards on scroll #13
+2025-08-13 12:28:31,546 - INFO - New cards to process: 4
+2025-08-13 12:28:31,742 - INFO - Collected: Chai Point
+2025-08-13 12:28:31,883 - INFO - Collected: Chai Point
+2025-08-13 12:28:32,015 - INFO - Collected: Chai Point
+2025-08-13 12:28:32,216 - INFO - Collected: Chai Point
+2025-08-13 12:28:33,757 - INFO - Found 92 cards on scroll #14
+2025-08-13 12:28:34,371 - INFO - New cards to process: 0
+2025-08-13 12:28:35,914 - INFO - Found 92 cards on scroll #15
+2025-08-13 12:28:36,744 - INFO - New cards to process: 0
+2025-08-13 12:28:38,258 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-13 12:28:38,424 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\courts_google_maps_130825_122721.csv
+2025-08-13 12:29:58,637 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-13 12:30:00,759 - INFO - Found 6 cards on scroll #1
+2025-08-13 12:30:00,884 - INFO - New cards to process: 6
+2025-08-13 12:30:03,402 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-13 12:30:03,659 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-13 12:30:03,905 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-13 12:30:04,137 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-13 12:30:04,365 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-13 12:30:06,014 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_130825_122955.csv
+2025-08-13 12:35:26,701 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-13 12:35:28,847 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-13 12:35:29,918 - INFO - Found 8 cards on scroll #1
+2025-08-13 12:35:30,007 - INFO - New cards to process: 8
+2025-08-13 12:35:33,833 - INFO - Found 8 cards on scroll #1
+2025-08-13 12:35:33,978 - INFO - New cards to process: 8
+2025-08-13 12:35:36,016 - INFO - Collected: Fergusson College
+2025-08-13 12:35:36,385 - INFO - Collected: Fergusson College
+2025-08-13 12:35:38,685 - INFO - Collected: COEP Technological University
+2025-08-13 12:35:38,745 - INFO - Collected: FLAME University
+2025-08-13 12:35:41,004 - INFO - Collected: AISSMS College of Engineering
+2025-08-13 12:35:42,429 - INFO - Collected: COEP Technological University
+2025-08-13 12:35:43,286 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-13 12:35:45,598 - INFO - Collected: AISSMS College of Engineering
+2025-08-13 12:35:45,925 - INFO - Collected: FLAME University
+2025-08-13 12:35:48,267 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-13 12:35:48,884 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-13 12:35:50,497 - INFO - Collected: Nowrosjee Wadia College
+2025-08-13 12:35:51,445 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-13 12:35:52,731 - INFO - Collected: Dr. D. Y. Patil Institute of Technology
+2025-08-13 12:35:53,682 - INFO - Collected: Nowrosjee Wadia College
+2025-08-13 12:35:54,768 - INFO - Found 16 cards on scroll #2
+2025-08-13 12:35:54,996 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-13 12:35:55,162 - INFO - New cards to process: 8
+2025-08-13 12:35:56,065 - INFO - Collected: MIT World Peace University (MIT-WPU)
+2025-08-13 12:35:57,346 - INFO - Collected: MIT World Peace University (MIT-WPU)
+2025-08-13 12:35:58,181 - INFO - Found 16 cards on scroll #2
+2025-08-13 12:35:58,324 - INFO - New cards to process: 8
+2025-08-13 12:35:59,652 - INFO - Collected: Azam Campus
+2025-08-13 12:36:00,552 - INFO - Collected: Azam Campus
+2025-08-13 12:36:01,251 - INFO - Found 8 cards on scroll #1
+2025-08-13 12:36:01,375 - INFO - New cards to process: 8
+2025-08-13 12:36:02,734 - INFO - Collected: Savitribai Phule Pune University
+2025-08-13 12:36:03,462 - INFO - Collected: Savitribai Phule Pune University
+2025-08-13 12:36:05,011 - INFO - Collected: Christ College
+2025-08-13 12:36:05,963 - INFO - Collected: KP Paramedical institute- Best Paramedical institute In Pune | DMLT College In Pune| Paramedical College in Hadapsar, Pune
+2025-08-13 12:36:08,089 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-13 12:36:08,302 - INFO - Collected: KP Paramedical institute- Best Paramedical institute In Pune | DMLT College In Pune| Paramedical College in Hadapsar, Pune
+2025-08-13 12:36:08,889 - INFO - Collected: Christ College
+2025-08-13 12:36:10,966 - INFO - Collected: KP Paramedical institute- Best Paramedical institute In Pune | DMLT College In Pune| Paramedical College in Hadapsar, Pune
+2025-08-13 12:36:12,110 - INFO - Collected: Abasaheb Garware College
+2025-08-13 12:36:12,622 - INFO - Collected: Fergusson College
+2025-08-13 12:36:14,902 - INFO - Collected: College of Agriculture, Pune
+2025-08-13 12:36:16,296 - INFO - Collected: Abasaheb Garware College
+2025-08-13 12:36:16,629 - INFO - Collected: FLAME University
+2025-08-13 12:36:17,861 - INFO - Collected: MIT Art, Design & Technology University
+2025-08-13 12:36:19,061 - INFO - Collected: Brihan Maharashtra College of Commerce (BMCC)
+2025-08-13 12:36:19,730 - INFO - Collected: COEP Technological University
+2025-08-13 12:36:20,041 - INFO - Found 20 cards on scroll #3
+2025-08-13 12:36:21,339 - INFO - New cards to process: 4
+2025-08-13 12:36:23,019 - INFO - Collected: AISSMS College of Engineering
+2025-08-13 12:36:24,128 - INFO - Found 20 cards on scroll #3
+2025-08-13 12:36:24,188 - INFO - Collected: P.E.S. Modern College of Engineering
+2025-08-13 12:36:25,801 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-13 12:36:26,064 - INFO - New cards to process: 4
+2025-08-13 12:36:27,167 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-13 12:36:28,564 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-13 12:36:28,614 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-13 12:36:30,092 - INFO - Collected: Choice College of Arts and Commerce
+2025-08-13 12:36:31,295 - INFO - Collected: Nowrosjee Wadia College
+2025-08-13 12:36:31,734 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-13 12:36:32,075 - INFO - Found 8 cards on scroll #1
+2025-08-13 12:36:32,724 - INFO - New cards to process: 8
+2025-08-13 12:36:34,024 - INFO - Collected: MIT World Peace University (MIT-WPU)
+2025-08-13 12:36:34,884 - INFO - Collected: Choice College of Arts and Commerce
+2025-08-13 12:36:35,011 - INFO - Found 20 cards on scroll #4
+2025-08-13 12:36:36,100 - INFO - New cards to process: 0
+2025-08-13 12:36:36,164 - INFO - Found 16 cards on scroll #2
+2025-08-13 12:36:36,201 - INFO - Collected: Fergusson College
+2025-08-13 12:36:37,502 - INFO - New cards to process: 8
+2025-08-13 12:36:37,841 - INFO - Collected: Deccan College Post Graduate and Research Institute
+2025-08-13 12:36:38,224 - INFO - Found 20 cards on scroll #5
+2025-08-13 12:36:39,045 - INFO - Collected: FLAME University
+2025-08-13 12:36:40,095 - INFO - New cards to process: 0
+2025-08-13 12:36:40,248 - INFO - Found 28 cards on scroll #4
+2025-08-13 12:36:40,558 - INFO - Collected: Azam Campus
+2025-08-13 12:36:42,186 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-13 12:36:42,187 - INFO - New cards to process: 5
+2025-08-13 12:36:42,758 - INFO - Collected: COEP Technological University
+2025-08-13 12:36:43,292 - INFO - Collected: Savitribai Phule Pune University
+2025-08-13 12:36:44,845 - INFO - Collected: Ness Wadia College of Commerce
+2025-08-13 12:36:45,536 - INFO - Collected: COEP Technological University
+2025-08-13 12:36:45,986 - INFO - Collected: KP Paramedical institute- Best Paramedical institute In Pune | DMLT College In Pune| Paramedical College in Hadapsar, Pune
+2025-08-13 12:36:47,377 - INFO - Collected: Sir Parashurambhau College
+2025-08-13 12:36:48,223 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-13 12:36:48,669 - INFO - Collected: Christ College
+2025-08-13 12:36:49,883 - INFO - Collected: SCTR'S Pune Institute of Computer Technology
+2025-08-13 12:36:51,162 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-13 12:36:51,639 - INFO - Collected: Abasaheb Garware College
+2025-08-13 12:36:52,642 - INFO - Collected: AISSMS Polytechnic
+2025-08-13 12:36:53,546 - INFO - Collected: Nowrosjee Wadia College
+2025-08-13 12:36:54,590 - INFO - Collected: P.E.S. Modern College of Engineering
+2025-08-13 12:36:55,316 - INFO - Collected: Bharati Vidyapeeth Institute Of Management and Entrepreneurship Development
+2025-08-13 12:36:56,252 - INFO - Collected: MIT World Peace University (MIT-WPU)
+2025-08-13 12:36:57,491 - INFO - Collected: Brihan Maharashtra College of Commerce (BMCC)
+2025-08-13 12:36:57,522 - INFO - Found 36 cards on scroll #5
+2025-08-13 12:36:58,316 - INFO - Found 16 cards on scroll #2
+2025-08-13 12:36:59,268 - INFO - New cards to process: 7
+2025-08-13 12:36:59,566 - INFO - New cards to process: 8
+2025-08-13 12:37:01,902 - INFO - Collected: Vishwakarma Institute of Technology (VIT)
+2025-08-13 12:37:01,963 - INFO - Found 28 cards on scroll #3
+2025-08-13 12:37:02,550 - INFO - Collected: Azam Campus
+2025-08-13 12:37:03,402 - INFO - New cards to process: 10
+2025-08-13 12:37:05,192 - INFO - Collected: Suryadatta College Of Management Information Research & Technology (SCMIRT) - Best College in Pune
+2025-08-13 12:37:05,433 - INFO - Collected: Savitribai Phule Pune University
+2025-08-13 12:37:05,855 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-13 12:37:07,698 - INFO - Collected: ILS Law College
+2025-08-13 12:37:08,776 - INFO - Collected: MIT Art, Design & Technology University
+2025-08-13 12:37:10,036 - INFO - Collected: Bharati Vidyapeeth College Of Engineering Lavale Pune
+2025-08-13 12:37:10,305 - INFO - Collected: Christ College
+2025-08-13 12:37:11,588 - INFO - Collected: Choice College of Arts and Commerce
+2025-08-13 12:37:12,277 - INFO - Collected: Bharati Vidyapeeth College Of Engineering Lavale Pune
+2025-08-13 12:37:13,313 - INFO - Collected: Abasaheb Garware College
+2025-08-13 12:37:15,252 - INFO - Collected: D. Y. Patil International University
+2025-08-13 12:37:15,824 - INFO - Collected: P.E.S. Modern College of Engineering
+2025-08-13 12:37:18,423 - INFO - Collected: Ness Wadia College of Commerce
+2025-08-13 12:37:18,958 - INFO - Collected: D. Y. Patil International University
+2025-08-13 12:37:19,122 - INFO - Collected: Brihan Maharashtra College of Commerce (BMCC)
+2025-08-13 12:37:20,833 - INFO - Collected: Sir Parashurambhau College
+2025-08-13 12:37:20,987 - INFO - Found 40 cards on scroll #6
+2025-08-13 12:37:21,547 - INFO - New cards to process: 3
+2025-08-13 12:37:21,743 - INFO - Collected: College of Agriculture, Pune
+2025-08-13 12:37:23,987 - INFO - Found 20 cards on scroll #3
+2025-08-13 12:37:24,275 - INFO - New cards to process: 4
+2025-08-13 12:37:24,342 - INFO - Collected: Bharati Vidyapeeth Yashwantrao Mohite College of Arts, Science and Commerce
+2025-08-13 12:37:25,288 - INFO - Collected: AISSMS Polytechnic
+2025-08-13 12:37:26,857 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-13 12:37:27,557 - INFO - Collected: Bharati Vidyapeeth Institute Of Management and Entrepreneurship Development
+2025-08-13 12:37:29,212 - INFO - Collected: MIT Art, Design & Technology University
+2025-08-13 12:37:29,617 - INFO - Found 36 cards on scroll #4
+2025-08-13 12:37:29,902 - INFO - Collected: Sarhad College of Arts,Commerce and Science
+2025-08-13 12:37:30,096 - INFO - New cards to process: 7
+2025-08-13 12:37:31,692 - INFO - Collected: MIT Art, Design & Technology University
+2025-08-13 12:37:32,467 - INFO - Collected: Vishwakarma Institute of Technology (VIT)
+2025-08-13 12:37:33,977 - INFO - Collected: Deccan College Post Graduate and Research Institute
+2025-08-13 12:37:34,771 - INFO - Collected: Suryadatta College Of Management Information Research & Technology (SCMIRT) - Best College in Pune
+2025-08-13 12:37:36,020 - INFO - Found 28 cards on scroll #4
+2025-08-13 12:37:36,747 - INFO - Found 48 cards on scroll #7
+2025-08-13 12:37:37,309 - INFO - New cards to process: 5
+2025-08-13 12:37:37,321 - INFO - Collected: ILS Law College
+2025-08-13 12:37:39,041 - INFO - New cards to process: 8
+2025-08-13 12:37:41,985 - INFO - Collected: Ness Wadia College of Commerce
+2025-08-13 12:37:42,299 - INFO - Collected: St. Mira's College For Girls
+2025-08-13 12:37:42,499 - INFO - Collected: K P Paramedical institute- Best Paramedical institute In Pune |DMLT College In Pune| Paramedical College in Pune
+2025-08-13 12:37:44,810 - INFO - Collected: Modern Law College
+2025-08-13 12:37:45,857 - INFO - Collected: K P Paramedical institute- Best Paramedical institute In Pune |DMLT College In Pune| Paramedical College in Pune
+2025-08-13 12:37:46,885 - INFO - Collected: SCTR'S Pune Institute of Computer Technology
+2025-08-13 12:37:47,591 - INFO - Collected: Haribhai V. Desai College of Commerce, Arts and Science
+2025-08-13 12:37:48,668 - INFO - Collected: Mit College Of Engineering
+2025-08-13 12:37:50,692 - INFO - Found 40 cards on scroll #5
+2025-08-13 12:37:51,113 - INFO - New cards to process: 3
+2025-08-13 12:37:51,442 - INFO - Collected: Bharati Vidyapeeth Institute Of Management and Entrepreneurship Development
+2025-08-13 12:37:53,440 - INFO - Collected: Bharati Vidyapeeth Yashwantrao Mohite College of Arts, Science and Commerce
+2025-08-13 12:37:53,468 - INFO - Found 36 cards on scroll #5
+2025-08-13 12:37:54,046 - INFO - New cards to process: 7
+2025-08-13 12:37:55,820 - INFO - Collected: Parvatibai Genba Moze College of Engineering,PUNE
+2025-08-13 12:37:56,109 - INFO - Collected: Symbiosis College Of Arts & Commerce
+2025-08-13 12:37:57,063 - INFO - Collected: Vishwakarma Institute of Technology (VIT)
+2025-08-13 12:37:58,070 - INFO - Collected: Parvatibai Genba Moze College of Engineering,PUNE
+2025-08-13 12:37:59,059 - INFO - Collected: AAER's Asian College of Science and Commerce
+2025-08-13 12:37:59,664 - INFO - Collected: Suryadatta College Of Management Information Research & Technology (SCMIRT) - Best College in Pune
+2025-08-13 12:38:00,239 - INFO - Found 40 cards on scroll #6
+2025-08-13 12:38:00,595 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_130825_123524.csv
+2025-08-13 12:38:00,997 - INFO - New cards to process: 0
+2025-08-13 12:38:01,873 - INFO - Collected: Suryadatta College Of Management Information Research & Technology (SCMIRT) - Best College in Pune
+2025-08-13 12:38:03,040 - INFO - Found 48 cards on scroll #7
+2025-08-13 12:38:03,275 - INFO - Found 56 cards on scroll #8
+2025-08-13 12:38:03,823 - INFO - New cards to process: 8
+2025-08-13 12:38:04,191 - INFO - New cards to process: 8
+2025-08-13 12:38:04,576 - INFO - Collected: Bharati Vidyapeeth College Of Engineering Lavale Pune
+2025-08-13 12:38:06,068 - INFO - Collected: JSPM University Pune
+2025-08-13 12:38:07,252 - INFO - Collected: St. Mira's College For Girls
+2025-08-13 12:38:09,164 - INFO - Collected: Bharati Vidyapeeth College Of Engineering Lavale Pune
+2025-08-13 12:38:09,468 - INFO - Collected: Keystone School of Engineering
+2025-08-13 12:38:11,321 - INFO - Collected: D. Y. Patil International University
+2025-08-13 12:38:11,983 - INFO - Collected: Haribhai V. Desai College of Commerce, Arts and Science
+2025-08-13 12:38:13,350 - INFO - Found 40 cards on scroll #6
+2025-08-13 12:38:13,988 - INFO - New cards to process: 3
+2025-08-13 12:38:16,256 - INFO - Collected: Bharati Vidyapeeth Yashwantrao Mohite College of Arts, Science and Commerce
+2025-08-13 12:38:16,413 - INFO - Collected: Symbiosis College Of Arts & Commerce
+2025-08-13 12:38:18,029 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_130825_123522.csv
+2025-08-13 12:38:20,785 - INFO - Collected: Symbiosis College Of Arts & Commerce
+2025-08-13 12:38:20,941 - INFO - Collected: Sarhad College of Arts,Commerce and Science
+2025-08-13 12:38:23,027 - INFO - Found 48 cards on scroll #7
+2025-08-13 12:38:23,031 - INFO - Collected: AAER's Asian College of Science and Commerce
+2025-08-13 12:38:23,898 - INFO - New cards to process: 8
+2025-08-13 12:38:25,053 - INFO - Found 56 cards on scroll #8
+2025-08-13 12:38:25,655 - INFO - New cards to process: 8
+2025-08-13 12:38:26,140 - INFO - Collected: St. Mira's College For Girls
+2025-08-13 12:38:27,860 - INFO - Collected: AAER's Asian College of Science and Commerce
+2025-08-13 12:38:28,443 - INFO - Collected: Modern Law College
+2025-08-13 12:38:30,183 - INFO - Collected: JSPM University Pune
+2025-08-13 12:38:32,313 - INFO - Collected: Keystone School of Engineering
+2025-08-13 12:38:32,844 - INFO - Collected: Bharati Vidyapeeth’s Jawaharlal Nehru Institute of Technology (Polytechnic / Diploma),Katraj, Pune
+2025-08-13 12:38:34,627 - INFO - Collected: Keystone School of Engineering
+2025-08-13 12:38:35,263 - INFO - Collected: Symbiosis College Of Arts & Commerce
+2025-08-13 12:38:37,599 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_130825_123530.csv
+2025-08-13 12:38:37,626 - INFO - Collected: Pune Institute of Business Management (PIBM)
+2025-08-13 12:38:41,945 - INFO - Collected: Ajeenkya DY Patil University
+2025-08-13 12:38:43,965 - INFO - Found 56 cards on scroll #8
+2025-08-13 12:38:44,364 - INFO - New cards to process: 8
+2025-08-13 12:38:46,456 - INFO - Collected: JSPM University Pune
+2025-08-13 12:38:48,669 - INFO - Collected: Keystone School of Engineering
+2025-08-13 12:38:50,898 - INFO - Collected: MMCC
+2025-08-13 12:38:55,204 - INFO - Collected: Pune District Education Association's College of Engineering
+2025-08-13 12:38:57,783 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_130825_123535.csv
+2025-08-13 12:41:05,467 - INFO - Navigating to https://www.google.com/maps/search/nursery
+2025-08-13 12:41:08,035 - INFO - Found 6 cards on scroll #1
+2025-08-13 12:41:08,168 - INFO - New cards to process: 6
+2025-08-13 12:41:10,687 - INFO - Collected: Osho Vatika Nursery
+2025-08-13 12:41:13,051 - INFO - Collected: Osho Farm And Nursery
+2025-08-13 12:41:15,422 - INFO - Collected: Jagdamba Nursery
+2025-08-13 12:41:17,574 - INFO - Collected: Green Heaven Plantscape
+2025-08-13 12:41:19,694 - INFO - Collected: Garden World Nursery
+2025-08-13 12:41:21,870 - INFO - Collected: Huda Nursery
+2025-08-13 12:41:23,883 - INFO - Found 18 cards on scroll #2
+2025-08-13 12:41:23,990 - INFO - New cards to process: 12
+2025-08-13 12:41:26,171 - INFO - Collected: Royal Nursery & Landscaping
+2025-08-13 12:41:28,352 - INFO - Collected: गंगा नर्सरी ऑनलाइन
+2025-08-13 12:41:30,546 - INFO - Collected: Plants Cart | Online Plants Delivery in Delhi-NCR
+2025-08-13 12:41:32,663 - INFO - Collected: Green gold nursery
+2025-08-13 12:41:34,811 - INFO - Collected: Harsh Nursery & Gamla House
+2025-08-13 12:41:36,932 - INFO - Collected: Green Planet Nursery Palam Vihar
+2025-08-13 12:41:39,151 - INFO - Collected: New Friends Nursery
+2025-08-13 12:41:41,301 - INFO - Collected: plant planet nursery
+2025-08-13 12:41:43,449 - INFO - Collected: Bhawna Nursery
+2025-08-13 12:41:45,610 - INFO - Collected: Green Asia Nursery
+2025-08-13 12:41:47,813 - INFO - Collected: Sahil Nursery
+2025-08-13 12:41:49,970 - INFO - Collected: Green Grow Nursery
+2025-08-13 12:41:51,988 - INFO - Found 20 cards on scroll #3
+2025-08-13 12:41:52,126 - INFO - New cards to process: 2
+2025-08-13 12:41:54,246 - INFO - Collected: Kusum Nursery
+2025-08-13 12:41:56,466 - INFO - Collected: Gifting Greens Plant Gallery
+2025-08-13 12:41:58,481 - INFO - Found 32 cards on scroll #4
+2025-08-13 12:41:58,715 - INFO - New cards to process: 10
+2025-08-13 12:42:00,888 - INFO - Collected: New Bloom Nursery
+2025-08-13 12:42:03,104 - INFO - Collected: Green Plants and Nursery
+2025-08-13 12:42:05,266 - INFO - Collected: New Leaf Ecoscapes Nursery
+2025-08-13 12:42:09,635 - INFO - Collected: New bhawna nursery
+2025-08-13 12:42:11,847 - INFO - Collected: Girvar Nursery
+2025-08-13 12:42:14,040 - INFO - Collected: Osho Oxygreens
+2025-08-13 12:42:16,306 - INFO - Collected: Greenways Nursery, Delhi
+2025-08-13 12:42:20,804 - INFO - Collected: Gupta Nursery
+2025-08-13 12:42:22,830 - INFO - Found 40 cards on scroll #5
+2025-08-13 12:42:23,038 - INFO - New cards to process: 8
+2025-08-13 12:42:25,159 - INFO - Collected: The Nirmal Green Nursery
+2025-08-13 12:42:27,322 - INFO - Collected: Neeraj Nursery
+2025-08-13 12:42:29,455 - INFO - Collected: Jyoti green nursery
+2025-08-13 12:42:31,577 - INFO - Collected: Star Nursery
+2025-08-13 12:42:33,741 - INFO - Collected: Bharat Nursery
+2025-08-13 12:42:35,840 - INFO - Collected: Shanu Nursery
+2025-08-13 12:42:38,019 - INFO - Collected: Ruby Green Nursery - Best nursery in Delhi
+2025-08-13 12:42:40,202 - INFO - Collected: Osho nursery | Best Nursery In Gurgaon
+2025-08-13 12:42:42,227 - INFO - Found 46 cards on scroll #6
+2025-08-13 12:42:42,603 - INFO - New cards to process: 6
+2025-08-13 12:42:44,729 - INFO - Collected: Mehar nursery
+2025-08-13 12:42:46,867 - INFO - Collected: plant store
+2025-08-13 12:42:49,000 - INFO - Collected: SHRI SHYAM NURSERY
+2025-08-13 12:42:51,112 - INFO - Collected: Gifting Greens Nursery
+2025-08-13 12:42:53,280 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\nursery_google_maps_130825_124102.csv
+2025-08-13 12:43:57,227 - INFO - Navigating to https://www.google.com/maps/search/malls
+2025-08-13 12:44:00,287 - INFO - Found 6 cards on scroll #1
+2025-08-13 12:44:00,346 - INFO - New cards to process: 6
+2025-08-13 12:44:02,829 - INFO - Collected: AMBIENCE MALL, GURUGRAM
+2025-08-13 12:44:05,066 - INFO - Collected: Sahara Mall
+2025-08-13 12:44:07,226 - INFO - Collected: Vegas Mall
+2025-08-13 12:44:09,496 - INFO - Collected: MGF Metropolitan Mall
+2025-08-13 12:44:11,776 - INFO - Collected: City Centre, Dwarka
+2025-08-13 12:44:14,249 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\malls_google_maps_130825_124353.csv
