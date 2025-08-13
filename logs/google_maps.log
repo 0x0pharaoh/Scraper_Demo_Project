@@ -2797,3 +2797,12 @@ Call log:
 2025-08-13 16:53:50,159 - INFO - Collected: Flag of India at Central Park, Connaught Place
 2025-08-13 16:53:54,384 - INFO - Found 16 cards on scroll #2
 2025-08-13 16:53:54,539 - INFO - New cards to process: 8
+2025-08-13 16:53:56,888 - INFO - Collected: Bhool Bhulaiya
+2025-08-13 16:53:59,194 - INFO - Collected: Isa Khan's Tomb, Delhi
+2025-08-13 16:54:01,531 - INFO - Collected: Bara Lao Ka Gumbad, Delhi
+2025-08-13 16:54:03,759 - INFO - Collected: Mehrauli Archeological Park- Heritage Walk
+2025-08-13 16:54:06,003 - INFO - Collected: Quli Tomb
+2025-08-13 16:54:08,272 - INFO - Collected: Tomb of Balban
+2025-08-13 16:54:10,482 - INFO - Collected: Safdarjung Tomb, Delhi
+2025-08-13 16:54:12,705 - INFO - Collected: Darya Khan's Tomb
+2025-08-13 16:54:14,954 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\historic_monuments_google_maps_130825_165305.csv
