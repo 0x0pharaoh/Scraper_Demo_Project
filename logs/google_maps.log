@@ -2148,3 +2148,64 @@ Call log:
 2025-08-13 12:44:09,496 - INFO - Collected: MGF Metropolitan Mall
 2025-08-13 12:44:11,776 - INFO - Collected: City Centre, Dwarka
 2025-08-13 12:44:14,249 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\malls_google_maps_130825_124353.csv
+2025-08-13 13:06:05,790 - INFO - Navigating to https://www.google.com/maps/search/schools+in+delhi
+2025-08-13 13:06:16,606 - INFO - Found 8 cards on scroll #1
+2025-08-13 13:06:16,843 - INFO - New cards to process: 8
+2025-08-13 13:06:19,272 - INFO - Collected: Venkateshwar International School
+2025-08-13 13:06:21,686 - INFO - Collected: Prudence Schools - Top & Best CBSE School in Dwarka, Delhi
+2025-08-13 13:06:23,808 - INFO - Collected: Delhi International School Sector 23 Dwarka
+2025-08-13 13:06:25,973 - INFO - Collected: New Era Public School - Best Schools in Mayapuri, Delhi
+2025-08-13 13:06:28,168 - INFO - Collected: Holy Trinity School I.p.extension East Delhi
+2025-08-13 13:06:30,389 - INFO - Collected: ORCHIDS The International School - CBSE School in Dwarka Sector 19
+2025-08-13 13:06:32,585 - INFO - Collected: Swiss Cottage School, Bijwasan, Delhi
+2025-08-13 13:06:34,747 - INFO - Collected: Delhi International School Edge
+2025-08-13 13:06:36,784 - INFO - Found 16 cards on scroll #2
+2025-08-13 13:06:36,873 - INFO - New cards to process: 8
+2025-08-13 13:06:39,054 - INFO - Collected: Vasant Valley School
+2025-08-13 13:06:41,272 - INFO - Collected: Modern International School
+2025-08-13 13:06:43,474 - INFO - Collected: Stanford British School.
+2025-08-13 13:06:45,717 - INFO - Collected: Delhi Public School Vasant Kunj
+2025-08-13 13:06:47,984 - INFO - Collected: K.R. Mangalam Global School-IB Board GK 1 | best school in gk | best ib school in delhi
+2025-08-13 13:06:50,154 - INFO - Collected: New Delhi Public School
+2025-08-13 13:06:52,342 - INFO - Collected: New Sidhhartha public school, Kapashera, Delhi
+2025-08-13 13:06:54,525 - INFO - Collected: Don Bosco School
+2025-08-13 13:06:56,583 - INFO - Found 28 cards on scroll #3
+2025-08-13 13:06:56,831 - INFO - New cards to process: 10
+2025-08-13 13:06:58,959 - INFO - Collected: Shah International School
+2025-08-13 13:07:01,189 - INFO - Collected: Vishal Bharti Public School
+2025-08-13 13:07:03,428 - INFO - Collected: C.M Convent School Delhi
+2025-08-13 13:07:05,594 - INFO - Collected: St. Mark's Senior Secondary Public School Meera Bagh Paschim Vihar
+2025-08-13 13:07:07,834 - INFO - Collected: Doon Public School
+2025-08-13 13:07:10,025 - INFO - Collected: THE INDIAN SCHOOL
+2025-08-13 13:07:12,405 - INFO - Collected: Amity International School
+2025-08-13 13:07:14,614 - INFO - Collected: Adarsh Public School
+2025-08-13 13:07:16,827 - INFO - Collected: Delhi Public School R.K.Puram
+2025-08-13 13:07:21,004 - INFO - Found 36 cards on scroll #4
+2025-08-13 13:07:21,175 - INFO - New cards to process: 6
+2025-08-13 13:07:23,286 - INFO - Collected: JM International School Dwarka
+2025-08-13 13:07:25,409 - INFO - Collected: St. Froebel Senior Secondary School - Best School in Paschim Vihar, West Delhi, New Delhi
+2025-08-13 13:07:27,578 - INFO - Collected: Air Force Bal Niketan School
+2025-08-13 13:07:29,806 - INFO - Collected: Vandana International School
+2025-08-13 13:07:31,935 - INFO - Collected: Dr. Radhakrishnan International School
+2025-08-13 13:07:34,050 - INFO - Collected: Delhi Public School, DLF City, Gurugram
+2025-08-13 13:07:36,086 - INFO - Found 48 cards on scroll #5
+2025-08-13 13:07:36,470 - INFO - New cards to process: 12
+2025-08-13 13:07:38,583 - INFO - Collected: Rao Ganga Ram Public School Delhi
+2025-08-13 13:07:40,702 - INFO - Collected: South Delhi Public School
+2025-08-13 13:07:42,846 - INFO - Collected: Prudence Schools - Top & Best CBSE School in Dwarka, Delhi
+2025-08-13 13:07:45,083 - INFO - Collected: Sanskriti School
+2025-08-13 13:07:47,208 - INFO - Collected: Kanha International School
+2025-08-13 13:07:49,390 - INFO - Collected: MRG School
+2025-08-13 13:07:51,508 - INFO - Collected: St. Columbo Public School
+2025-08-13 13:07:53,622 - INFO - Collected: Mater Dei School
+2025-08-13 13:07:55,766 - INFO - Collected: Pushpanjali Public School, Bijwasan, New Delhi
+2025-08-13 13:07:58,396 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\schools_in_delhi_google_maps_130825_130602.csv
+2025-08-13 13:09:07,560 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-13 13:09:09,905 - INFO - Found 6 cards on scroll #1
+2025-08-13 13:09:09,960 - INFO - New cards to process: 6
+2025-08-13 13:09:13,207 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-13 13:09:15,466 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-13 13:09:17,625 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-13 13:09:19,844 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-13 13:09:21,963 - INFO - Collected: Shri Radha Krishna Temple Gurugram, Delhi NCR
+2025-08-13 13:09:24,142 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_130825_130904.csv

@@ -49,6 +49,7 @@ def save_to_csv(data, filename):
 
 def run_scraper(query, output_file=None, limit=None):
     target_count = limit if limit is not None else 40  # Default target when no limit is given
+    timeout_ms = 180000 if limit is None else 60000  # Longer timeout if no limit
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
@@ -56,17 +57,24 @@ def run_scraper(query, output_file=None, limit=None):
 
         search_url = f"https://www.google.com/maps/search/{quote_plus(query)}"
         logger.info(f"Navigating to {search_url}")
-        page.goto(search_url, timeout=60000)
+        page.goto(search_url, timeout=timeout_ms)
 
         collected = []
-        seen_entries = set()  # store lowercase for case-insensitive deduplication
+        seen_entries = set()
         visited_hrefs = set()
 
-        max_scrolls = 30
+        max_scrolls = 50 if limit is None else 30
         scrolls_done = 0
         last_cards_count = 0
 
         while len(collected) < target_count and scrolls_done < max_scrolls:
+            # Wait for result cards to be visible
+            try:
+                page.wait_for_selector("a.hfpxzc", timeout=15000)
+            except:
+                logger.warning("⚠ No result cards found.")
+                break
+
             cards = page.locator("a.hfpxzc").all()
             logger.info(f"Found {len(cards)} cards on scroll #{scrolls_done + 1}")
 
@@ -89,16 +97,15 @@ def run_scraper(query, output_file=None, limit=None):
 
                 try:
                     card.click()
-                    page.wait_for_timeout(2000)  # wait for details to load
+                    page.wait_for_timeout(2000)
                     data = extract_card_data(page)
 
-                    # Deduplicate based on (Name.lower(), URL.lower())
                     entry_key = (data["Name"].lower(), data["URL"].lower())
                     if entry_key not in seen_entries:
                         collected.append(data)
                         seen_entries.add(entry_key)
                         logger.info(f"Collected: {data['Name']}")
-                    
+
                     visited_hrefs.add(href)
 
                     if len(collected) >= target_count:
@@ -118,6 +125,7 @@ def run_scraper(query, output_file=None, limit=None):
 
     filepath = save_to_csv(collected, output_file)
     return {"file": filepath, "data": collected}
+
 
 
 
