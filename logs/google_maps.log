@@ -2806,3 +2806,73 @@ Call log:
 2025-08-13 16:54:10,482 - INFO - Collected: Safdarjung Tomb, Delhi
 2025-08-13 16:54:12,705 - INFO - Collected: Darya Khan's Tomb
 2025-08-13 16:54:14,954 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\historic_monuments_google_maps_130825_165305.csv
+2025-08-14 14:21:57,426 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-14 14:22:07,406 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-14 14:22:17,297 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-14 14:22:21,391 - INFO - Found 6 cards on scroll #1
+2025-08-14 14:22:21,650 - INFO - New cards to process: 6
+2025-08-14 14:22:40,198 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-14 14:22:43,761 - INFO - Found 6 cards on scroll #1
+2025-08-14 14:22:44,005 - INFO - New cards to process: 6
+2025-08-14 14:22:46,748 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-14 14:22:49,166 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-14 14:22:51,387 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-14 14:22:53,569 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-14 14:22:55,801 - INFO - Collected: Shri Radha Krishna Temple Gurugram, Delhi NCR
+2025-08-14 14:22:58,399 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_140825_142237.csv
+2025-08-14 14:23:12,563 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-14 14:23:16,225 - INFO - Found 8 cards on scroll #1
+2025-08-14 14:23:16,317 - INFO - New cards to process: 8
+2025-08-14 14:23:19,881 - INFO - Collected: MIT Alandi Campus
+2025-08-14 14:23:22,595 - INFO - Collected: Fergusson College
+2025-08-14 14:23:24,836 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-14 14:23:27,022 - INFO - Collected: FLAME University
+2025-08-14 14:23:29,305 - INFO - Collected: COEP Technological University
+2025-08-14 14:23:31,791 - INFO - Collected: AISSMS College of Engineering
+2025-08-14 14:23:34,480 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-14 14:23:36,906 - INFO - Collected: Nowrosjee Wadia College
+2025-08-14 14:23:39,039 - INFO - Found 16 cards on scroll #2
+2025-08-14 14:23:39,272 - INFO - New cards to process: 8
+2025-08-14 14:23:41,445 - INFO - Collected: MIT World Peace University (MIT-WPU)
+2025-08-14 14:23:43,670 - INFO - Collected: Azam Campus
+2025-08-14 14:23:45,815 - INFO - Collected: Savitribai Phule Pune University
+2025-08-14 14:23:48,072 - INFO - Collected: KP Paramedical institute- Best Paramedical institute In Pune | DMLT College In Pune| Paramedical College in Hadapsar, Pune
+2025-08-14 14:23:50,411 - INFO - Collected: Christ College
+2025-08-14 14:23:52,621 - INFO - Collected: Abasaheb Garware College
+2025-08-14 14:23:54,860 - INFO - Collected: P.E.S. Modern College of Engineering
+2025-08-14 14:23:57,065 - INFO - Collected: Brihan Maharashtra College of Commerce (BMCC)
+2025-08-14 14:23:59,106 - INFO - Found 21 cards on scroll #3
+2025-08-14 14:23:59,286 - INFO - New cards to process: 5
+2025-08-14 14:24:01,410 - INFO - Collected: College of Agriculture, Pune
+2025-08-14 14:24:03,676 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-14 14:24:06,048 - INFO - Collected: MIT Art, Design & Technology University
+2025-08-14 14:24:08,319 - INFO - Collected: Choice College of Arts and Commerce
+2025-08-14 14:24:10,502 - INFO - Collected: Deccan College Post Graduate and Research Institute
+2025-08-14 14:24:12,641 - INFO - Found 29 cards on scroll #4
+2025-08-14 14:24:13,258 - INFO - New cards to process: 4
+2025-08-14 14:24:15,560 - INFO - Collected: Ness Wadia College of Commerce
+2025-08-14 14:24:17,788 - INFO - Collected: Sir Parashurambhau College
+2025-08-14 14:24:20,015 - INFO - Collected: SCTR'S Pune Institute of Computer Technology
+2025-08-14 14:24:22,254 - INFO - Collected: AISSMS Polytechnic
+2025-08-14 14:24:24,297 - INFO - Found 37 cards on scroll #5
+2025-08-14 14:24:24,618 - INFO - New cards to process: 7
+2025-08-14 14:24:26,807 - INFO - Collected: Bharati Vidyapeeth Institute Of Management and Entrepreneurship Development
+2025-08-14 14:24:29,011 - INFO - Collected: Suryadatta College Of Management Information Research & Technology (SCMIRT) - Best College in Pune
+2025-08-14 14:24:31,271 - INFO - Collected: ILS Law College
+2025-08-14 14:24:33,492 - INFO - Collected: Bharati Vidyapeeth College Of Engineering Lavale Pune
+2025-08-14 14:24:35,749 - INFO - Collected: K P Paramedical institute- Best Paramedical institute In Pune |DMLT College In Pune| Paramedical College in Pune
+2025-08-14 14:24:38,012 - INFO - Collected: D. Y. Patil International University
+2025-08-14 14:24:42,203 - INFO - Found 42 cards on scroll #6
+2025-08-14 14:24:42,718 - INFO - New cards to process: 4
+2025-08-14 14:24:44,990 - INFO - Collected: Bharati Vidyapeeth Yashwantrao Mohite College of Arts, Science and Commerce
+2025-08-14 14:24:47,301 - INFO - Collected: Parvatibai Genba Moze College of Engineering,PUNE
+2025-08-14 14:24:49,566 - INFO - Collected: Sarhad College of Arts,Commerce and Science
+2025-08-14 14:24:51,944 - INFO - Collected: St. Mira's College For Girls
+2025-08-14 14:24:54,009 - INFO - Found 50 cards on scroll #7
+2025-08-14 14:24:54,408 - INFO - New cards to process: 8
+2025-08-14 14:24:56,561 - INFO - Collected: Modern Law College
+2025-08-14 14:24:58,766 - INFO - Collected: MIT Arts, Commerce & Science College
+2025-08-14 14:25:00,977 - INFO - Collected: Haribhai V. Desai College of Commerce, Arts and Science
+2025-08-14 14:25:03,332 - INFO - Collected: Bharati Vidyapeeth’s Jawaharlal Nehru Institute of Technology (Polytechnic / Diploma),Katraj, Pune
+2025-08-14 14:25:05,583 - INFO - Collected: Symbiosis College Of Arts & Commerce
+2025-08-14 14:25:07,791 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_140825_142311.csv

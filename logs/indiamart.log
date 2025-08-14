@@ -580,3 +580,5 @@
 2025-08-13 16:55:06,793 - INFO - New unique cards this round: 0
 2025-08-13 16:55:08,799 - INFO - ℹ No new cards loaded after scrolling, ending.
 2025-08-13 16:55:08,979 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_130825_165451.csv
+2025-08-14 14:25:41,124 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-14 14:25:43,466 - INFO - Found 10 cards on scroll #1
