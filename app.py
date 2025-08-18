@@ -10,8 +10,8 @@ from datetime import datetime
 import importlib
 from flask_cors import CORS
 from urllib.parse import urljoin
-from utils.logger import log_buffer   # ✅ added import
-import base64   # ✅ added import
+from utils.logger import log_buffer   # import log_buffer
+import base64   # needed for encoding
 
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
@@ -81,13 +81,21 @@ def try_run_plugin_direct(site, query, output_abs_path, limit):
 
 @app.after_request
 def add_logs_to_response(response):
-    """Attach logs to HTTP response headers (Base64 encoded) so they can be seen in browser console."""
+    """Store logs in session so they survive redirects."""
     if log_buffer:
-        logs_text = " || ".join(log_buffer[-30:])
-        logs_b64 = base64.b64encode(logs_text.encode("utf-8")).decode("ascii")
-        response.headers["X-Debug-Logs"] = logs_b64
+        logs_text = " || ".join(log_buffer[-50:])
+        session["last_logs"] = logs_text
         log_buffer.clear()
     return response
+
+@app.route("/debug-logs")
+def debug_logs():
+    """Expose last logs via JSON so browser can print them."""
+    logs_text = session.pop("last_logs", "")
+    if not logs_text:
+        return jsonify({"logs_b64": ""})
+    logs_b64 = base64.b64encode(logs_text.encode("utf-8")).decode("ascii")
+    return jsonify({"logs_b64": logs_b64})
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -231,20 +239,10 @@ def api_scrape():
         "file_url": abs_url(f"static/{filename}")
     })
 
-@app.route("/debug-logs")
-def debug_logs():
-    import base64
-    if not log_buffer:
-        return jsonify({"logs_b64": ""})
-    logs_text = " || ".join(log_buffer[-50:])
-    logs_b64 = base64.b64encode(logs_text.encode("utf-8")).decode("ascii")
-    log_buffer.clear()
-    return jsonify({"logs_b64": logs_b64})
-
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=True)
+
 
 
 

@@ -2969,3 +2969,21 @@ Call log:
 2025-08-18 12:34:05,854 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
 2025-08-18 12:34:08,083 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
 2025-08-18 12:34:10,227 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_180825_123352.csv
+2025-08-18 12:39:23,641 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-18 12:39:27,224 - INFO - Found 8 cards on scroll #1
+2025-08-18 12:39:27,394 - INFO - New cards to process: 8
+2025-08-18 12:39:29,996 - INFO - Collected: UV Technocrats
+2025-08-18 12:39:32,214 - INFO - Collected: Fergusson College
+2025-08-18 12:39:34,408 - INFO - Collected: COEP Technological University
+2025-08-18 12:39:36,633 - INFO - Collected: AISSMS College of Engineering
+2025-08-18 12:39:38,797 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-18 12:39:41,270 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_180825_123921.csv
+2025-08-18 13:15:51,633 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-18 13:15:58,142 - INFO - Found 6 cards on scroll #1
+2025-08-18 13:15:58,350 - INFO - New cards to process: 6
+2025-08-18 13:16:00,892 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-18 13:16:03,197 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-18 13:16:05,386 - INFO - Collected: Uttara Swamimalai Temple Sree Swaminatha Swami
+2025-08-18 13:16:07,587 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-18 13:16:09,815 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-18 13:16:12,048 - INFO - Collected: Shri Aadya Katyayani Shaktipith Mandir, Delhi
