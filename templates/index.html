@@ -106,6 +106,21 @@
     </div>
     {% endif %}
 </div>
+<script>
+function fetchLogs() {
+  fetch("/debug-logs")
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.logs_b64) {
+        const decoded = atob(data.logs_b64);
+        console.log("🔎 Server Logs:");
+        decoded.split(" || ").forEach(line => console.log(line));
+      }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", fetchLogs);
+</script>
 </body>
 </html>
 

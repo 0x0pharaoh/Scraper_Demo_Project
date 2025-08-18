@@ -595,3 +595,51 @@
 2025-08-14 14:26:56,230 - INFO - Found 10 cards on scroll #1
 2025-08-14 14:26:57,624 - INFO - New unique cards this round: 10
 2025-08-14 14:26:57,793 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\healthcare_indiamart_140825_142654.csv
+2025-08-18 11:50:01,777 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=tiles
+2025-08-18 11:50:04,294 - INFO - Found 10 cards on scroll #1
+2025-08-18 11:50:06,771 - INFO - New unique cards this round: 10
+2025-08-18 11:50:07,281 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\tiles_indiamart_180825_114958.csv
+2025-08-18 12:22:37,597 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-18 12:22:50,382 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-18 12:22:57,305 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-18 12:22:58,477 - INFO - Found 10 cards on scroll #1
+2025-08-18 12:23:13,294 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-18 12:23:14,575 - INFO - Found 10 cards on scroll #1
+2025-08-18 12:23:15,806 - INFO - New unique cards this round: 10
+2025-08-18 12:23:17,958 - INFO - Found 20 cards on scroll #2
+2025-08-18 12:23:19,477 - INFO - New unique cards this round: 10
+2025-08-18 12:23:21,507 - INFO - Found 20 cards on scroll #3
+2025-08-18 12:23:22,760 - INFO - New unique cards this round: 0
+2025-08-18 12:23:24,784 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-18 12:23:24,970 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_180825_122311.csv
+2025-08-18 12:23:28,279 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-18 12:23:29,216 - INFO - Found 10 cards on scroll #1
+2025-08-18 12:23:30,397 - INFO - New unique cards this round: 10
+2025-08-18 12:23:32,617 - INFO - Found 20 cards on scroll #2
+2025-08-18 12:23:34,183 - INFO - New unique cards this round: 10
+2025-08-18 12:23:36,225 - INFO - Found 20 cards on scroll #3
+2025-08-18 12:23:37,533 - INFO - New unique cards this round: 0
+2025-08-18 12:23:39,538 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-18 12:23:39,696 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_180825_122326.csv
+2025-08-18 12:28:31,758 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=speakers
+2025-08-18 12:28:32,580 - INFO - Found 10 cards on scroll #1
+2025-08-18 12:28:33,993 - INFO - New unique cards this round: 10
+2025-08-18 12:28:36,304 - INFO - Found 20 cards on scroll #2
+2025-08-18 12:28:37,750 - INFO - New unique cards this round: 10
+2025-08-18 12:28:39,789 - INFO - Found 20 cards on scroll #3
+2025-08-18 12:28:40,993 - INFO - New unique cards this round: 0
+2025-08-18 12:28:42,998 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-18 12:28:43,138 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\speakers_indiamart_180825_122830.csv
+2025-08-18 12:33:29,052 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=tiles
+2025-08-18 12:33:30,495 - INFO - Found 10 cards on scroll #1
+2025-08-18 12:33:31,798 - INFO - New unique cards this round: 10
+2025-08-18 12:33:31,939 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\tiles_indiamart_180825_123327.csv
+2025-08-18 12:35:41,181 - INFO - Navigating to https://dir.indiamart.com/search.mp?ss=headphone
+2025-08-18 12:35:42,587 - INFO - Found 10 cards on scroll #1
+2025-08-18 12:35:44,610 - INFO - New unique cards this round: 10
+2025-08-18 12:35:46,716 - INFO - Found 20 cards on scroll #2
+2025-08-18 12:35:48,670 - INFO - New unique cards this round: 10
+2025-08-18 12:35:50,706 - INFO - Found 20 cards on scroll #3
+2025-08-18 12:35:51,885 - INFO - New unique cards this round: 0
+2025-08-18 12:35:53,890 - INFO - ℹ No new cards loaded after scrolling, ending.
+2025-08-18 12:35:54,011 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\headphone_indiamart_180825_123540.csv

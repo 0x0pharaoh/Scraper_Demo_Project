@@ -2876,3 +2876,96 @@ Call log:
 2025-08-14 14:25:03,332 - INFO - Collected: Bharati Vidyapeeth’s Jawaharlal Nehru Institute of Technology (Polytechnic / Diploma),Katraj, Pune
 2025-08-14 14:25:05,583 - INFO - Collected: Symbiosis College Of Arts & Commerce
 2025-08-14 14:25:07,791 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_140825_142311.csv
+2025-08-18 11:48:22,202 - INFO - Navigating to https://www.google.com/maps/search/colleges+in+pune
+2025-08-18 11:48:30,174 - INFO - Found 8 cards on scroll #1
+2025-08-18 11:48:30,329 - INFO - New cards to process: 8
+2025-08-18 11:48:34,400 - INFO - Collected: Fergusson College
+2025-08-18 11:48:36,917 - INFO - Collected: Modern College of Arts, Science and Commerce
+2025-08-18 11:48:39,403 - INFO - Collected: COEP Technological University
+2025-08-18 11:48:44,343 - INFO - Collected: Poona College of Arts, Science and Commerce
+2025-08-18 11:48:46,748 - INFO - Collected: Dr. D. Y. Patil Institute of Technology
+2025-08-18 11:48:51,607 - INFO - Collected: MIT World Peace University (MIT-WPU)
+2025-08-18 11:48:53,715 - INFO - Found 16 cards on scroll #2
+2025-08-18 11:48:54,024 - INFO - New cards to process: 8
+2025-08-18 11:48:56,242 - INFO - Collected: Azam Campus
+2025-08-18 11:48:58,477 - INFO - Collected: Savitribai Phule Pune University
+2025-08-18 11:49:00,871 - INFO - Collected: KP Paramedical institute- Best Paramedical institute In Pune | DMLT College In Pune| Paramedical College in Hadapsar, Pune
+2025-08-18 11:49:03,181 - INFO - Collected: Christ College
+2025-08-18 11:49:05,493 - INFO - Collected: Abasaheb Garware College
+2025-08-18 11:49:07,812 - INFO - Collected: P.E.S. Modern College of Engineering
+2025-08-18 11:49:10,114 - INFO - Collected: Brihan Maharashtra College of Commerce (BMCC)
+2025-08-18 11:49:14,378 - INFO - Found 28 cards on scroll #3
+2025-08-18 11:49:14,766 - INFO - New cards to process: 10
+2025-08-18 11:49:17,011 - INFO - Collected: College of Agriculture, Pune
+2025-08-18 11:49:19,388 - INFO - Collected: Dr. D. Y. Patil Vidyapeeth, Pimpri, Pune
+2025-08-18 11:49:21,639 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\colleges_in_pune_google_maps_180825_114818.csv
+2025-08-18 12:20:03,370 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-18 12:20:09,975 - INFO - Found 6 cards on scroll #1
+2025-08-18 12:20:10,080 - INFO - New cards to process: 6
+2025-08-18 12:20:12,870 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-18 12:20:16,583 - INFO - Found 6 cards on scroll #1
+2025-08-18 12:20:16,659 - INFO - New cards to process: 6
+2025-08-18 12:20:18,984 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-18 12:20:21,222 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-18 12:20:23,472 - INFO - Collected: Uttara Swamimalai Temple Sree Swaminatha Swami
+2025-08-18 12:20:25,788 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-18 12:20:28,102 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-18 12:20:30,310 - INFO - Collected: Shri Aadya Katyayani Shaktipith Mandir, Delhi
+2025-08-18 12:20:32,381 - INFO - Found 12 cards on scroll #2
+2025-08-18 12:20:32,536 - INFO - New cards to process: 6
+2025-08-18 12:20:34,740 - INFO - Collected: Shri Radha Krishna Temple Gurugram, Delhi NCR
+2025-08-18 12:20:37,016 - INFO - Collected: Gauri Shankar Mandir
+2025-08-18 12:20:39,336 - INFO - Collected: Radha Krishna Mandir
+2025-08-18 12:20:41,624 - INFO - Collected: Jagannath Temple
+2025-08-18 12:20:43,979 - INFO - Collected: Sanatan Dharm Mandir
+2025-08-18 12:20:46,233 - INFO - Collected: Radhe Krishna Temple, Sector-31
+2025-08-18 12:20:48,284 - INFO - Found 18 cards on scroll #3
+2025-08-18 12:20:48,483 - INFO - New cards to process: 6
+2025-08-18 12:20:50,638 - INFO - Collected: Mangal Mahadev Birla Kanan Delhi
+2025-08-18 12:20:52,841 - INFO - Collected: Temple 17 B & Iffco Colony
+2025-08-18 12:20:54,972 - INFO - Collected: ISKCON Sri Sri Radha Gopinath Temple Sector 45 Gurugram
+2025-08-18 12:20:57,106 - INFO - Collected: Shaktipeeth Mandir
+2025-08-18 12:20:59,208 - INFO - Collected: Shiv Mandir
+2025-08-18 12:21:01,346 - INFO - Collected: Hanuman Mandir
+2025-08-18 12:21:03,404 - INFO - Found 26 cards on scroll #4
+2025-08-18 12:21:03,812 - INFO - New cards to process: 5
+2025-08-18 12:21:05,968 - INFO - Collected: Shri Jagannath Temple, Gurugram, Delhi NCR
+2025-08-18 12:21:08,129 - INFO - Collected: Hanuman Mandir
+2025-08-18 12:21:12,544 - INFO - Collected: Chhatri Wala Shiv Mandir
+2025-08-18 12:21:14,726 - INFO - Collected: Shri Yogmaya Temple, Mehrauli
+2025-08-18 12:21:16,797 - INFO - Found 38 cards on scroll #5
+2025-08-18 12:21:17,069 - INFO - New cards to process: 11
+2025-08-18 12:21:19,207 - INFO - Collected: Prem Mandir
+2025-08-18 12:21:21,451 - INFO - Collected: ISKCON Temple Dwarka Delhi
+2025-08-18 12:21:23,734 - INFO - Collected: Baba Ramdev ji Temple (Runicha Dham) Ramdevra Rajasthan
+2025-08-18 12:21:25,927 - INFO - Collected: Shiv Murti, Gurugram
+2025-08-18 12:21:28,106 - INFO - Collected: Ayyappa Temple, New Delhi
+2025-08-18 12:21:30,334 - INFO - Collected: NEO Hanuman temple
+2025-08-18 12:21:32,549 - INFO - Collected: Ayyappa Temple
+2025-08-18 12:21:34,701 - INFO - Collected: Shri Laxmi Narayan Mandir
+2025-08-18 12:21:36,831 - INFO - Collected: Shiv Temple
+2025-08-18 12:21:38,983 - INFO - Collected: Lotus Temple
+2025-08-18 12:21:41,171 - INFO - Collected: Lotus Temple
+2025-08-18 12:21:43,199 - INFO - Found 40 cards on scroll #6
+2025-08-18 12:21:43,474 - INFO - New cards to process: 2
+2025-08-18 12:21:45,603 - INFO - Collected: Devi Kamakshi Mandir
+2025-08-18 12:21:49,830 - INFO - Found 46 cards on scroll #7
+2025-08-18 12:21:50,149 - INFO - New cards to process: 6
+2025-08-18 12:21:52,463 - INFO - Collected: Shri Radha Krishan Mandir and prachin Shiv Mandir chakkarpur
+2025-08-18 12:21:54,866 - INFO - Collected: Prachin Shiv Mandir, Hanuman - Shani Mandir ( Mata Mandir - Ram Darwar Mandir, Hanuman Mandir)
+2025-08-18 12:21:59,203 - INFO - Collected: Chattarpur Temple Hanuman mandir, New Delhi
+2025-08-18 12:22:01,527 - INFO - Collected: Shri Shani Dev Temple
+2025-08-18 12:22:05,757 - INFO - Found 52 cards on scroll #8
+2025-08-18 12:22:06,111 - INFO - New cards to process: 6
+2025-08-18 12:22:08,231 - INFO - Collected: Shiv Mandir
+2025-08-18 12:22:10,456 - INFO - Collected: Temple
+2025-08-18 12:22:12,661 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_180825_122011.csv
+2025-08-18 12:33:53,809 - INFO - Navigating to https://www.google.com/maps/search/temples
+2025-08-18 12:33:56,877 - INFO - Found 6 cards on scroll #1
+2025-08-18 12:33:56,991 - INFO - New cards to process: 6
+2025-08-18 12:33:59,206 - INFO - Collected: Shiv Shakti Hanuman Mandir, Purohit
+2025-08-18 12:34:01,449 - INFO - Collected: Shiv ji Temple, Gurugram, Delhi NCR
+2025-08-18 12:34:03,629 - INFO - Collected: Uttara Swamimalai Temple Sree Swaminatha Swami
+2025-08-18 12:34:05,854 - INFO - Collected: Shri Mata Sheetla Devi Mandir (Gurugram, Haryana)
+2025-08-18 12:34:08,083 - INFO - Collected: Ancient Shiv Temple, Carterpuri, Gurugram
+2025-08-18 12:34:10,227 - INFO - Scraping completed. Output saved to C:\Users\shari\scraper_project\static\temples_google_maps_180825_123352.csv

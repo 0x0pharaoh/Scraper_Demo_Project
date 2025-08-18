@@ -3,6 +3,14 @@
 import logging
 import os
 
+# buffer for latest logs (per request)
+log_buffer = []
+
+class BrowserLogHandler(logging.Handler):
+    def emit(self, record):
+        msg = self.format(record)
+        log_buffer.append(msg)
+
 def get_logger(name):
     log_dir = "logs"
     os.makedirs(log_dir, exist_ok=True)
@@ -23,7 +31,13 @@ def get_logger(name):
         fh.setFormatter(formatter)
         ch.setFormatter(formatter)
 
+        # add custom handler that stores logs in memory
+        bh = BrowserLogHandler()
+        bh.setLevel(logging.INFO)
+        bh.setFormatter(formatter)
+
         logger.addHandler(fh)
         logger.addHandler(ch)
+        logger.addHandler(bh)
 
     return logger
