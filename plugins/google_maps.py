@@ -1,7 +1,7 @@
 # google_maps.py
 
-import subprocess
-subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
+# import subprocess
+# subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
 import time
 import csv

@@ -14,7 +14,7 @@ from utils.logger import log_buffer   # import log_buffer
 import base64   # needed for encoding
 
 app = Flask(__name__)
-app.secret_key = "your-secret-key"
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 CORS(app, resources={r"/api/*": {"origins": "*"}})  # Allow extension to call API
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

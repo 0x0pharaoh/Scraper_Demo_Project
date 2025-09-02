@@ -1,7 +1,7 @@
 # indiamart.py
 
-import subprocess
-subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
+# import subprocess
+# subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 import csv
