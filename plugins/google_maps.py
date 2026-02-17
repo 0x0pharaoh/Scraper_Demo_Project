@@ -1,7 +1,7 @@
 # google_maps.py
 
-# import subprocess
-# subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
+import subprocess
+subprocess.run(["python", "-m", "playwright", "install", "chromium"], check=True)
 
 import time
 import csv
@@ -10,6 +10,7 @@ import re
 from urllib.parse import quote_plus
 from playwright.sync_api import sync_playwright
 from utils.logger import get_logger
+from utils.gpt_parser import parse_with_gpt
 
 logger = get_logger("google_maps")
 description = "Scrape business data from Google Maps search results"
@@ -21,6 +22,49 @@ def scroll_feed(page):
     except:
         logger.warning("Could not scroll feed. Possibly no more results.")
     time.sleep(2)
+    
+def parse_business_details(data_list):
+   
+    result = {
+        "Address": None,
+        "City": None,
+        "State": None,
+        "Zipcode": None,
+        "Mobile": None,
+        "Website": None
+    }
+
+    for item in data_list:
+        item = item.strip()
+
+        # Full address (look for commas and zipcode)
+        if "," in item and re.search(r"\d{6}", item):
+            result["Address"] = item
+            # Extract zipcode
+            match = re.search(r"\b\d{6}\b", item)
+            if match:
+                result["Zipcode"] = match.group(0)
+            # Extract state (last word before zipcode)
+            parts = item.split(",")
+            if len(parts) >= 2:
+                state_part = parts[-1].strip()
+                if result["Zipcode"] and state_part.endswith(result["Zipcode"]):
+                    state_part = state_part.replace(result["Zipcode"], "").strip()
+                result["State"] = state_part
+            # Extract city (second last part)
+            if len(parts) >= 3:
+                result["City"] = parts[-2].strip()
+
+        # Website
+        elif re.search(r"(https?:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", item):
+            result["Website"] = item
+
+        elif re.search(r"\b\d[\d\s]{4,20}\d\b", item):
+            number = re.search(r"\b\d[\d\s]{4,20}\d\b", item).group(0)
+            # Normalize: remove spaces
+            result["Mobile"] = re.sub(r"\s+", "", number)
+
+    return result
 
 def extract_card_data(page):
     """Extract data from the currently opened side panel."""
@@ -28,15 +72,28 @@ def extract_card_data(page):
         name = page.locator("h1.DUwDvf.lfPIob").inner_text().strip()
     except:
         name = "N/A"
-
+    
     try:
         all_texts = page.locator("div.Io6YTe").all_inner_texts()
-        address = next((t.strip() for t in all_texts if "," in t and any(c.isdigit() for c in t)), "N/A")
     except:
-        address = "N/A"
+        all_texts = []
+        
+    try:
+        image_src = page.locator("div.ZKCDEc img").first.get_attribute("src")
+    except:
+        image_src = None
 
     place_url = page.url
-    return {"Name": name, "URL": place_url, "Address": address}
+    data = {
+        "Name": name,
+        "URL": place_url,
+        "Image": image_src
+    }
+
+       
+    data.update(parse_business_details(all_texts))
+
+    return data
 
 def normalize_key(*values):
     """Normalize values for duplicate detection."""
@@ -44,10 +101,10 @@ def normalize_key(*values):
         return re.sub(r"\s+", " ", v.strip().lower())
     return tuple(clean(str(v)) for v in values)
 
-def save_to_csv(data, filepath):
+def save_to_csv(data, filepath,fieldnames=[]):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Name", "URL", "Address"])
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
     logger.info(f"Scraping completed. Output saved to {filepath}")
@@ -132,7 +189,7 @@ def run_scraper(query, output_file=None, limit=None):
         output_file = os.path.abspath(output_file)
 
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    filepath = save_to_csv(collected[:target_count], output_file)
+    filepath = save_to_csv(collected[:target_count], output_file,list(collected[0].keys()))
     return {"file": filepath, "data": collected}
 
 

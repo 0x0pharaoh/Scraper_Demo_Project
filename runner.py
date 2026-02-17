@@ -66,7 +66,6 @@ def main():
     parser.add_argument("--output", required=False)
     parser.add_argument("--limit", type=int, default=None)
     args = parser.parse_args()
-
     output_file = args.output or generate_filename(args.query, args.site)
     output_file = os.path.abspath(output_file)
 

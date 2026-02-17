@@ -12,9 +12,14 @@ from flask_cors import CORS
 from urllib.parse import urljoin
 from utils.logger import log_buffer   # import log_buffer
 import base64   # needed for encoding
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
+print("FLASK_SECRET_KEY",os.getenv("FLASK_SECRET_KEY"))
 CORS(app, resources={r"/api/*": {"origins": "*"}})  # Allow extension to call API
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -240,8 +245,8 @@ def api_scrape():
     })
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port, debug=True,use_reloader=False)
 
 
 
