@@ -10,10 +10,10 @@ import json
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-def generate_filename(query, site):
+def generate_filename(query, site, fmt="csv"):
     filename_safe = query.lower().replace(" ", "_")
     date_str = datetime.now().strftime("%d%m%y_%H%M%S")
-    return os.path.join(BASE_DIR, "static", f"{filename_safe}_{site}_{date_str}.csv")
+    return os.path.join(BASE_DIR, "static", f"{filename_safe}_{site}_{date_str}.{fmt}")
 
 def run_scraper(site, query, output_file, limit=None):
     # Ensure Playwright Chromium is installed
@@ -37,9 +37,16 @@ def run_scraper(site, query, output_file, limit=None):
     try:
         # Run scraper
         if "base_dir" in scraper_module.run_scraper.__code__.co_varnames:
-            count = scraper_module.run_scraper(query, output_file, limit=limit, base_dir=BASE_DIR)
+            result = scraper_module.run_scraper(query, output_file, limit=limit, base_dir=BASE_DIR)
         else:
-            count = scraper_module.run_scraper(query, output_file, limit=limit)
+            result = scraper_module.run_scraper(query, output_file, limit=limit)
+
+        # Scrapers may return a row count or a {"file": ..., "data": [...]} dict.
+        if isinstance(result, dict):
+            count = len(result.get("data") or [])
+            output_file = result.get("file") or output_file
+        else:
+            count = result or 0
 
         if count == 0:
             print(json.dumps({"success": False, "error": "No data scraped."}))
@@ -65,8 +72,9 @@ def main():
     parser.add_argument("--query", required=True)
     parser.add_argument("--output", required=False)
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--format", choices=["csv", "json"], default="csv")
     args = parser.parse_args()
-    output_file = args.output or generate_filename(args.query, args.site)
+    output_file = args.output or generate_filename(args.query, args.site, args.format)
     output_file = os.path.abspath(output_file)
 
     run_scraper(args.site, args.query, output_file, args.limit)

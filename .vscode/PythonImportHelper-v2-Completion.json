@@ -1,0 +1,1086 @@
+[
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "quote_plus",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "quote_plus",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "quote_plus",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "quote_plus",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urljoin",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "sync_playwright",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "sync_playwright",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "sync_playwright",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "sync_playwright",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI",
+        "importPath": "openai",
+        "description": "openai",
+        "isExtraImport": true,
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "importlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "importlib",
+        "description": "importlib",
+        "detail": "importlib",
+        "documentation": {}
+    },
+    {
+        "label": "CORS",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "log_buffer",
+        "importPath": "utils.logger import log_buffer   #",
+        "description": "utils.logger import log_buffer   #",
+        "isExtraImport": true,
+        "detail": "utils.logger import log_buffer   #",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "traceback",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "traceback",
+        "description": "traceback",
+        "detail": "traceback",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "importlib.util",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "importlib.util",
+        "description": "importlib.util",
+        "detail": "importlib.util",
+        "documentation": {}
+    },
+    {
+        "label": "scroll_feed",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def scroll_feed(page):\n    \"\"\"Scroll the results feed to load more cards.\"\"\"\n    try:\n        page.evaluate(\"document.querySelector('div[role=\\\"feed\\\"]').scrollBy(0, 1000)\")\n    except:\n        logger.warning(\"Could not scroll feed. Possibly no more results.\")\n    time.sleep(2)\ndef _safe_inner_text(locator, default=None, timeout=1500):\n    try:\n        return locator.inner_text(timeout=timeout).strip()",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "get_rating",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def get_rating(page) -> dict:\n    \"\"\"Extract overall business rating and total review count.\"\"\"\n    try:\n        parsed = _rating_from_panel(page)\n        if parsed[\"Rating\"] and parsed[\"ReviewCount\"]:\n            return parsed\n        rating_label = _safe_attribute(\n            page.locator(\"span[role='img'][aria-label*='stars'], span[aria-label*='stars']\").first,\n            \"aria-label\"\n        )",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "get_images",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def get_images(page, limit: int = 10) -> list:\n    \"\"\"Open the photos gallery and collect unique high-resolution image URLs.\"\"\"\n    images = []\n    seen = set()\n    place_url = page.url if _on_place_page(page) else None\n    # The real gallery button carries the text \"See photos\" and an EMPTY aria-label,\n    # so match on text. Never match aria-label*='photos' - that hits \"Add photos &\n    # videos\", which is a sign-in wall.\n    open_selectors = [\n        \"button:has-text('See photos')\",",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "get_reviews",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def get_reviews(page, limit: int = 10) -> list:\n    \"\"\"Open the reviews panel and collect unique review dictionaries.\"\"\"\n    reviews = []\n    seen = set()\n    opened_reviews = False\n    place_url = page.url if _on_place_page(page) else None\n    try:\n        _collect_reviews_from_scope(page, reviews, seen, limit)\n        if len(reviews) >= limit:\n            return reviews",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "parse_business_details",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def parse_business_details(data_list):\n    result = {\n        \"Address\": None,\n        \"City\": None,\n        \"State\": None,\n        \"Zipcode\": None,\n        \"Mobile\": None,\n        \"Website\": None\n    }\n    for item in data_list:",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "extract_card_data",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def extract_card_data(page):\n    \"\"\"Extract data from the currently opened side panel.\"\"\"\n    try:\n        page.wait_for_selector(\".DUwDvf, h1.DUwDvf, div.Io6YTe\", timeout=10000)\n        name = (\n            _safe_inner_text(page.locator(\"h1[aria-level='1']\").first)\n            or _safe_inner_text(page.locator(\"h1.DUwDvf.lfPIob\").first)\n            or _safe_inner_text(page.locator(\".DUwDvf\").first)\n            or \"N/A\"\n        )",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_key",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def normalize_key(*values):\n    \"\"\"Normalize values for duplicate detection.\"\"\"\n    def clean(v):\n        return re.sub(r\"\\s+\", \" \", v.strip().lower())\n    return tuple(clean(str(v)) for v in values)\ndef save_to_csv(data, filepath, fieldnames=None):\n    fieldnames = fieldnames or GOOGLE_MAPS_FIELDNAMES\n    _ensure_parent_dir(filepath)\n    with open(filepath, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n        writer = csv.DictWriter(f, fieldnames=fieldnames)",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_csv",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def save_to_csv(data, filepath, fieldnames=None):\n    fieldnames = fieldnames or GOOGLE_MAPS_FIELDNAMES\n    _ensure_parent_dir(filepath)\n    with open(filepath, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\n        writer.writeheader()\n        for row in data:\n            csv_row = row.copy()\n            for key in (\"Images\", \"Reviews\"):\n                if key in csv_row:",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_json",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def save_to_json(data, filepath):\n    _ensure_parent_dir(filepath)\n    with open(filepath, \"w\", encoding=\"utf-8\") as f:\n        json.dump(data, f, ensure_ascii=False, indent=2)\n    logger.info(f\"Scraping completed. Output saved to {filepath}\")\n    return filepath\ndef run_scraper(query, output_file=None, limit=None):\n    target_count = limit if limit is not None else 40\n    timeout_ms = 180000 if limit is None else 60000\n    with sync_playwright() as p:",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def run_scraper(query, output_file=None, limit=None):\n    target_count = limit if limit is not None else 40\n    timeout_ms = 180000 if limit is None else 60000\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True, args=[\"--disable-blink-features=AutomationControlled\"])\n        # Google serves a reviews-stripped page to the default headless UA: the\n        # Reviews tab is absent entirely and div.jftiEf never renders. A desktop\n        # UA plus a full-size viewport restores the normal UI.\n        context = browser.new_context(\n            user_agent=DESKTOP_UA,",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "build_search_url",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def build_search_url(query):\n    return f\"https://www.google.com/maps/search/{quote_plus(query)}\"\ndef auto_scroll(page, scroll_container_selector, scroll_count=12, delay=2):\n    scroll_container = page.locator(scroll_container_selector).nth(1)\n    logger.info(\"Scrolling to load all listings...\")\n    for i in range(scroll_count):\n        logger.info(f\"Scrolling... ({i + 1}/{scroll_count})\")\n        scroll_container.evaluate(\"el => el.scrollBy(0, el.scrollHeight)\")\n        time.sleep(delay)\ndef extract_data(page):",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "auto_scroll",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def auto_scroll(page, scroll_container_selector, scroll_count=12, delay=2):\n    scroll_container = page.locator(scroll_container_selector).nth(1)\n    logger.info(\"Scrolling to load all listings...\")\n    for i in range(scroll_count):\n        logger.info(f\"Scrolling... ({i + 1}/{scroll_count})\")\n        scroll_container.evaluate(\"el => el.scrollBy(0, el.scrollHeight)\")\n        time.sleep(delay)\ndef extract_data(page):\n    cards = page.locator(\"a.hfpxzc\")\n    count = cards.count()",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "extract_data",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def extract_data(page):\n    cards = page.locator(\"a.hfpxzc\")\n    count = cards.count()\n    logger.info(f\"Found {count} listings\")\n    data = []\n    for i in range(count):\n        try:\n            card = cards.nth(i)\n            name = card.get_attribute(\"aria-label\") or \"N/A\"\n            url = card.get_attribute(\"href\") or \"N/A\"",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_csv",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def save_to_csv(data, file_path):\n    with open(file_path, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"Name\", \"URL\"])\n        writer.writeheader()\n        writer.writerows(data)\n    logger.info(f\"Results saved to {file_path}\")\ndef run_scraper(query, output_file=None):\n    logger.info(f\"Running Google Maps scraper for: {query}\")\n    search_url = build_search_url(query)\n    if not output_file:",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "def run_scraper(query, output_file=None):\n    logger.info(f\"Running Google Maps scraper for: {query}\")\n    search_url = build_search_url(query)\n    if not output_file:\n        date_str = datetime.now().strftime(\"%d%m%y\")\n        output_file = f\"{query.replace(' ', '_')}_google_maps_{date_str}.csv\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)\n        page = browser.new_page()\n        page.goto(search_url, timeout=60000)",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "logger = get_logger(\"google_maps\")\ndescription = \"Scrape business data from Google Maps search results\"\nDESKTOP_UA = (\n    \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \"\n    \"(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n)\nGOOGLE_MAPS_FIELDNAMES = [\n    \"Name\",\n    \"URL\",\n    \"Address\",",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "description",
+        "kind": 5,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "description = \"Scrape business data from Google Maps search results\"\nDESKTOP_UA = (\n    \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \"\n    \"(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n)\nGOOGLE_MAPS_FIELDNAMES = [\n    \"Name\",\n    \"URL\",\n    \"Address\",\n    \"City\",",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "DESKTOP_UA",
+        "kind": 5,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "DESKTOP_UA = (\n    \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \"\n    \"(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n)\nGOOGLE_MAPS_FIELDNAMES = [\n    \"Name\",\n    \"URL\",\n    \"Address\",\n    \"City\",\n    \"State\",",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "GOOGLE_MAPS_FIELDNAMES",
+        "kind": 5,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "GOOGLE_MAPS_FIELDNAMES = [\n    \"Name\",\n    \"URL\",\n    \"Address\",\n    \"City\",\n    \"State\",\n    \"Zipcode\",\n    \"Mobile\",\n    \"Website\",\n    \"Image\",",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "CONTRIBUTE_LABELS",
+        "kind": 5,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "CONTRIBUTE_LABELS = (\"add a photo\", \"add photo\", \"add photos\", \"contribute\",\n                     \"upload\", \"write a review\", \"sign in\", \"add missing\")\ndef _is_contribute_control(locator):\n    label = (_safe_attribute(locator, \"aria-label\") or \"\").lower()\n    text = (_safe_inner_text(locator) or \"\").lower()\n    combined = f\"{label} {text}\"\n    return any(bad in combined for bad in CONTRIBUTE_LABELS)\ndef get_images(page, limit: int = 10) -> list:\n    \"\"\"Open the photos gallery and collect unique high-resolution image URLs.\"\"\"\n    images = []",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "plugins.google_maps",
+        "description": "plugins.google_maps",
+        "peekOfCode": "logger = get_logger(\"google_maps\")\ndef build_search_url(query):\n    return f\"https://www.google.com/maps/search/{quote_plus(query)}\"\ndef auto_scroll(page, scroll_container_selector, scroll_count=12, delay=2):\n    scroll_container = page.locator(scroll_container_selector).nth(1)\n    logger.info(\"Scrolling to load all listings...\")\n    for i in range(scroll_count):\n        logger.info(f\"Scrolling... ({i + 1}/{scroll_count})\")\n        scroll_container.evaluate(\"el => el.scrollBy(0, el.scrollHeight)\")\n        time.sleep(delay)",
+        "detail": "plugins.google_maps",
+        "documentation": {}
+    },
+    {
+        "label": "build_search_url",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef scroll_feed(page):\n    \"\"\"Scroll results to load more cards.\"\"\"\n    try:\n        page.evaluate(\"window.scrollBy(0, document.body.scrollHeight)\")\n    except:\n        logger.warning(\"Could not scroll feed. Possibly no more results.\")\n    time.sleep(2)\ndef normalize_key(*values):",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "scroll_feed",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def scroll_feed(page):\n    \"\"\"Scroll results to load more cards.\"\"\"\n    try:\n        page.evaluate(\"window.scrollBy(0, document.body.scrollHeight)\")\n    except:\n        logger.warning(\"Could not scroll feed. Possibly no more results.\")\n    time.sleep(2)\ndef normalize_key(*values):\n    \"\"\"Normalize values for duplicate detection.\"\"\"\n    def clean(v):",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_key",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def normalize_key(*values):\n    \"\"\"Normalize values for duplicate detection.\"\"\"\n    def clean(v):\n        return re.sub(r\"\\s+\", \" \", v.strip().lower())\n    return tuple(clean(str(v)) for v in values)\ndef extract_card_data(card):\n    \"\"\"Extract data from a supplier card.\"\"\"\n    try:\n        company_name = card.query_selector(\".companyname a\")\n        location = card.query_selector(\".newLocationUi span.highlight\")",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "extract_card_data",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def extract_card_data(card):\n    \"\"\"Extract data from a supplier card.\"\"\"\n    try:\n        company_name = card.query_selector(\".companyname a\")\n        location = card.query_selector(\".newLocationUi span.highlight\")\n        phone_elem = card.query_selector(\".pns_h, .contactnumber .duet\")\n        link = card.query_selector(\".companyname a\")\n        company = company_name.inner_text().strip() if company_name else \"N/A\"\n        city = location.inner_text().strip() if location else \"N/A\"\n        phone = phone_elem.inner_text().strip() if phone_elem else \"N/A\"",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_csv",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def save_to_csv(data, filepath):\n    os.makedirs(os.path.dirname(filepath), exist_ok=True)\n    with open(filepath, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"Company Name\", \"Location\", \"Phone\", \"URL\"])\n        writer.writeheader()\n        writer.writerows(data)\n    logger.info(f\"Scraping completed. Output saved to {filepath}\")\n    return filepath\ndef run_scraper(query, output_file=None, limit=None):\n    target_count = limit if limit is not None else 40",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def run_scraper(query, output_file=None, limit=None):\n    target_count = limit if limit is not None else 40\n    timeout_ms = 180000 if limit is None else 60000\n    with sync_playwright() as p:\n        try:\n            browser = p.chromium.launch(headless=True, args=[\"--no-sandbox\", \"--disable-blink-features=AutomationControlled\"])\n            page = browser.new_page()\n            search_url = build_search_url(query)\n            logger.info(f\"Navigating to {search_url}\")\n            page.goto(search_url, timeout=timeout_ms)",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "build_search_url",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef save_results(results, query, output_file):\n    if not output_file:\n        date = datetime.now().strftime(\"%d%m%y\")\n        file_name = f\"static/{query.replace(' ', '_')}_indiamart_{date}.csv\"\n    else:\n        file_name = output_file\n    os.makedirs(os.path.dirname(file_name), exist_ok=True)\n    df = pd.DataFrame(results)",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "save_results",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def save_results(results, query, output_file):\n    if not output_file:\n        date = datetime.now().strftime(\"%d%m%y\")\n        file_name = f\"static/{query.replace(' ', '_')}_indiamart_{date}.csv\"\n    else:\n        file_name = output_file\n    os.makedirs(os.path.dirname(file_name), exist_ok=True)\n    df = pd.DataFrame(results)\n    df.to_csv(file_name, index=False)\n    logger.info(f\"IndiaMART results saved to {file_name}\")",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "def run_scraper(query: str, output_file: str = None):\n    logger.info(f\"Running IndiaMART scraper for: {query}\")\n    search_url = build_search_url(query)\n    logger.info(f\"Opening URL: {search_url}\")\n    results = []\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True)  # ✅ Headless for Flask UI\n        context = browser.new_context(user_agent=(\n            \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \"\n            \"(KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\"",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "logger = get_logger(\"indiamart\")\ndescription = \"Scrape supplier contact data from IndiaMART (B2B marketplace).\"\ndef build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef scroll_feed(page):\n    \"\"\"Scroll results to load more cards.\"\"\"\n    try:\n        page.evaluate(\"window.scrollBy(0, document.body.scrollHeight)\")\n    except:\n        logger.warning(\"Could not scroll feed. Possibly no more results.\")",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "description",
+        "kind": 5,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "description = \"Scrape supplier contact data from IndiaMART (B2B marketplace).\"\ndef build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef scroll_feed(page):\n    \"\"\"Scroll results to load more cards.\"\"\"\n    try:\n        page.evaluate(\"window.scrollBy(0, document.body.scrollHeight)\")\n    except:\n        logger.warning(\"Could not scroll feed. Possibly no more results.\")\n    time.sleep(2)",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "plugins.indiamart",
+        "description": "plugins.indiamart",
+        "peekOfCode": "logger = get_logger(\"indiamart\")\ndef build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef save_results(results, query, output_file):\n    if not output_file:\n        date = datetime.now().strftime(\"%d%m%y\")\n        file_name = f\"static/{query.replace(' ', '_')}_indiamart_{date}.csv\"\n    else:\n        file_name = output_file\n    os.makedirs(os.path.dirname(file_name), exist_ok=True)",
+        "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "parse_with_gpt",
+        "kind": 2,
+        "importPath": "utils.gpt_parser",
+        "description": "utils.gpt_parser",
+        "peekOfCode": "def parse_with_gpt(prompt,role=\"user\",model=\"gpt-5\"):\n    messages = [\n        {\n            \"role\": role, \n            \"content\": prompt\n        }\n    ]\n    response = client.chat.completions.create(\n        model=model,\n        messages=messages,",
+        "detail": "utils.gpt_parser",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "utils.gpt_parser",
+        "description": "utils.gpt_parser",
+        "peekOfCode": "client = OpenAI(api_key=os.getenv(\"OPENAI_API_KEY\"))\ndef parse_with_gpt(prompt,role=\"user\",model=\"gpt-5\"):\n    messages = [\n        {\n            \"role\": role, \n            \"content\": prompt\n        }\n    ]\n    response = client.chat.completions.create(\n        model=model,",
+        "detail": "utils.gpt_parser",
+        "documentation": {}
+    },
+    {
+        "label": "sanitize_filename",
+        "kind": 2,
+        "importPath": "utils.helpers",
+        "description": "utils.helpers",
+        "peekOfCode": "def sanitize_filename(name):\n    return re.sub(r'\\W+', '_', name.lower()) + \".csv\"\ndef ensure_data_dir():\n    os.makedirs(\"data\", exist_ok=True)",
+        "detail": "utils.helpers",
+        "documentation": {}
+    },
+    {
+        "label": "ensure_data_dir",
+        "kind": 2,
+        "importPath": "utils.helpers",
+        "description": "utils.helpers",
+        "peekOfCode": "def ensure_data_dir():\n    os.makedirs(\"data\", exist_ok=True)",
+        "detail": "utils.helpers",
+        "documentation": {}
+    },
+    {
+        "label": "BrowserLogHandler",
+        "kind": 6,
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "peekOfCode": "class BrowserLogHandler(logging.Handler):\n    def emit(self, record):\n        msg = self.format(record)\n        log_buffer.append(msg)\ndef get_logger(name):\n    log_dir = \"logs\"\n    os.makedirs(log_dir, exist_ok=True)\n    log_file = os.path.join(log_dir, f\"{name}.log\")\n    logger = logging.getLogger(name)\n    logger.setLevel(logging.INFO)",
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "kind": 2,
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "peekOfCode": "def get_logger(name):\n    log_dir = \"logs\"\n    os.makedirs(log_dir, exist_ok=True)\n    log_file = os.path.join(log_dir, f\"{name}.log\")\n    logger = logging.getLogger(name)\n    logger.setLevel(logging.INFO)\n    if not logger.handlers:\n        fh = logging.FileHandler(log_file, encoding=\"utf-8\")\n        fh.setLevel(logging.INFO)\n        ch = logging.StreamHandler()",
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "log_buffer",
+        "kind": 5,
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "peekOfCode": "log_buffer = []\nclass BrowserLogHandler(logging.Handler):\n    def emit(self, record):\n        msg = self.format(record)\n        log_buffer.append(msg)\ndef get_logger(name):\n    log_dir = \"logs\"\n    os.makedirs(log_dir, exist_ok=True)\n    log_file = os.path.join(log_dir, f\"{name}.log\")\n    logger = logging.getLogger(name)",
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_available_plugins",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_available_plugins():\n    plugin_dir = os.path.join(BASE_DIR, \"plugins\")\n    return [\n        f[:-3] for f in os.listdir(plugin_dir)\n        if f.endswith(\".py\") and f != \"__init__.py\"\n    ]\ndef load_table_data(filename, max_rows=100):\n    \"\"\"Load up to max_rows from CSV file (excluding header).\"\"\"\n    file_path = os.path.join(STATIC_DIR, filename)\n    if not os.path.exists(file_path):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_table_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_table_data(filename, max_rows=100):\n    \"\"\"Load up to max_rows from CSV file (excluding header).\"\"\"\n    file_path = os.path.join(STATIC_DIR, filename)\n    if not os.path.exists(file_path):\n        return None, None\n    with open(file_path, newline='', encoding='utf-8') as f:\n        reader = csv.reader(f)\n        rows = list(reader)\n    if not rows:\n        return None, None",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "abs_url",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def abs_url(path):\n    base = request.host_url\n    return urljoin(base, path.lstrip(\"/\"))\ndef try_run_plugin_direct(site, query, output_abs_path, limit):\n    \"\"\"Attempt to run a scraper plugin directly via plugins.<site>.run_scraper.\"\"\"\n    try:\n        module = importlib.import_module(f\"plugins.{site}\")\n    except ModuleNotFoundError:\n        return {\"success\": False, \"error\": f\"Plugin not found for site: {site}\"}\n    except Exception as e:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "try_run_plugin_direct",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def try_run_plugin_direct(site, query, output_abs_path, limit):\n    \"\"\"Attempt to run a scraper plugin directly via plugins.<site>.run_scraper.\"\"\"\n    try:\n        module = importlib.import_module(f\"plugins.{site}\")\n    except ModuleNotFoundError:\n        return {\"success\": False, \"error\": f\"Plugin not found for site: {site}\"}\n    except Exception as e:\n        return {\"success\": False, \"error\": f\"Failed to import plugin {site}: {e}\"}\n    if not hasattr(module, \"run_scraper\"):\n        return {\"success\": False, \"error\": f\"Plugin {site} has no run_scraper()\"}",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "add_logs_to_response",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def add_logs_to_response(response):\n    \"\"\"Store logs in session so they survive redirects.\"\"\"\n    if log_buffer:\n        logs_text = \" || \".join(log_buffer[-50:])\n        session[\"last_logs\"] = logs_text\n        log_buffer.clear()\n    return response\n@app.route(\"/debug-logs\")\ndef debug_logs():\n    \"\"\"Expose last logs via JSON so browser can print them.\"\"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "debug_logs",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def debug_logs():\n    \"\"\"Expose last logs via JSON so browser can print them.\"\"\"\n    logs_text = session.pop(\"last_logs\", \"\")\n    if not logs_text:\n        return jsonify({\"logs_b64\": \"\"})\n    logs_b64 = base64.b64encode(logs_text.encode(\"utf-8\")).decode(\"ascii\")\n    return jsonify({\"logs_b64\": logs_b64})\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    available_plugins = get_available_plugins()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    available_plugins = get_available_plugins()\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")\n        query = request.form.get(\"query\")\n        limit_raw = request.form.get(\"limit\")\n        try:\n            limit = int(limit_raw) if limit_raw else None\n        except ValueError:\n            limit = None",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "reset",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def reset():\n    session.clear()\n    return redirect(url_for(\"index\"))\n@app.route(\"/data/<filename>\")\ndef get_data(filename):\n    file_path = os.path.join(STATIC_DIR, filename)\n    if not os.path.exists(file_path):\n        return jsonify({\"error\": \"File not found\"}), 404\n    with open(file_path, encoding=\"utf-8\") as f:\n        reader = csv.reader(f)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_data(filename):\n    file_path = os.path.join(STATIC_DIR, filename)\n    if not os.path.exists(file_path):\n        return jsonify({\"error\": \"File not found\"}), 404\n    with open(file_path, encoding=\"utf-8\") as f:\n        reader = csv.reader(f)\n        rows = list(reader)\n    return jsonify({\"headers\": rows[0], \"rows\": rows[1:]})\n# API endpoints for Chrome extension\n@app.route(\"/api/plugins\", methods=[\"GET\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "api_plugins",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def api_plugins():\n    return jsonify({\"plugins\": get_available_plugins()})\n@app.route(\"/api/scrape\", methods=[\"POST\"])\ndef api_scrape():\n    payload = request.get_json(silent=True) or {}\n    site = payload.get(\"site\")\n    query = payload.get(\"query\")\n    limit = payload.get(\"limit\")\n    if not site or not query:\n        return jsonify({\"success\": False, \"error\": \"site and query are required\"}), 400",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "api_scrape",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def api_scrape():\n    payload = request.get_json(silent=True) or {}\n    site = payload.get(\"site\")\n    query = payload.get(\"query\")\n    limit = payload.get(\"limit\")\n    if not site or not query:\n        return jsonify({\"success\": False, \"error\": \"site and query are required\"}), 400\n    filename_safe = query.lower().replace(\" \", \"_\")\n    date_str = datetime.now().strftime(\"%d%m%y_%H%M%S\")\n    filename = f\"{filename_safe}_{site}_{date_str}.csv\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    global last_output_file, last_table_data, last_headers, last_message\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")\n        query = request.form.get(\"query\")\n        if site and query:\n            filename_safe = query.lower().replace(\" \", \"_\")\n            date_str = datetime.now().strftime(\"%d%m%y\")\n            output_file = f\"{filename_safe}_{site}_{date_str}.csv\"\n            output_path = os.path.join(\"static\", output_file)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.secret_key = os.getenv(\"FLASK_SECRET_KEY\")\nprint(\"FLASK_SECRET_KEY\",os.getenv(\"FLASK_SECRET_KEY\"))\nCORS(app, resources={r\"/api/*\": {\"origins\": \"*\"}})  # Allow extension to call API\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nSTATIC_DIR = os.path.join(BASE_DIR, \"static\")\nos.makedirs(STATIC_DIR, exist_ok=True)\ndef get_available_plugins():\n    plugin_dir = os.path.join(BASE_DIR, \"plugins\")\n    return [",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.secret_key = os.getenv(\"FLASK_SECRET_KEY\")\nprint(\"FLASK_SECRET_KEY\",os.getenv(\"FLASK_SECRET_KEY\"))\nCORS(app, resources={r\"/api/*\": {\"origins\": \"*\"}})  # Allow extension to call API\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nSTATIC_DIR = os.path.join(BASE_DIR, \"static\")\nos.makedirs(STATIC_DIR, exist_ok=True)\ndef get_available_plugins():\n    plugin_dir = os.path.join(BASE_DIR, \"plugins\")\n    return [\n        f[:-3] for f in os.listdir(plugin_dir)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.abspath(__file__))\nSTATIC_DIR = os.path.join(BASE_DIR, \"static\")\nos.makedirs(STATIC_DIR, exist_ok=True)\ndef get_available_plugins():\n    plugin_dir = os.path.join(BASE_DIR, \"plugins\")\n    return [\n        f[:-3] for f in os.listdir(plugin_dir)\n        if f.endswith(\".py\") and f != \"__init__.py\"\n    ]\ndef load_table_data(filename, max_rows=100):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_DIR",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "STATIC_DIR = os.path.join(BASE_DIR, \"static\")\nos.makedirs(STATIC_DIR, exist_ok=True)\ndef get_available_plugins():\n    plugin_dir = os.path.join(BASE_DIR, \"plugins\")\n    return [\n        f[:-3] for f in os.listdir(plugin_dir)\n        if f.endswith(\".py\") and f != \"__init__.py\"\n    ]\ndef load_table_data(filename, max_rows=100):\n    \"\"\"Load up to max_rows from CSV file (excluding header).\"\"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\nlast_output_file = None\nlast_table_data = None\nlast_headers = None\nlast_message = None\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    global last_output_file, last_table_data, last_headers, last_message\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "last_output_file",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "last_output_file = None\nlast_table_data = None\nlast_headers = None\nlast_message = None\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    global last_output_file, last_table_data, last_headers, last_message\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")\n        query = request.form.get(\"query\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "last_table_data",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "last_table_data = None\nlast_headers = None\nlast_message = None\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    global last_output_file, last_table_data, last_headers, last_message\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")\n        query = request.form.get(\"query\")\n        if site and query:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "last_headers",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "last_headers = None\nlast_message = None\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    global last_output_file, last_table_data, last_headers, last_message\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")\n        query = request.form.get(\"query\")\n        if site and query:\n            filename_safe = query.lower().replace(\" \", \"_\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "last_message",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "last_message = None\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    global last_output_file, last_table_data, last_headers, last_message\n    if request.method == \"POST\":\n        site = request.form.get(\"site\")\n        query = request.form.get(\"query\")\n        if site and query:\n            filename_safe = query.lower().replace(\" \", \"_\")\n            date_str = datetime.now().strftime(\"%d%m%y\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "generate_filename",
+        "kind": 2,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "def generate_filename(query, site, fmt=\"csv\"):\n    filename_safe = query.lower().replace(\" \", \"_\")\n    date_str = datetime.now().strftime(\"%d%m%y_%H%M%S\")\n    return os.path.join(BASE_DIR, \"static\", f\"{filename_safe}_{site}_{date_str}.{fmt}\")\ndef run_scraper(site, query, output_file, limit=None):\n    # Ensure Playwright Chromium is installed\n    try:\n        subprocess.run(\n            [\"python\", \"-m\", \"playwright\", \"install\", \"chromium\"],\n            check=True,",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "def run_scraper(site, query, output_file, limit=None):\n    # Ensure Playwright Chromium is installed\n    try:\n        subprocess.run(\n            [\"python\", \"-m\", \"playwright\", \"install\", \"chromium\"],\n            check=True,\n            stdout=subprocess.DEVNULL,\n            stderr=subprocess.DEVNULL\n        )\n    except subprocess.CalledProcessError as e:",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "def main():\n    import argparse\n    parser = argparse.ArgumentParser(description=\"Modular Web Scraper\")\n    parser.add_argument(\"--mode\", default=\"modular\")\n    parser.add_argument(\"--site\", required=True)\n    parser.add_argument(\"--query\", required=True)\n    parser.add_argument(\"--output\", required=False)\n    parser.add_argument(\"--limit\", type=int, default=None)\n    parser.add_argument(\"--format\", choices=[\"csv\", \"json\"], default=\"csv\")\n    args = parser.parse_args()",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "generate_filename",
+        "kind": 2,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "def generate_filename(query, site):\n    filename_safe = query.lower().replace(\" \", \"_\")\n    date_str = datetime.now().strftime(\"%d%m%y\")\n    return os.path.join(\"static\", f\"{filename_safe}_{site}_{date_str}.csv\")\ndef run_scraper(site, query, output_file):\n    try:\n        scraper_module = importlib.import_module(f\"scrapers.{site}\")\n    except ModuleNotFoundError:\n        print(f\"Scraper module not found for site: {site}\")\n        sys.exit(1)",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "def run_scraper(site, query, output_file):\n    try:\n        scraper_module = importlib.import_module(f\"scrapers.{site}\")\n    except ModuleNotFoundError:\n        print(f\"Scraper module not found for site: {site}\")\n        sys.exit(1)\n    try:\n        print(f\"\\n🟢 Running: {site} for '{query}' -> {output_file}\")\n        scraper_module.run_scraper(query, output_file)\n    except Exception as e:",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(description=\"Modular Web Scraper\")\n    parser.add_argument(\"--mode\", default=\"modular\")\n    parser.add_argument(\"--site\", required=True)\n    parser.add_argument(\"--query\", required=True)\n    parser.add_argument(\"--output\", required=False, help=\"Output CSV file name\")\n    args = parser.parse_args()\n    output_file = args.output or generate_filename(args.query, args.site)\n    run_scraper(args.site, args.query, output_file)\nif __name__ == \"__main__\":",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "runner",
+        "description": "runner",
+        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.abspath(__file__))\ndef generate_filename(query, site, fmt=\"csv\"):\n    filename_safe = query.lower().replace(\" \", \"_\")\n    date_str = datetime.now().strftime(\"%d%m%y_%H%M%S\")\n    return os.path.join(BASE_DIR, \"static\", f\"{filename_safe}_{site}_{date_str}.{fmt}\")\ndef run_scraper(site, query, output_file, limit=None):\n    # Ensure Playwright Chromium is installed\n    try:\n        subprocess.run(\n            [\"python\", \"-m\", \"playwright\", \"install\", \"chromium\"],",
+        "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "load_plugins",
+        "kind": 2,
+        "importPath": "validate_plugins",
+        "description": "validate_plugins",
+        "peekOfCode": "def load_plugins():\n    plugins = {}\n    for filename in os.listdir(PLUGIN_DIR):\n        if filename.endswith(\".py\") and filename != \"__init__.py\":\n            plugin_path = os.path.join(PLUGIN_DIR, filename)\n            module_name = filename[:-3]\n            spec = importlib.util.spec_from_file_location(module_name, plugin_path)\n            mod = importlib.util.module_from_spec(spec)\n            spec.loader.exec_module(mod)\n            if hasattr(mod, \"description\") and hasattr(mod, \"run_scraper\"):",
+        "detail": "validate_plugins",
+        "documentation": {}
+    },
+    {
+        "label": "PLUGIN_DIR",
+        "kind": 5,
+        "importPath": "validate_plugins",
+        "description": "validate_plugins",
+        "peekOfCode": "PLUGIN_DIR = \"plugins\"\ndef load_plugins():\n    plugins = {}\n    for filename in os.listdir(PLUGIN_DIR):\n        if filename.endswith(\".py\") and filename != \"__init__.py\":\n            plugin_path = os.path.join(PLUGIN_DIR, filename)\n            module_name = filename[:-3]\n            spec = importlib.util.spec_from_file_location(module_name, plugin_path)\n            mod = importlib.util.module_from_spec(spec)\n            spec.loader.exec_module(mod)",
+        "detail": "validate_plugins",
+        "documentation": {}
+    }
+]
