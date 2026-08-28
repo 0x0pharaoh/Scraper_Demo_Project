@@ -95,6 +95,30 @@
         "documentation": {}
     },
     {
+        "label": "quote_plus",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlsplit",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlunsplit",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
         "label": "urljoin",
         "importPath": "urllib.parse",
         "description": "urllib.parse",
@@ -167,11 +191,19 @@
         "documentation": {}
     },
     {
-        "label": "get_logger",
-        "importPath": "utils.logger",
-        "description": "utils.logger",
+        "label": "sync_playwright",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
         "isExtraImport": true,
-        "detail": "utils.logger",
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
         "documentation": {}
     },
     {
@@ -196,6 +228,30 @@
         "description": "utils.logger",
         "isExtraImport": true,
         "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -261,6 +317,15 @@
         "importPath": "pandas",
         "description": "pandas",
         "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "html",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "html",
+        "description": "html",
+        "detail": "html",
         "documentation": {}
     },
     {
@@ -458,7 +523,7 @@
         "kind": 2,
         "importPath": "plugins.google_maps",
         "description": "plugins.google_maps",
-        "peekOfCode": "def scroll_feed(page):\n    \"\"\"Scroll the results feed to load more cards.\"\"\"\n    try:\n        page.evaluate(\"document.querySelector('div[role=\\\"feed\\\"]').scrollBy(0, 1000)\")\n    except:\n        logger.warning(\"Could not scroll feed. Possibly no more results.\")\n    time.sleep(2)\ndef _safe_inner_text(locator, default=None, timeout=1500):\n    try:\n        return locator.inner_text(timeout=timeout).strip()",
+        "peekOfCode": "def scroll_feed(page, search_url=None):\n    \"\"\"Scroll the results feed to load more cards. Returns True if it moved.\n    Two things this has to handle: after each business the scraper sits on a\n    place panel, where div[role='feed'] does not exist at all, so the results\n    list has to be restored first. And the feed viewport is ~970px while the\n    list keeps growing, so a fixed scrollBy(0, 1000) barely advances it -\n    jump to the current bottom instead.\n    \"\"\"\n    try:\n        if search_url and page.locator(\"a.hfpxzc\").count() == 0:",
         "detail": "plugins.google_maps",
         "documentation": {}
     },
@@ -539,7 +604,7 @@
         "kind": 2,
         "importPath": "plugins.google_maps",
         "description": "plugins.google_maps",
-        "peekOfCode": "def run_scraper(query, output_file=None, limit=None):\n    target_count = limit if limit is not None else 40\n    timeout_ms = 180000 if limit is None else 60000\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=True, args=[\"--disable-blink-features=AutomationControlled\"])\n        # Google serves a reviews-stripped page to the default headless UA: the\n        # Reviews tab is absent entirely and div.jftiEf never renders. A desktop\n        # UA plus a full-size viewport restores the normal UI.\n        context = browser.new_context(\n            user_agent=DESKTOP_UA,",
+        "peekOfCode": "def run_scraper(query, output_file=None, limit=None):\n    target_count = limit if limit is not None else 40\n    timeout_ms = 180000 if limit is None else 60000\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=False, args=[\"--disable-blink-features=AutomationControlled\"])\n        # Google serves a reviews-stripped page to the default headless UA: the\n        # Reviews tab is absent entirely and div.jftiEf never renders. A desktop\n        # UA plus a full-size viewport restores the normal UI.\n        context = browser.new_context(\n            user_agent=DESKTOP_UA,",
         "detail": "plugins.google_maps",
         "documentation": {}
     },
@@ -748,6 +813,447 @@
         "description": "plugins.indiamart",
         "peekOfCode": "logger = get_logger(\"indiamart\")\ndef build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef save_results(results, query, output_file):\n    if not output_file:\n        date = datetime.now().strftime(\"%d%m%y\")\n        file_name = f\"static/{query.replace(' ', '_')}_indiamart_{date}.csv\"\n    else:\n        file_name = output_file\n    os.makedirs(os.path.dirname(file_name), exist_ok=True)",
         "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "ListingStore",
+        "kind": 6,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "class ListingStore:\n    \"\"\"Collects listing payloads keyed by their position in the feed.\"\"\"\n    def __init__(self):\n        self.by_index = {}\n    def absorb(self, body):\n        for start, listings in parse_listing_payload(body):\n            for offset, listing in enumerate(listings):\n                self.by_index.setdefault(start + offset, listing)\n    def get(self, index):\n        return self.by_index.get(index)",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "load_session",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def load_session(session_file=None):\n    \"\"\"Read the exported browser session into (cookies, local_storage).\n    The export stores ``expires`` as an ISO string and ``sameSite`` as values\n    Playwright rejects (\"Medium\"), so both are normalised here.\n    \"\"\"\n    path = session_file or DEFAULT_SESSION_FILE\n    if not os.path.exists(path):\n        logger.warning(f\"No session file at {path}; IndiaMART returns zero results when signed out.\")\n        return [], {}\n    with open(path, encoding=\"utf-8\") as f:",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "seed_local_storage",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def seed_local_storage(page, store):\n    \"\"\"Replay the exported localStorage so the app boots in its logged-in state.\"\"\"\n    if not store:\n        return\n    try:\n        page.evaluate(\n            \"\"\"(data) => {\n                for (const key in data) {\n                    try {\n                        const v = data[key];",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "build_search_url",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}&search_type=p\"\ndef clean_url(url):\n    \"\"\"Drop IndiaMART's tracking query string, keep the addressable page.\"\"\"\n    if not url:\n        return None\n    parts = urlsplit(url)\n    return urlunsplit((parts.scheme, parts.netloc, parts.path, \"\", \"\"))\ndef normalize_image(url):\n    \"\"\"Force https on image URLs.",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "clean_url",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def clean_url(url):\n    \"\"\"Drop IndiaMART's tracking query string, keep the addressable page.\"\"\"\n    if not url:\n        return None\n    parts = urlsplit(url)\n    return urlunsplit((parts.scheme, parts.netloc, parts.path, \"\", \"\"))\ndef normalize_image(url):\n    \"\"\"Force https on image URLs.\n    The card markup serves http:// while the gallery popup serves https:// for\n    the very same file, so without this the cover photo lands in the list twice.",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_image",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def normalize_image(url):\n    \"\"\"Force https on image URLs.\n    The card markup serves http:// while the gallery popup serves https:// for\n    the very same file, so without this the cover photo lands in the list twice.\n    \"\"\"\n    if not url:\n        return None\n    url = url.strip()\n    if url.startswith(\"//\"):\n        return \"https:\" + url",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "clean_text",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def clean_text(value):\n    if value is None:\n        return None\n    text = html.unescape(str(value)).replace(\"\\xa0\", \" \")\n    text = re.sub(r\"\\s+\", \" \", text).strip()\n    return text or None\ndef normalize_key(*values):\n    \"\"\"Case/whitespace-insensitive identity tuple used for duplicate detection.\"\"\"\n    return tuple(re.sub(r\"\\s+\", \" \", str(v or \"\").strip().lower()) for v in values)\ndef parse_isq(isq):",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_key",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def normalize_key(*values):\n    \"\"\"Case/whitespace-insensitive identity tuple used for duplicate detection.\"\"\"\n    return tuple(re.sub(r\"\\s+\", \" \", str(v or \"\").strip().lower()) for v in values)\ndef parse_isq(isq):\n    \"\"\"Turn IndiaMART's [\"Brand==Uflow\", ...] attribute list into a dict.\"\"\"\n    specs = {}\n    for item in isq or []:\n        if \"==\" not in str(item):\n            continue\n        key, _, value = str(item).partition(\"==\")",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "parse_isq",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def parse_isq(isq):\n    \"\"\"Turn IndiaMART's [\"Brand==Uflow\", ...] attribute list into a dict.\"\"\"\n    specs = {}\n    for item in isq or []:\n        if \"==\" not in str(item):\n            continue\n        key, _, value = str(item).partition(\"==\")\n        key, value = clean_text(key), clean_text(value)\n        if key and value and key not in specs:\n            specs[key] = value",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "promote_specs",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def promote_specs(specs):\n    \"\"\"Surface the specifically requested attributes alongside the full spec map.\"\"\"\n    lowered = {k.lower(): v for k, v in specs.items()}\n    promoted = {}\n    for field, aliases in PROMOTED_SPECS.items():\n        promoted[field] = next((lowered[a] for a in aliases if a in lowered), None)\n    return promoted\ndef _safe(fn, default=None):\n    \"\"\"Run a locator call that is allowed to fail without sinking the record.\"\"\"\n    try:",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "parse_listing_payload",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def parse_listing_payload(body):\n    \"\"\"Pull the ``listings`` array out of one listing-cards response.\"\"\"\n    try:\n        rendered = json.loads(body).get(\"html\", \"\")\n    except (ValueError, AttributeError):\n        return []\n    out = []\n    for blob in re.findall(r\"data-props='([^']*)'\", rendered):\n        try:\n            props = json.loads(html.unescape(blob))",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "variant_payload",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def variant_payload(listing, variant):\n    \"\"\"Variant 0 is the listing itself; the rest come from ``more_prod``.\"\"\"\n    if not listing:\n        return None\n    if variant == 0:\n        return listing\n    more = listing.get(\"more_prod\") or []\n    return more[variant - 1] if variant - 1 < len(more) else None\n# ---------------------------------------------------------------------------\n# Gallery popup",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "close_popup",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def close_popup(page):\n    \"\"\"Close the gallery. Never leave it open - it blocks every later click.\"\"\"\n    try:\n        if page.locator(POPUP).count() == 0:\n            return\n        close = page.locator(POPUP_CLOSE)\n        if close.count():\n            close.first.click(timeout=3000)\n            page.wait_for_timeout(700)\n        if page.locator(POPUP).count():",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "collect_popup_images",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def collect_popup_images(page, max_steps=25):\n    \"\"\"Open-gallery image harvest. Returns unique image URLs in display order.\"\"\"\n    images = []\n    try:\n        page.wait_for_selector(POPUP, timeout=12000)\n    except PlaywrightTimeoutError:\n        logger.debug(\"Gallery popup did not appear.\")\n        return images\n    # The gallery auto-advances like a stories reel. Clicking the image pauses\n    # it so our own next-clicks drive the sequence instead of racing it.",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "gallery_for_primary",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def gallery_for_primary(page, card):\n    \"\"\"Harvest the gallery for a card's primary product.\n    Only the primary product is harvested on purpose. Verified against the live\n    site: opening the popup from variants 1..n still loads the PRIMARY product's\n    gallery (the popup header keeps showing the primary product's name and\n    link), so attaching those images to a sibling product would file the wrong\n    photos under the wrong item. Siblings keep their own card thumbnail instead.\n    \"\"\"\n    opener = card.locator(CARD_IMAGE_OPEN)\n    if opener.count() == 0:",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "read_card_specs",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def read_card_specs(card):\n    \"\"\"Read the spec table the card itself renders.\n    Only a handful of attributes are shown here versus the full ISQ list in the\n    payload, but the feed re-renders cards for which no payload was captured,\n    and without this those products would carry no specs at all.\n    \"\"\"\n    specs = {}\n    try:\n        keys = card.locator(\"dl.im-lc-specs dt\").all_inner_texts()\n        values = card.locator(\"dl.im-lc-specs dd\").all_inner_texts()",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "read_card_variant",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def read_card_variant(card):\n    \"\"\"Read whatever the currently displayed carousel slide shows.\"\"\"\n    title_el = card.locator(CARD_TITLE)\n    price = _safe(lambda: card.locator(CARD_PRICE).first.inner_text(timeout=2000))\n    unit = _safe(lambda: card.locator(CARD_UNIT).first.inner_text(timeout=2000))\n    return {\n        \"name\": clean_text(_safe(lambda: title_el.first.inner_text(timeout=2000))),\n        \"product_url\": clean_url(_safe(lambda: title_el.first.get_attribute(\"href\"))),\n        \"image\": _safe(lambda: card.locator(CARD_IMAGE).first.get_attribute(\"src\")),\n        \"price\": clean_text(f\"{price or ''}{unit or ''}\") if price else None,",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "product_key",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def product_key(product_url, name):\n    \"\"\"Identity of a product.\n    Keyed on the URL, never on ``display_id``: the feed re-renders cards without\n    a matching payload, so display_id is present on the first pass and missing on\n    the second. Mixing the two lets the same product through twice.\n    \"\"\"\n    return normalize_key(product_url or \"\", name or \"\")\ndef build_product(dom, payload, images):\n    \"\"\"Merge the rendered slide with its payload record into one product.\"\"\"\n    payload = payload or {}",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "build_product",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def build_product(dom, payload, images):\n    \"\"\"Merge the rendered slide with its payload record into one product.\"\"\"\n    payload = payload or {}\n    specs = parse_isq(payload.get(\"isq\")) or dom.get(\"specs\") or {}\n    name = clean_text(payload.get(\"p_nm\")) or dom.get(\"name\")\n    price = clean_text(payload.get(\"pr\")) or dom.get(\"price\")\n    gallery = []\n    for raw in [dom.get(\"image\"), payload.get(\"photo\"), *images]:\n        url = normalize_image(raw)\n        if url and url not in gallery:",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "build_company",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def build_company(payload, card):\n    \"\"\"Company-level facts. Same for every product in the card.\"\"\"\n    payload = payload or {}\n    seller = card.locator(CARD_SELLER)\n    name = clean_text(payload.get(\"CMP\")) or clean_text(\n        _safe(lambda: seller.first.inner_text(timeout=2000))\n    )\n    store = clean_url(payload.get(\"s_url\")) or clean_url(\n        _safe(lambda: seller.first.get_attribute(\"href\"))\n    )",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "variant_count",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def variant_count(card, listing):\n    \"\"\"How many products this card's carousel holds.\"\"\"\n    dots = _safe(lambda: card.locator(CARD_DOTS).count(), 0) or 0\n    if dots:\n        return dots\n    if listing:\n        return len(listing.get(\"more_prod\") or []) + 1\n    return 1\ndef scrape_card(page, card, listing, index, seen_products):\n    \"\"\"Walk one card's carousel and return a company record with its products.",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_card",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def scrape_card(page, card, listing, index, seen_products):\n    \"\"\"Walk one card's carousel and return a company record with its products.\n    ``seen_products`` is shared across the whole run: IndiaMART re-renders the\n    same sellers further down the feed, so the duplicate check has to be global,\n    and it has to run before the gallery is opened - that popup dance is by far\n    the slowest step and is pure waste on a product already collected.\n    \"\"\"\n    company = build_company(listing, card)\n    total = variant_count(card, listing)\n    logger.info(f\"Card #{index + 1}: {company['company'] or 'unknown'} ({total} products)\")",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "grow_feed",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def grow_feed(page, before, rounds=8):\n    \"\"\"Let the feed lazily render more cards by scrolling to the bottom.\n    The listing appends a second batch of cards on scroll alone, without any\n    \"show more\" click. Doing this explicitly means the run does not depend on\n    cards happening to appear while cards were being scrolled past.\n    \"\"\"\n    for _ in range(rounds):\n        try:\n            page.evaluate(\"window.scrollTo(0, document.body.scrollHeight)\")\n        except Exception as e:",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "show_more_results",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def show_more_results(page, before):\n    \"\"\"Click \"Show more results\" and report whether new cards arrived.\"\"\"\n    button = page.locator(SHOW_MORE)\n    if button.count() == 0:\n        logger.info(\"No 'Show more results' button on the page.\")\n        return False\n    # Scrolling is best-effort only. The button is frequently reported as not\n    # visible (a feedback panel renders above it), and letting that abort the\n    # attempt skips the click entirely - the JS path below does not need\n    # visibility, so a failed scroll must not stop us.",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_json",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def save_to_json(data, filepath):\n    parent = os.path.dirname(filepath)\n    if parent:\n        os.makedirs(parent, exist_ok=True)\n    with open(filepath, \"w\", encoding=\"utf-8\") as f:\n        json.dump(data, f, ensure_ascii=False, indent=2)\n    logger.info(f\"Scraping completed. Output saved to {filepath}\")\n    return filepath\n# ---------------------------------------------------------------------------\n# Entry point",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "def run_scraper(query, output_file=None, limit=None, headless=False, session_file=None, max_pages=20):\n    \"\"\"Scrape IndiaMART product cards for ``query``.\n    ``limit`` caps the number of companies collected. Output is always JSON\n    because the records are nested (company -> products -> images), which a flat\n    CSV cannot represent without stringifying half of it.\n    \"\"\"\n    target = limit if limit is not None else 40\n    cookies, local_storage = load_session(session_file)\n    store = ListingStore()\n    auth_failures = []",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "logger = get_logger(\"indiamart_products\")\ndescription = \"Scrape IndiaMART product cards (specs, price, gallery images) grouped by company.\"\n# Chromium is normally installed by runner.py before this module loads. Keep a\n# best-effort fallback for direct imports, but never let it kill the import.\nsubprocess.run(\n    [sys.executable, \"-m\", \"playwright\", \"install\", \"chromium\"],\n    check=False,\n    stdout=subprocess.DEVNULL,\n    stderr=subprocess.DEVNULL,\n)",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "description",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "description = \"Scrape IndiaMART product cards (specs, price, gallery images) grouped by company.\"\n# Chromium is normally installed by runner.py before this module loads. Keep a\n# best-effort fallback for direct imports, but never let it kill the import.\nsubprocess.run(\n    [sys.executable, \"-m\", \"playwright\", \"install\", \"chromium\"],\n    check=False,\n    stdout=subprocess.DEVNULL,\n    stderr=subprocess.DEVNULL,\n)\nDESKTOP_UA = (",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "DESKTOP_UA",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "DESKTOP_UA = (\n    \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \"\n    \"(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n)\nDEFAULT_SESSION_FILE = os.path.join(\n    os.path.dirname(os.path.abspath(__file__)), \"auth\", \"indiamart\", \"indiamart_session.json\"\n)\n# --- Result card selectors -------------------------------------------------\n# The listing is rendered by a remote component that namespaces everything with\n# \"im-lc-\". These class names are far more stable than positional XPaths, which",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_SESSION_FILE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "DEFAULT_SESSION_FILE = os.path.join(\n    os.path.dirname(os.path.abspath(__file__)), \"auth\", \"indiamart\", \"indiamart_session.json\"\n)\n# --- Result card selectors -------------------------------------------------\n# The listing is rendered by a remote component that namespaces everything with\n# \"im-lc-\". These class names are far more stable than positional XPaths, which\n# shift the moment an ad slot or banner is injected into the feed.\nCARD = \"article\"\nCARD_IMAGE = \"img.im-lc-image\"\nCARD_IMAGE_OPEN = \"button.im-lc-image-link\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD = \"article\"\nCARD_IMAGE = \"img.im-lc-image\"\nCARD_IMAGE_OPEN = \"button.im-lc-image-link\"\nCARD_IMAGE_COUNT = \"button.im-lc-image-count\"\nCARD_NEXT_VARIANT = \"button.im-lc-image-nav-next\"\nCARD_DOTS = \"button.im-lc-dot\"\nCARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_IMAGE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_IMAGE = \"img.im-lc-image\"\nCARD_IMAGE_OPEN = \"button.im-lc-image-link\"\nCARD_IMAGE_COUNT = \"button.im-lc-image-count\"\nCARD_NEXT_VARIANT = \"button.im-lc-image-nav-next\"\nCARD_DOTS = \"button.im-lc-dot\"\nCARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_IMAGE_OPEN",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_IMAGE_OPEN = \"button.im-lc-image-link\"\nCARD_IMAGE_COUNT = \"button.im-lc-image-count\"\nCARD_NEXT_VARIANT = \"button.im-lc-image-nav-next\"\nCARD_DOTS = \"button.im-lc-dot\"\nCARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_IMAGE_COUNT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_IMAGE_COUNT = \"button.im-lc-image-count\"\nCARD_NEXT_VARIANT = \"button.im-lc-image-nav-next\"\nCARD_DOTS = \"button.im-lc-dot\"\nCARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_NEXT_VARIANT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_NEXT_VARIANT = \"button.im-lc-image-nav-next\"\nCARD_DOTS = \"button.im-lc-dot\"\nCARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_DOTS",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_DOTS = \"button.im-lc-dot\"\nCARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image\n# popup. Selecting by bare id resolves to the hidden one and hangs.",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_TITLE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_TITLE = \"a.im-lc-title-link\"\nCARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image\n# popup. Selecting by bare id resolves to the hidden one and hangs.\nPOPUP = \"div.ber-frwrap\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_PRICE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_PRICE = \"button.im-lc-price\"\nCARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image\n# popup. Selecting by bare id resolves to the hidden one and hangs.\nPOPUP = \"div.ber-frwrap\"\nPOPUP_IMAGE = f\"{POPUP} #t0901_zoomimage\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_UNIT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_UNIT = \"span.im-lc-unit\"\nCARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image\n# popup. Selecting by bare id resolves to the hidden one and hangs.\nPOPUP = \"div.ber-frwrap\"\nPOPUP_IMAGE = f\"{POPUP} #t0901_zoomimage\"\nPOPUP_NEXT = f\"{POPUP} #t0901_nextbtnR\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "CARD_SELLER",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "CARD_SELLER = \"a.im-lc-seller-name\"\nSHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image\n# popup. Selecting by bare id resolves to the hidden one and hangs.\nPOPUP = \"div.ber-frwrap\"\nPOPUP_IMAGE = f\"{POPUP} #t0901_zoomimage\"\nPOPUP_NEXT = f\"{POPUP} #t0901_nextbtnR\"\nPOPUP_NEXT_TIP = f\"{POPUP} #t0901_nextbtnR span.nxTp\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "SHOW_MORE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "SHOW_MORE = \"button.showMoreBtn\"\n# --- Gallery popup selectors -----------------------------------------------\n# Everything is scoped under \".ber-frwrap\" because the page ships TWO elements\n# carrying id=\"t0901_bewrapper\" - one hidden enquiry form and the real image\n# popup. Selecting by bare id resolves to the hidden one and hangs.\nPOPUP = \"div.ber-frwrap\"\nPOPUP_IMAGE = f\"{POPUP} #t0901_zoomimage\"\nPOPUP_NEXT = f\"{POPUP} #t0901_nextbtnR\"\nPOPUP_NEXT_TIP = f\"{POPUP} #t0901_nextbtnR span.nxTp\"\nPOPUP_CLOSE = f\"{POPUP} #t0901_cls\"",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP = \"div.ber-frwrap\"\nPOPUP_IMAGE = f\"{POPUP} #t0901_zoomimage\"\nPOPUP_NEXT = f\"{POPUP} #t0901_nextbtnR\"\nPOPUP_NEXT_TIP = f\"{POPUP} #t0901_nextbtnR span.nxTp\"\nPOPUP_CLOSE = f\"{POPUP} #t0901_cls\"\nPOPUP_BARS = f\"{POPUP} #t0901_prodimgR div.stories-progress-bar\"\nPOPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_IMAGE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP_IMAGE = f\"{POPUP} #t0901_zoomimage\"\nPOPUP_NEXT = f\"{POPUP} #t0901_nextbtnR\"\nPOPUP_NEXT_TIP = f\"{POPUP} #t0901_nextbtnR span.nxTp\"\nPOPUP_CLOSE = f\"{POPUP} #t0901_cls\"\nPOPUP_BARS = f\"{POPUP} #t0901_prodimgR div.stories-progress-bar\"\nPOPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_NEXT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP_NEXT = f\"{POPUP} #t0901_nextbtnR\"\nPOPUP_NEXT_TIP = f\"{POPUP} #t0901_nextbtnR span.nxTp\"\nPOPUP_CLOSE = f\"{POPUP} #t0901_cls\"\nPOPUP_BARS = f\"{POPUP} #t0901_prodimgR div.stories-progress-bar\"\nPOPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),\n    \"brand\": (\"brand\",),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_NEXT_TIP",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP_NEXT_TIP = f\"{POPUP} #t0901_nextbtnR span.nxTp\"\nPOPUP_CLOSE = f\"{POPUP} #t0901_cls\"\nPOPUP_BARS = f\"{POPUP} #t0901_prodimgR div.stories-progress-bar\"\nPOPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),\n    \"brand\": (\"brand\",),\n    \"connector_type\": (\"connector type\", \"connector\", \"end connection\"),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_CLOSE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP_CLOSE = f\"{POPUP} #t0901_cls\"\nPOPUP_BARS = f\"{POPUP} #t0901_prodimgR div.stories-progress-bar\"\nPOPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),\n    \"brand\": (\"brand\",),\n    \"connector_type\": (\"connector type\", \"connector\", \"end connection\"),\n    \"type\": (\"type\", \"valve type\", \"product type\"),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_BARS",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP_BARS = f\"{POPUP} #t0901_prodimgR div.stories-progress-bar\"\nPOPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),\n    \"brand\": (\"brand\",),\n    \"connector_type\": (\"connector type\", \"connector\", \"end connection\"),\n    \"type\": (\"type\", \"valve type\", \"product type\"),\n    \"material\": (\"material\",),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_PRODUCT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "POPUP_PRODUCT = f\"{POPUP} #t0901_Prodname0R\"\n# Spec keys the caller asked to see promoted to the top of each product.\nPROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),\n    \"brand\": (\"brand\",),\n    \"connector_type\": (\"connector type\", \"connector\", \"end connection\"),\n    \"type\": (\"type\", \"valve type\", \"product type\"),\n    \"material\": (\"material\",),\n    \"size\": (\"size\", \"valve size\"),",
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "PROMOTED_SPECS",
+        "kind": 5,
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "peekOfCode": "PROMOTED_SPECS = {\n    \"automation_grade\": (\"automation grade\",),\n    \"usage\": (\"usage/application\", \"usage\", \"application\"),\n    \"brand\": (\"brand\",),\n    \"connector_type\": (\"connector type\", \"connector\", \"end connection\"),\n    \"type\": (\"type\", \"valve type\", \"product type\"),\n    \"material\": (\"material\",),\n    \"size\": (\"size\", \"valve size\"),\n}\n# ---------------------------------------------------------------------------",
+        "detail": "plugins.indiamart_products",
         "documentation": {}
     },
     {

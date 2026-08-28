@@ -44,13 +44,48 @@ GOOGLE_MAPS_FIELDNAMES = [
     "Reviews",
 ]
 
-def scroll_feed(page):
-    """Scroll the results feed to load more cards."""
+def scroll_feed(page, search_url=None):
+    """Scroll the results feed to load more cards. Returns True if it moved.
+
+    Two things this has to handle: after each business the scraper sits on a
+    place panel, where div[role='feed'] does not exist at all, so the results
+    list has to be restored first. And the feed viewport is ~970px while the
+    list keeps growing, so a fixed scrollBy(0, 1000) barely advances it -
+    jump to the current bottom instead.
+    """
     try:
-        page.evaluate("document.querySelector('div[role=\"feed\"]').scrollBy(0, 1000)")
-    except:
-        logger.warning("Could not scroll feed. Possibly no more results.")
-    time.sleep(2)
+        if search_url and page.locator("a.hfpxzc").count() == 0:
+            _restore_results_feed(page, search_url)
+    except Exception as e:
+        logger.debug(f"Could not restore feed before scrolling: {e}")
+
+    try:
+        moved = page.evaluate(
+            """() => {
+                let el = document.querySelector('div[role="feed"]');
+                if (!el) {
+                    const a = document.querySelector('a.hfpxzc');
+                    el = a ? a.parentElement : null;
+                    while (el && el !== document.body && el.scrollHeight <= el.clientHeight + 20)
+                        el = el.parentElement;
+                    if (el === document.body) el = null;
+                }
+                if (!el) return null;
+                const before = el.scrollTop;
+                el.scrollTo(0, el.scrollHeight);
+                return el.scrollTop > before;
+            }"""
+        )
+    except Exception as e:
+        logger.debug(f"Feed scroll failed: {e}")
+        moved = None
+
+    if moved is None:
+        logger.warning("Could not find the results feed to scroll.")
+        return False
+
+    page.wait_for_timeout(2000)
+    return bool(moved)
 
 def _safe_inner_text(locator, default=None, timeout=1500):
     try:
@@ -781,6 +816,17 @@ def extract_card_data(page):
 
     return data
 
+def _place_key(data):
+    """Stable identity for a business: name plus address.
+
+    Not the URL - Google varies the data=/entry= parameters between visits to the
+    same place, so URL keys let duplicates through. Not the URL's !1s feature id
+    either: page.url can still hold the previous business when the panel is read,
+    which merges two unrelated companies. Name+address survives both, and real
+    branches of one chain differ by address so they stay separate.
+    """
+    return normalize_key(data.get("Name"), data.get("Address"))
+
 def _ensure_parent_dir(filepath):
     """makedirs() on a bare filename raises FileNotFoundError - skip when no dir part."""
     parent = os.path.dirname(filepath)
@@ -820,7 +866,7 @@ def run_scraper(query, output_file=None, limit=None):
     timeout_ms = 180000 if limit is None else 60000
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
+        browser = p.chromium.launch(headless=False, args=["--disable-blink-features=AutomationControlled"])
         # Google serves a reviews-stripped page to the default headless UA: the
         # Reviews tab is absent entirely and div.jftiEf never renders. A desktop
         # UA plus a full-size viewport restores the normal UI.
@@ -839,12 +885,13 @@ def run_scraper(query, output_file=None, limit=None):
         page.goto(search_url, timeout=timeout_ms)
 
         collected = []
-        seen_entries = set()
+        seen_entries = {}  # place key -> index in collected
         visited_hrefs = set()
 
-        max_scrolls = 40 if limit is None else 20
+        max_scrolls = 100000 if limit is None else 20
         scrolls_done = 0
         last_cards_count = 0
+        stagnant_feed_rounds = 0
 
         while len(collected) < target_count and scrolls_done < max_scrolls:
             try:
@@ -864,12 +911,18 @@ def run_scraper(query, output_file=None, limit=None):
             logger.info(f"New cards to process: {len(new_cards)}")
 
             if not new_cards:
-                scroll_feed(page)
+                scroll_feed(page, search_url)
                 scrolls_done += 1
                 if len(cards) == last_cards_count:
-                    logger.info("ℹ No new cards loaded after scrolling, ending.")
-                    break
-                last_cards_count = len(cards)
+                    # The feed loads lazily: a round that adds nothing is common
+                    # and is not the end of the list. Only give up after several.
+                    stagnant_feed_rounds += 1
+                    if stagnant_feed_rounds >= 3:
+                        logger.info("No new cards after 3 scroll rounds, ending.")
+                        break
+                else:
+                    stagnant_feed_rounds = 0
+                    last_cards_count = len(cards)
                 continue
 
             for card, href in new_cards:
@@ -887,11 +940,21 @@ def run_scraper(query, output_file=None, limit=None):
                     page.wait_for_selector(".DUwDvf, h1.DUwDvf, div.Io6YTe", timeout=15000)
                     data = extract_card_data(page)
 
-                    entry_key = normalize_key(data["Name"], data["URL"])
-                    if entry_key not in seen_entries:
+                    entry_key = _place_key(data)
+                    existing_index = seen_entries.get(entry_key)
+                    if existing_index is None:
+                        seen_entries[entry_key] = len(collected)
                         collected.append(data)
-                        seen_entries.add(entry_key)
                         logger.info(f"Collected: {data['Name']}")
+                    elif len(data.get("Reviews") or []) > len(
+                        collected[existing_index].get("Reviews") or []
+                    ):
+                        # A repeat visit often loads more reviews than the first
+                        # pass did, so keep whichever row is richer.
+                        collected[existing_index] = data
+                        logger.info(f"Re-collected with more reviews: {data['Name'][:50]}")
+                    else:
+                        logger.debug(f"Skipped duplicate: {data['Name'][:50]}")
 
                     visited_hrefs.add(href)
 
@@ -901,7 +964,7 @@ def run_scraper(query, output_file=None, limit=None):
                     logger.warning(f"Failed to process a card: {e}")
                     continue
 
-            scroll_feed(page)
+            scroll_feed(page, search_url)
             scrolls_done += 1
 
         browser.close()
