@@ -1,0 +1,489 @@
+{
+  "site": "indiamart.com",
+  "session_data": {
+    "Previous_searched_terms": [
+      {
+        "search_term": "ball valves",
+        "filter": []
+      }
+    ],
+    "bckurl": "https://dir.indiamart.com/search.mp?ss=ball+valves&search_type=p&v=4&mcatid=&catid=&crs=bp&trc=xim&tags=res:RC4|ktp:N0|mtp:G|wc:2|lcf:-1|qr_nm:gd|cs:15727|com-cf:nl|ptrs:na|mc:2225|cat:130|qry_typ:P|lang:en|qrd:260824|mrd:260801|prdt:260824|msf:hs|pfen:1|gli:U0G1I1|gc:Ahmedabad|ic:Ahmedabad|emt:10",
+    "cats-2225": [
+      {
+        "catName": "Ball Valves",
+        "catImg": "http://3.imimg.com/data3/GW/CX/GLADMIN-2225/ball-valves-125x125.jpg",
+        "catUrl": "/impcat/ball-valves.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Cast Iron Ball Valve",
+        "catImg": "http://3.imimg.com/data3/QB/CG/GLADMIN-138805/cast-iron-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/cast-iron-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Three Piece Ball Valve",
+        "catImg": "http://3.imimg.com/data3/IF/VY/GLADMIN-78794/three-piece-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/three-piece-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Actuators Ball Valve",
+        "catImg": "http://3.imimg.com/data3/NK/MP/GLADMIN-50518/actuators-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/actuators-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Floating Ball Valve",
+        "catImg": "http://3.imimg.com/data3/QP/YV/GLADMIN-78662/floating-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/floating-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Two Piece Ball Valve",
+        "catImg": "http://3.imimg.com/data3/JM/BG/GLADMIN-78809/two-piece-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/two-piece-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Plastic Ball Valves",
+        "catImg": "http://3.imimg.com/data3/HU/PO/GLADMIN-43576/plastic-ball-valves-125x125.jpg",
+        "catUrl": "/impcat/plastic-ball-valves.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Cast Steel Ball Valve",
+        "catImg": "http://3.imimg.com/data3/LK/BI/GLADMIN-156545/cast-steel-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/cast-steel-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Brass Ball Valves",
+        "catImg": "http://3.imimg.com/data3/PL/JR/GLADMIN-23566/brass-ball-valves-125x125.jpg",
+        "catUrl": "/impcat/brass-ball-valves.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "PVC Ball Valves",
+        "catImg": "http://3.imimg.com/data3/HV/DN/GLADMIN-43579/pvc-ball-valves-125x125.jpg",
+        "catUrl": "/impcat/pvc-ball-valves.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Industrial Ball Valves",
+        "catImg": "http://4.imimg.com/data4/FF/FF/GLADMIN-/industrial-ball-valves-125x125.jpg",
+        "catUrl": "/impcat/industrial-ball-valves.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Motorized Ball Valve",
+        "catImg": "http://3.imimg.com/data3/LR/CG/GLADMIN-78720/motorized-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/motorized-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Gun Metal Ball Valve",
+        "catImg": "http://5.imimg.com/data5/FO/VK/YB/GLADMIN-65832/gun-metal-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/gun-metal-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Multiport Valves",
+        "catImg": "http://3.imimg.com/data3/MK/VE/GLADMIN-78725/multiport-valves-125x125.jpg",
+        "catUrl": "/impcat/multiport-valves.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Trunnion Ball Valve",
+        "catImg": "http://3.imimg.com/data3/IS/SA/GLADMIN-78805/trunnion-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/trunnion-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "CPVC Ball Valve",
+        "catImg": "http://3.imimg.com/data3/GX/DG/GLADMIN-157303/cpvc-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/cpvc-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Four Way Ball Valve",
+        "catImg": "http://4.imimg.com/data4/WM/OD/GLADMIN-184501/four-way-ball-valve-125x125.jpg",
+        "catUrl": "/impcat/four-way-ball-valve.html",
+        "catCity": "ahmedabad"
+      },
+      {
+        "catName": "Audco Ball Valves",
+        "catImg": "http://4.imimg.com/data4/LT/GF/GLADMIN-186321/audco-ball-valves-125x125.jpg",
+        "catUrl": "/impcat/audco-ball-valves.html",
+        "catCity": "ahmedabad"
+      }
+    ],
+    "ecv-137884083": "TxwceEvbVj47vt6xC7OV3g==",
+    "f": "1",
+    "ims": {
+      "search_id": "",
+      "rating": "",
+      "com_catgory": ""
+    },
+    "minidtlsres": {
+      "137884083": {
+        "Response": {
+          "Data": "1000"
+        }
+      }
+    },
+    "previousPageUrl": "https://dir.indiamart.com/search.mp?ss=ball+valves&search_type=p&v=4&mcatid=&catid=&crs=bp&trc=xim&tags=res:RC4|ktp:N0|mtp:G|wc:2|lcf:-1|qr_nm:gd|cs:15727|com-cf:nl|ptrs:na|mc:2225|cat:130|qry_typ:P|lang:en|qrd:260824|mrd:260801|prdt:260824|msf:hs|pfen:1|gli:U0G1I1|gc:Ahmedabad|ic:Ahmedabad|emt:10",
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "product_search": {
+      "category_id": "2225",
+      "search_term": "ball valves",
+      "products": [
+        {
+          "price": "₹ 10,000/Piece",
+          "name": "Water 15 Bar SS Ball Valve With Pneumatic Actuator, Valve Size: 2 inch",
+          "url": "https://www.indiamart.com/proddetail/15-bar-ss-ball-valve-with-pneumatic-actuator-20939755573.html?pos=1&kwd=ball valves"
+        },
+        {
+          "price": "₹ 5,360/Piece",
+          "name": "PPH PP Flanged Ball Valve, 15 mm",
+          "url": "https://www.indiamart.com/proddetail/pp-flanged-ball-valve-24193236955.html?pos=2&kwd=ball valves"
+        },
+        {
+          "price": "₹ 3,500/Piece",
+          "name": "Pneumatic Actuator Operated Ball valve, End Connection: Flanged End",
+          "url": "https://www.indiamart.com/proddetail/pneumatic-actuator-operated-ball-valve-21409809855.html?pos=3&kwd=ball valves"
+        },
+        {
+          "price": "₹ 790/Piece",
+          "name": "Material: Carbon Steel Three Piece Design Ball Valve, Size: 15mm To 200mm",
+          "url": "https://www.indiamart.com/proddetail/three-piece-design-ball-valve-2853466985488.html?pos=4&kwd=ball valves"
+        },
+        {
+          "price": "₹ 412/Piece",
+          "name": "Brass 1/2 Butterfly Handle Ball Valve",
+          "url": "https://www.indiamart.com/proddetail/1-2-butterfly-handle-ball-valve-2854270102591.html?pos=5&kwd=ball valves"
+        },
+        {
+          "price": "₹ 500/Piece",
+          "name": "Bs 10 Table e & f POLYPROPYLENE Three Piece Ball Valve, Model Name/Number: NEIL/PBLVF29, Size: 15mm To 50mm",
+          "url": "https://www.indiamart.com/proddetail/polypropylene-three-piece-ball-valve-26220075062.html?pos=6&kwd=ball valves"
+        },
+        {
+          "price": "₹ 1,150/Piece",
+          "name": "3pcs Full Bore Flanged End Cast Steel Ball Valve, For Industrial, 4 To 8",
+          "url": "https://www.indiamart.com/proddetail/flanged-end-cast-steel-ball-valve-2855643642162.html?pos=7&kwd=ball valves"
+        }
+      ]
+    }
+  },
+  "cookies": [
+    {
+      "name": "FCNEC",
+      "value": "%5B%5B%22AKsRol8O3TiE6UUfjRI-KMbQjOG5uUCz7ia1avmfChbb2bl_l6QSeJk_X7Q8WnRJkwyjOm85EW-bPv6zOGaE8of-JhYm_OR24b5BJsSVguDhgK4urWEkDYoLtHTb7TTgZSjsaJXQRQM-PJgDI-TRiATvUuHop3WRQg%3D%3D%22%5D%5D",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-08-24T10:50:54.000Z",
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Medium"
+    },
+    {
+      "name": "G_ENABLED_IDPS",
+      "value": "google",
+      "domain": ".dir.indiamart.com",
+      "path": "/",
+      "expires": "2026-10-07T15:39:55.985Z"
+    },
+    {
+      "name": "ImeshVisitor",
+      "value": "SubUser%3D%7Cadmln%3D0%7Cadmsales%3D0%7Ccd%3D21%2FOCT%2F2026%7Ccmid%3D%7Cctid%3D70472%7Cem%3Dm*************%40gmail.com%7Ceotp%3D%7Cev%3D%7Cfn%3DMoin%7Cglid%3D137884083%7Ciso%3DIN%7Cmb1%3D6359207120%7Cphcc%3D91%7Cpkrp%3D0%7Custs%3D%7Cutyp%3DN%7Cuv%3DV",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-08-24T10:50:56.000Z"
+    },
+    {
+      "name": "LGNSTR",
+      "value": "0%2C0%2C0%2C0%2C1%2C1%2C1%2C0%2C1",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-21T12:35:46.000Z"
+    },
+    {
+      "name": "__eoi",
+      "value": "ID=2c57dc6a35b69402:T=1787315787:RT=1787568656:S=AA-Afja7Ucvd1HButi0jnx96Nv7s",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-02-17T12:36:27.000Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__gads",
+      "value": "ID=ff0e75c534827f12:T=1756730497:RT=1787568656:S=ALNI_MZIxlYtuWUFTcdINQezXAoroO-37Q",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-26T12:41:37.000Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__gpi",
+      "value": "UID=0000118baf379d28:T=1756730497:RT=1787568656:S=ALNI_MZvJe-G8H2RPAlnpT2Ue_6ZaUbUag",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-26T12:41:37.000Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__gsas",
+      "value": "ID=293a2af034bfbfa8:T=1756730496:RT=1756730496:S=ALNI_MbQBQ97bMZl3S16ubnR4wxzn4DzUQ",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-26T12:41:36.000Z"
+    },
+    {
+      "name": "__qca",
+      "value": "I0-1321762315-1787568086312",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "session": true
+    },
+    {
+      "name": "_clck",
+      "value": "yaalqk%5E2%5Eg8v%5E0%5E2071",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-08-24T10:22:11.000Z"
+    },
+    {
+      "name": "_clsk",
+      "value": "1inbgto%5E1787568602903%5E4%5E1%5Eo.clarity.ms%2Fcollect",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-08-25T10:50:02.000Z"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.1.1787315779084.927646419212405320",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-11-22T10:50:41.000Z",
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.425214421.1756730497",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-09-28T10:50:37.017Z"
+    },
+    {
+      "name": "_ga_5JECDLZ9JP",
+      "value": "GS2.1.s1787566974$o4$g1$t1787568637$j24$l0$h0",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-09-28T10:50:37.016Z"
+    },
+    {
+      "name": "_ga_8B5NXMMZN3",
+      "value": "GS2.1.s1787566931$o9$g1$t1787568675$j42$l0$h0",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2027-09-28T10:51:15.393Z"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.1659271074.1787315747",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-11-19T12:35:47.000Z"
+    },
+    {
+      "name": "_ym_d",
+      "value": "1756735690",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-01T14:08:10.000Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ym_uid",
+      "value": "1756735690764165157",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-01T14:08:10.000Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "flusrcty",
+      "value": "Ahmedabad",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-08-25T10:22:11.000Z"
+    },
+    {
+      "name": "imEqGl",
+      "value": "dispid14202703391",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-08-25T10:42:00.000Z"
+    },
+    {
+      "name": "im_iss",
+      "value": "t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2KjUqMio3KjIqIiwiY2R0IjoiMjQtMDgtMjAyNiIsImV4cCI6MTc4NzY1NDUxNCwiaWF0IjoxNzg3NTY4MTE0LCJpc3MiOiJVU0VSIiwic3ViIjoiMTM3ODg0MDgzIn0.TfW89Lj7FJi4taue3iPH5w7Dc0F7luCRvFZJEBY3l6g",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-23T10:50:56.000Z"
+    },
+    {
+      "name": "inactive_open",
+      "value": "1",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "session": true
+    },
+    {
+      "name": "iploc",
+      "value": "gcniso%3DIN%7Cgcnnm%3DIndia%7Cgctnm%3DAhmedabad%7Cgctid%3D70472%7Cgacrcy%3D50%7Cgip%3D110.226.114.69%7Cgstnm%3DGujarat",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-08-24T13:22:13.000Z"
+    },
+    {
+      "name": "pop_mthd",
+      "value": "FL%3D0%7CDTy%3D1",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-09-24T10:22:11.000Z"
+    },
+    {
+      "name": "r",
+      "value": "g",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "session": true
+    },
+    {
+      "name": "sessid",
+      "value": "spv=4",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-08-24T11:21:33.000Z"
+    },
+    {
+      "name": "site-entry-page",
+      "value": "referral=external",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "session": true
+    },
+    {
+      "name": "xnHist",
+      "value": "pv%3D0%7Cipv%3Dundefined%7Cfpv%3D0%7Ccity%3Dundefined%7Clc_city%3Dundefined%7Ccvstate%3Dundefined%7Cpopupshown%3Dundefined%7Cinstall%3Dundefined%7Css%3Dundefined%7Cmb%3Dundefined%7Ctm%3Dundefined%7Cage%3Dundefined%7Ccount%3D0%7Ctime%3DMon%20Aug%2024%202026%2015%3A52%3A11%20GMT+0530%20%28India%20Standard%20Time%29%7Cglid%3D137884083%7Cgname%3Dundefined%7Cgemail%3Dundefined%7CcityID%3Dundefined",
+      "domain": ".indiamart.com",
+      "path": "/",
+      "expires": "2026-08-25T10:22:12.000Z"
+    },
+    {
+      "name": "SAPISID",
+      "value": "9qQvG28TdSDcw184/AsWpDggziTpf1acUh",
+      "domain": ".google.com",
+      "path": "/"
+    },
+    {
+      "name": "NID",
+      "value": "CtADCAESggMBOxGDSKA5pjq0wS_RuoGjc_IUkKF5MGA4qNaqLfvU-2cxMdxLWSif3vgXc6GmE5HEE3YVsDj4BtdwJyUJH_jwRhfuxjadeIod3szzhSPruzJTfwZFQAQVYA7yKrzDyLaGNqAgsgfVDbuyKtrWYtgd1lrxeQ6O6sdFbkDaJBXbDnBsWAfh7XOum8qU3G3RQBHdVKUoDrSKEpcVrlc5cX9jJvQZq5EKzWQNFhQPkCtcPyqDGTR_pehz3x698RAwgcjPYs--QEMo4gTp6G5qlad5M4u3DxqWkUH7ybgsFtBDCSh_zcQKRupt1gnWqZ4jfJm4Wwk07abdpEKFiG73MvBa_XOMd1eZKu36R9PKXKUwI45Rbl02romJ0Y-NOb2bYxFq3w7ZJNBuhIHLzk86JNmSNHXsz0zY7fbPxY-U4PiHs3hUZ2f2TXC8VMBlfr6SKhTOiuihFOXKS2kWs39ch07tVpFA7VH1ZywZyAxIUsWi3TGtRKRkwqV5Ms3OWxo_WGGKbygBMkUB0qwHz4sZgW2XYxdjw0jmSIfqusuO0xqahdSHl5-WBaLp7WvzTj7YwdlR9OlBBoGL6ICSXP_6KBX-bm67UyMcsr8xyAM",
+      "domain": ".google.com",
+      "path": "/"
+    },
+    {
+      "name": "KWIKUSERTOKEN",
+      "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..e63r0-VcUSXSy3Om.o1PoQgLC5TM3sYxPeBhrecXS3wm0B3WhUCDARgSw8gWsgqseNp6OTRPoOsuiE-WZY3KZsFFQtRCWj1gp4ftG1AczYqljDBF3k_4njYBB4aNxZrHLfEI1UjtEymLjLrw2Pr52cyaywgRvjvPOjRFVzieih3HylwJVUMBmANlEjDQV0DZDMQpQqXA_JFWJLxdBFFA9YCHc4wfk7F7ygsE2FSSbXrql4n42_rPMvR1lRqaMM2bx_iu8RKrffcG_Ag-cW6mRHV0FNQAoCB2UL8tAp-pzClJrwkhsz8vDD6QA6jzJXVCHB8OsyoTubechjCZOJQ.lnwEDkyOnr4vYjbtuK5s7Q",
+      "domain": "www.indiamart.com",
+      "path": "/"
+    },
+    {
+      "name": "KWIKSESSIONTOKEN",
+      "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..llXYEgKm7q4UFfJh.cM5LJoB6NEN6XsdLzT_Vbl2hJHPRLCD3wmBawd2ZHmSsSGf5CobukaMeFX3VY9gjmwQeP53xSj1m0qEn0hhudwh69UFBlXpYhMY0_3s01DD3jGHKqc20TNGNZd7aryQsRew.YPHls47MeqcRJR9B1Y2R1A",
+      "domain": "www.indiamart.com",
+      "path": "/"
+    },
+    {
+      "name": "KP_MERCHANT_CONFIG",
+      "value": "{\"id\":8065,\"merchantId\":\"197lc0tm2i21\",\"name\":\"Indiamart\",\"host\":\"buyer.indiamart.com\",\"platform\":\"custom\",\"kwikpassEnabled\":true,\"isWhatsappOtpLessActive\":false,\"isTruecallerActive\":true,\"integrationType\":\"CUSTOM_HEADLESS\",\"isLogoutBtnDisabled\":false,\"popupBreakpoint\":\"1240px\",\"isPublicAppInstalled\":false,\"customerIntelligenceEnabled\":false,\"customerIntelligenceMetrics\":null,\"marketingPopupGlobalLimit\":\"1\",\"customerAccountsVersion\":\"classic\",\"kpAppName\":null,\"isCustomAccountPageEnabled\":false,\"accountPageConfigs\":{\"vendor\":\"\",\"enabled\":false,\"redirect_url\":\"\"},\"kpFeatures\":[],\"consentState\":\"opt_out\",\"isDPDPCompliancePopup\":false,\"isCustomizePopupHandled\":true,\"isMultiplePlatform\":false,\"isS2sEventEnabled\":true,\"isShopifySessionEnabled\":false,\"thirdPartyServiceProviders\":[{\"name\":\"web_personalization\",\"type\":\"rewards\",\"category\":null,\"identifier\":\"\",\"events\":[],\"marketingEvents\":[],\"rules\":null},{\"name\":\"product_recommendations\",\"type\":\"post-purchase-action\",\"category\":\"Account Page Extension\",\"identifier\":null,\"events\":[\"[]\"],\"marketingEvents\":[],\"rules\":null}],\"merchantIntegrationType\":{\"host\":\"buyer.indiamart.com\",\"platform\":\"custom\",\"integrationType\":\"CUSTOM_HEADLESS\"},\"kpRequestId\":\"4b0f1ca6-a4aa-47c3-9120-17422aac8d78\"}",
+      "domain": "www.indiamart.com",
+      "path": "/"
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUk_5TXJ08HkjEKne-RQINU5kbU9YiRbCdEHT8vIqpjFWWlbuMuDAmGcMDscGDw",
+      "domain": ".doubleclick.net",
+      "path": "/"
+    },
+    {
+      "name": "HSID",
+      "value": "AE-Hubvs1cW9U2PD1",
+      "domain": ".google.com",
+      "path": "/"
+    },
+    {
+      "name": "FP_CONTROLS_DATA",
+      "value": "{\"fpFlowAllowd\":false,\"vIdGeneration\":{\"enabled\":false,\"limitReached\":true},\"apiConfigurations\":{},\"generator\":\"\"}",
+      "domain": "www.indiamart.com",
+      "path": "/"
+    },
+    {
+      "name": "FCCDCF",
+      "value": "%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B32%2C%22%5B%5C%22dd058d4d-80b1-45bc-b24c-4da3f49a2a40%5C%22%2C%5B1787315785%2C4000000%5D%5D%22%5D%5D%5D",
+      "domain": ".indiamart.com",
+      "path": "/"
+    },
+    {
+      "name": "DSID",
+      "value": "ALG6gfWv6BHzGs1gMsxn-IVjM_HZVjnHm8gd-tywuX_yQ_oMJf5a45ptfB_ekwr95ZuoKXA3paVFF2H_E-I8NmSVTaQa4kofokaWVKmDAc83lxMaX64csqOY_c88LPwEB6nrg47hKFVOrKTqHFV4uHJD_0md8YMyQJSJRKLnL0Ndq1yfAhhgB3lder9gEd1vKQuBY3neyieMQWqwdHA7RmEQKFb8a5oPw9ReAKNSdzw6IPJPUg3PAEZ7pZMxUvOS_PxNwD6K7hX3JL39XoWgk6jj4YhO4rEuabdl2JuUzhnOnqBLM8p50F4q44NcL0FzuKF_gpbV3L5eBIRAqHXvWZGBwuiVPQeMx3tOM14keXWoW4JMNfMbx_M",
+      "domain": ".doubleclick.net",
+      "path": "/"
+    },
+    {
+      "name": "APISID",
+      "value": "99zxRaaGSnWAt05a/Ad0ypi6wHYSakT4-6",
+      "domain": ".google.com",
+      "path": "/"
+    },
+    {
+      "name": "APC",
+      "value": "AdutNibwPMNJsvVpfNwfWH929tUc6WvO_IWy5VdMktM96Ftb9W_hNQ",
+      "domain": ".doubleclick.net",
+      "path": "/"
+    },
+    {
+      "name": "AEC",
+      "value": "Aaa9EJreGiEZ5_39j1W6JRvA4O64juea0vMnKB3uuVe3Qj6vM8Jl_RORPII",
+      "domain": ".google.com",
+      "path": "/"
+    }
+  ],
+  "browser_storage": {
+    "goog:cached:topics": "[null,1756730498850,3]",
+    "google_adsense_settings": "{\"ca-pub-0673059417528889\":[\"ca-pub-0673059417528889\"]}",
+    "gtm_event_tracker": "{\"pv\":{},\"ed\":{\"\\",
+    "kp-request-id": "4b0f1ca6-a4aa-47c3-9120-17422aac8d78",
+    "kp_health_cache": "{\"mid\":\"197lc0tm2i21\",\"body\":{\"data\":{\"is_kwikpass_healthy\":true},\"success\":true,\"status_code\":200,\"timestamp\":1792587220366,\"isSuccess\":true,\"error\":\"\"},\"ts\":1792587220354}",
+    "kp_user_id": "019c22fa-44f1-7f3d-8752-86e93610acbe",
+    "lastExternalReferrer": "empty",
+    "lastExternalReferrerTime": "1792587193326",
+    "lpvi": "{\"lp\":\"https\\://www\\.indiamart.com/company/purl/B/homepage/bhagyalaxmi-engineering-works//bhagyalaxmi-engineering-works/\",\"ot\":1792587187394}",
+    "notifyph": "KzkxfDYzNTkyMDcxMjA=",
+    "snowplowOutQueue_kwikpass_post2": "[]",
+    "snowplowOutQueue_kwikpass_post2.expires": "1855659230185",
+    "kp_meta_landing_referrer": "\"\"",
+    "url_visited_by_user": "[\"https://www.indiamart.com/bhagyalaxmi-engineering-works/\"]"
+  }
+}

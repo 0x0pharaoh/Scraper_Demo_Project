@@ -200,10 +200,11 @@
     },
     {
       "name": "ImeshVisitor",
-      "value": "SubUser=|admln=0|admsales=0|cd=24%2FAUG%2F2026|cmid=|ctid=70472|em=m*********@gmail.com|eotp=|ev=|fn=Moin|glid=137884083|iso=IN|mb1=6359207120|phcc=91|pkrp=0|usts=|utyp=N|uv=V",
+      "value": "SubUser%3D%7Cadmln%3D0%7Cadmsales%3D0%7Ccd%3D23%2FSEP%2F2026%7Ccmid%3D%7Cctid%3D70472%7Cem%3Dm************%40gmail.com%7Ceotp%3D%7Cev%3D%7Cfn%3DMoin%7Cglid%3D137884083%7Ciso%3DIN%7Cmb1%3D6359207120%7Cphcc%3D91%7Cpkrp%3D0%7Custs%3D%7Cutyp%3DN%7Cuv%3DV",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2027-08-24T10:50:56.000Z"
+      "expires": "2027-09-23T10:33:29.000Z",
+      "sameSite": "Lax"
     },
     {
       "name": "LGNSTR",
@@ -255,53 +256,53 @@
     },
     {
       "name": "_clck",
-      "value": "yaalqk%5E2%5Eg8v%5E0%5E2071",
+      "value": "13xfcv7%5E2%5Eg9p%5E0%5E2457",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2027-08-24T10:22:11.000Z"
+      "expires": "2027-09-23T10:33:31.000Z"
     },
     {
       "name": "_clsk",
-      "value": "1inbgto%5E1787568602903%5E4%5E1%5Eo.clarity.ms%2Fcollect",
+      "value": "1avgfvl%5E1790159612731%5E1%5E1%5Ef.clarity.ms%2Fcollect",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-08-25T10:50:02.000Z"
+      "expires": "2026-09-24T10:33:32.000Z"
     },
     {
       "name": "_fbp",
-      "value": "fb.1.1787315779084.927646419212405320",
+      "value": "fb.1.1790159589134.809573759212073806",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-11-22T10:50:41.000Z",
+      "expires": "2026-12-22T10:33:09.000Z",
       "sameSite": "Lax"
     },
     {
       "name": "_ga",
-      "value": "GA1.1.425214421.1756730497",
+      "value": "GA1.1.300058707.1790159583",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2027-09-28T10:50:37.017Z"
+      "expires": "2027-10-28T10:33:31.327Z"
     },
     {
       "name": "_ga_5JECDLZ9JP",
-      "value": "GS2.1.s1787566974$o4$g1$t1787568637$j24$l0$h0",
+      "value": "GS2.1.s1790159610$o1$g0$t1790159610$j60$l0$h0",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2027-09-28T10:50:37.016Z"
+      "expires": "2027-10-28T10:33:30.260Z"
     },
     {
       "name": "_ga_8B5NXMMZN3",
-      "value": "GS2.1.s1787566931$o9$g1$t1787568675$j42$l0$h0",
+      "value": "GS2.1.s1790159582$o1$g1$t1790159614$j28$l0$h0",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2027-09-28T10:51:15.393Z"
+      "expires": "2027-10-28T10:33:34.455Z"
     },
     {
       "name": "_gcl_au",
-      "value": "1.1.1659271074.1787315747",
+      "value": "1.1.1747578874.1790159582",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-11-19T12:35:47.000Z"
+      "expires": "2026-12-22T10:33:02.000Z"
     },
     {
       "name": "_ym_d",
@@ -337,10 +338,11 @@
     },
     {
       "name": "im_iss",
-      "value": "t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2KjUqMio3KjIqIiwiY2R0IjoiMjQtMDgtMjAyNiIsImV4cCI6MTc4NzY1NDUxNCwiaWF0IjoxNzg3NTY4MTE0LCJpc3MiOiJVU0VSIiwic3ViIjoiMTM3ODg0MDgzIn0.TfW89Lj7FJi4taue3iPH5w7Dc0F7luCRvFZJEBY3l6g",
+      "value": "t%3DeyJhbGciOiJzaGEyNTYiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiI2KjUqMio3KjIqIiwiY2R0IjoiMjMtMDktMjAyNiIsImV4cCI6MTc5MDI0NjAxMCwiaWF0IjoxNzkwMTU5NjEwLCJpc3MiOiJVU0VSIiwic3ViIjoiMTM3ODg0MDgzIn0.01MNaWjhfsKN9YzpDmf3dxGb2wgiuKwTadfUCN7-Nhc",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-09-23T10:50:56.000Z"
+      "expires": "2027-09-23T10:33:29.000Z",
+      "sameSite": "Lax"
     },
     {
       "name": "inactive_open",
@@ -351,10 +353,10 @@
     },
     {
       "name": "iploc",
-      "value": "gcniso%3DIN%7Cgcnnm%3DIndia%7Cgctnm%3DAhmedabad%7Cgctid%3D70472%7Cgacrcy%3D50%7Cgip%3D110.226.114.69%7Cgstnm%3DGujarat",
+      "value": "gcniso=IN|gcnnm=India|gctnm=Ahmedabad|gctid=70472|gacrcy=10|gip=110.226.114.135|gstnm=Gujarat",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-08-24T13:22:13.000Z"
+      "expires": "2026-09-23T13:33:03.000Z"
     },
     {
       "name": "pop_mthd",
@@ -372,24 +374,71 @@
     },
     {
       "name": "sessid",
-      "value": "spv=4",
+      "value": "spv=1",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-08-24T11:21:33.000Z"
+      "expires": "2026-09-23T11:03:02.000Z"
     },
     {
       "name": "site-entry-page",
-      "value": "referral=external",
+      "value": "https://www.indiamart.com/slmaazhosiery/",
       "domain": ".indiamart.com",
       "path": "/",
       "session": true
     },
     {
       "name": "xnHist",
-      "value": "pv%3D0%7Cipv%3Dundefined%7Cfpv%3D0%7Ccity%3Dundefined%7Clc_city%3Dundefined%7Ccvstate%3Dundefined%7Cpopupshown%3Dundefined%7Cinstall%3Dundefined%7Css%3Dundefined%7Cmb%3Dundefined%7Ctm%3Dundefined%7Cage%3Dundefined%7Ccount%3D0%7Ctime%3DMon%20Aug%2024%202026%2015%3A52%3A11%20GMT+0530%20%28India%20Standard%20Time%29%7Cglid%3D137884083%7Cgname%3Dundefined%7Cgemail%3Dundefined%7CcityID%3Dundefined",
+      "value": "pv%3D0%7Cipv%3Dundefined%7Cfpv%3Dundefined%7Ccity%3Dundefined%7Clc_city%3Dundefined%7Ccvstate%3Dundefined%7Cpopupshown%3Dundefined%7Cinstall%3Dundefined%7Css%3Dundefined%7Cmb%3Dundefined%7Ctm%3Dundefined%7Cage%3Dundefined%7Ccount%3D0%7Ctime%3DWed%20Sep%2023%202026%2016%3A03%3A31%20GMT+0530%20%28India%20Standard%20Time%29%7Cglid%3D137884083%7Cgname%3Dundefined%7Cgemail%3Dundefined%7CcityID%3Dundefined",
       "domain": ".indiamart.com",
       "path": "/",
-      "expires": "2026-08-25T10:22:12.000Z"
+      "expires": "2026-09-24T10:33:31.000Z"
+    },
+    {
+      "name": "ANONCHK",
+      "value": "0",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": "2026-09-23T10:43:33.829Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CLID",
+      "value": "ed0a8c82e8304230aa79c6af5c9f4f45.20251212.20270923",
+      "domain": "www.clarity.ms",
+      "path": "/",
+      "expires": "2027-09-23T10:33:30.969Z",
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": "2026-09-29T13:27:48.458Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MUID",
+      "value": "092ED34C51DB65C12267C5665055642D",
+      "domain": ".clarity.ms",
+      "path": "/",
+      "expires": "2027-10-17T13:27:48.458Z",
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "SM",
+      "value": "C",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "session": true,
+      "secure": true,
+      "sameSite": "None"
     }
-  ]
+  ],
+  "cookie_update_note": "Latest supplied cookies merged; prior session data preserved."
 }

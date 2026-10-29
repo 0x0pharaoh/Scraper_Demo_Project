@@ -95,6 +95,14 @@
         "documentation": {}
     },
     {
+        "label": "urlsplit",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
         "label": "quote_plus",
         "importPath": "urllib.parse",
         "description": "urllib.parse",
@@ -207,11 +215,19 @@
         "documentation": {}
     },
     {
-        "label": "get_logger",
-        "importPath": "utils.logger",
-        "description": "utils.logger",
+        "label": "sync_playwright",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
         "isExtraImport": true,
-        "detail": "utils.logger",
+        "detail": "playwright.sync_api",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "playwright.sync_api",
+        "description": "playwright.sync_api",
+        "isExtraImport": true,
+        "detail": "playwright.sync_api",
         "documentation": {}
     },
     {
@@ -244,6 +260,30 @@
         "description": "utils.logger",
         "isExtraImport": true,
         "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -317,6 +357,103 @@
         "importPath": "pandas",
         "description": "pandas",
         "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "DESKTOP_UA",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "build_search_url",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "clean_text",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "clean_url",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "load_session",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_image",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_key",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "promote_specs",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_json",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "seed_local_storage",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
+        "documentation": {}
+    },
+    {
+        "label": "_safe",
+        "importPath": "plugins.indiamart_products",
+        "description": "plugins.indiamart_products",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_products",
         "documentation": {}
     },
     {
@@ -507,6 +644,103 @@
         "importPath": "argparse",
         "description": "argparse",
         "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "CATEGORY_COUNT_RE",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "alias_from_url",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "company_from_fields",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "completed_aliases",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "export_json",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "goto_with_retry",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "open_db",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "parse_price",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "product_id",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "resolve_alias",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "save_company",
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "isExtraImport": true,
+        "detail": "plugins.indiamart_catalog",
         "documentation": {}
     },
     {
@@ -813,6 +1047,393 @@
         "description": "plugins.indiamart",
         "peekOfCode": "logger = get_logger(\"indiamart\")\ndef build_search_url(query):\n    return f\"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}\"\ndef save_results(results, query, output_file):\n    if not output_file:\n        date = datetime.now().strftime(\"%d%m%y\")\n        file_name = f\"static/{query.replace(' ', '_')}_indiamart_{date}.csv\"\n    else:\n        file_name = output_file\n    os.makedirs(os.path.dirname(file_name), exist_ok=True)",
         "detail": "plugins.indiamart",
+        "documentation": {}
+    },
+    {
+        "label": "goto_with_retry",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def goto_with_retry(page, url, attempts=5, backoff=(10000, 30000, 60000, 120000)):\n    \"\"\"Navigate, backing off when IndiaMART rate-limits us.\n    Crawling a large catalog fires one request per category, and after roughly\n    fifty in quick succession the site starts answering 429 - which previously\n    wiped out every company after the first. Measured, that throttle outlasts a\n    minute, so the ladder climbs to two minutes. Retrying is the safety net;\n    the actual fix is the pacing in ``scrape_company`` and the cooldown between\n    companies, which keep the request rate under the threshold to begin with.\n    \"\"\"\n    for attempt in range(attempts):",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "alias_from_url",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def alias_from_url(url):\n    \"\"\"Pull the minisite alias out of an indiamart.com company URL.\"\"\"\n    if not url:\n        return None\n    parts = urlsplit(url)\n    if \"indiamart.com\" not in (parts.netloc or \"\"):\n        return None\n    segments = [s for s in (parts.path or \"\").split(\"/\") if s]\n    if not segments:\n        return None",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "resolve_alias",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def resolve_alias(fields):\n    \"\"\"Work out the ``indiamart.com/<alias>/`` catalog for a search result.\n    The company's own ``catalog_url`` is often a vanity domain, which runs an\n    older template with no products index. The alias minisite carries the same\n    catalog on the template this scraper understands, so that is what gets\n    crawled - while ``catalog_url`` is still reported as the company's URL.\n    \"\"\"\n    for key in (\"companyalias\", \"tscode\"):\n        alias = clean_text(fields.get(key))\n        if alias:",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "company_from_fields",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def company_from_fields(fields, alias):\n    \"\"\"Company-level record built from the search payload.\"\"\"\n    return {\n        \"company\": clean_text(fields.get(\"companyname\")),\n        \"company_url\": clean_url(fields.get(\"catalog_url\") or fields.get(\"paidurl\")),\n        \"indiamart_url\": f\"{MINISITE_ROOT}/{alias}/\" if alias else None,\n        \"alias\": alias,\n        \"city\": clean_text(fields.get(\"city\")),\n        \"state\": clean_text(fields.get(\"state\")),\n        \"locality\": clean_text(fields.get(\"locality\")),",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "read_search_results",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def read_search_results(page):\n    \"\"\"Read the server-rendered search payload.\n    ``__NEXT_DATA__`` is present on first load and already carries the company\n    identity for every result, so the company list needs no DOM scraping at all.\n    \"\"\"\n    data = _safe(\n        lambda: page.evaluate(\n            \"() => { const e = document.getElementById('__NEXT_DATA__');\"\n            \" return e ? JSON.parse(e.textContent) : null; }\"\n        )",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "collect_categories",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def collect_categories(page, alias):\n    \"\"\"Return [(name, url)] for every category in the company's products index.\"\"\"\n    index_url = f\"{MINISITE_ROOT}/{alias}/products.html\"\n    response = goto_with_retry(page, index_url)\n    if response is None or response.status >= 400:\n        status = response.status if response else \"no response\"\n        logger.warning(f\"{index_url} returned {status}; trying the company home page.\")\n        if goto_with_retry(page, f\"{MINISITE_ROOT}/{alias}/\") is None:\n            logger.warning(f\"Company home page unavailable for {alias}.\")\n            return []",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "parse_price",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def parse_price(amount, unit):\n    \"\"\"Join the split price parts back into '₹ 2,530/Piece'.\"\"\"\n    amount, unit = clean_text(amount), clean_text(unit)\n    if not amount:\n        return None\n    return f\"{amount}{unit}\" if unit and unit.startswith(\"/\") else \" \".join(filter(None, [amount, unit]))\ndef extract_products(page, category_name):\n    \"\"\"Read every product card on the current category page.\"\"\"\n    cards = _safe(\n        lambda: page.evaluate(",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "extract_products",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def extract_products(page, category_name):\n    \"\"\"Read every product card on the current category page.\"\"\"\n    cards = _safe(\n        lambda: page.evaluate(\n            \"\"\"(sel) => [...document.querySelectorAll(sel.item)].map(c => {\n                const one = s => { const n = c.querySelector(s); return n ? n.innerText.trim() : null; };\n                const link = c.querySelector(sel.link);\n                const specs = [...c.querySelectorAll(sel.specRow)].map(r => {\n                    const k = r.querySelector(sel.specKey);\n                    const v = r.querySelector(sel.specVal);",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_company",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def scrape_company(page, company, max_categories=None, max_products=None, seen_products=None,\n                   delay_ms=1500, throttle_pause_ms=600000, throttle_retries=3, conn=None):\n    \"\"\"Fill ``company['products']`` from its minisite catalog.\n    A sustained 429 is treated as \"come back later\", not as failure: the whole\n    point of a full crawl is that it finishes, and abandoning a company because\n    the host is briefly throttling would silently leave a hole in the output.\n    \"\"\"\n    alias = company.get(\"alias\")\n    if not alias:\n        logger.warning(f\"No minisite alias for {company.get('company')}; skipping catalog.\")",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "open_db",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def open_db(path):\n    \"\"\"Open (creating if needed) the catalog database.\"\"\"\n    parent = os.path.dirname(path)\n    if parent:\n        os.makedirs(parent, exist_ok=True)\n    conn = sqlite3.connect(path)\n    conn.row_factory = sqlite3.Row\n    conn.executescript(\n        \"\"\"\n        CREATE TABLE IF NOT EXISTS companies (",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "product_id",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def product_id(alias, product):\n    \"\"\"Stable primary key for a product.\n    Most products carry a proddetail URL, but a few genuinely do not (verified\n    live: some listings have no detail page at all), so those fall back to the\n    company plus the product name.\n    \"\"\"\n    url = product.get(\"product_url\")\n    if url:\n        return url\n    return f\"{alias}::{normalize_key(product.get('name'))[0]}\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "save_products",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def save_products(conn, alias, category_name, category_url, products):\n    \"\"\"Write one category's products immediately and record the category as done.\n    Called after every category rather than once per company: a catalog can take\n    longer than a single run survives, and flushing per category means a killed\n    process loses one category at most instead of the whole company.\n    \"\"\"\n    now = datetime.now().isoformat(timespec=\"seconds\")\n    with conn:\n        conn.executemany(\n            f\"\"\"INSERT INTO products",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "done_categories",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def done_categories(conn, alias):\n    \"\"\"Category URLs already scraped for this company - never fetched again.\"\"\"\n    rows = conn.execute(\"SELECT url FROM categories WHERE alias = ?\", (alias,)).fetchall()\n    return {row[\"url\"] for row in rows}\ndef company_product_keys(conn, alias):\n    \"\"\"Dedupe keys for products already stored, so a resumed run stays consistent.\"\"\"\n    rows = conn.execute(\n        \"SELECT product_url, name FROM products WHERE alias = ?\", (alias,)\n    ).fetchall()\n    return {normalize_key(r[\"product_url\"] or \"\", r[\"name\"] or \"\") for r in rows}",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "company_product_keys",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def company_product_keys(conn, alias):\n    \"\"\"Dedupe keys for products already stored, so a resumed run stays consistent.\"\"\"\n    rows = conn.execute(\n        \"SELECT product_url, name FROM products WHERE alias = ?\", (alias,)\n    ).fetchall()\n    return {normalize_key(r[\"product_url\"] or \"\", r[\"name\"] or \"\") for r in rows}\ndef completed_aliases(conn):\n    \"\"\"Aliases already fully scraped. These are never crawled again.\"\"\"\n    rows = conn.execute(\"SELECT alias FROM companies WHERE status = 'done'\").fetchall()\n    return {row[\"alias\"] for row in rows}",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "completed_aliases",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def completed_aliases(conn):\n    \"\"\"Aliases already fully scraped. These are never crawled again.\"\"\"\n    rows = conn.execute(\"SELECT alias FROM companies WHERE status = 'done'\").fetchall()\n    return {row[\"alias\"] for row in rows}\ndef save_company(conn, record):\n    \"\"\"Persist one company and its products in a single transaction.\n    All-or-nothing on purpose: a company row marked done whose products failed\n    to write would be skipped forever by the next run.\n    \"\"\"\n    alias = record[\"alias\"]",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "save_company",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def save_company(conn, record):\n    \"\"\"Persist one company and its products in a single transaction.\n    All-or-nothing on purpose: a company row marked done whose products failed\n    to write would be skipped forever by the next run.\n    \"\"\"\n    alias = record[\"alias\"]\n    skipped = record.get(\"skipped_categories\") or []\n    products = record.get(\"products\") or []\n    now = datetime.now().isoformat(timespec=\"seconds\")\n    with conn:  # commits on success, rolls back on exception",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "export_json",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def export_json(conn, filepath):\n    \"\"\"Mirror the database out as the nested JSON the earlier runs produced.\"\"\"\n    companies = []\n    for row in conn.execute(\"SELECT * FROM companies ORDER BY company\").fetchall():\n        record = {c: row[c] for c in (\"alias\", *COMPANY_COLUMNS)}\n        record[\"verified_exporter\"] = bool(record[\"verified_exporter\"])\n        record[\"categories\"] = json.loads(row[\"categories\"] or \"[]\")\n        record[\"skipped_categories\"] = json.loads(row[\"skipped_categories\"] or \"[]\")\n        record[\"status\"] = row[\"status\"]\n        record[\"products\"] = [",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "import_legacy_json",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def import_legacy_json(conn, filepath):\n    \"\"\"One-off migration of an earlier JSON checkpoint into the database.\"\"\"\n    if not filepath or not os.path.exists(filepath):\n        return 0\n    try:\n        with open(filepath, encoding=\"utf-8\") as f:\n            records = json.load(f)\n    except Exception as e:\n        logger.warning(f\"Could not read {filepath}: {e}\")\n        return 0",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "dismiss_overlays",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def dismiss_overlays(page):\n    \"\"\"Close a blocking modal if one appeared.\n    Measured across a 45-second dwell with scrolling on a category page, no\n    overlay ever mounted - this scraper reads the DOM and clicks nothing, so\n    there is little to trigger one. Kept as a cheap safety net.\n    \"\"\"\n    try:\n        found = page.evaluate(\n            \"\"\"() => {\n                const blockers = [...document.querySelectorAll('body *')].filter(d => {",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "install_guards",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def install_guards(context, page, fast=True):\n    \"\"\"Block popup machinery before it can mount, and mute native dialogs.\"\"\"\n    # A native dialog would freeze the run until something answers it.\n    page.on(\"dialog\", lambda d: _safe(lambda: d.dismiss()))\n    # A minisite that opens a new tab would otherwise steal the crawl.\n    context.on(\"page\", lambda p: _safe(lambda: p.close()) if p is not page else None)\n    def route(route_obj, request):\n        url = request.url.lower()\n        if request.resource_type == \"script\" and any(p in url for p in POPUP_SCRIPT_PATTERNS):\n            return route_obj.abort()",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "run_scraper",
+        "kind": 2,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "def run_scraper(\n    query,\n    output_file=None,\n    limit=None,\n    headless=False,\n    session_file=None,\n    max_categories=None,\n    max_products_per_company=None,\n    fast=True,\n    delay_ms=1500,",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "logger = get_logger(\"indiamart_catalog\")\ndescription = \"Scrape a company's full IndiaMART product catalog (all categories) for a search query.\"\nMINISITE_ROOT = \"https://www.indiamart.com\"\n# --- Category index (<alias>/products.html) --------------------------------\nCATEGORY_CARD = \".catindex-category-card\"\nCATEGORY_NAME = \"[class*=cat-name]\"\n# --- Category page product cards -------------------------------------------\n# Semantic, template-owned class names. Chosen over the positional XPaths\n# because the minisite injects promo blocks between product rows, which shifts\n# every div index but leaves these untouched.",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "description",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "description = \"Scrape a company's full IndiaMART product catalog (all categories) for a search query.\"\nMINISITE_ROOT = \"https://www.indiamart.com\"\n# --- Category index (<alias>/products.html) --------------------------------\nCATEGORY_CARD = \".catindex-category-card\"\nCATEGORY_NAME = \"[class*=cat-name]\"\n# --- Category page product cards -------------------------------------------\n# Semantic, template-owned class names. Chosen over the positional XPaths\n# because the minisite injects promo blocks between product rows, which shifts\n# every div index but leaves these untouched.\nITEM = \".udg-category-item\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "MINISITE_ROOT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "MINISITE_ROOT = \"https://www.indiamart.com\"\n# --- Category index (<alias>/products.html) --------------------------------\nCATEGORY_CARD = \".catindex-category-card\"\nCATEGORY_NAME = \"[class*=cat-name]\"\n# --- Category page product cards -------------------------------------------\n# Semantic, template-owned class names. Chosen over the positional XPaths\n# because the minisite injects promo blocks between product rows, which shifts\n# every div index but leaves these untouched.\nITEM = \".udg-category-item\"\nITEM_TITLE = \"[class*=udg-category-item__title]\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "CATEGORY_CARD",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "CATEGORY_CARD = \".catindex-category-card\"\nCATEGORY_NAME = \"[class*=cat-name]\"\n# --- Category page product cards -------------------------------------------\n# Semantic, template-owned class names. Chosen over the positional XPaths\n# because the minisite injects promo blocks between product rows, which shifts\n# every div index but leaves these untouched.\nITEM = \".udg-category-item\"\nITEM_TITLE = \"[class*=udg-category-item__title]\"\nITEM_LINK = \"a[href*='proddetail']\"\nITEM_PRICE_AMOUNT = \"[class*=udg-category-item__priceAmount]\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "CATEGORY_NAME",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "CATEGORY_NAME = \"[class*=cat-name]\"\n# --- Category page product cards -------------------------------------------\n# Semantic, template-owned class names. Chosen over the positional XPaths\n# because the minisite injects promo blocks between product rows, which shifts\n# every div index but leaves these untouched.\nITEM = \".udg-category-item\"\nITEM_TITLE = \"[class*=udg-category-item__title]\"\nITEM_LINK = \"a[href*='proddetail']\"\nITEM_PRICE_AMOUNT = \"[class*=udg-category-item__priceAmount]\"\nITEM_PRICE_UNIT = \"[class*=udg-category-item__priceUnit]\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM = \".udg-category-item\"\nITEM_TITLE = \"[class*=udg-category-item__title]\"\nITEM_LINK = \"a[href*='proddetail']\"\nITEM_PRICE_AMOUNT = \"[class*=udg-category-item__priceAmount]\"\nITEM_PRICE_UNIT = \"[class*=udg-category-item__priceUnit]\"\nITEM_MOQ = \"[class*=udg-category-item__moq]\"\nITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_TITLE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_TITLE = \"[class*=udg-category-item__title]\"\nITEM_LINK = \"a[href*='proddetail']\"\nITEM_PRICE_AMOUNT = \"[class*=udg-category-item__priceAmount]\"\nITEM_PRICE_UNIT = \"[class*=udg-category-item__priceUnit]\"\nITEM_MOQ = \"[class*=udg-category-item__moq]\"\nITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_LINK",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_LINK = \"a[href*='proddetail']\"\nITEM_PRICE_AMOUNT = \"[class*=udg-category-item__priceAmount]\"\nITEM_PRICE_UNIT = \"[class*=udg-category-item__priceUnit]\"\nITEM_MOQ = \"[class*=udg-category-item__moq]\"\nITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_PRICE_AMOUNT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_PRICE_AMOUNT = \"[class*=udg-category-item__priceAmount]\"\nITEM_PRICE_UNIT = \"[class*=udg-category-item__priceUnit]\"\nITEM_MOQ = \"[class*=udg-category-item__moq]\"\nITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_PRICE_UNIT",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_PRICE_UNIT = \"[class*=udg-category-item__priceUnit]\"\nITEM_MOQ = \"[class*=udg-category-item__moq]\"\nITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_MOQ",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_MOQ = \"[class*=udg-category-item__moq]\"\nITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_BROCHURE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_BROCHURE = \"[class*=udg-category-item__brochure] a[href], a[href$='.pdf']\"\nITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_SPEC_ROW",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_SPEC_ROW = \"[class*=udg-category-item__specRow]\"\nITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The\n# count is the site's own tally for that category, which makes it a free",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_SPEC_KEY",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_SPEC_KEY = \"[class*=udg-category-item__specKey]\"\nITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The\n# count is the site's own tally for that category, which makes it a free\n# completeness check on the extractor - and it does not belong in the name.",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_SPEC_VAL",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_SPEC_VAL = \"[class*=udg-category-item__specVal]\"\nITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The\n# count is the site's own tally for that category, which makes it a free\n# completeness check on the extractor - and it does not belong in the name.\nCATEGORY_COUNT_RE = re.compile(r\"\\(\\s*(\\d+)\\s*products?\\s*\\)\", re.I)",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_DESC",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_DESC = \"[class*=udg-category-item__sdescRich]\"\nITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The\n# count is the site's own tally for that category, which makes it a free\n# completeness check on the extractor - and it does not belong in the name.\nCATEGORY_COUNT_RE = re.compile(r\"\\(\\s*(\\d+)\\s*products?\\s*\\)\", re.I)\n# Popup/enquiry widgets. Blocked at the network layer so they never mount.",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "ITEM_STAGE_IMG",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "ITEM_STAGE_IMG = \"[class*=udg-category-item__stage] img\"\n# A category page has never returned more than this in probing. Hitting it\n# exactly is a truncation signal worth surfacing rather than silently accepting.\nCATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The\n# count is the site's own tally for that category, which makes it a free\n# completeness check on the extractor - and it does not belong in the name.\nCATEGORY_COUNT_RE = re.compile(r\"\\(\\s*(\\d+)\\s*products?\\s*\\)\", re.I)\n# Popup/enquiry widgets. Blocked at the network layer so they never mount.\nPOPUP_SCRIPT_PATTERNS = (\"enquiry\", \"popup\", \"/lms/\", \"webpush\", \"onesignal\", \"notification\")",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "CATEGORY_ITEM_CAP",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "CATEGORY_ITEM_CAP = 40\n# Many category links are labelled \"Pressure Reducing Valve (11 Products)>>\". The\n# count is the site's own tally for that category, which makes it a free\n# completeness check on the extractor - and it does not belong in the name.\nCATEGORY_COUNT_RE = re.compile(r\"\\(\\s*(\\d+)\\s*products?\\s*\\)\", re.I)\n# Popup/enquiry widgets. Blocked at the network layer so they never mount.\nPOPUP_SCRIPT_PATTERNS = (\"enquiry\", \"popup\", \"/lms/\", \"webpush\", \"onesignal\", \"notification\")\n# ---------------------------------------------------------------------------\n# Company identity\n# ---------------------------------------------------------------------------",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "CATEGORY_COUNT_RE",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "CATEGORY_COUNT_RE = re.compile(r\"\\(\\s*(\\d+)\\s*products?\\s*\\)\", re.I)\n# Popup/enquiry widgets. Blocked at the network layer so they never mount.\nPOPUP_SCRIPT_PATTERNS = (\"enquiry\", \"popup\", \"/lms/\", \"webpush\", \"onesignal\", \"notification\")\n# ---------------------------------------------------------------------------\n# Company identity\n# ---------------------------------------------------------------------------\ndef goto_with_retry(page, url, attempts=5, backoff=(10000, 30000, 60000, 120000)):\n    \"\"\"Navigate, backing off when IndiaMART rate-limits us.\n    Crawling a large catalog fires one request per category, and after roughly\n    fifty in quick succession the site starts answering 429 - which previously",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "POPUP_SCRIPT_PATTERNS",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "POPUP_SCRIPT_PATTERNS = (\"enquiry\", \"popup\", \"/lms/\", \"webpush\", \"onesignal\", \"notification\")\n# ---------------------------------------------------------------------------\n# Company identity\n# ---------------------------------------------------------------------------\ndef goto_with_retry(page, url, attempts=5, backoff=(10000, 30000, 60000, 120000)):\n    \"\"\"Navigate, backing off when IndiaMART rate-limits us.\n    Crawling a large catalog fires one request per category, and after roughly\n    fifty in quick succession the site starts answering 429 - which previously\n    wiped out every company after the first. Measured, that throttle outlasts a\n    minute, so the ladder climbs to two minutes. Retrying is the safety net;",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "COMPANY_COLUMNS",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "COMPANY_COLUMNS = (\n    \"company\", \"company_url\", \"indiamart_url\", \"city\", \"state\", \"locality\",\n    \"phone\", \"rating\", \"review_count\", \"member_since\", \"gst_number\",\n    \"verified_exporter\", \"search_match_count\",\n)\nPRODUCT_COLUMNS = (\n    \"name\", \"product_url\", \"category\", \"price\", \"moq\", \"description\",\n    \"brochure_url\", \"automation_grade\", \"usage\", \"brand\", \"connector_type\",\n    \"type\", \"material\", \"size\",\n)",
+        "detail": "plugins.indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "PRODUCT_COLUMNS",
+        "kind": 5,
+        "importPath": "plugins.indiamart_catalog",
+        "description": "plugins.indiamart_catalog",
+        "peekOfCode": "PRODUCT_COLUMNS = (\n    \"name\", \"product_url\", \"category\", \"price\", \"moq\", \"description\",\n    \"brochure_url\", \"automation_grade\", \"usage\", \"brand\", \"connector_type\",\n    \"type\", \"material\", \"size\",\n)\ndef open_db(path):\n    \"\"\"Open (creating if needed) the catalog database.\"\"\"\n    parent = os.path.dirname(path)\n    if parent:\n        os.makedirs(parent, exist_ok=True)",
+        "detail": "plugins.indiamart_catalog",
         "documentation": {}
     },
     {
@@ -1569,6 +2190,105 @@
         "description": "runner",
         "peekOfCode": "BASE_DIR = os.path.dirname(os.path.abspath(__file__))\ndef generate_filename(query, site, fmt=\"csv\"):\n    filename_safe = query.lower().replace(\" \", \"_\")\n    date_str = datetime.now().strftime(\"%d%m%y_%H%M%S\")\n    return os.path.join(BASE_DIR, \"static\", f\"{filename_safe}_{site}_{date_str}.{fmt}\")\ndef run_scraper(site, query, output_file, limit=None):\n    # Ensure Playwright Chromium is installed\n    try:\n        subprocess.run(\n            [\"python\", \"-m\", \"playwright\", \"install\", \"chromium\"],",
         "detail": "runner",
+        "documentation": {}
+    },
+    {
+        "label": "_Response",
+        "kind": 6,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "class _Response:\n    def __init__(self, status):\n        self.status = status\nclass _FakePage:\n    \"\"\"Minimal stand-in for a Playwright page: records calls and backoff waits.\"\"\"\n    def __init__(self, statuses):\n        self.statuses = list(statuses)\n        self.calls = 0\n        self.waits = []\n    def goto(self, url, **kwargs):",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "_FakePage",
+        "kind": 6,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "class _FakePage:\n    \"\"\"Minimal stand-in for a Playwright page: records calls and backoff waits.\"\"\"\n    def __init__(self, statuses):\n        self.statuses = list(statuses)\n        self.calls = 0\n        self.waits = []\n    def goto(self, url, **kwargs):\n        self.calls += 1\n        return _Response(self.statuses.pop(0) if self.statuses else 200)\n    def wait_for_timeout(self, ms):",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_alias_from_url",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_alias_from_url():\n    assert alias_from_url(\"https://www.indiamart.com/annu-valve-products/\") == \"annu-valve-products\"\n    # A vanity domain has no alias in its URL - it has to come from the payload.\n    assert alias_from_url(\"https://www.aira-euro.com/\") is None\n    # Non-company indiamart paths must not be mistaken for a minisite.\n    assert alias_from_url(\"https://www.indiamart.com/proddetail/x-123.html\") is None\n    assert alias_from_url(\"https://www.indiamart.com/impcat/ball-valves.html\") is None\n    assert alias_from_url(None) is None\ndef test_resolve_alias_precedence():\n    assert resolve_alias({\"companyalias\": \"a-b\", \"tscode\": \"zz\"}) == \"a-b\"",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_resolve_alias_precedence",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_resolve_alias_precedence():\n    assert resolve_alias({\"companyalias\": \"a-b\", \"tscode\": \"zz\"}) == \"a-b\"\n    assert resolve_alias({\"tscode\": \"zz\"}) == \"zz\"\n    assert resolve_alias({\"catalog_url\": \"https://www.indiamart.com/foo-bar/\"}) == \"foo-bar\"\n    assert resolve_alias({\"catalog_url\": \"https://www.aira-euro.com/\"}) is None\ndef test_category_label_parsing():\n    cases = [\n        (\"Pressure Reducing Valve (11 Products)»\", \"Pressure Reducing Valve\", 11),\n        (\"Lined Valves (4 Products)»\", \"Lined Valves\", 4),\n        (\"Solenoid Valve\", \"Solenoid Valve\", None),",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_category_label_parsing",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_category_label_parsing():\n    cases = [\n        (\"Pressure Reducing Valve (11 Products)»\", \"Pressure Reducing Valve\", 11),\n        (\"Lined Valves (4 Products)»\", \"Lined Valves\", 4),\n        (\"Solenoid Valve\", \"Solenoid Valve\", None),\n    ]\n    for label, want_name, want_count in cases:\n        match = CATEGORY_COUNT_RE.search(label)\n        assert (int(match.group(1)) if match else None) == want_count\n        name = CATEGORY_COUNT_RE.sub(\"\", label).replace(\"»\", \"\").strip(\" -–\")",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_parse_price",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_parse_price():\n    assert parse_price(\"₹ 2,530\", \"/Piece\") == \"₹ 2,530/Piece\"\n    assert parse_price(\"₹ 900\", None) == \"₹ 900\"\n    assert parse_price(None, \"/Piece\") is None\ndef test_custom_domain_identity_is_preserved():\n    \"\"\"The vanity domain stays the company's URL even though we crawl the alias.\"\"\"\n    record = company_from_fields(\n        {\"companyname\": \"Aira\", \"catalog_url\": \"https://www.aira-euro.com/\", \"city\": \"Ahmedabad\"},\n        \"aira-euro-automation\",\n    )",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_custom_domain_identity_is_preserved",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_custom_domain_identity_is_preserved():\n    \"\"\"The vanity domain stays the company's URL even though we crawl the alias.\"\"\"\n    record = company_from_fields(\n        {\"companyname\": \"Aira\", \"catalog_url\": \"https://www.aira-euro.com/\", \"city\": \"Ahmedabad\"},\n        \"aira-euro-automation\",\n    )\n    assert record[\"company_url\"] == \"https://www.aira-euro.com/\"\n    assert record[\"indiamart_url\"] == \"https://www.indiamart.com/aira-euro-automation/\"\nclass _Response:\n    def __init__(self, status):",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_goto_with_retry",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_goto_with_retry():\n    page = _FakePage([200])\n    assert goto_with_retry(page, \"u\").status == 200\n    assert page.calls == 1\n    # A 404 is final - retrying it just wastes a minute per category.\n    page = _FakePage([404])\n    assert goto_with_retry(page, \"u\").status == 404\n    assert page.calls == 1\n    # A 429 is transient: back off and retry, and the ladder must escalate.\n    page = _FakePage([429, 429, 200])",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_only_complete_companies_are_marked_done",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_only_complete_companies_are_marked_done():\n    \"\"\"A company is 'done' only with products AND no skipped categories.\n    This is what stops the crawl re-scraping finished companies, and equally\n    what stops a throttled-out company being written off as finished.\n    \"\"\"\n    conn, path = _fresh_db()\n    try:\n        assert save_company(conn, {\n            \"alias\": \"acme\", \"company\": \"Acme\", \"categories\": [\"Valves\"],\n            \"products\": [{\"name\": \"P1\", \"product_url\": \"https://x/p1.html\"}],",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_resave_is_idempotent_and_partials_can_complete",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_resave_is_idempotent_and_partials_can_complete():\n    conn, path = _fresh_db()\n    try:\n        company = {\n            \"alias\": \"acme\", \"company\": \"Acme\",\n            \"products\": [{\"name\": \"P1\", \"product_url\": \"https://x/p1.html\"},\n                         {\"name\": \"P2\", \"product_url\": None}],\n        }\n        save_company(conn, company)\n        save_company(conn, company)  # a re-run must not duplicate rows",
+        "detail": "test_indiamart_catalog",
+        "documentation": {}
+    },
+    {
+        "label": "test_json_export_round_trips_nested_fields",
+        "kind": 2,
+        "importPath": "test_indiamart_catalog",
+        "description": "test_indiamart_catalog",
+        "peekOfCode": "def test_json_export_round_trips_nested_fields():\n    conn, path = _fresh_db()\n    out = os.path.join(tempfile.gettempdir(), \"im_catalog_test.json\")\n    try:\n        save_company(conn, {\n            \"alias\": \"acme\", \"company\": \"Acme\", \"categories\": [\"Valves\"],\n            \"products\": [{\"name\": \"P1\", \"product_url\": \"https://x/p1.html\",\n                          \"specs\": {\"Brand\": \"Acme\"}, \"images\": [\"https://i/1.jpg\"]}],\n        })\n        data = export_json(conn, out)",
+        "detail": "test_indiamart_catalog",
         "documentation": {}
     },
     {

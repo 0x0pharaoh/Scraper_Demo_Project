@@ -44,6 +44,12 @@ DEFAULT_SESSION_FILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "auth", "indiamart", "indiamart_session.json"
 )
 
+# The two cookies IndiaMART actually reads the login from; verified against the
+# live search, which still returns rows with LGNSTR and sessid expired. A
+# re-export that merges fresh analytics cookies over a stale im_iss keeps the
+# file looking current while the login is long dead, so it is checked by name.
+AUTH_COOKIES = {"im_iss", "ImeshVisitor"}
+
 # --- Result card selectors -------------------------------------------------
 # The listing is rendered by a remote component that namespaces everything with
 # "im-lc-". These class names are far more stable than positional XPaths, which
@@ -103,6 +109,8 @@ def load_session(session_file=None):
         data = json.load(f)
 
     cookies = []
+    expired = []
+    now = datetime.now().timestamp()
     for raw in data.get("cookies", []):
         cookie = {
             "name": raw["name"],
@@ -124,9 +132,25 @@ def load_session(session_file=None):
             cookie["httpOnly"] = bool(raw["httpOnly"])
         if raw.get("secure") is not None:
             cookie["secure"] = bool(raw["secure"])
+        if cookie.get("expires", float("inf")) <= now:
+            # Playwright accepts these and the browser drops them silently, which
+            # surfaces 20 minutes later as "no search results". Name them now.
+            expired.append(cookie["name"])
+            continue
         cookies.append(cookie)
 
-    return cookies, data.get("session_data", {})
+    if expired:
+        logger.warning(f"Dropped {len(expired)} expired cookies: {', '.join(expired)}")
+    missing = AUTH_COOKIES - {c["name"] for c in cookies}
+    if missing:
+        raise RuntimeError(
+            f"{path}: no live {', '.join(sorted(missing))} cookie. IndiaMART serves an empty "
+            "listing when signed out. Re-export indiamart_session.json while signed in."
+        )
+
+    # The export splits browser state: session_data is sessionStorage,
+    # browser_storage the real localStorage. Seed both.
+    return cookies, {**(data.get("browser_storage") or {}), **(data.get("session_data") or {})}
 
 
 def seed_local_storage(page, store):

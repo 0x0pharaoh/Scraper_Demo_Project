@@ -7,6 +7,8 @@ import csv
 import os
 import re
 import json
+import sqlite3
+from datetime import datetime
 from urllib.parse import quote_plus
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from utils.logger import get_logger
@@ -839,6 +841,71 @@ def normalize_key(*values):
         return re.sub(r"\s+", " ", v.strip().lower())
     return tuple(clean(str(v)) for v in values)
 
+# --- SQLite store -----------------------------------------------------------
+# One database for every query, anchored to the project rather than the working
+# directory: a relative path would quietly create a second, empty database when
+# the scraper is launched from elsewhere, and the "already scraped" guard would
+# then find nothing.
+DEFAULT_DB = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "static", "google_maps.db"
+)
+_DB_COLUMNS = ["id", "href", *GOOGLE_MAPS_FIELDNAMES, "query", "updated_at"]
+
+
+def _quoted(columns):
+    """Field names are capitalised ("Name", "URL"), so quote them for SQL."""
+    return ", ".join(f'"{c}"' for c in columns)
+
+
+def open_db(path=None):
+    path = os.path.abspath(path or DEFAULT_DB)
+    _ensure_parent_dir(path)
+    conn = sqlite3.connect(path)
+    conn.row_factory = sqlite3.Row
+    columns = ", ".join(f'"{c}" TEXT' for c in _DB_COLUMNS[1:])
+    conn.execute(f'CREATE TABLE IF NOT EXISTS places ("id" TEXT PRIMARY KEY, {columns})')
+    conn.commit()
+    return conn
+
+
+def save_place(conn, data, query=None, href=None):
+    """Upsert one place. Called per business, not at the end of the run.
+
+    Flushing as we go is the point: a run that dies on business 30 of 40 keeps
+    the first 29 instead of losing the lot.
+    """
+    row = [json.dumps(data.get(c) or [], ensure_ascii=False) if c in ("Images", "Reviews")
+           else data.get(c) for c in GOOGLE_MAPS_FIELDNAMES]
+    values = ["::".join(_place_key(data)), href, *row, query,
+              datetime.now().isoformat(timespec="seconds")]
+    updates = ", ".join(f'"{c}"=excluded."{c}"' for c in _DB_COLUMNS[1:])
+    with conn:
+        conn.execute(
+            f'INSERT INTO places ({_quoted(_DB_COLUMNS)}) '
+            f'VALUES ({", ".join("?" * len(_DB_COLUMNS))}) '
+            f'ON CONFLICT("id") DO UPDATE SET {updates}',
+            values,
+        )
+
+
+def scraped_places(conn):
+    """Return (place keys, hrefs) already stored, so they are not scraped again.
+
+    Two indexes because they guard different moments: the href is known from the
+    results card and lets a business be skipped *before* the expensive panel
+    open, while the name+address key is the real identity and catches the rest.
+    Google varies the href's query parameters between visits, so href matching
+    only ever under-matches - it re-scrapes occasionally, it never skips the
+    wrong business.
+    """
+    keys, hrefs = set(), set()
+    for row in conn.execute('SELECT "id", "href" FROM places'):
+        keys.add(tuple((row["id"] or "").split("::")))
+        if row["href"]:
+            hrefs.add(row["href"])
+    return keys, hrefs
+
+
 def save_to_csv(data, filepath, fieldnames=None):
     fieldnames = fieldnames or GOOGLE_MAPS_FIELDNAMES
     _ensure_parent_dir(filepath)
@@ -861,8 +928,11 @@ def save_to_json(data, filepath):
     logger.info(f"Scraping completed. Output saved to {filepath}")
     return filepath
 
-def run_scraper(query, output_file=None, limit=None):
+def run_scraper(query, output_file=None, limit=None, db_file=None):
     target_count = limit if limit is not None else 40
+    conn = open_db(db_file)
+    done_keys, done_hrefs = scraped_places(conn)
+    logger.info(f"Database {os.path.abspath(db_file or DEFAULT_DB)}: {len(done_keys)} places already stored.")
     timeout_ms = 180000 if limit is None else 60000
 
     with sync_playwright() as p:
@@ -907,6 +977,9 @@ def run_scraper(query, output_file=None, limit=None):
             for card in cards:
                 href = _safe_attribute(card, "href", timeout=1000)
                 if href and href not in visited_hrefs:
+                    if href in done_hrefs:
+                        visited_hrefs.add(href)
+                        continue
                     new_cards.append((card, href))
             logger.info(f"New cards to process: {len(new_cards)}")
 
@@ -941,10 +1014,16 @@ def run_scraper(query, output_file=None, limit=None):
                     data = extract_card_data(page)
 
                     entry_key = _place_key(data)
+                    if entry_key in done_keys:
+                        logger.info(f"Already stored, skipping: {data['Name'][:50]}")
+                        visited_hrefs.add(href)
+                        continue
+
                     existing_index = seen_entries.get(entry_key)
                     if existing_index is None:
                         seen_entries[entry_key] = len(collected)
                         collected.append(data)
+                        save_place(conn, data, query, href)
                         logger.info(f"Collected: {data['Name']}")
                     elif len(data.get("Reviews") or []) > len(
                         collected[existing_index].get("Reviews") or []
@@ -952,6 +1031,7 @@ def run_scraper(query, output_file=None, limit=None):
                         # A repeat visit often loads more reviews than the first
                         # pass did, so keep whichever row is richer.
                         collected[existing_index] = data
+                        save_place(conn, data, query, href)
                         logger.info(f"Re-collected with more reviews: {data['Name'][:50]}")
                     else:
                         logger.debug(f"Skipped duplicate: {data['Name'][:50]}")
@@ -981,6 +1061,10 @@ def run_scraper(query, output_file=None, limit=None):
         filepath = save_to_json(collected[:target_count], output_file)
     else:
         filepath = save_to_csv(collected[:target_count], output_file, GOOGLE_MAPS_FIELDNAMES)
+
+    total = conn.execute("SELECT COUNT(*) FROM places").fetchone()[0]
+    logger.info(f"Database now holds {total} places.")
+    conn.close()
     return {"file": filepath, "data": collected}
 
 
