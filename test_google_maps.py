@@ -19,6 +19,10 @@ from plugins.google_maps import (
     scraped_places,
 )
 
+# A real results-card href shape: the !1s feature id is the stable part.
+HREF = ("https://www.google.com/maps/place/King+Valves/data=!4m7!3m6"
+        "!1s0x395e9be1c048f553:0x63bc16554df3418b!8m2!3d23.02!4d72.50")
+
 PLACE = {
     "Name": "King Valves",
     "Address": "12 Industrial Rd, Ahmedabad",
@@ -40,10 +44,10 @@ def _fresh_db():
 def test_save_and_skip():
     conn, path = _fresh_db()
     try:
-        save_place(conn, PLACE, "valves ahmedabad", "https://maps/x?a=1")
+        save_place(conn, PLACE, "valves ahmedabad", HREF)
         keys, hrefs = scraped_places(conn)
-        assert _place_key(PLACE) in keys, keys
-        assert "https://maps/x?a=1" in hrefs
+        assert _place_key(PLACE, HREF) in keys, keys
+        assert HREF in hrefs
     finally:
         conn.close()
         os.remove(path)
@@ -74,6 +78,42 @@ def test_same_name_different_address_stays_separate():
         assert conn.execute("SELECT COUNT(*) FROM places").fetchone()[0] == 2
         keys, _ = scraped_places(conn)
         assert _place_key(PLACE) in keys and _place_key(branch) in keys
+    finally:
+        conn.close()
+        os.remove(path)
+
+
+def test_url_feature_id_is_the_key_and_beats_a_changed_url():
+    """Google rewrites the data=/entry= params between visits; the !1s id holds."""
+    conn, path = _fresh_db()
+    try:
+        save_place(conn, PLACE, "q", HREF)
+        # Same place, URL re-ordered and re-parameterised the way Google does.
+        again = HREF.replace("!4m7!3m6", "!4m9!3m8") + "&entry=ttu"
+        save_place(conn, dict(PLACE, Name="King Valves Pvt Ltd"), "q", again)
+        assert conn.execute("SELECT COUNT(*) FROM places").fetchone()[0] == 1, "url key let a duplicate through"
+        assert _place_key(PLACE, HREF) == "0x395e9be1c048f553:0x63bc16554df3418b"
+    finally:
+        conn.close()
+        os.remove(path)
+
+
+def test_legacy_name_address_rows_are_rekeyed_on_open():
+    """Old rows must not reappear as a second row under the new key."""
+    conn, path = _fresh_db()
+    try:
+        legacy = "::".join(("king valves", "12 industrial rd, ahmedabad"))
+        conn.execute('INSERT INTO places ("id", "href", "Name") VALUES (?, ?, ?)',
+                     (legacy, HREF, "King Valves"))
+        conn.commit()
+        conn.close()
+
+        conn = open_db(path)                       # migration runs here
+        keys, _ = scraped_places(conn)
+        assert keys == {"0x395e9be1c048f553:0x63bc16554df3418b"}, keys
+        # And the re-scrape now matches, instead of inserting a twin.
+        save_place(conn, PLACE, "q", HREF)
+        assert conn.execute("SELECT COUNT(*) FROM places").fetchone()[0] == 1
     finally:
         conn.close()
         os.remove(path)

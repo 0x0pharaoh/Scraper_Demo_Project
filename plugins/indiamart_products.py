@@ -22,6 +22,9 @@ from urllib.parse import quote_plus, urlsplit, urlunsplit
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
 from utils.logger import get_logger
+# Imported by name: run_scraper has a local ``store`` (the ListingStore), so a
+# module named store cannot be referenced from inside it.
+from utils.store import db_path, export_path, known_urls, open_table, upsert
 
 logger = get_logger("indiamart_products")
 description = "Scrape IndiaMART product cards (specs, price, gallery images) grouped by company."
@@ -52,18 +55,24 @@ AUTH_COOKIES = {"im_iss", "ImeshVisitor"}
 
 # --- Result card selectors -------------------------------------------------
 # The listing is rendered by a remote component that namespaces everything with
-# "im-lc-". These class names are far more stable than positional XPaths, which
-# shift the moment an ad slot or banner is injected into the feed.
-CARD = "article"
-CARD_IMAGE = "img.im-lc-image"
-CARD_IMAGE_OPEN = "button.im-lc-image-link"
-CARD_IMAGE_COUNT = "button.im-lc-image-count"
-CARD_NEXT_VARIANT = "button.im-lc-image-nav-next"
-CARD_DOTS = "button.im-lc-dot"
-CARD_TITLE = "a.im-lc-title-link"
-CARD_PRICE = "button.im-lc-price"
-CARD_UNIT = "span.im-lc-unit"
-CARD_SELLER = "a.im-lc-seller-name"
+# "template7-". These class names are far more stable than positional XPaths,
+# which shift the moment an ad slot or banner is injected into the feed.
+#
+# This replaced an earlier "im-lc-" component wholesale: every selector below
+# changed at once, and the plugin read the empty result as "no products". If it
+# happens again, the symptom is the same, so check the markup before the
+# session.
+CARD = ".template7-product-card"
+CARD_IMAGE = "img.template7-product-image"
+CARD_IMAGE_OPEN = ".template7-card-media"
+CARD_IMAGE_COUNT = "span.template7-image-count"
+CARD_NEXT_VARIANT = ".media-nav"
+CARD_DOTS = ".template7-carousel-dots > *"
+CARD_TITLE = "a.prdtitle"
+CARD_PRICE = "span.prc"
+CARD_UNIT = "span.prcut"
+CARD_SELLER = "a.template7-seller-name"
+CARD_SPECS = "span.template7-isq-text"
 SHOW_MORE = "button.showMoreBtn"
 
 # --- Gallery popup selectors -----------------------------------------------
@@ -79,6 +88,13 @@ POPUP_BARS = f"{POPUP} #t0901_prodimgR div.stories-progress-bar"
 POPUP_PRODUCT = f"{POPUP} #t0901_Prodname0R"
 
 # Spec keys the caller asked to see promoted to the top of each product.
+# Flat columns for the products table. "product_url" is left out because the
+# primary key *is* the product url.
+DB_COLUMNS = [
+    "name", "company", "company_url", "city", "state",
+    "price", "price_value", "display_id", "specs", "images",
+]
+
 PROMOTED_SPECS = {
     "automation_grade": ("automation grade",),
     "usage": ("usage/application", "usage", "application"),
@@ -258,47 +274,67 @@ def _safe(fn, default=None):
 # the primary source and the DOM is used to confirm alignment.
 
 def parse_listing_payload(body):
-    """Pull the ``listings`` array out of one listing-cards response."""
+    """Pull the result rows out of a search payload.
+
+    Two shapes are served and both are accepted: the ``__NEXT_DATA__`` blob
+    embedded in the first page, and the bare JSON that ``/api/search.rp``
+    answers for later pages. The earlier ``listing-cards`` endpoint with its
+    ``data-props`` attributes no longer exists.
+    """
     try:
-        rendered = json.loads(body).get("html", "")
-    except (ValueError, AttributeError):
+        data = json.loads(body)
+    except (ValueError, TypeError):
         return []
 
-    out = []
-    for blob in re.findall(r"data-props='([^']*)'", rendered):
-        try:
-            props = json.loads(html.unescape(blob))
-        except ValueError:
-            continue
-        listings = props.get("listings")
-        if listings:
-            out.append((props.get("start", 0), listings))
-    return out
+    for path in (("props", "pageProps", "searchResponse"), ("searchResponse",), ()):
+        node = data
+        for step in path:
+            node = node.get(step) if isinstance(node, dict) else None
+            if node is None:
+                break
+        if isinstance(node, dict) and node.get("results") is not None:
+            return [e.get("fields") or {} for e in (node["results"] or []) if e]
+    return []
+
+
+def absorb_next_data(page, store):
+    """Feed the first page's payload, which ships inside __NEXT_DATA__.
+
+    Only pages 2+ are fetched over the wire, so without this the ten results on
+    page 1 carry no payload at all and fall back to the four attributes the card
+    renders.
+    """
+    blob = _safe(
+        lambda: page.evaluate(
+            "() => { const e = document.getElementById('__NEXT_DATA__');"
+            " return e ? e.textContent : null; }"
+        )
+    )
+    if blob:
+        store.absorb(blob)
+    logger.info(f"Listing payloads available: {len(store.by_url)}")
 
 
 class ListingStore:
-    """Collects listing payloads keyed by their position in the feed."""
+    """Collects listing payloads keyed by product URL.
+
+    Keyed by URL rather than by feed position: the payload and the DOM used to
+    be matched on index, which silently filed one product's specs under another
+    whenever the feed injected an ad slot and shifted everything down. The URL
+    is on both sides, so there is nothing to drift.
+    """
 
     def __init__(self):
-        self.by_index = {}
+        self.by_url = {}
 
     def absorb(self, body):
-        for start, listings in parse_listing_payload(body):
-            for offset, listing in enumerate(listings):
-                self.by_index.setdefault(start + offset, listing)
+        for fields in parse_listing_payload(body):
+            url = clean_url(fields.get("title_url") or fields.get("desktop_title_url"))
+            if url:
+                self.by_url.setdefault(url, fields)
 
-    def get(self, index):
-        return self.by_index.get(index)
-
-
-def variant_payload(listing, variant):
-    """Variant 0 is the listing itself; the rest come from ``more_prod``."""
-    if not listing:
-        return None
-    if variant == 0:
-        return listing
-    more = listing.get("more_prod") or []
-    return more[variant - 1] if variant - 1 < len(more) else None
+    def get(self, url):
+        return self.by_url.get(clean_url(url) or "")
 
 
 # ---------------------------------------------------------------------------
@@ -418,11 +454,12 @@ def read_card_specs(card):
     """
     specs = {}
     try:
-        keys = card.locator("dl.im-lc-specs dt").all_inner_texts()
-        values = card.locator("dl.im-lc-specs dd").all_inner_texts()
+        # One flat run of spans, alternating label then value, rather than the
+        # dl/dt/dd the previous markup used.
+        cells = card.locator(CARD_SPECS).all_inner_texts()
     except Exception:
         return specs
-    for key, value in zip(keys, values):
+    for key, value in zip(cells[::2], cells[1::2]):
         key, value = clean_text(key), clean_text(value)
         if key and value and key not in specs:
             specs[key] = value
@@ -449,29 +486,48 @@ def product_key(product_url, name):
     Keyed on the URL, never on ``display_id``: the feed re-renders cards without
     a matching payload, so display_id is present on the first pass and missing on
     the second. Mixing the two lets the same product through twice.
+
+    A few listings genuinely have no detail page, so those fall back to the
+    product name. One string rather than a tuple, so the same key is also the
+    database primary key and the two dedup checks cannot drift apart.
     """
-    return normalize_key(product_url or "", name or "")
+    url = (product_url or "").strip()
+    return url or normalize_key(name or "")[0]
 
 
 def build_product(dom, payload, images):
-    """Merge the rendered slide with its payload record into one product."""
+    """Merge the rendered slide with its payload record into one product.
+
+    The payload is the richer source where one exists - it carries the full ISQ
+    attribute list against the four the card renders - but only the first
+    product of each card appears in the feed payload, so the other carousel
+    slides are built from the DOM alone.
+    """
     payload = payload or {}
     specs = parse_isq(payload.get("isq")) or dom.get("specs") or {}
-    name = clean_text(payload.get("p_nm")) or dom.get("name")
-    price = clean_text(payload.get("pr")) or dom.get("price")
+    name = clean_text(payload.get("title") or payload.get("original_title")) or dom.get("name")
+    price = clean_text(payload.get("indiaPriceFormat")) or dom.get("price")
+    moq = clean_text(payload.get("moq"))
+    unit = clean_text(payload.get("moq_type"))
 
     gallery = []
-    for raw in [dom.get("image"), payload.get("photo"), *images]:
+    # "photo" is a list now; it used to be a single URL. Flatten either form.
+    photos = payload.get("photo")
+    photos = photos if isinstance(photos, list) else [photos]
+    for raw in [dom.get("image"), *photos, payload.get("photo_1000"), *images]:
         url = normalize_image(raw)
         if url and url not in gallery:
             gallery.append(url)
 
     product = {
         "name": name,
-        "product_url": clean_url(payload.get("p_url")) or dom.get("product_url"),
-        "display_id": payload.get("disp_id"),
+        "product_url": clean_url(payload.get("title_url")) or dom.get("product_url"),
+        "display_id": payload.get("displayid"),
         "price": price,
-        "price_value": payload.get("prd_price"),
+        "price_value": payload.get("itemprice"),
+        "moq": f"{moq} {unit}".strip() if moq else None,
+        "description": clean_text(payload.get("smalldescorg")),
+        "brochure_url": clean_url(payload.get("prod_doc")),
         "specs": specs,
         "images": gallery,
     }
@@ -483,93 +539,128 @@ def build_company(payload, card):
     """Company-level facts. Same for every product in the card."""
     payload = payload or {}
     seller = card.locator(CARD_SELLER)
-    name = clean_text(payload.get("CMP")) or clean_text(
+    name = clean_text(payload.get("companyname")) or clean_text(
         _safe(lambda: seller.first.inner_text(timeout=2000))
     )
-    store = clean_url(payload.get("s_url")) or clean_url(
+    store = clean_url(payload.get("catalog_url") or payload.get("paidurl")) or clean_url(
         _safe(lambda: seller.first.get_attribute("href"))
     )
-    alias = payload.get("ts")
+    alias = payload.get("companyalias")
+    phones = payload.get("phone") or payload.get("mobile") or []
     return {
         "company": name,
         "company_url": store,
         "indiamart_url": f"https://www.indiamart.com/{alias}/" if alias else None,
-        "trustseal_url": clean_url(payload.get("ts_url")),
-        "city": clean_text(payload.get("city")),
-        "state": clean_text(payload.get("g_s")),
-        "country": clean_text(payload.get("g_c")),
-        "address": clean_text(payload.get("ad")),
-        "phone": clean_text(payload.get("c_ct")),
-        "member_since": clean_text(payload.get("ms_n") or payload.get("m_sn")),
-        "response_rate": payload.get("PF"),
-        "rating": payload.get("wt_avg"),
-        "review_count": payload.get("tr_c"),
-        "banner": clean_text(payload.get("banner")),
-        "verified_exporter": payload.get("vefexp") == "1",
+        "trustseal_url": clean_url(payload.get("desktopCatalogRatingUrl")),
+        "city": clean_text(payload.get("city")) or clean_text(
+            _safe(lambda: card.locator('span[itemprop="addressLocality"]').first.inner_text(timeout=2000))
+        ),
+        "state": clean_text(payload.get("state")),
+        "country": clean_text(payload.get("countryname")),
+        "address": clean_text(payload.get("address")),
+        "phone": clean_text(phones[0]) if isinstance(phones, list) and phones else None,
+        "member_since": clean_text(payload.get("member_since") or payload.get("yearofestablishment")),
+        "response_rate": payload.get("response_rate"),
+        "rating": payload.get("supplier_rating"),
+        "review_count": payload.get("rating_count"),
+        "banner": clean_text(payload.get("biz_banner")),
+        "verified_exporter": str(payload.get("is_verified_exporter")) in ("1", "True"),
         "products": [],
     }
 
 
 def variant_count(card, listing):
-    """How many products this card's carousel holds."""
+    """How many products this card's carousel holds.
+
+    The dots are authoritative - one per product, labelled "Product 1..n". The
+    payload used to carry the siblings under ``more_prod``; it no longer does,
+    so ``productdisplayed`` is the only payload-side hint left.
+    """
     dots = _safe(lambda: card.locator(CARD_DOTS).count(), 0) or 0
     if dots:
         return dots
     if listing:
-        return len(listing.get("more_prod") or []) + 1
+        try:
+            return max(1, int(listing.get("productdisplayed") or 1))
+        except (TypeError, ValueError):
+            return 1
     return 1
 
 
-def scrape_card(page, card, listing, index, seen_products):
+def show_variant(page, card, variant):
+    """Bring carousel slide ``variant`` into view. True when it actually moved.
+
+    Clicks the numbered dot rather than the next arrow. The arrow only ever
+    toggled between the first two slides, so a four-product card yielded two
+    products and the rest were silently lost.
+    """
+    dots = card.locator(CARD_DOTS)
+    if variant < _safe(lambda: dots.count(), 0):
+        try:
+            dots.nth(variant).click(timeout=5000)
+            page.wait_for_timeout(900)
+            return True
+        except Exception as e:
+            logger.debug(f"Could not click dot {variant}: {e}")
+    try:
+        card.locator(CARD_NEXT_VARIANT).first.click(timeout=5000)
+        page.wait_for_timeout(900)
+        return True
+    except Exception as e:
+        logger.debug(f"Could not advance carousel: {e}")
+        return False
+
+
+def scrape_card(page, card, store, index, seen_products):
     """Walk one card's carousel and return a company record with its products.
 
     ``seen_products`` is shared across the whole run: IndiaMART re-renders the
     same sellers further down the feed, so the duplicate check has to be global,
     and it has to run before the gallery is opened - that popup dance is by far
     the slowest step and is pure waste on a product already collected.
+
+    Each slide's payload is looked up by its own product URL, so an ad slot
+    shifting the feed cannot file one product's specs under another.
     """
-    company = build_company(listing, card)
-    total = variant_count(card, listing)
-    logger.info(f"Card #{index + 1}: {company['company'] or 'unknown'} ({total} products)")
+    total = variant_count(card, None)
+    company = None
+    collected = 0
 
     for variant in range(total):
+        if variant and not show_variant(page, card, variant):
+            break
         try:
             dom = read_card_variant(card)
-            key = product_key(dom.get("product_url"), dom.get("name"))
+            payload = store.get(dom.get("product_url"))
+            if company is None:
+                company = build_company(payload, card)
+                logger.info(
+                    f"Card #{index + 1}: {company['company'] or 'unknown'} ({total} products)"
+                )
 
+            key = product_key(dom.get("product_url"), dom.get("name"))
             if not dom.get("name"):
-                logger.debug(f"Card {index + 1} variant {variant} has no title; skipped.")
+                logger.debug(f"Card {index + 1} slide {variant} has no title; skipped.")
             elif key in seen_products:
                 logger.debug(f"Skipped duplicate product: {dom['name'][:60]}")
             else:
-                payload = variant_payload(listing, variant)
-
-                # Guard the index-based payload match: if the rendered slide and
-                # the payload disagree on the product name they are out of sync,
-                # and trusting the payload would file another product's specs here.
-                if payload and clean_text(payload.get("p_nm")):
-                    if normalize_key(dom["name"]) != normalize_key(payload["p_nm"]):
-                        logger.debug(
-                            f"Slide/payload mismatch on card {index + 1} variant {variant}; using card only."
-                        )
-                        payload = None
-
-                images = gallery_for_primary(page, card) if variant == 0 else []
+                images = gallery_for_primary(page, card)
                 product = build_product(dom, payload, images)
                 seen_products.add(key)
                 company["products"].append(product)
-                logger.info(f"    + {product['name'][:60]} ({len(product['images'])} images)")
+                collected += 1
+                logger.info(
+                    f"    + {product['name'][:60]} "
+                    f"({len(product['images'])} images, {len(product['specs'])} specs"
+                    f"{'' if payload else ', card only'})"
+                )
         except Exception as e:
             logger.warning(f"Product {variant + 1} on card {index + 1} failed: {e}")
 
-        if variant < total - 1:
-            try:
-                card.locator(CARD_NEXT_VARIANT).first.click(timeout=5000)
-                page.wait_for_timeout(1100)
-            except Exception as e:
-                logger.debug(f"Could not advance carousel on card {index + 1}: {e}")
-                break
-
+    if company is None:
+        company = build_company(None, card)
+    if collected < total:
+        logger.info(f"    card #{index + 1}: {collected} of {total} slides yielded a product")
     return company
 
 
@@ -652,6 +743,22 @@ def save_to_json(data, filepath):
 # Entry point
 # ---------------------------------------------------------------------------
 
+def save_products(conn, record, query):
+    """Flush one company's products, keyed on the product URL.
+
+    Called as each card finishes rather than once at the end: a run that dies
+    on card 30 of 40 keeps the first 29 instead of losing the lot.
+    """
+    for product in record["products"]:
+        row = {c: record.get(c) if c in ("company", "company_url", "city", "state")
+               else product.get(c) for c in DB_COLUMNS}
+        for nested in ("specs", "images"):
+            row[nested] = json.dumps(row[nested] or ([] if nested == "images" else {}),
+                                     ensure_ascii=False)
+        upsert(conn, "products",
+               product_key(product.get("product_url"), product.get("name")), row, query)
+
+
 def run_scraper(query, output_file=None, limit=None, headless=False, session_file=None, max_pages=20):
     """Scrape IndiaMART product cards for ``query``.
 
@@ -664,9 +771,14 @@ def run_scraper(query, output_file=None, limit=None, headless=False, session_fil
     store = ListingStore()
     auth_failures = []
 
+    conn = open_table(db_path("indiamart_products"), "products", DB_COLUMNS)
     companies = []
     seen_companies = {}
-    seen_products = set()
+    # Pre-loaded with every product URL from every earlier run, so scrape_card
+    # skips them before the gallery popup - the slowest step in the whole run -
+    # and the export never repeats a product the database already holds.
+    seen_products = known_urls(conn, "products")
+    logger.info(f"Database has {len(seen_products)} products already stored.")
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -686,7 +798,10 @@ def run_scraper(query, output_file=None, limit=None, headless=False, session_fil
 
         def on_response(response):
             url = response.url
-            if "listing-cards" in url and response.request.method == "POST":
+            if "/api/search.rp" in url and response.status == 200:
+                # Page 2 onwards arrives here as bare JSON. Page 1 is not a
+                # request at all - it is baked into __NEXT_DATA__ and absorbed
+                # straight after the first navigation.
                 try:
                     store.absorb(response.text())
                 except Exception as e:
@@ -714,6 +829,8 @@ def run_scraper(query, output_file=None, limit=None, headless=False, session_fil
             page.goto(search_url, timeout=120000, wait_until="domcontentloaded")
             seed_local_storage(page, local_storage)
 
+            absorb_next_data(page, store)
+
             try:
                 page.wait_for_selector(CARD, timeout=45000)
             except PlaywrightTimeoutError:
@@ -738,13 +855,15 @@ def run_scraper(query, output_file=None, limit=None, headless=False, session_fil
                         card = cards.nth(index)
                         card.scroll_into_view_if_needed(timeout=5000)
                         page.wait_for_timeout(400)
-                        record = scrape_card(page, card, store.get(index), index, seen_products)
+                        record = scrape_card(page, card, store, index, seen_products)
                     except Exception as e:
                         logger.warning(f"Card {index + 1} failed entirely: {e}")
                         continue
 
                     if not record.get("company") or not record.get("products"):
                         continue
+
+                    save_products(conn, record, query)
 
                     key = normalize_key(record["company"], record.get("city"))
                     existing = seen_companies.get(key)
@@ -794,9 +913,14 @@ def run_scraper(query, output_file=None, limit=None, headless=False, session_fil
     product_total = sum(len(c["products"]) for c in companies)
     logger.info(f"Collected {len(companies)} companies / {product_total} products.")
 
+    if not companies:
+        # Writing here would republish whatever the last run found under a new
+        # timestamp. An empty run leaves no file.
+        logger.info("Nothing new this run - no export written.")
+        return {"file": None, "data": []}
+
     if not output_file:
-        safe_query = re.sub(r"\W+", "_", query.lower()).strip("_")
-        output_file = os.path.join("static", f"{safe_query}_indiamart_products.json")
+        output_file = export_path(query, "indiamart_products", "json")
     output_file = os.path.abspath(output_file)
     if not output_file.lower().endswith(".json"):
         output_file = os.path.splitext(output_file)[0] + ".json"

@@ -10,9 +10,19 @@ import time
 import re
 from urllib.parse import quote_plus
 from utils.logger import get_logger
+from utils import store
+# The session loader and URL cleaner already live in indiamart_products; the
+# listing is the same page, so there is nothing here to duplicate.
+from plugins.indiamart_products import DESKTOP_UA, clean_url, load_session, seed_local_storage
 
 logger = get_logger("indiamart")
 description = "Scrape supplier contact data from IndiaMART (B2B marketplace)."
+
+FIELDNAMES = ["Company Name", "Location", "Phone", "URL", "Product", "Product URL"]
+# Stored columns. The primary key *is* the product url, and SQLite column names
+# are case-insensitive, so a plain "URL" column would collide with it - the
+# supplier's own link is stored under "Supplier URL" instead.
+_DB_COLUMNS = ["Company Name", "Location", "Phone", "Supplier URL", "Product"]
 
 def build_search_url(query):
     return f"https://dir.indiamart.com/search.mp?ss={quote_plus(query)}"
@@ -31,24 +41,59 @@ def normalize_key(*values):
         return re.sub(r"\s+", " ", v.strip().lower())
     return tuple(clean(str(v)) for v in values)
 
-def extract_card_data(card):
-    """Extract data from a supplier card."""
-    try:
-        company_name = card.query_selector(".companyname a")
-        location = card.query_selector(".newLocationUi span.highlight")
-        phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
-        link = card.query_selector(".companyname a")
+def entry_key(data):
+    """Stable identity for a row: the product URL.
 
-        company = company_name.inner_text().strip() if company_name else "N/A"
-        city = location.inner_text().strip() if location else "N/A"
-        phone = phone_elem.inner_text().strip() if phone_elem else "N/A"
-        url = link.get_attribute("href") if link else "N/A"
+    Each card in the listing is one product with its seller attached, so the
+    proddetail URL is the entry's identity. Cards without one fall back to the
+    supplier URL, then to name plus location - the same fallback shape the
+    catalog plugin uses for products with no detail page.
+
+    Every candidate is cleaned first: IndiaMART appends a per-search
+    ``?pos=&kwd=&tags=`` string that differs on every run, so the raw href
+    would key the same listing as a new row each time.
+    """
+    for field in ("Product URL", "URL"):
+        url = clean_url((data.get(field) or "").strip())
+        if url and url != "N/A":
+            return url
+    return "::".join(normalize_key(data.get("Company Name"), data.get("Location")))
+
+
+def db_row(data):
+    """Map a scraped card onto the stored columns."""
+    return {
+        "Company Name": data.get("Company Name"),
+        "Location": data.get("Location"),
+        "Phone": data.get("Phone"),
+        "Supplier URL": data.get("URL"),
+        "Product": data.get("Product"),
+    }
+
+
+def extract_card_data(card):
+    """Extract one row from a result card.
+
+    Reads the "template7" listing that replaced the old ``.supplierInfoDiv``
+    markup. The city comes from the ``addressLocality`` microdata attribute
+    rather than a class name, because the classes are the part IndiaMART
+    rewrites.
+    """
+    try:
+        seller = card.query_selector("a.template7-seller-name")
+        city = card.query_selector('span[itemprop="addressLocality"]')
+        product = card.query_selector("a.prdtitle")
+        # Kept for when a card does carry a number, but the listing no longer
+        # renders one: the phone now sits behind the Contact Supplier enquiry.
+        phone_elem = card.query_selector(".pns_h, .contactnumber .duet")
 
         return {
-            "Company Name": company,
-            "Location": city,
-            "Phone": phone,
-            "URL": url
+            "Company Name": seller.inner_text().strip() if seller else "N/A",
+            "Location": city.inner_text().strip() if city else "N/A",
+            "Phone": phone_elem.inner_text().strip() if phone_elem else "N/A",
+            "URL": clean_url(seller.get_attribute("href")) if seller else "N/A",
+            "Product": product.inner_text().strip() if product else "N/A",
+            "Product URL": clean_url(product.get_attribute("href")) if product else "N/A",
         }
     except Exception as e:
         logger.warning(f"Error extracting a card: {e}")
@@ -57,40 +102,66 @@ def extract_card_data(card):
 def save_to_csv(data, filepath):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Company Name", "Location", "Phone", "URL"])
+        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         writer.writeheader()
         writer.writerows(data)
     logger.info(f"Scraping completed. Output saved to {filepath}")
     return filepath
 
-def run_scraper(query, output_file=None, limit=None):
+CARD = ".template7-product-card"
+
+
+def run_scraper(query, output_file=None, limit=None, session_file=None):
     target_count = limit if limit is not None else 40
     timeout_ms = 180000 if limit is None else 60000
+
+    # IndiaMART serves an empty listing to a signed-out browser, which this
+    # plugin used to read as "no results". load_session raises when the saved
+    # login is dead, so a stale session fails here with a clear reason.
+    cookies, local_storage = load_session(session_file)
 
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
-            page = browser.new_page()
+            context = browser.new_context(user_agent=DESKTOP_UA, locale="en-US")
+            context.add_init_script(
+                "Object.defineProperty(navigator, 'webdriver', {get: () => undefined});"
+            )
+            if cookies:
+                context.add_cookies(cookies)
+            page = context.new_page()
 
             search_url = build_search_url(query)
             logger.info(f"Navigating to {search_url}")
             page.goto(search_url, timeout=timeout_ms)
+            seed_local_storage(page, local_storage)
 
             try:
-                page.wait_for_selector(".supplierInfoDiv", timeout=15000)
+                page.wait_for_selector(CARD, timeout=15000)
             except PlaywrightTimeoutError:
-                logger.warning("⚠ No supplier cards found.")
+                logger.warning(
+                    "No result cards found. IndiaMART shows an empty listing when the "
+                    "session is not recognised - re-export the session file and retry."
+                )
                 browser.close()
                 return {"file": None, "data": []}
 
+            conn = store.open_table(
+                store.db_path("indiamart"), "listings", _DB_COLUMNS
+            )
+            # Pre-loaded with every listing from every earlier run, so a re-run
+            # collects only what is genuinely new and the export never repeats a
+            # row the database already holds.
+            known = store.known_urls(conn, "listings")
+            logger.info(f"Database has {len(known)} listings already stored.")
+
             collected = []
-            seen_entries = set()
             scrolls_done = 0
             max_scrolls = 40 if limit is None else 20
             last_cards_count = 0
 
             while len(collected) < target_count and scrolls_done < max_scrolls:
-                cards = page.query_selector_all(".supplierInfoDiv")
+                cards = page.query_selector_all(CARD)
                 logger.info(f"Found {len(cards)} cards on scroll #{scrolls_done + 1}")
 
                 new_cards = []
@@ -98,10 +169,12 @@ def run_scraper(query, output_file=None, limit=None):
                     data = extract_card_data(c)
                     if not data:
                         continue
-                    entry_key = normalize_key(data["Company Name"], data["Location"], data["Phone"])
-                    if entry_key not in seen_entries:
-                        new_cards.append(data)
-                        seen_entries.add(entry_key)
+                    key = entry_key(data)
+                    if key in known:
+                        continue
+                    known.add(key)
+                    store.upsert(conn, "listings", key, db_row(data), query)
+                    new_cards.append(data)
 
                 logger.info(f"New unique cards this round: {len(new_cards)}")
                 collected.extend(new_cards)
@@ -119,9 +192,14 @@ def run_scraper(query, output_file=None, limit=None):
 
             browser.close()
 
+            if not collected:
+                # Writing here would republish the previous run's rows under a
+                # new timestamp. An empty run leaves no file.
+                logger.info("Nothing new this run - no export written.")
+                return {"file": None, "data": []}
+
             if not output_file:
-                safe_query = query.replace(" ", "_")
-                output_file = os.path.abspath(os.path.join("static", f"{safe_query}_indiamart.csv"))
+                output_file = store.export_path(query, "indiamart", "csv")
             else:
                 # Ensure absolute path always
                 output_file = os.path.abspath(output_file)

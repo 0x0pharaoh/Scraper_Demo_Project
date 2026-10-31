@@ -12,6 +12,7 @@ from datetime import datetime
 from urllib.parse import quote_plus
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from utils.logger import get_logger
+from utils.store import export_path
 
 # Chromium is normally installed by runner.py before this module loads. Keep a
 # best-effort fallback for direct imports, but never let it kill the import.
@@ -818,16 +819,29 @@ def extract_card_data(page):
 
     return data
 
-def _place_key(data):
-    """Stable identity for a business: name plus address.
+# The one stable part of a Google Maps URL: the place's feature id.
+_FEATURE_ID = re.compile(r"!1s(0x[0-9a-f]+:0x[0-9a-f]+)")
 
-    Not the URL - Google varies the data=/entry= parameters between visits to the
-    same place, so URL keys let duplicates through. Not the URL's !1s feature id
-    either: page.url can still hold the previous business when the panel is read,
-    which merges two unrelated companies. Name+address survives both, and real
-    branches of one chain differ by address so they stay separate.
+
+def _place_key(data, href=None):
+    """Stable identity for a business, taken from its URL where possible.
+
+    Uses the feature id Google embeds in the results-card ``href``. The rest of
+    the URL is not usable as a key: Google varies the data=/entry= parameters
+    between visits, so one place has many URLs.
+
+    The href specifically, never ``data["URL"]`` - that is ``page.url``, which
+    can still hold the *previous* business when the detail panel is read, and
+    keying on it merges two unrelated companies. The card href is captured
+    before the click, so it cannot go stale that way.
+
+    Falls back to name plus address when a href carries no feature id. Real
+    branches of one chain differ by address, so they stay separate either way.
     """
-    return normalize_key(data.get("Name"), data.get("Address"))
+    found = _FEATURE_ID.search(href or "")
+    if found:
+        return found.group(1)
+    return "::".join(normalize_key(data.get("Name"), data.get("Address")))
 
 def _ensure_parent_dir(filepath):
     """makedirs() on a bare filename raises FileNotFoundError - skip when no dir part."""
@@ -864,6 +878,21 @@ def open_db(path=None):
     conn.row_factory = sqlite3.Row
     columns = ", ".join(f'"{c}" TEXT' for c in _DB_COLUMNS[1:])
     conn.execute(f'CREATE TABLE IF NOT EXISTS places ("id" TEXT PRIMARY KEY, {columns})')
+    # Indexed for lookup, but deliberately NOT the primary key and NOT unique:
+    # Google varies the data=/entry= parameters between visits to the same place,
+    # so one business legitimately has several URLs. Keying on it would let the
+    # duplicates back in - see _place_key.
+    conn.execute('CREATE INDEX IF NOT EXISTS places_url ON places("URL")')
+    conn.execute('CREATE INDEX IF NOT EXISTS places_query ON places("query")')
+    # Re-key rows written when the id was name+address. Without this, a
+    # re-scrape of those places stores a second row under the new feature-id
+    # key - exactly the duplication this table exists to prevent. OR REPLACE
+    # covers a row whose new key is already present.
+    for row in conn.execute('SELECT "id", "href" FROM places').fetchall():
+        found = _FEATURE_ID.search(row["href"] or "")
+        if found and row["id"] != found.group(1):
+            conn.execute('UPDATE OR REPLACE places SET "id"=? WHERE "id"=?',
+                         (found.group(1), row["id"]))
     conn.commit()
     return conn
 
@@ -876,7 +905,7 @@ def save_place(conn, data, query=None, href=None):
     """
     row = [json.dumps(data.get(c) or [], ensure_ascii=False) if c in ("Images", "Reviews")
            else data.get(c) for c in GOOGLE_MAPS_FIELDNAMES]
-    values = ["::".join(_place_key(data)), href, *row, query,
+    values = [_place_key(data, href), href, *row, query,
               datetime.now().isoformat(timespec="seconds")]
     updates = ", ".join(f'"{c}"=excluded."{c}"' for c in _DB_COLUMNS[1:])
     with conn:
@@ -900,7 +929,8 @@ def scraped_places(conn):
     """
     keys, hrefs = set(), set()
     for row in conn.execute('SELECT "id", "href" FROM places'):
-        keys.add(tuple((row["id"] or "").split("::")))
+        if row["id"]:
+            keys.add(row["id"])
         if row["href"]:
             hrefs.add(row["href"])
     return keys, hrefs
@@ -929,7 +959,7 @@ def save_to_json(data, filepath):
     return filepath
 
 def run_scraper(query, output_file=None, limit=None, db_file=None):
-    target_count = limit if limit is not None else 40
+    target_count = limit if limit is not None else 100
     conn = open_db(db_file)
     done_keys, done_hrefs = scraped_places(conn)
     logger.info(f"Database {os.path.abspath(db_file or DEFAULT_DB)}: {len(done_keys)} places already stored.")
@@ -1013,7 +1043,7 @@ def run_scraper(query, output_file=None, limit=None, db_file=None):
                     page.wait_for_selector(".DUwDvf, h1.DUwDvf, div.Io6YTe", timeout=15000)
                     data = extract_card_data(page)
 
-                    entry_key = _place_key(data)
+                    entry_key = _place_key(data, href)
                     if entry_key in done_keys:
                         logger.info(f"Already stored, skipping: {data['Name'][:50]}")
                         visited_hrefs.add(href)
@@ -1049,9 +1079,17 @@ def run_scraper(query, output_file=None, limit=None, db_file=None):
 
         browser.close()
 
+    if not collected:
+        # Writing here would republish the previous run's rows under a new
+        # timestamp. An empty run leaves no file.
+        logger.info("Nothing new this run - no export written.")
+        total = conn.execute("SELECT COUNT(*) FROM places").fetchone()[0]
+        logger.info(f"Database still holds {total} places.")
+        conn.close()
+        return {"file": None, "data": []}
+
     if not output_file:
-            safe_query = query.replace(" ", "_")
-            output_file = os.path.abspath(os.path.join("static", f"{safe_query}_google_maps.csv"))
+        output_file = export_path(query, "google_maps", "csv")
     else:
         # Ensure absolute path always
         output_file = os.path.abspath(output_file)

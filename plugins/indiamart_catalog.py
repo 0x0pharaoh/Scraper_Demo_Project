@@ -54,6 +54,7 @@ from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
 from utils.logger import get_logger
+from utils.store import export_path, slug
 
 # Reuse the session/text helpers rather than duplicating them. They are already
 # exercised against the live site by the sibling plugin.
@@ -769,10 +770,18 @@ def save_company(conn, record):
     return status
 
 
-def export_json(conn, filepath):
-    """Mirror the database out as the nested JSON the earlier runs produced."""
+def export_json(conn, filepath, aliases=None):
+    """Write the nested JSON the earlier runs produced.
+
+    ``aliases`` limits the export to the companies a single run touched. Without
+    it the file is the whole database, which means every timestamped export
+    repeats everything the previous ones already held.
+    """
     companies = []
-    for row in conn.execute("SELECT * FROM companies ORDER BY company").fetchall():
+    rows = conn.execute("SELECT * FROM companies ORDER BY company").fetchall()
+    if aliases is not None:
+        rows = [r for r in rows if r["alias"] in set(aliases)]
+    for row in rows:
         record = {c: row[c] for c in ("alias", *COMPANY_COLUMNS)}
         record["verified_exporter"] = bool(record["verified_exporter"])
         record["categories"] = json.loads(row["categories"] or "[]")
@@ -903,15 +912,16 @@ def run_scraper(
     auth_failures = []
 
     if not output_file:
-        safe_query = re.sub(r"\W+", "_", query.lower()).strip("_")
-        output_file = os.path.join("static", f"{safe_query}_indiamart_catalog.json")
+        output_file = export_path(query, "indiamart_catalog", "json")
     output_file = os.path.abspath(output_file)
     if not output_file.lower().endswith(".json"):
         output_file = os.path.splitext(output_file)[0] + ".json"
 
     db_file = os.path.abspath(db_file or DEFAULT_DB)
     conn = open_db(db_file)
-    import_legacy_json(conn, output_file)
+    import_legacy_json(
+        conn, os.path.join(BASE_DIR, "static", f"{slug(query)}_indiamart_catalog.json")
+    )
 
     done = completed_aliases(conn)
     logger.info(f"Database {db_file}: {len(done)} companies already complete.")
@@ -1025,9 +1035,16 @@ def run_scraper(
     product_total = sum(len(c["products"]) for c in companies)
     logger.info(f"This run: {len(companies)} companies / {product_total} products.")
 
-    # The JSON mirror is regenerated from the database so it always reflects
-    # every company collected so far, not just this run's.
-    all_companies = export_json(conn, output_file)
+    # Only this run's companies go in the file. The database is the complete
+    # record; re-dumping all of it under every new timestamp just republished
+    # the previous file's contents under a new name.
+    if companies:
+        exported = export_json(
+            conn, output_file, aliases=[c.get("alias") for c in companies]
+        )
+    else:
+        logger.info("Nothing new this run - no export written.")
+        output_file, exported = None, []
     totals = conn.execute(
         "SELECT status, COUNT(*) n FROM companies GROUP BY status"
     ).fetchall()
@@ -1042,7 +1059,7 @@ def run_scraper(
         logger.info(f"Incomplete, will retry next run: {', '.join(remaining[:5])}")
     conn.close()
 
-    return {"file": output_file, "db": db_file, "data": all_companies}
+    return {"file": output_file, "db": db_file, "data": exported}
 
 
 if __name__ == "__main__":
@@ -1051,7 +1068,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="IndiaMART company catalog scraper")
     parser.add_argument("--query", required=True)
     parser.add_argument("--output")
-    parser.add_argument("--limit", type=int, default=1,
+    parser.add_argument("--limit", type=int, default=100,
         help="companies to scrape this run (default 1; already-done ones never recount)")
     parser.add_argument("--db", help="SQLite file (default: alongside the JSON output)")
     parser.add_argument("--session", help="exported session JSON (default: plugins/auth/indiamart/)")
